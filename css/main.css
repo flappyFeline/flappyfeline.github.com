@@ -473,8 +473,8 @@ body {
 pre,
 .highlight {
   overflow: auto;
-  margin: 20px 0;
-  padding: 0;
+  margin: auto;
+  padding: 15px article-padding;
   font-size: 13px;
   color: #c5c8c6;
   background: #1d1f21;
@@ -510,6 +510,7 @@ pre code {
   margin: 0;
   width: auto;
   border: none;
+  letter-spacing: 1px;
 }
 .highlight td {
   border: none;
@@ -1698,7 +1699,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #2e6626;
+  background: #9891ff;
 }
 .links-of-blogroll {
   font-size: 13px;
