@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="iOS," />
 
 
 
@@ -87,25 +87,31 @@
 
 
 
-<meta name="description" content="之前用jekyll 搭建的博客年久失修, 换了新本之后搭建环境又总是出问题, 索性换用了hexo,同时选用了next主题,感觉简洁多了.
-在过去一年里的编程生涯中,虽然异常努力,但是感觉并没有达到自己预想的目标.
-所以今年,我打算将重心放到研究优秀开源代码上.并完成一个优秀的开源框架,初步计划是一个图片选择/浏览器.
-同时,我也要调整自己的作息. 由之前的 夜战 转为 日战, 早到公司俩小时, 多">
+<meta name="description" content="今天用iOS7设备跑debug时发现app无法安装到设置上,并且Xcode会弹出一个显示 There was an internal API error.  错误的提示框.
+搜了一圈发现几个可能因素:  
+
+工程中的 Product Name 是中文导致的.在Build Setting中搜索Product Name,修改成纯英文.
+
+Build Settings 中搜索 Packaging/Pri">
 <meta property="og:type" content="article">
-<meta property="og:title" content="新的计划">
-<meta property="og:url" content="http://yoursite.com/2017/03/05/新的计划/index.html">
+<meta property="og:title" content="There was an internal API error问题的解决">
+<meta property="og:url" content="http://yoursite.com/2017/04/21/There was an internal API error问题的解决/index.html">
 <meta property="og:site_name" content="Durand's">
-<meta property="og:description" content="之前用jekyll 搭建的博客年久失修, 换了新本之后搭建环境又总是出问题, 索性换用了hexo,同时选用了next主题,感觉简洁多了.
-在过去一年里的编程生涯中,虽然异常努力,但是感觉并没有达到自己预想的目标.
-所以今年,我打算将重心放到研究优秀开源代码上.并完成一个优秀的开源框架,初步计划是一个图片选择/浏览器.
-同时,我也要调整自己的作息. 由之前的 夜战 转为 日战, 早到公司俩小时, 多">
-<meta property="og:updated_time" content="2017-03-06T14:05:58.000Z">
+<meta property="og:description" content="今天用iOS7设备跑debug时发现app无法安装到设置上,并且Xcode会弹出一个显示 There was an internal API error.  错误的提示框.
+搜了一圈发现几个可能因素:  
+
+工程中的 Product Name 是中文导致的.在Build Setting中搜索Product Name,修改成纯英文.
+
+Build Settings 中搜索 Packaging/Pri">
+<meta property="og:updated_time" content="2017-04-21T01:43:14.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="新的计划">
-<meta name="twitter:description" content="之前用jekyll 搭建的博客年久失修, 换了新本之后搭建环境又总是出问题, 索性换用了hexo,同时选用了next主题,感觉简洁多了.
-在过去一年里的编程生涯中,虽然异常努力,但是感觉并没有达到自己预想的目标.
-所以今年,我打算将重心放到研究优秀开源代码上.并完成一个优秀的开源框架,初步计划是一个图片选择/浏览器.
-同时,我也要调整自己的作息. 由之前的 夜战 转为 日战, 早到公司俩小时, 多">
+<meta name="twitter:title" content="There was an internal API error问题的解决">
+<meta name="twitter:description" content="今天用iOS7设备跑debug时发现app无法安装到设置上,并且Xcode会弹出一个显示 There was an internal API error.  错误的提示框.
+搜了一圈发现几个可能因素:  
+
+工程中的 Product Name 是中文导致的.在Build Setting中搜索Product Name,修改成纯英文.
+
+Build Settings 中搜索 Packaging/Pri">
 
 
 
@@ -133,13 +139,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/03/05/新的计划/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/04/21/There was an internal API error问题的解决/"/>
 
 
 
 
 
-  <title> 新的计划 | Durand's </title>
+  <title> There was an internal API error问题的解决 | Durand's </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -258,7 +264,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/05/新的计划/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/21/There was an internal API error问题的解决/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Durand">
@@ -279,7 +285,7 @@
             
             
               
-                新的计划
+                There was an internal API error问题的解决
               
             
           </h1>
@@ -294,8 +300,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-05T00:33:00+08:00">
-                2017-03-05
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-21T09:07:27+08:00">
+                2017-04-21
               </time>
             
 
@@ -313,8 +319,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/03/05/新的计划/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/03/05/新的计划/" itemprop="commentCount"></span>
+                <a href="/2017/04/21/There was an internal API error问题的解决/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/04/21/There was an internal API error问题的解决/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -340,11 +346,22 @@
       
 
       
-        <p>之前用jekyll 搭建的博客年久失修, 换了新本之后搭建环境又总是出问题, 索性换用了hexo,同时选用了<a href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="external">next</a>主题,感觉简洁多了.</p>
-<p>在过去一年里的编程生涯中,虽然异常努力,但是感觉并没有达到自己预想的目标.</p>
-<p>所以今年,我打算将重心放到研究优秀开源代码上.并完成一个优秀的开源框架,初步计划是一个图片选择/浏览器.</p>
-<p>同时,我也要调整自己的作息. 由之前的 <code>夜战</code> 转为 <code>日战</code>, 早到公司俩小时, 多加俩小时班.将碎片的时间固集到一起.</p>
-<p>希望自己能一直坚持如此,今年定是我的收获之年.</p>
+        <p>今天用iOS7设备跑debug时发现app无法安装到设置上,并且Xcode会弹出一个显示 <code>There was an internal API error.</code>  错误的提示框.</p>
+<p>搜了一圈发现几个可能因素:  </p>
+<ol>
+<li><p>工程中的 <code>Product Name</code> 是中文导致的.<br>在<code>Build Setting</code>中搜索<code>Product Name</code>,修改成纯英文.</p>
+</li>
+<li><p><code>Build Settings</code> 中搜索 <code>Packaging/Private Headers Folder Path</code> 和 <code>Product Module Name</code> ,检查下名字是否为 <code>Product Name</code> 名. </p>
+</li>
+</ol>
+<p>试过以上两个之后 发现问题并没有解决, 于是我将 <code>Main Scheme</code> 的名字和 <code>targetName</code> 也改成英文,但没有起作用,然而此时, 运行项目最后报错<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">error: cannot parse the debug map for  </div><div class="line">&quot;/Users/apple/Library/Developer/Xcode/DerivedData/xxx/your_app_name.app/your_app_name&quot;: Is a directory</div></pre></td></tr></table></figure></p>
+<p>看到这个之后, 我喜出望外, 进入到这个目录下, 发现确实存在 <code>your_app_name</code> 这个文件夹,而此文件夹是我们工程里的一个资源文件夹… 于是再次将 <code>Product Name</code> 修改为另一个英文名.随即运行通过.</p>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>工程的相关命名一定要规范:</p>
+<ol>
+<li><code>Product Name</code> 要为英文, 避免上文中那种麻烦.</li>
+<li>工程的名字最好为<strong>英文</strong>,同时名字中<strong>务必不要带空格</strong>. 此举是避免在 <code>Search path</code> 中会将空格转义为 <code>\</code> ,因此导致一些文件无法被正确加载的问题.  </li>
+<li><code>targetName</code> , <code>Scheme</code> 的名字务必为英文. 虽然在上文中的问题与这俩并没有关系, 但是在之前我用 <code>jenkins</code> 构建自动部署的时候, 工程的 <code>Workspace</code> 的 <code>Main Scheme</code> 如果为中文的话, 总是会出现构建失败的问题, 虽然在之后的版本中 <code>jenkins</code> 已经没有了这个问题, 但是出于谨慎和规范起见, 这些名称都应该使用英文.</li>
+</ol>
 
       
     </div>
@@ -366,6 +383,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag"># iOS</a>
+          
+        </div>
+      
 
       
         
@@ -375,15 +398,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2017/04/15/评论系统迁移Disqus及Next主题的一些配置优化/" rel="next" title="评论系统迁移Disqus及Next主题的一些配置优化">
+                <i class="fa fa-chevron-left"></i> 评论系统迁移Disqus及Next主题的一些配置优化
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/03/14/UITableView之局部刷新的正确使用姿势/" rel="prev" title="UITableView之局部刷新的正确使用姿势">
-                UITableView之局部刷新的正确使用姿势 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -416,8 +439,8 @@
         *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
         */
           var disqus_config = function () {
-          this.page.url = "http://yoursite.com/2017/03/05/新的计划/";  // Replace PAGE_URL with your page's canonical URL variable
-          this.page.identifier = "2017/03/05/新的计划/"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+          this.page.url = "http://yoursite.com/2017/04/21/There was an internal API error问题的解决/";  // Replace PAGE_URL with your page's canonical URL variable
+          this.page.identifier = "2017/04/21/There was an internal API error问题的解决/"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
           };
           
           (function() { // DON'T EDIT BELOW THIS LINE
@@ -451,8 +474,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="http://ww1.sinaimg.cn/large/6b523ad1gy1fenjh5istbj20zk0zkac8.jpg"
@@ -516,6 +548,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#总结"><span class="nav-number">1.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -641,9 +689,9 @@
 
     <script type="text/javascript">
       var disqus_shortname = 'durand';
-      var disqus_identifier = '2017/03/05/新的计划/';
+      var disqus_identifier = '2017/04/21/There was an internal API error问题的解决/';
 
-      var disqus_title = "新的计划";
+      var disqus_title = "There was an internal API error问题的解决";
 
 
       function run_disqus_script(disqus_script) {
