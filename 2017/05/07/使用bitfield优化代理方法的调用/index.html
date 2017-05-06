@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="iOS," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -87,31 +87,16 @@
 
 
 
-<meta name="description" content="今天用iOS7设备跑debug时发现app无法安装到设置上,并且Xcode会弹出一个显示 There was an internal API error.  错误的提示框.
-搜了一圈发现几个可能因素:  
-
-工程中的 Product Name 是中文导致的.在Build Setting中搜索Product Name,修改成纯英文.
-
-Build Settings 中搜索 Packaging/Pri">
+<meta name="description" content="前言在编写 Objective-C 代码时, 代理 是我们经常使用的一种设计模式,它简单易用,善用它可令代码变的更易维护.然而,在对 代理对象 发送 protocol 中的消息时, 出于代码的健壮性的角度考虑, 我们都应该先去试探 代理对象 能否响应此消息:123if ([self.delegate conformsToProtocol:@protocol(SomeProtocol)] &amp;amp;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="There was an internal API error问题的解决">
-<meta property="og:url" content="http://yoursite.com/2017/04/21/There was an internal API error问题的解决/index.html">
+<meta property="og:title" content="使用bitfield优化代理方法的调用">
+<meta property="og:url" content="http://yoursite.com/2017/05/07/使用bitfield优化代理方法的调用/index.html">
 <meta property="og:site_name" content="Durand's">
-<meta property="og:description" content="今天用iOS7设备跑debug时发现app无法安装到设置上,并且Xcode会弹出一个显示 There was an internal API error.  错误的提示框.
-搜了一圈发现几个可能因素:  
-
-工程中的 Product Name 是中文导致的.在Build Setting中搜索Product Name,修改成纯英文.
-
-Build Settings 中搜索 Packaging/Pri">
-<meta property="og:updated_time" content="2017-04-21T01:43:14.000Z">
+<meta property="og:description" content="前言在编写 Objective-C 代码时, 代理 是我们经常使用的一种设计模式,它简单易用,善用它可令代码变的更易维护.然而,在对 代理对象 发送 protocol 中的消息时, 出于代码的健壮性的角度考虑, 我们都应该先去试探 代理对象 能否响应此消息:123if ([self.delegate conformsToProtocol:@protocol(SomeProtocol)] &amp;amp;">
+<meta property="og:updated_time" content="2017-05-06T18:24:07.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="There was an internal API error问题的解决">
-<meta name="twitter:description" content="今天用iOS7设备跑debug时发现app无法安装到设置上,并且Xcode会弹出一个显示 There was an internal API error.  错误的提示框.
-搜了一圈发现几个可能因素:  
-
-工程中的 Product Name 是中文导致的.在Build Setting中搜索Product Name,修改成纯英文.
-
-Build Settings 中搜索 Packaging/Pri">
+<meta name="twitter:title" content="使用bitfield优化代理方法的调用">
+<meta name="twitter:description" content="前言在编写 Objective-C 代码时, 代理 是我们经常使用的一种设计模式,它简单易用,善用它可令代码变的更易维护.然而,在对 代理对象 发送 protocol 中的消息时, 出于代码的健壮性的角度考虑, 我们都应该先去试探 代理对象 能否响应此消息:123if ([self.delegate conformsToProtocol:@protocol(SomeProtocol)] &amp;amp;">
 
 
 
@@ -139,13 +124,13 @@ Build Settings 中搜索 Packaging/Pri">
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/04/21/There was an internal API error问题的解决/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/05/07/使用bitfield优化代理方法的调用/"/>
 
 
 
 
 
-  <title> There was an internal API error问题的解决 | Durand's </title>
+  <title> 使用bitfield优化代理方法的调用 | Durand's </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -264,7 +249,7 @@ Build Settings 中搜索 Packaging/Pri">
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/21/There was an internal API error问题的解决/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/07/使用bitfield优化代理方法的调用/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Durand">
@@ -285,7 +270,7 @@ Build Settings 中搜索 Packaging/Pri">
             
             
               
-                There was an internal API error问题的解决
+                使用bitfield优化代理方法的调用
               
             
           </h1>
@@ -300,8 +285,8 @@ Build Settings 中搜索 Packaging/Pri">
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-21T09:07:27+08:00">
-                2017-04-21
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-07T01:13:42+08:00">
+                2017-05-07
               </time>
             
 
@@ -319,8 +304,8 @@ Build Settings 中搜索 Packaging/Pri">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/04/21/There was an internal API error问题的解决/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/04/21/There was an internal API error问题的解决/" itemprop="commentCount"></span>
+                <a href="/2017/05/07/使用bitfield优化代理方法的调用/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/05/07/使用bitfield优化代理方法的调用/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -346,22 +331,15 @@ Build Settings 中搜索 Packaging/Pri">
       
 
       
-        <p>今天用iOS7设备跑debug时发现app无法安装到设置上,并且Xcode会弹出一个显示 <code>There was an internal API error.</code>  错误的提示框.</p>
-<p>搜了一圈发现几个可能因素:  </p>
-<ol>
-<li><p>工程中的 <code>Product Name</code> 是中文导致的.<br>在<code>Build Setting</code>中搜索<code>Product Name</code>,修改成纯英文.</p>
-</li>
-<li><p><code>Build Settings</code> 中搜索 <code>Packaging/Private Headers Folder Path</code> 和 <code>Product Module Name</code> ,检查下名字是否为 <code>Product Name</code> 名. </p>
-</li>
-</ol>
-<p>试过以上两个之后 发现问题并没有解决, 于是我将 <code>Main Scheme</code> 的名字和 <code>targetName</code> 也改成英文,但没有起作用,然而此时, 运行项目最后报错<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">error: cannot parse the debug map for  </div><div class="line">&quot;/Users/apple/Library/Developer/Xcode/DerivedData/xxx/your_app_name.app/your_app_name&quot;: Is a directory</div></pre></td></tr></table></figure></p>
-<p>看到这个之后, 我喜出望外, 进入到这个目录下, 发现确实存在 <code>your_app_name</code> 这个文件夹,而此文件夹是我们工程里的一个资源文件夹… 于是再次将 <code>Product Name</code> 修改为另一个英文名.随即运行通过.</p>
-<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>工程的相关命名一定要规范:</p>
-<ol>
-<li><code>Product Name</code> 要为英文, 避免上文中那种麻烦.</li>
-<li>工程的名字最好为<strong>英文</strong>,同时名字中<strong>务必不要带空格</strong>. 此举是避免在 <code>Search path</code> 中会将空格转义为 <code>\</code> ,因此导致一些文件无法被正确加载的问题.  </li>
-<li><code>targetName</code> , <code>Scheme</code> 的名字务必为英文. 虽然在上文中的问题与这俩并没有关系, 但是在之前我用 <code>jenkins</code> 构建自动部署的时候, 工程的 <code>Workspace</code> 的 <code>Main Scheme</code> 如果为中文的话, 总是会出现构建失败的问题, 虽然在之后的版本中 <code>jenkins</code> 已经没有了这个问题, 但是出于谨慎和规范起见, 这些名称都应该使用英文.</li>
-</ol>
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在编写 <code>Objective-C</code> 代码时, <code>代理</code> 是我们经常使用的一种设计模式,它简单易用,善用它可令代码变的更易维护.<br>然而,在对 <code>代理对象</code> 发送 <code>protocol</code> 中的消息时, 出于代码的健壮性的角度考虑, 我们都应该先去试探 <code>代理对象</code> 能否响应此消息:<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> ([<span class="keyword">self</span>.delegate conformsToProtocol:<span class="class"><span class="keyword">@protocol</span>(<span class="title">SomeProtocol</span>)] &amp;&amp; [<span class="title">self</span>.<span class="title">delegate</span> <span class="title">respondsToSelector</span>:@<span class="title">selector</span>(<span class="title">someProtocolMethod</span>)]) </span>&#123;</div><div class="line">        [<span class="keyword">self</span>.delegate someProtocolMethod];</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
+<p><strong>注: 苹果的大部分代理回调检验都只使用了 <code>[self.delegate respondsToSelector:@selector(someProtocolMethod)]</code> ,例如 <code>UITableView</code> 的dataSource回调, 猜测这是苹果认为开发者对于一些基本的控件的接口都比较熟悉了, 一般不会发生在不知情的情况下就覆写掉 <code>protocol</code> 中的方法的场景, 然而, 当我们在定义自己的 <code>protocol</code> 并且调用其中方法时, 为了避免上述情况, 还是应该加上校验是否遵守了该 <code>protocol</code> 的判断.</strong>  </p>
+<p>然而, 当我们需要频繁的调用某个 <code>protocol</code> 中的方法时, 每次都进行如此判断合适吗? 仔细想想, 其实除了第一次的检测结果有用之外, 之后的校验判断可能多是多余的. 如果代理的对象没有发生改变, 那么极少情况下才会发生突然 遵守/不遵守 某个 <code>protocol</code> ,或者突然 响应/不响应 某个方法(<strong>比如在某些情景下利用 <code>runtime</code> 动态的遵守 <code>protocol</code> , 动态的添加/删除方法</strong>). 鉴于此, 我们可以使用一些手段来将这些信息缓存起来, 来避免多余/重复的判断.</p>
+<h3 id="bitfield的使用"><a href="#bitfield的使用" class="headerlink" title="bitfield的使用"></a>bitfield的使用</h3><p>使用 <a href="https://en.wikipedia.org/wiki/Bit_field" target="_blank" rel="external">bitfield</a> 这一数据类型可能是实现这种缓存的最佳方案了.<br>我们可以利用 <code>bitfield</code> 声明结构体某个字段的所占用的二进制位数, 例如:<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">struct</span> Flags &#123;</div><div class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> flagA : <span class="number">4</span>;</div><div class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> flagB : <span class="number">2</span>;</div><div class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> flagC : <span class="number">1</span>;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>此时, 结构体 <code>Flags</code> 中, <code>flagA</code> 就占用了4个二进制位, <code>flagB</code> 与 <code>flag</code> 分别是2个和1个二进制位, 它们对应的存储范围分别是 <code>0~15</code> , <code>0~3</code>, <code>0~1</code>.<br>显示这里使用二级制位数为1的字段来作为调用代理方法的校验缓存再合适不过了.</p>
+<p>如此 我们可以定义一个这样的结构体</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">struct</span> SomeDelegateFlags &#123;</div><div class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> delgateMethodA : <span class="number">1</span>;</div><div class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> delgateMethodB : <span class="number">1</span>;</div><div class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> delgateMethodC : <span class="number">1</span>;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>在被委托对象中可以这么写:<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// .h</span></div><div class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">SomeClass</span> : <span class="title">SuperClass</span></span></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">weak</span>) <span class="keyword">id</span>&lt;SomeDelegate&gt; delegate;</div><div class="line"><span class="keyword">@end</span></div><div class="line"></div><div class="line"><span class="comment">// .m</span></div><div class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> SomeDelegateFlags SomeDelegateFlags;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">SomeClass</span> ()</span></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">assign</span>) SomeDelegateFlags delegateFlags;</div><div class="line"><span class="keyword">@end</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">SomeClass</span></span></div><div class="line">- (<span class="keyword">void</span>)setDelegate:(<span class="keyword">id</span>&lt;SomeDelegate&gt;)delegate</div><div class="line">&#123;</div><div class="line">    _delegate = delegate;</div><div class="line">    <span class="keyword">if</span> ([delegate conformsToProtocol:<span class="class"><span class="keyword">@protocol</span>(<span class="title">SomeDelegate</span>)]) </span>&#123;</div><div class="line">        _delegateFlags.delgateMethodA = [delegate respondsToSelector:<span class="keyword">@selector</span>(delgateMethodA)];</div><div class="line">        _delegateFlags.delgateMethodB = [delegate respondsToSelector:<span class="keyword">@selector</span>(delgateMethodB)];</div><div class="line">        _delegateFlags.delgateMethodC = [delegate respondsToSelector:<span class="keyword">@selector</span>(delgateMethodC)];</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        _delegateFlags.delgateMethodA = <span class="literal">NO</span>;</div><div class="line">        _delegateFlags.delgateMethodB = <span class="literal">NO</span>;</div><div class="line">        _delegateFlags.delgateMethodC = <span class="literal">NO</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="keyword">@end</span></div></pre></td></tr></table></figure></p>
+<p>而在调用相关代理方法时, 就不需要再校验是否遵守协议,响应消息了,可以读取该结构体的字段的缓存值来进行判断了.<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (_delegateFlags.delegateMethodA) &#123;</div><div class="line">    [_delegate delegateMethodA];</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -383,12 +361,6 @@ Build Settings 中搜索 Packaging/Pri">
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/iOS/" rel="tag"># iOS</a>
-          
-        </div>
-      
 
       
         
@@ -398,8 +370,8 @@ Build Settings 中搜索 Packaging/Pri">
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/04/15/评论系统迁移Disqus及Next主题的一些配置优化/" rel="next" title="评论系统迁移Disqus及Next主题的一些配置优化">
-                <i class="fa fa-chevron-left"></i> 评论系统迁移Disqus及Next主题的一些配置优化
+              <a href="/2017/04/21/There was an internal API error问题的解决/" rel="next" title="There was an internal API error问题的解决">
+                <i class="fa fa-chevron-left"></i> There was an internal API error问题的解决
               </a>
             
           </div>
@@ -407,10 +379,6 @@ Build Settings 中搜索 Packaging/Pri">
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/05/07/使用bitfield优化代理方法的调用/" rel="prev" title="使用bitfield优化代理方法的调用">
-                使用bitfield优化代理方法的调用 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -443,8 +411,8 @@ Build Settings 中搜索 Packaging/Pri">
         *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
         */
           var disqus_config = function () {
-          this.page.url = "http://yoursite.com/2017/04/21/There was an internal API error问题的解决/";  // Replace PAGE_URL with your page's canonical URL variable
-          this.page.identifier = "2017/04/21/There was an internal API error问题的解决/"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+          this.page.url = "http://yoursite.com/2017/05/07/使用bitfield优化代理方法的调用/";  // Replace PAGE_URL with your page's canonical URL variable
+          this.page.identifier = "2017/05/07/使用bitfield优化代理方法的调用/"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
           };
           
           (function() { // DON'T EDIT BELOW THIS LINE
@@ -562,7 +530,7 @@ Build Settings 中搜索 Packaging/Pri">
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#总结"><span class="nav-number">1.</span> <span class="nav-text">总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bitfield的使用"><span class="nav-number">2.</span> <span class="nav-text">bitfield的使用</span></a></li></ol></div>
             
 
           </div>
@@ -693,9 +661,9 @@ Build Settings 中搜索 Packaging/Pri">
 
     <script type="text/javascript">
       var disqus_shortname = 'durand';
-      var disqus_identifier = '2017/04/21/There was an internal API error问题的解决/';
+      var disqus_identifier = '2017/05/07/使用bitfield优化代理方法的调用/';
 
-      var disqus_title = "There was an internal API error问题的解决";
+      var disqus_title = "使用bitfield优化代理方法的调用";
 
 
       function run_disqus_script(disqus_script) {
