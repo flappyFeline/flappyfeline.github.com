@@ -1,0 +1,836 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="iOS,Swift,RxSwift," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="写在前面这一系列笔记用于对泊学网RxSwift-step by step课程进行总结和摘选, 仅用于个人学习记忆.
+笔记01-异步事件是以时间为索引的常量队列以时间为索引的常量队列的方式 这也是引入RxSwift的目的
+02-安装RxSwift的三种不同的方式学习使用playground来编写文档
+安装方式
+1.mac环境下使用cocoapods安装
+2.非mac环境下可以使用 SPM 安装">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RxSwift-step by step 1-10">
+<meta property="og:url" content="http://yoursite.com/2017/08/14/RxSwift-step/index.html">
+<meta property="og:site_name" content="OneKyle">
+<meta property="og:description" content="写在前面这一系列笔记用于对泊学网RxSwift-step by step课程进行总结和摘选, 仅用于个人学习记忆.
+笔记01-异步事件是以时间为索引的常量队列以时间为索引的常量队列的方式 这也是引入RxSwift的目的
+02-安装RxSwift的三种不同的方式学习使用playground来编写文档
+安装方式
+1.mac环境下使用cocoapods安装
+2.非mac环境下可以使用 SPM 安装">
+<meta property="og:image" content="https://image.boxueio.com/subject-basic-2@2x.png">
+<meta property="og:image" content="https://image.boxueio.com/ignoring-ops-4@2x.png">
+<meta property="og:image" content="https://image.boxueio.com/ignoring-ops-4@2x.png">
+<meta property="og:image" content="https://image.boxueio.com/ignoring-ops-8@2x.png">
+<meta property="og:image" content="https://image.boxueio.com/ignoring-ops-9@2x.png">
+<meta property="og:image" content="https://image.boxueio.com/ignoring-ops-12@2x.png">
+<meta property="og:updated_time" content="2017-08-13T17:42:57.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="RxSwift-step by step 1-10">
+<meta name="twitter:description" content="写在前面这一系列笔记用于对泊学网RxSwift-step by step课程进行总结和摘选, 仅用于个人学习记忆.
+笔记01-异步事件是以时间为索引的常量队列以时间为索引的常量队列的方式 这也是引入RxSwift的目的
+02-安装RxSwift的三种不同的方式学习使用playground来编写文档
+安装方式
+1.mac环境下使用cocoapods安装
+2.非mac环境下可以使用 SPM 安装">
+<meta name="twitter:image" content="https://image.boxueio.com/subject-basic-2@2x.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '6261206290404476000',
+      author: 'Durand'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/08/14/RxSwift-step/"/>
+
+
+
+
+
+  <title> RxSwift-step by step 1-10 | OneKyle </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">OneKyle</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/14/RxSwift-step/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="OneKyle">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://ww1.sinaimg.cn/large/6b523ad1gy1fenjh5istbj20zk0zkac8.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OneKyle">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                RxSwift-step by step 1-10
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-14T01:36:55+08:00">
+                2017-08-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/08/14/RxSwift-step/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/08/14/RxSwift-step/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>这一系列笔记用于对<a href="http://link" target="_blank" rel="external">泊学网RxSwift-step by step</a>课程进行总结和摘选, 仅用于个人学习记忆.</p>
+<h2 id="笔记"><a href="#笔记" class="headerlink" title="笔记"></a>笔记</h2><h3 id="01-异步事件是以时间为索引的常量队列"><a href="#01-异步事件是以时间为索引的常量队列" class="headerlink" title="01-异步事件是以时间为索引的常量队列"></a>01-异步事件是以时间为索引的常量队列</h3><p>以时间为索引的常量队列的方式 这也是引入RxSwift的目的</p>
+<h3 id="02-安装RxSwift的三种不同的方式"><a href="#02-安装RxSwift的三种不同的方式" class="headerlink" title="02-安装RxSwift的三种不同的方式"></a>02-安装RxSwift的三种不同的方式</h3><p>学习使用<code>playground</code>来编写文档</p>
+<p>安装方式</p>
+<p>1.mac环境下使用cocoapods安装</p>
+<p>2.非mac环境下可以使用 <code>SPM</code> 安装</p>
+<p> <en-media hash="41392bb7367aaee78580f41c29d70646" type="image/tiff"></en-media> </p>
+<p>在编辑SPM自动生成的package.swift文件, 修改 </p>
+<p>然后退出编辑 执行swift build (会自动下载RxSwift 然后 自动执行build)</p>
+<p>3.手动添加</p>
+<p> <en-media hash="66867f89faa8141e2b9a582d4681c171" type="image/tiff"></en-media> </p>
+<p>将RxSwift(只是一个project)下载到当前目录下(这个指令值得深究)</p>
+<h3 id="03-RxSwift中的那些”术语”到底在说什么"><a href="#03-RxSwift中的那些”术语”到底在说什么" class="headerlink" title="03-RxSwift中的那些”术语”到底在说什么?"></a>03-RxSwift中的那些”术语”到底在说什么?</h3><p>我们创建的<code>Observable</code>, 表达的是异步操作, <code>Observable</code>中的每一个元素, 都可以理解为一个异步发生的事件.因此,当我们对<code>Observable</code>调用map和filter方法时,只表示我们要对事件序列中的元素进行处理的逻辑,而并不会立即对<code>Observable</code>中的元素进行处理.</p>
+<p>operator对<code>Observable</code>的加工是在订阅的时候发生的.这种只有在订阅的时候才emit事件的<code>Observable</code>,有一个专有的名字,叫做<code>Cold Observable</code>.</p>
+<p>言外之意,就是也有一种<code>Observable</code>是只要创建了就会自动emit事件的,它们叫做<code>Hot Observable</code>.在后面的内容中,我们会看到这类事件队列的用法.</p>
+<p>对于有限观察序列, 执行到头时 资源就自动释放,  但是有时有些观察序列并非有限 如 timer序列. 所以就需要我们对其进行手动释放,</p>
+<p> <en-media hash="3f3fc5320db72321684d720d8cc64c59" type="image/tiff"></en-media> </p>
+<p>当然, RxSwfit也提供另一种方式, DisposeBag实例.</p>
+<p> <en-media hash="c05e45aff19610e87f62155033e87873" type="image/tiff"></en-media> </p>
+<p>调用disposed(by: ) 将<code>Observable</code>与 一个 DisposeBag绑定起来. 然后当这个bag实例销毁时, 所有其绑定的订阅者都将取消订阅 并 回收资源.</p>
+<h3 id="04-理解create和debug-operator"><a href="#04-理解create和debug-operator" class="headerlink" title="04 理解create和debug operator"></a>04 理解create和debug operator</h3><p>理解 create函数中的subcribe参数的意义: 并非订阅, 而是 描述如何向订阅者发送订阅的消息</p>
+<p> <en-media hash="a7da02fab03eeafb50fed5d55651aab9" type="image/tiff"></en-media> </p>
+<p>订阅</p>
+<p> <en-media hash="8c9e4f4e58905caac40f5ab12ef7c361" type="image/tiff"></en-media> </p>
+<p>操作 do 旁路特性</p>
+<p>debug(). 为<code>Observable</code>执行debug()操作, 会将所以订阅到的消息打印出来,</p>
+<h3 id="05-四中Subject的基本用法"><a href="#05-四中Subject的基本用法" class="headerlink" title="05 四中Subject的基本用法"></a>05 四中Subject的基本用法</h3><p>上节末尾,我们提到了Subject.既然它可以同时作为<code>Observable``和Observer</code>,我们就直奔主题,从一个叫做<code>PublishSubject</code>的对象开始,感受下<code>Subject</code>的用法:</p>
+<h4 id="PublishSubject"><a href="#PublishSubject" class="headerlink" title="PublishSubject"></a>PublishSubject</h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> subject = <span class="type">PublishSubject</span>&lt;<span class="type">String</span>&gt;()</div><div class="line"></div><div class="line">subject.onNext(<span class="string">"Episode1 updated"</span>)</div><div class="line"><span class="comment">// 第三,当我们把subject当作Observable的时候,订阅它的代码和订阅普通的Observable完全一样：</span></div><div class="line"><span class="keyword">let</span> sub1 = subject.subscribe(onNext: &#123;</div><div class="line">    <span class="built_in">print</span>(<span class="string">"Sub1 - what happened: <span class="subst">\($<span class="number">0</span>)</span>"</span>)</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<h4 id="BehaviorSubject"><a href="#BehaviorSubject" class="headerlink" title="BehaviorSubject"></a>BehaviorSubject</h4><p>如果你希望Subject从<code>会员制</code>变成<code>试用制</code>,就需要使用<code>BehaviorSubject</code>.</p>
+<p><img src="https://image.boxueio.com/subject-basic-2@2x.png" alt="BehaviorSubject"></p>
+<h4 id="ReplaySubject"><a href="#ReplaySubject" class="headerlink" title="ReplaySubject"></a>ReplaySubject</h4><p><code>ReplaySubject</code>的行为和<code>BehaviorSubject</code>类似,都会给订阅者发送历史消息.不同地方有两点：</p>
+<ul>
+<li><code>ReplaySubject</code>没有默认消息,订阅空的<code>ReplaySubject</code>不会收到任何消息；</li>
+<li><code>ReplaySubject</code>自带一个缓冲区,当有订阅者订阅的时候,它会向订阅者发送缓冲区内的所有消息；</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// ReplaySubject缓冲区的大小,是在创建的时候确定的：</span></div><div class="line"><span class="keyword">let</span> subject = <span class="type">ReplaySubject</span>&lt;<span class="type">String</span>&gt;.create(bufferSize: <span class="number">2</span>)</div></pre></td></tr></table></figure>
+<h4 id="Variable"><a href="#Variable" class="headerlink" title="Variable"></a>Variable</h4><p>除了事件序列之外,在平时的编程中我们还经常需遇到一类场景,就是需要某个值是有”响应式”特性的.为了方便这个操作,RxSwift还提供了一个特殊的<code>subject</code>,叫做<code>Variable</code>.</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 我们可以像定义一个普通变量一样定义一个Variable：</span></div><div class="line"><span class="keyword">let</span> stringVariable = <span class="type">Variable</span>(<span class="string">"Episode1"</span>)</div><div class="line"></div><div class="line"><span class="comment">// 当我们要订阅一个Variable对象的时候,要先明确使用asObservable()方法.而不像其他subject一样直接订阅：</span></div><div class="line"><span class="keyword">let</span> stringVariable = <span class="type">Variable</span>(<span class="string">"Episode1"</span>)</div><div class="line"></div><div class="line"><span class="keyword">let</span> sub1 = stringVariable</div><div class="line">    .asObservable()</div><div class="line">    .subscribe &#123;</div><div class="line">    <span class="built_in">print</span>(<span class="string">"sub1: <span class="subst">\($<span class="number">0</span>)</span>"</span>)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 而当我们要给一个Variable设置新值的时候,要明确访问它的value属性,而不是使用onNext方法：</span></div><div class="line">stringVariable.value = <span class="string">"Episode2"</span></div></pre></td></tr></table></figure>
+<p>最后要说明的一点是,<code>Variable</code>只用来表达一个”响应式”值的语义,因此,它有以下两点性质：</p>
+<ul>
+<li>绝不会发生<code>.error</code>事件；</li>
+<li>无需手动给它发送<code>.complete</code>事件表示完成；</li>
+</ul>
+<h3 id="07-TodoDemo2"><a href="#07-TodoDemo2" class="headerlink" title="07 TodoDemo2"></a>07 TodoDemo2</h3><h4 id="资源被正常回收了么？"><a href="#资源被正常回收了么？" class="headerlink" title="资源被正常回收了么？"></a>资源被正常回收了么？</h4><p>此时,尽管已经可以正常添加Todo了,但是如果你足够细心就可以发现,控制台并没有打印Finsih adding a new todo.的提示.也就是说,在dismiss了TodoDetailViewController之后,todoSubject并没有释放,我们应该在某些地方导致了资源泄漏.</p>
+<p>为了进一步确认这个问题,在Podfile中添加下面的内容：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">post_install <span class="keyword">do</span> |installer|</div><div class="line">  installer.pods_project.targets.each <span class="keyword">do</span> |target|</div><div class="line">    <span class="keyword">if</span> target.name == '<span class="type">RxSwift'</span></div><div class="line">      target.build_configurations.each <span class="keyword">do</span> |config|</div><div class="line">        <span class="keyword">if</span> config.name == '<span class="type">Debug'</span></div><div class="line">          config.build_settings['<span class="type">OTHER_SWIFT_FLAGS'</span>] ||= ['-<span class="type">D'</span>, '<span class="type">TRACE_RESOURCES'</span>]</div><div class="line">        end</div><div class="line">      end</div><div class="line">    end</div><div class="line">  end</div><div class="line">end</div></pre></td></tr></table></figure>
+<p>简单来说,就是找到项目中的<code>RxSwift target</code>,在它的<code>Debug</code>配置中,添加<code>-D TRACE_RESOURCES</code>编译参数,并在<code>Termianl</code>中重新执行<code>pod install</code>更新下<code>RxSwift</code>.然后,在<code>TodoDetailViewController</code>的<code>viewWillAppear</code>方法中,添加下面的代码：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">viewWillAppear</span><span class="params">(<span class="number">_</span> animated: Bool)</span></span> &#123;</div><div class="line">    <span class="keyword">super</span>.viewWillAppear(animated)</div><div class="line">    todoName.becomeFirstResponder()</div><div class="line"></div><div class="line">    todoItem = <span class="type">TodoItem</span>()</div><div class="line"></div><div class="line">    <span class="built_in">print</span>(<span class="string">"Resource tracing: <span class="subst">\(RxSwift.Resources.total)</span>"</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>但事情至此还没结束,可能你会觉得这样写代码感觉怪怪的,甚至有些危险.因为我们要依赖一个Controller（TodoDetailViewController）中的某个属性<code>（bag）</code>才能得以工作正常.而常规的开发经验通常告诉我们,如此密切的耦合关系通常是各种问题滋生的温床.这至多,只能算一个”非主流”的办法.</p>
+<p>那么,更”主流”的办法是什么呢？</p>
+<p>希望你还记得,对于一个<code>Observable</code>来说,除了所有订阅者都取消订阅会导致其被回收之外,<code>Observable</code>自然结束<code>（onCompleted）</code>或发生错误结束<code>（onError）</code>也会自动让所有订阅者取消订阅,并导致<code>Observable</code>占用的资源被回收.</p>
+<p>因此,当<code>TodoDetailViewController dismiss</code>之后,实际上我们也不会再使用它添加新的<code>Todo</code>了,这时,我们应该给<code>todoSubject</code>发送<code>onCompeleted</code>事件,明确告知<code>RxSwift</code>,这个事件序列结束了.</p>
+<h3 id="08-ToDoDemo3"><a href="#08-ToDoDemo3" class="headerlink" title="08 ToDoDemo3"></a>08 ToDoDemo3</h3><p>可以看到,是否同步成功是通过调用<code>completionHandler</code>通知的,仿照之前的思路,我们可以让<code>syncTodoToCloud</code>返回一个<code>Observable&lt;URL&gt;</code>,其中的<code>URL</code>是<code>iCloud</code>保存在本地的路径：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">syncTodoToCloud</span><span class="params">()</span></span> -&gt; <span class="type">Observable</span>&lt;<span class="type">URL</span>&gt; &#123;</div><div class="line">    <span class="comment">// ...</span></div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="type">Observable</span>.create(&#123; observer <span class="keyword">in</span></div><div class="line">        plist.save(to: cloudUrl, <span class="keyword">for</span>: .forOverwriting,</div><div class="line">            completionHandler: &#123; (success: <span class="type">Bool</span>) -&gt; <span class="type">Void</span> <span class="keyword">in</span></div><div class="line"></div><div class="line">            <span class="keyword">if</span> success &#123;</div><div class="line">                observer.onNext(cloudUrl)</div><div class="line">                observer.onCompleted()</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                observer.onError(<span class="type">SaveTodoError</span>.cannotCreateFileOnCloud)</div><div class="line">            &#125;</div><div class="line">        &#125;)</div><div class="line"></div><div class="line">        <span class="keyword">return</span> <span class="type">Disposables</span>.create()</div><div class="line">    &#125;)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>要特别强调的是：<code>onCompleted</code>对于自定义<code>Observable</code>非常重要,通常我们要在<code>onNext</code>之后,自动跟一个<code>onCompleted</code>,以确保<code>Observable</code>资源可以正确回收.</p>
+<h3 id="09-常用的忽略事件操作符"><a href="#09-常用的忽略事件操作符" class="headerlink" title="09 常用的忽略事件操作符"></a>09 常用的忽略事件操作符</h3><p>事例代码<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">example(<span class="string">"ignoreElements"</span>) &#123;</div><div class="line">    <span class="keyword">let</span> tasks = <span class="type">PublishSubject</span>&lt;<span class="type">String</span>&gt;()</div><div class="line">    <span class="keyword">let</span> bag = <span class="type">DisposeBag</span>()</div><div class="line"></div><div class="line">    tasks.subscribe &#123; <span class="built_in">print</span>($<span class="number">0</span>) &#125;</div><div class="line">        .addDisposableTo(bag)</div><div class="line"></div><div class="line">    tasks.onNext(<span class="string">"T1"</span>);</div><div class="line">    tasks.onNext(<span class="string">"T2"</span>);</div><div class="line">    tasks.onNext(<span class="string">"T3"</span>);</div><div class="line">    tasks.onCompleted();</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/*</span></div><div class="line">正常输出:</div><div class="line">next(T1)</div><div class="line">next(T2)</div><div class="line">next(T3)</div><div class="line">completed </div><div class="line">*/</div></pre></td></tr></table></figure></p>
+<h4 id="Ignore-elementss"><a href="#Ignore-elementss" class="headerlink" title="Ignore elementss"></a>Ignore elementss</h4><p><code>ignoreElements</code> 会忽略序列中所有的<code>.next</code>事件.</p>
+<p>将事例代码中的订阅部分替换成以下:<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">tasks.ignoreElements()</div><div class="line">    .subscribe &#123; <span class="built_in">print</span>($<span class="number">0</span>) &#125;</div><div class="line">    .addDisposableTo(bag)</div><div class="line"></div><div class="line"><span class="comment">/*</span></div><div class="line">输出:</div><div class="line">completed</div><div class="line">*/</div></pre></td></tr></table></figure></p>
+<p>用序列图描述, 就是这样的:<br><img src="https://image.boxueio.com/ignoring-ops-4@2x.png" alt="IgnoreElements"></p>
+<h4 id="skip"><a href="#skip" class="headerlink" title="skip"></a>skip</h4><p>skip可以用来忽略事件序列中特定个数的<code>.next</code>.<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">tasks.skip(<span class="number">2</span>)</div><div class="line">    .subscribe &#123;</div><div class="line">        <span class="built_in">print</span>($<span class="number">0</span>)</div><div class="line">    &#125;</div><div class="line">    .addDisposableTo(bag)</div><div class="line"></div><div class="line"><span class="comment">/*</span></div><div class="line">输出:</div><div class="line">next(T3)</div><div class="line">completed</div><div class="line">*/</div></pre></td></tr></table></figure></p>
+<p>用序列图描述, 就是这样的:<br><img src="https://image.boxueio.com/ignoring-ops-4@2x.png" alt="Skip"></p>
+<h4 id="skipWhile-skipUntil"><a href="#skipWhile-skipUntil" class="headerlink" title="skipWhile / skipUntil"></a>skipWhile / skipUntil</h4><h5 id="skipWhile"><a href="#skipWhile" class="headerlink" title="skipWhile"></a>skipWhile</h5><p>除了可以忽略指定个数的事件外,我们还可以通过一个<code>closure</code>自定义忽略的条件,这个<code>operator</code>叫做<code>skipWhile</code>.但它和我们想象中有些不同的是,<strong>它不会”遍历”事件序列上的所有事件,而是当遇到第一个不满足条件的事件之后,就<code>不再忽略</code>任何事件了</strong>.</p>
+<p>使用如下代码替换订阅部分代码:<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">tasks.skipWhile &#123;</div><div class="line">    $<span class="number">0</span> != <span class="string">"T2"</span></div><div class="line">&#125;</div><div class="line">.subscribe &#123;</div><div class="line">    <span class="built_in">print</span>($<span class="number">0</span>)</div><div class="line">&#125;</div><div class="line">.addDisposableTo(bag)</div></pre></td></tr></table></figure></p>
+<p>输出:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">next(T2) // 注意还是会订阅到T2的事件</div><div class="line">next(T3)</div><div class="line">completed</div></pre></td></tr></table></figure></p>
+<p><img src="https://image.boxueio.com/ignoring-ops-8@2x.png" alt="skipwhile"></p>
+<h5 id="skipUntil"><a href="#skipUntil" class="headerlink" title="skipUntil"></a>skipUntil</h5><p>另外一个和<code>skipWhile</code>类似的<code>operator</code>是<code>skipUntil</code>,它不用一个<code>closure</code>指定忽略的条件,而是使用另外一个事件序列中的事件.例如,我们先把代码改成这样：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> tasks = <span class="type">PublishSubject</span>&lt;<span class="type">String</span>&gt;()</div><div class="line"><span class="keyword">let</span> bossIsAngry = <span class="type">PublishSubject</span>&lt;<span class="type">Void</span>&gt;()</div><div class="line"><span class="keyword">let</span> bag = <span class="type">DisposeBag</span>()</div><div class="line"></div><div class="line">tasks.skipUntil(bossIsAngry)</div><div class="line">    .subscribe &#123;</div><div class="line">        <span class="built_in">print</span>($<span class="number">0</span>)</div><div class="line">    &#125;</div><div class="line">    .addDisposableTo(bag)</div><div class="line"></div><div class="line">tasks.onNext(<span class="string">"T1"</span>);</div><div class="line">tasks.onNext(<span class="string">"T2"</span>);</div><div class="line">tasks.onNext(<span class="string">"T3"</span>);</div><div class="line">tasks.onCompleted();</div></pre></td></tr></table></figure>
+<p>执行一下就会看到,我们不会订阅到任何事件.这就是<code>skipUntil</code>的效果,它会一直忽略<code>tasks</code>中的事件,直到<code>bossIsAngry</code>中发生事件为止.</p>
+<p>在T2与T3中插入如下代码<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">tasks.onNext(<span class="string">"T1"</span>);</div><div class="line">tasks.onNext(<span class="string">"T2"</span>);</div><div class="line">bossIsAngry.onNext();</div><div class="line">tasks.onNext(<span class="string">"T3"</span>);</div></pre></td></tr></table></figure></p>
+<p>输出:<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">next(<span class="type">T3</span>)</div><div class="line">completed</div></pre></td></tr></table></figure></p>
+<p>用序列图描述出来, 就是这样的:<br><img src="https://image.boxueio.com/ignoring-ops-9@2x.png" alt="skipUntil"></p>
+<h4 id="distinctUntilChanged"><a href="#distinctUntilChanged" class="headerlink" title="distinctUntilChanged"></a>distinctUntilChanged</h4><p><code>distinctUntilChanged</code>可以用来忽略序列中<strong>连续</strong> <strong>重复</strong> 的事件. 例如:<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">example(<span class="string">"ignoreElements"</span>) &#123;</div><div class="line">    <span class="keyword">let</span> tasks = <span class="type">PublishSubject</span>&lt;<span class="type">String</span>&gt;()</div><div class="line">    <span class="keyword">let</span> bag = <span class="type">DisposeBag</span>()</div><div class="line"></div><div class="line">    tasks.distinctUntilChanged()</div><div class="line">        .subscribe &#123;</div><div class="line">            <span class="built_in">print</span>($<span class="number">0</span>)</div><div class="line">        &#125;</div><div class="line">        .addDisposableTo(bag)</div><div class="line"></div><div class="line">    tasks.onNext(<span class="string">"T1"</span>)</div><div class="line">    tasks.onNext(<span class="string">"T2"</span>)</div><div class="line">    tasks.onNext(<span class="string">"T2"</span>)</div><div class="line">    tasks.onNext(<span class="string">"T3"</span>)</div><div class="line">    tasks.onNext(<span class="string">"T3"</span>)</div><div class="line">    tasks.onNext(<span class="string">"T4"</span>)</div><div class="line">    tasks.onCompleted()</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>由于T2和T3都存在连续重复的事件, 因此我们只能订阅到下面这样的结果<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">next(<span class="type">T1</span>)</div><div class="line">next(<span class="type">T2</span>)</div><div class="line">next(<span class="type">T3</span>)</div><div class="line">next(<span class="type">T4</span>)</div><div class="line">completed</div></pre></td></tr></table></figure></p>
+<p>它的序列图是这样的:<br><img src="https://image.boxueio.com/ignoring-ops-12@2x.png" alt="distinctUntilChangesd"><br>但是,如果把T2放到两个T3中间,此时就没有任何连续重复的事件了,我们就会订阅到所有任务.</p>
+<h3 id="10-常用的获取事件操作符"><a href="#10-常用的获取事件操作符" class="headerlink" title="10 常用的获取事件操作符"></a>10 常用的获取事件操作符</h3><h4 id="elementAt"><a href="#elementAt" class="headerlink" title="elementAt"></a>elementAt</h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">tasks.elementAt(<span class="number">1</span>)</div><div class="line">    .subscribe &#123;</div><div class="line">        <span class="built_in">print</span>($<span class="number">0</span>)</div><div class="line">    &#125;</div><div class="line">    .addDisposableTo(bag)</div><div class="line"></div><div class="line"><span class="comment">/*</span></div><div class="line">输出</div><div class="line">next(T2)</div><div class="line">completed</div><div class="line">*/</div></pre></td></tr></table></figure>
+<h4 id="filter"><a href="#filter" class="headerlink" title="filter"></a>filter</h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">tasks.<span class="built_in">filter</span> &#123; $<span class="number">0</span> == <span class="string">"T2"</span> &#125;</div><div class="line">    .subscribe &#123;</div><div class="line">        <span class="built_in">print</span>($<span class="number">0</span>)</div><div class="line">    &#125;</div><div class="line">    .addDisposableTo(bag)</div><div class="line"></div><div class="line"><span class="comment">/* </span></div><div class="line">输出:</div><div class="line">next(T2)</div><div class="line">completed</div><div class="line">*/</div></pre></td></tr></table></figure>
+<h4 id="take"><a href="#take" class="headerlink" title="take"></a>take</h4><p>除了选择订阅单一事件之外,我们也可以选择一次性订阅多个事件,例如,选择序列中的前两个事件：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">tasks.take(<span class="number">2</span>)</div><div class="line">    .subscribe &#123;</div><div class="line">        <span class="built_in">print</span>($<span class="number">0</span>)</div><div class="line">    &#125;</div><div class="line">    .addDisposableTo(bag)</div></pre></td></tr></table></figure>
+<h4 id="takeWhile-takeWhileWithIndex"><a href="#takeWhile-takeWhileWithIndex" class="headerlink" title="takeWhile/takeWhileWithIndex"></a>takeWhile/takeWhileWithIndex</h4><p>我们也可以用一个closure来指定”只要条件为true就一直订阅下去”这样的概念.例如,只要任务不是T3就一直订阅下去:</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">tasks.takeWhile &#123;</div><div class="line">        $<span class="number">0</span> != <span class="string">"T3"</span></div><div class="line">    &#125;</div><div class="line">    .subscribe &#123;</div><div class="line">        <span class="built_in">print</span>($<span class="number">0</span>)</div><div class="line">    &#125;</div><div class="line">    .addDisposableTo(bag)</div></pre></td></tr></table></figure>
+<p>控制台输出:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">next(T1)</div><div class="line">next(T2)</div><div class="line">completed</div></pre></td></tr></table></figure></p>
+<p><code>takeWhileWithIndex</code>的<code>closure</code>有两个参数，第一个是事件的值，第二个是事件在序列中的索引。它的语义和<code>takeWhile</code>是完全一样的，需要注意的仍旧是，在<code>closure</code>里写的，是读取事件的条件，而不是终止读取的条件.</p>
+<h4 id="takeUntil"><a href="#takeUntil" class="headerlink" title="takeUntil"></a>takeUntil</h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">example(<span class="string">"ignoreElements"</span>) &#123;</div><div class="line">    <span class="keyword">let</span> tasks = <span class="type">PublishSubject</span>&lt;<span class="type">String</span>&gt;()</div><div class="line">    <span class="keyword">let</span> bossHasGone = <span class="type">PublishSubject</span>&lt;<span class="type">Void</span>&gt;()</div><div class="line">    <span class="keyword">let</span> bag = <span class="type">DisposeBag</span>()</div><div class="line"></div><div class="line">    tasks.subscribe.takeUntil(bossHasGone) &#123;</div><div class="line">            <span class="built_in">print</span>($<span class="number">0</span>)</div><div class="line">        &#125;</div><div class="line">        .addDisposableTo(bag)</div><div class="line"></div><div class="line">    tasks.onNext(<span class="string">"T1"</span>)</div><div class="line">    tasks.onNext(<span class="string">"T2"</span>)</div><div class="line">    tasks.onNext(<span class="string">"T3"</span>)</div><div class="line">    tasks.onCompleted()</div><div class="line">&#125;</div><div class="line"></div><div class="line">tasks.onNext(<span class="string">"T1"</span>)</div><div class="line">tasks.onNext(<span class="string">"T2"</span>)</div><div class="line"></div><div class="line">bossHasGone.onNext()</div><div class="line"></div><div class="line">tasks.onNext(<span class="string">"T3"</span>)</div><div class="line">tasks.onCompleted()</div></pre></td></tr></table></figure>
+<p>输出:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">next(T1)</div><div class="line">next(T2)</div><div class="line">completed</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag"># iOS</a>
+          
+            <a href="/tags/Swift/" rel="tag"># Swift</a>
+          
+            <a href="/tags/RxSwift/" rel="tag"># RxSwift</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/07/31/Swift中的內建集合类型/" rel="next" title="Swift中的数组">
+                <i class="fa fa-chevron-left"></i> Swift中的数组
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread"></div>
+        <script>
+        /**
+        *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+        *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+        */
+          var disqus_config = function () {
+          this.page.url = "http://yoursite.com/2017/08/14/RxSwift-step/";  // Replace PAGE_URL with your page's canonical URL variable
+          this.page.identifier = "2017/08/14/RxSwift-step/"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+          };
+          
+          (function() { // DON'T EDIT BELOW THIS LINE
+          var d = document, s = d.createElement('script');
+          s.src = 'https://durand.disqus.com/embed.js';
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+          })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://ww1.sinaimg.cn/large/6b523ad1gy1fenjh5istbj20zk0zkac8.jpg"
+               alt="OneKyle" />
+          <p class="site-author-name" itemprop="name">OneKyle</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/flappyFeline" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#写在前面"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#笔记"><span class="nav-number">2.</span> <span class="nav-text">笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#01-异步事件是以时间为索引的常量队列"><span class="nav-number">2.1.</span> <span class="nav-text">01-异步事件是以时间为索引的常量队列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#02-安装RxSwift的三种不同的方式"><span class="nav-number">2.2.</span> <span class="nav-text">02-安装RxSwift的三种不同的方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#03-RxSwift中的那些”术语”到底在说什么"><span class="nav-number">2.3.</span> <span class="nav-text">03-RxSwift中的那些”术语”到底在说什么?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#04-理解create和debug-operator"><span class="nav-number">2.4.</span> <span class="nav-text">04 理解create和debug operator</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#05-四中Subject的基本用法"><span class="nav-number">2.5.</span> <span class="nav-text">05 四中Subject的基本用法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#PublishSubject"><span class="nav-number">2.5.1.</span> <span class="nav-text">PublishSubject</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#BehaviorSubject"><span class="nav-number">2.5.2.</span> <span class="nav-text">BehaviorSubject</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ReplaySubject"><span class="nav-number">2.5.3.</span> <span class="nav-text">ReplaySubject</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Variable"><span class="nav-number">2.5.4.</span> <span class="nav-text">Variable</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#07-TodoDemo2"><span class="nav-number">2.6.</span> <span class="nav-text">07 TodoDemo2</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#资源被正常回收了么？"><span class="nav-number">2.6.1.</span> <span class="nav-text">资源被正常回收了么？</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#08-ToDoDemo3"><span class="nav-number">2.7.</span> <span class="nav-text">08 ToDoDemo3</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#09-常用的忽略事件操作符"><span class="nav-number">2.8.</span> <span class="nav-text">09 常用的忽略事件操作符</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Ignore-elementss"><span class="nav-number">2.8.1.</span> <span class="nav-text">Ignore elementss</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#skip"><span class="nav-number">2.8.2.</span> <span class="nav-text">skip</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#skipWhile-skipUntil"><span class="nav-number">2.8.3.</span> <span class="nav-text">skipWhile / skipUntil</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#skipWhile"><span class="nav-number">2.8.3.1.</span> <span class="nav-text">skipWhile</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#skipUntil"><span class="nav-number">2.8.3.2.</span> <span class="nav-text">skipUntil</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#distinctUntilChanged"><span class="nav-number">2.8.4.</span> <span class="nav-text">distinctUntilChanged</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-常用的获取事件操作符"><span class="nav-number">2.9.</span> <span class="nav-text">10 常用的获取事件操作符</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#elementAt"><span class="nav-number">2.9.1.</span> <span class="nav-text">elementAt</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#filter"><span class="nav-number">2.9.2.</span> <span class="nav-text">filter</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#take"><span class="nav-number">2.9.3.</span> <span class="nav-text">take</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#takeWhile-takeWhileWithIndex"><span class="nav-number">2.9.4.</span> <span class="nav-text">takeWhile/takeWhileWithIndex</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#takeUntil"><span class="nav-number">2.9.5.</span> <span class="nav-text">takeUntil</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">OneKyle</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'durand';
+      var disqus_identifier = '2017/08/14/RxSwift-step/';
+
+      var disqus_title = "RxSwift-step by step 1-10";
+
+
+      function run_disqus_script(disqus_script) {
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+
+      
+        var disqus_config = function () {
+            this.page.url = disqus_url;
+            this.page.identifier = disqus_identifier;
+            this.page.title = disqus_title;
+        };
+        run_disqus_script('embed.js');
+      
+
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+
+  
+
+</body>
+</html>

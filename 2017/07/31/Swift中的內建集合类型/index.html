@@ -1,0 +1,804 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="iOS,Swift," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="在Swift中, 最常用的集合类型非数组莫属了. 然而相较于Objective-C, Swift中数组有不小的变化.
+基本的操作变化:
+想要迭代数组？for x in array
+
+想要迭代除了第一个元素以外的数组其余部分？for x in array.dropFirst()
+
+想要迭代除了最后 5 个元素以外的数组？for x in array.dropLast(5)
+
+想要列举数组中的元素和对">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Swift中的数组">
+<meta property="og:url" content="http://yoursite.com/2017/07/31/Swift中的內建集合类型/index.html">
+<meta property="og:site_name" content="OneKyle">
+<meta property="og:description" content="在Swift中, 最常用的集合类型非数组莫属了. 然而相较于Objective-C, Swift中数组有不小的变化.
+基本的操作变化:
+想要迭代数组？for x in array
+
+想要迭代除了第一个元素以外的数组其余部分？for x in array.dropFirst()
+
+想要迭代除了最后 5 个元素以外的数组？for x in array.dropLast(5)
+
+想要列举数组中的元素和对">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/6b523ad1ly1fi4igmyktfj20fa08naam.jpg">
+<meta property="og:updated_time" content="2017-08-04T02:31:02.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Swift中的数组">
+<meta name="twitter:description" content="在Swift中, 最常用的集合类型非数组莫属了. 然而相较于Objective-C, Swift中数组有不小的变化.
+基本的操作变化:
+想要迭代数组？for x in array
+
+想要迭代除了第一个元素以外的数组其余部分？for x in array.dropFirst()
+
+想要迭代除了最后 5 个元素以外的数组？for x in array.dropLast(5)
+
+想要列举数组中的元素和对">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/6b523ad1ly1fi4igmyktfj20fa08naam.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '6261206290404476000',
+      author: 'Durand'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/07/31/Swift中的內建集合类型/"/>
+
+
+
+
+
+  <title> Swift中的数组 | OneKyle </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">OneKyle</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/31/Swift中的內建集合类型/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="OneKyle">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://ww1.sinaimg.cn/large/6b523ad1gy1fenjh5istbj20zk0zkac8.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OneKyle">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Swift中的数组
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-31T20:06:33+08:00">
+                2017-07-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/07/31/Swift中的內建集合类型/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/07/31/Swift中的內建集合类型/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>在Swift中, 最常用的集合类型非数组莫属了. 然而相较于Objective-C, Swift中数组有不小的变化.</p>
+<h3 id="基本的操作变化"><a href="#基本的操作变化" class="headerlink" title="基本的操作变化:"></a>基本的操作变化:</h3><ul>
+<li><p>想要迭代数组？<br><code>for x in array</code></p>
+</li>
+<li><p>想要迭代除了第一个元素以外的数组其余部分？<br><code>for x in array.dropFirst()</code></p>
+</li>
+<li><p>想要迭代除了最后 5 个元素以外的数组？<br><code>for x in array.dropLast(5)</code></p>
+</li>
+<li><p>想要列举数组中的元素和对应的下标？<br><code>for (num, element) in collection.enumerated()</code></p>
+</li>
+<li><p>想要寻找一个指定元素的位置？<br><code>if let idx = array.index { someMatchingLogic($0) }</code></p>
+</li>
+</ul>
+<p>除此之外, Swift为方便数组操作还添加了一系列<code>高阶函数</code>.</p>
+<ul>
+<li><p><code>map</code> 和 <code>flatMap</code> — 如何对元素进行变换</p>
+</li>
+<li><p><code>filter</code> — 元素是否应该被包含在结果中</p>
+</li>
+<li><p><code>reduce</code> — 如何将元素合并到一个总和的值中</p>
+</li>
+<li><p><code>sequence</code> — 序列中下一个元素应该是什么？</p>
+</li>
+<li><p><code>forEach</code> — 对于一个元素，应该执行怎样的操作</p>
+</li>
+<li><p><code>sort</code>，<code>lexicographicCompare</code> 和 <code>partition</code> — 两个元素应该以怎样的顺序进行排列</p>
+</li>
+<li><p><code>index</code>，<code>first</code> 和 <code>contains</code> — 元素是否符合某个条件</p>
+</li>
+<li><p><code>min</code> 和 <code>max</code> — 两个元素中的最小/最大值是哪个</p>
+</li>
+<li><p><code>elementsEqual</code> 和 <code>starts</code> — 两个元素是否相等</p>
+</li>
+<li><p><code>split</code> — 这个元素是否是一个分割符</p>
+</li>
+</ul>
+<p>这几个<code>高阶函数</code>使用一个函数作为参数, 将重复切杂乱的的代码, 如遍历等操作给剥离出来. 同时, 函数的命名也是非常严谨且浅显的, 非常值得回味其中的奥妙.</p>
+<p>不但如此, 利用<strong>Swift编译器的一些特性(待详细描述)</strong>, 我们可以写出异常简洁直观的代码:<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> numbers = <span class="type">Array</span>.<span class="keyword">init</span>(<span class="number">0</span>..&lt;<span class="number">10</span>)</div><div class="line"></div><div class="line">numbers.<span class="built_in">map</span> &#123; $<span class="number">0</span> * $<span class="number">0</span> &#125;.<span class="built_in">filter</span>&#123; $<span class="number">0</span> % <span class="number">2</span> == <span class="number">0</span> &#125; <span class="comment">// [0, 4, 16, 36, 64]</span></div><div class="line"></div><div class="line">numbers.<span class="built_in">reduce</span>(<span class="number">0</span>, +) <span class="comment">// 运算符也是函数, 所以可以这么写, 结果为 45</span></div></pre></td></tr></table></figure></p>
+<h3 id="数组切片"><a href="#数组切片" class="headerlink" title="数组切片"></a>数组切片</h3><p>Swift中还允许我们通过下标来获取特定范围内的元素:</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> streets = [<span class="string">"Adams"</span>, <span class="string">"Bryant"</span>, <span class="string">"Channing"</span>, <span class="string">"Douglas"</span>, <span class="string">"Evarts"</span>]</div><div class="line"><span class="keyword">let</span> streetsSlice = streets[<span class="number">2</span> ..&lt; streets.endIndex]</div><div class="line"><span class="built_in">print</span>(streetsSlice)</div><div class="line"><span class="comment">// Prints "["Channing", "Douglas", "Evarts"]"</span></div><div class="line"><span class="keyword">let</span> index = streetsSlice.index(of: <span class="string">"Evarts"</span>)    <span class="comment">// 4</span></div><div class="line"><span class="built_in">print</span>(streets[index!])</div><div class="line"><span class="comment">// Prints "Evarts"</span></div></pre></td></tr></table></figure>
+<p>这是通过对 <code>subscript</code> 进行重载实现的, <code>RandomAccessCollection</code>协议的扩展中给出了方法的声明<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">public subscript(bounds: Range&lt;Self.Index&gt;) -&gt; RandomAccessSlice&lt;Self&gt; &#123; get &#125;</div></pre></td></tr></table></figure></p>
+<p>需要注意的是, 在上面的代码事例中, 获取 <code>streetsSlice</code> 实例关于 <code>Evarts</code> 的 <code>index</code>, 以及通过这个 <code>index</code> 获取的元素, 都是与开始的数组 <code>streets</code> 相匹配的. 所以, 可以猜测出 数组切片类型 <code>ArraySlice</code> 的<code>子元素</code>, 只不过是原数组的引用, 并通过两个属性 来记录其相对于原数组的 首尾偏移.</p>
+<p><img src="http://ww1.sinaimg.cn/large/6b523ad1ly1fi4igmyktfj20fa08naam.jpg" alt="数组切片"> </p>
+<h3 id="值类型"><a href="#值类型" class="headerlink" title="值类型"></a>值类型</h3><p>与OC中的数组最大的不同, Swift中的 <code>Array</code> 是一个结构体类型, 本身具有不可变的特性, 即便我们可以使用 <code>var</code> 来声明一个可变的数组, 但是这个可变性只体现在变量本身上, 而不是指里面的值. 改变一个结构体变量的属性, 在概念上来说，和为整个变量赋值一个全新的结构体是等价的. 我们总是使用一个新的结构体, 并设置被改变的属性值, 然后用它替代原来的结构体.</p>
+<p>而对于数组而言, 如果其中的元素是引用语义的实例(如类对象), 那么元素属性的变化 并不会对持有它的数组有什么影响, 然而如果元素是值语义的实例(值类型, 比如结构体), 那么当这个元素的属性发生改变时, 就会生成一个新的实例来替代该元素, 继而导致引用它的数组来生成一个新的实例数组代替.<br><br>举个例子:<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Node</span> </span>&#123;</div><div class="line">    <span class="keyword">var</span> value: <span class="type">Int</span> = <span class="number">0</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">TestClass</span> </span>&#123;</div><div class="line">    <span class="keyword">var</span> nodes: [<span class="type">Node</span>] = [] &#123;</div><div class="line">        <span class="keyword">didSet</span> &#123;</div><div class="line">            <span class="built_in">print</span>(nodes)</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">changeFirstNode</span><span class="params">(to value: Int)</span></span> &#123;</div><div class="line">        <span class="keyword">if</span> nodes.<span class="built_in">count</span> &gt; <span class="number">0</span> &#123;</div><div class="line">            nodes[<span class="number">0</span>].value = value;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">let</span> test = <span class="type">TestClass</span>();</div><div class="line"><span class="comment">// 创建一个nodes的数组赋值给test实例, 触发一次nodes的didSet</span></div><div class="line"><span class="comment">// 输出内容为[Node(value: 0), Node(value: 1), Node(value: 2)]</span></div><div class="line">test.nodes = [<span class="type">Node</span>(value: <span class="number">0</span>), <span class="type">Node</span>(value: <span class="number">1</span>), <span class="type">Node</span>(value: <span class="number">2</span>)]</div><div class="line"></div><div class="line"><span class="comment">// 更改了数组中第0个node的value值, 由于node是结构体类型, 当其变量变化时, 为nodes[0]这个变量赋值了一个全新的结构体</span></div><div class="line">test.changeFirstNode(to: <span class="number">5</span>)</div><div class="line"><span class="comment">// 而由于Array类型也是值类型, 所以也会生成一个全新的数组, 将self.nodes指向这个心的数组, 从而导致出发了nodes的didSet.</span></div><div class="line"></div><div class="line"><span class="comment">// 此时会输出didSet中的打印: [Node(value: 5), Node(value: 1), Node(value: 2)]</span></div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag"># iOS</a>
+          
+            <a href="/tags/Swift/" rel="tag"># Swift</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/06/25/为协议遵守添加类型约束/" rel="next" title="为泛型类型遵守协议添加类型约束">
+                <i class="fa fa-chevron-left"></i> 为泛型类型遵守协议添加类型约束
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/08/14/RxSwift-step/" rel="prev" title="RxSwift-step by step 1-10">
+                RxSwift-step by step 1-10 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread"></div>
+        <script>
+        /**
+        *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+        *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+        */
+          var disqus_config = function () {
+          this.page.url = "http://yoursite.com/2017/07/31/Swift中的內建集合类型/";  // Replace PAGE_URL with your page's canonical URL variable
+          this.page.identifier = "2017/07/31/Swift中的內建集合类型/"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+          };
+          
+          (function() { // DON'T EDIT BELOW THIS LINE
+          var d = document, s = d.createElement('script');
+          s.src = 'https://durand.disqus.com/embed.js';
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+          })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://ww1.sinaimg.cn/large/6b523ad1gy1fenjh5istbj20zk0zkac8.jpg"
+               alt="OneKyle" />
+          <p class="site-author-name" itemprop="name">OneKyle</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/flappyFeline" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本的操作变化"><span class="nav-number">1.</span> <span class="nav-text">基本的操作变化:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数组切片"><span class="nav-number">2.</span> <span class="nav-text">数组切片</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#值类型"><span class="nav-number">3.</span> <span class="nav-text">值类型</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">OneKyle</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'durand';
+      var disqus_identifier = '2017/07/31/Swift中的內建集合类型/';
+
+      var disqus_title = "Swift中的数组";
+
+
+      function run_disqus_script(disqus_script) {
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+
+      
+        var disqus_config = function () {
+            this.page.url = disqus_url;
+            this.page.identifier = disqus_identifier;
+            this.page.title = disqus_title;
+        };
+        run_disqus_script('embed.js');
+      
+
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+
+  
+
+</body>
+</html>
