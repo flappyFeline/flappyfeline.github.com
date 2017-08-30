@@ -1,0 +1,757 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="iOS,Objective-C," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="前言在我们编码过程中,枚举会经常用到, 尤其是用来表示多种状态时.然而, 在OC中, 对枚举进行打印调试 或者 拼接方法 的操作的编程体验是非常差的. 
+例子以下这种情况你应该会经常遇到:
+123456789// 你工作时的几种状态typedef NS_ENUM(NSInteger, WorkStatus) &amp;#123;    /** 摸鱼*/    WorkStatusUnKnown,    /">
+<meta property="og:type" content="article">
+<meta property="og:title" content="利用宏定义实现枚举转字符串">
+<meta property="og:url" content="http://yoursite.com/2017/08/30/利用宏定义实现枚举转字符串/index.html">
+<meta property="og:site_name" content="OneKyle">
+<meta property="og:description" content="前言在我们编码过程中,枚举会经常用到, 尤其是用来表示多种状态时.然而, 在OC中, 对枚举进行打印调试 或者 拼接方法 的操作的编程体验是非常差的. 
+例子以下这种情况你应该会经常遇到:
+123456789// 你工作时的几种状态typedef NS_ENUM(NSInteger, WorkStatus) &amp;#123;    /** 摸鱼*/    WorkStatusUnKnown,    /">
+<meta property="og:updated_time" content="2017-08-30T06:54:28.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="利用宏定义实现枚举转字符串">
+<meta name="twitter:description" content="前言在我们编码过程中,枚举会经常用到, 尤其是用来表示多种状态时.然而, 在OC中, 对枚举进行打印调试 或者 拼接方法 的操作的编程体验是非常差的. 
+例子以下这种情况你应该会经常遇到:
+123456789// 你工作时的几种状态typedef NS_ENUM(NSInteger, WorkStatus) &amp;#123;    /** 摸鱼*/    WorkStatusUnKnown,    /">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '6261206290404476000',
+      author: 'Durand'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/08/30/利用宏定义实现枚举转字符串/"/>
+
+
+
+
+
+  <title> 利用宏定义实现枚举转字符串 | OneKyle </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">OneKyle</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/30/利用宏定义实现枚举转字符串/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="OneKyle">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://ww1.sinaimg.cn/large/6b523ad1gy1fenjh5istbj20zk0zkac8.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OneKyle">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                利用宏定义实现枚举转字符串
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-30T10:37:00+08:00">
+                2017-08-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/08/30/利用宏定义实现枚举转字符串/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/08/30/利用宏定义实现枚举转字符串/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在我们编码过程中,<code>枚举</code>会经常用到, 尤其是用来表示多种状态时.<br>然而, 在OC中, 对<code>枚举</code>进行打印调试 或者 拼接方法 的操作的编程体验是非常差的. </p>
+<h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><p>以下这种情况你应该会经常遇到:</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 你工作时的几种状态</span></div><div class="line"><span class="keyword">typedef</span> <span class="built_in">NS_ENUM</span>(<span class="built_in">NSInteger</span>, WorkStatus) &#123;</div><div class="line">    <span class="comment">/** 摸鱼*/</span></div><div class="line">    WorkStatusUnKnown,</div><div class="line">    <span class="comment">/** 认真工作*/</span></div><div class="line">    WorkStatusWorking,</div><div class="line">    <span class="comment">/** 休息*/</span></div><div class="line">    WorkStatusSleeping,</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>当我们想要打印这个枚举时, 默认输出的是这个枚举标识符所对应的值, 这样的效果是非常不理想的, 只输出数字,不直观(我们之所以使用枚举来定义状态, 不就是要直观的表示吗?), 为了达到<code>直观</code>这一目的, 写一个将枚举标识符转换成字符串的方法就势在必得了:</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">- (<span class="built_in">NSString</span> *)WorkStatusDescription:(WorkStatus)status</div><div class="line">&#123;</div><div class="line">    <span class="built_in">NSString</span> *desc = <span class="literal">nil</span>;</div><div class="line">    <span class="keyword">switch</span> (status) &#123;</div><div class="line">        <span class="keyword">case</span> WorkStatusUnKnown:</div><div class="line">            desc = <span class="string">@"WorkStatusUnKnown"</span>;</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        <span class="keyword">case</span> WorkStatusWorking:</div><div class="line">            desc = <span class="string">@"WorkStatusWorking"</span>;</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        <span class="keyword">case</span> WorkStatusSleeping:</div><div class="line">            desc = <span class="string">@"WorkStatusSleeping"</span>;</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        <span class="keyword">default</span>:</div><div class="line">            desc = <span class="string">@"NoOne"</span>;</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> desc;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>这样操作, 也许解决了不直观的问题, 但是细看之下还是有两点很大的问题.  </p>
+<ol>
+<li>在某一个类的空间内声明定义转换方法, 对于作用域外(其他类)的地方使用非常不便.</li>
+<li>当对枚举的标识符进行增删改操作时, 必须也要同时修改<code>转换方法</code>内的代码, 非常不灵活.</li>
+</ol>
+<h2 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h2><h3 id="优化问题1"><a href="#优化问题1" class="headerlink" title="优化问题1"></a>优化问题1</h3><p>针对于 <strong>问题 1</strong>, 我们可以通过在头文件中声明定义函数来解决:</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">static</span> <span class="built_in">NSString</span> * WorkStatusDescription(WorkStatus status) __attribute__((unused));</div><div class="line"></div><div class="line"><span class="keyword">static</span> <span class="built_in">NSString</span> * WorkStatusDescription(WorkStatus status) &#123;</div><div class="line">    <span class="built_in">NSString</span> *desc = <span class="literal">nil</span>;</div><div class="line">    <span class="keyword">switch</span> (status) &#123;</div><div class="line">        <span class="keyword">case</span> WorkStatusUnKnown:</div><div class="line">            desc = <span class="string">@"WorkStatusUnKnown"</span>;</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        <span class="keyword">case</span> WorkStatusWorking:</div><div class="line">            desc = <span class="string">@"WorkStatusWorking"</span>;</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        <span class="keyword">case</span> WorkStatusSleeping:</div><div class="line">            desc = <span class="string">@"WorkStatusSleeping"</span>;</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        <span class="keyword">default</span>:</div><div class="line">            desc = <span class="string">@"NoOne"</span>;</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> desc;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>有两点需要解释:</p>
+<ol>
+<li>使用<code>static</code>可以防止发生函数重复声明定义的错误. (使用<code>NS_INLINE</code>也可以.)</li>
+<li><code>__attribute__((unused))</code> 表示告诉编译器忽略<code>Unused Warning</code>.</li>
+</ol>
+<h3 id="优化问题2"><a href="#优化问题2" class="headerlink" title="优化问题2"></a>优化问题2</h3><p>解决 <strong>问题 2</strong> 的关键在于<strong>如何将一个枚举标识符灵活的转换成字符串</strong>. 根据这个思路, 很自然的就可以联想到 使用 宏定义中 <code>#</code> 可以将参数转换成字符串的特性来解决.</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 定义枚举标识符和其对应的值的宏</span></div><div class="line"><span class="meta">#define ENUM_VALUE(name,assign) name assign,</span></div><div class="line"></div><div class="line"><span class="comment">// 将枚举标识符转换成字符串的宏</span></div><div class="line"><span class="meta">#define ENUM_CASE(name,assign) case name: return @#name;</span></div><div class="line"></div><div class="line"><span class="comment">// 将字符串转换为枚举标识符的宏</span></div><div class="line"><span class="meta">#define ENUM_STRCMP(name,assign) if ([string isEqualToString:@#name]) return name;</span></div><div class="line"></div><div class="line"><span class="comment">/// 声明函数 及 定义枚举</span></div><div class="line"><span class="meta">#define DECLARE_ENUM(EnumType,ENUM_DEF) \</span></div><div class="line"><span class="keyword">typedef</span> <span class="built_in">NS_ENUM</span>(<span class="built_in">NSUInteger</span>, EnumType) &#123; \</div><div class="line">    ENUM_DEF(ENUM_VALUE) \</div><div class="line">&#125;; \</div><div class="line"><span class="keyword">static</span> <span class="built_in">NSString</span> *stringFrom<span class="meta">##EnumType(EnumType value) __attribute__((unused)); \</span></div><div class="line"><span class="keyword">static</span> EnumType EnumType<span class="meta">##FromString(NSString *string) __attribute__((unused)); \</span></div><div class="line"><span class="keyword">static</span> <span class="built_in">NSString</span> *stringFrom<span class="meta">##EnumType(EnumType value) &#123; \</span></div><div class="line">    <span class="keyword">switch</span>(value) &#123; \</div><div class="line">        ENUM_DEF(ENUM_CASE) \</div><div class="line">        <span class="keyword">default</span>: <span class="keyword">return</span> <span class="string">@""</span>; \</div><div class="line">    &#125; \</div><div class="line">&#125; \</div><div class="line">\</div><div class="line"><span class="keyword">static</span> EnumType EnumType<span class="meta">##FromString(NSString *string) &#123; \</span></div><div class="line">    ENUM_DEF(ENUM_STRCMP) \</div><div class="line">    <span class="keyword">return</span> (EnumType)<span class="number">0</span>; \</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><em>为了一气呵成, 已经将针对于 <code>问题 1</code> 优化合并到上面这个代码块中.</em></p>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 导入定义宏所在的头文件.</span></div><div class="line"><span class="meta">#import <span class="meta-string">"enum_generator.h"</span></span></div><div class="line"></div><div class="line"><span class="comment">// 使用定义的宏声明枚举</span></div><div class="line"><span class="meta">#define WorkStatus(XX) \</span></div><div class="line">XX(WorkStatusUnKnown,) \</div><div class="line">XX(WorkStatusWorking,) \</div><div class="line">XX(WorkStatusSleeping,=<span class="number">50</span>)</div><div class="line"><span class="comment">// 生成定义的枚举 与 转换方法.</span></div><div class="line">DECLARE_ENUM(WorkStatus,WorkStatus)</div></pre></td></tr></table></figure>
+<p>为了更直观的感受, 我们进入预编译阶段, 查看宏生成的代码(为了看起来清晰 已经进行手动换行):<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// DECLARE_ENUM(WorkStatus,WorkStatus) 所生成的代码</span></div><div class="line"><span class="keyword">typedef</span> <span class="keyword">enum</span> WorkStatus : <span class="built_in">NSUInteger</span> WorkStatus; <span class="keyword">enum</span> WorkStatus : <span class="built_in">NSUInteger</span> &#123;</div><div class="line">    WorkStatusUnKnown ,</div><div class="line">    WorkStatusWorking ,</div><div class="line">    WorkStatusSleeping =<span class="number">50</span>,</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">static</span> <span class="built_in">NSString</span> *stringFromWorkStatu(WorkStatus value) __attribute__((unused));</div><div class="line"><span class="keyword">static</span> WorkStatus WorkStatusFromString(<span class="built_in">NSString</span> *string) __attribute__((unused));</div><div class="line"></div><div class="line"><span class="keyword">static</span> <span class="built_in">NSString</span> *stringFromWorkStatus(WorkStatus value) &#123;</div><div class="line">    <span class="keyword">switch</span>(value) &#123;</div><div class="line">        <span class="keyword">case</span> WorkStatusUnKnown:</div><div class="line">            <span class="keyword">return</span> <span class="string">@"WorkStatusUnKnown"</span>;</div><div class="line">        <span class="keyword">case</span> WorkStatusWorking:</div><div class="line">            <span class="keyword">return</span> <span class="string">@"WorkStatusWorking"</span>;</div><div class="line">        <span class="keyword">case</span> WorkStatusSleeping:</div><div class="line">            <span class="keyword">return</span> <span class="string">@"WorkStatusSleeping"</span>;</div><div class="line">        <span class="keyword">default</span>:</div><div class="line">            <span class="keyword">return</span> <span class="string">@""</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">static</span> WorkStatus WorkStatusFromString(<span class="built_in">NSString</span> *string) &#123;</div><div class="line">    <span class="keyword">if</span> ([string isEqualToString:<span class="string">@"WorkStatusUnKnown"</span>]) <span class="keyword">return</span> WorkStatusUnKnown;</div><div class="line">    <span class="keyword">if</span> ([string isEqualToString:<span class="string">@"WorkStatusWorking"</span>]) <span class="keyword">return</span> WorkStatusWorking;</div><div class="line">    <span class="keyword">if</span> ([string isEqualToString:<span class="string">@"WorkStatusSleeping"</span>]) <span class="keyword">return</span> WorkStatusSleeping;</div><div class="line">    <span class="keyword">return</span> (WorkStatus)<span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">WorkStatus testWorkStatus = WorkStatusUnKnown;</div><div class="line"><span class="built_in">NSLog</span>(<span class="string">@"workstatus is: %@"</span>, stringFromWorkStatus(testWorkStatus));</div><div class="line"><span class="keyword">if</span> (testWorkStatus == WorkStatusFromString(<span class="string">@"WorkStatusUnKnown"</span>)) &#123;</div><div class="line">    <span class="built_in">NSLog</span>(<span class="string">@"确认在摸鱼"</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 输出:</span></div><div class="line"><span class="comment">// workstatus is: WorkStatusUnKnown</span></div><div class="line"><span class="comment">// 确认在摸鱼</span></div></pre></td></tr></table></figure>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag"># iOS</a>
+          
+            <a href="/tags/Objective-C/" rel="tag"># Objective-C</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/08/15/RxSwift-step-二/" rel="next" title="RxSwift-step(二)">
+                <i class="fa fa-chevron-left"></i> RxSwift-step(二)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread"></div>
+        <script>
+        /**
+        *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+        *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+        */
+          var disqus_config = function () {
+          this.page.url = "http://yoursite.com/2017/08/30/利用宏定义实现枚举转字符串/";  // Replace PAGE_URL with your page's canonical URL variable
+          this.page.identifier = "2017/08/30/利用宏定义实现枚举转字符串/"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+          };
+          
+          (function() { // DON'T EDIT BELOW THIS LINE
+          var d = document, s = d.createElement('script');
+          s.src = 'https://durand.disqus.com/embed.js';
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+          })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://ww1.sinaimg.cn/large/6b523ad1gy1fenjh5istbj20zk0zkac8.jpg"
+               alt="OneKyle" />
+          <p class="site-author-name" itemprop="name">OneKyle</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/flappyFeline" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#例子"><span class="nav-number">2.</span> <span class="nav-text">例子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#问题"><span class="nav-number">3.</span> <span class="nav-text">问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#优化"><span class="nav-number">4.</span> <span class="nav-text">优化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#优化问题1"><span class="nav-number">4.1.</span> <span class="nav-text">优化问题1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#优化问题2"><span class="nav-number">4.2.</span> <span class="nav-text">优化问题2</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用"><span class="nav-number">5.</span> <span class="nav-text">使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试"><span class="nav-number">6.</span> <span class="nav-text">测试</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">OneKyle</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'durand';
+      var disqus_identifier = '2017/08/30/利用宏定义实现枚举转字符串/';
+
+      var disqus_title = "利用宏定义实现枚举转字符串";
+
+
+      function run_disqus_script(disqus_script) {
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+
+      
+        var disqus_config = function () {
+            this.page.url = disqus_url;
+            this.page.identifier = disqus_identifier;
+            this.page.title = disqus_title;
+        };
+        run_disqus_script('embed.js');
+      
+
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+
+  
+
+</body>
+</html>

@@ -1,0 +1,765 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="iOS,Swift,RxSwift," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="12-理解重复订阅Observable的行为share() - 不要反复订阅同一个Observable1234let numbers = Observable.of(1, 2, 3, 4, 5)_ = numbers.subscribe(onNext: &amp;#123; print($0) &amp;#125;)_ = numbers.subscribe(onNext: &amp;#123; print($0) &amp;#">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RxSwift-step(二)">
+<meta property="og:url" content="http://yoursite.com/2017/08/15/RxSwift-step-二/index.html">
+<meta property="og:site_name" content="OneKyle">
+<meta property="og:description" content="12-理解重复订阅Observable的行为share() - 不要反复订阅同一个Observable1234let numbers = Observable.of(1, 2, 3, 4, 5)_ = numbers.subscribe(onNext: &amp;#123; print($0) &amp;#125;)_ = numbers.subscribe(onNext: &amp;#123; print($0) &amp;#">
+<meta property="og:image" content="https://image.boxueio.com/transform-ops-1@2x.png">
+<meta property="og:image" content="https://image.boxueio.com/transform-ops-2@2x.png">
+<meta property="og:image" content="https://image.boxueio.com/transform-ops-3@2x.png">
+<meta property="og:updated_time" content="2017-08-18T09:27:19.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="RxSwift-step(二)">
+<meta name="twitter:description" content="12-理解重复订阅Observable的行为share() - 不要反复订阅同一个Observable1234let numbers = Observable.of(1, 2, 3, 4, 5)_ = numbers.subscribe(onNext: &amp;#123; print($0) &amp;#125;)_ = numbers.subscribe(onNext: &amp;#123; print($0) &amp;#">
+<meta name="twitter:image" content="https://image.boxueio.com/transform-ops-1@2x.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '6261206290404476000',
+      author: 'Durand'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/08/15/RxSwift-step-二/"/>
+
+
+
+
+
+  <title> RxSwift-step(二) | OneKyle </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">OneKyle</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/15/RxSwift-step-二/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="OneKyle">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://ww1.sinaimg.cn/large/6b523ad1gy1fenjh5istbj20zk0zkac8.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OneKyle">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                RxSwift-step(二)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-15T14:00:21+08:00">
+                2017-08-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/08/15/RxSwift-step-二/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/08/15/RxSwift-step-二/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="12-理解重复订阅Observable的行为"><a href="#12-理解重复订阅Observable的行为" class="headerlink" title="12-理解重复订阅Observable的行为"></a>12-理解重复订阅Observable的行为</h3><h4 id="share-不要反复订阅同一个Observable"><a href="#share-不要反复订阅同一个Observable" class="headerlink" title="share() - 不要反复订阅同一个Observable"></a>share() - 不要反复订阅同一个Observable</h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> numbers = <span class="type">Observable</span>.of(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>)</div><div class="line"></div><div class="line"><span class="number">_</span> = numbers.subscribe(onNext: &#123; <span class="built_in">print</span>($<span class="number">0</span>) &#125;)</div><div class="line"><span class="number">_</span> = numbers.subscribe(onNext: &#123; <span class="built_in">print</span>($<span class="number">0</span>) &#125;)</div></pre></td></tr></table></figure>
+<p>假设，我们希望这两次订阅实际上使用的是同一个Observable，但执行一下就会在控制台看到，打印了两次1 2 3 4 5，也就是说每次订阅，都会产生一个新的<code>Observable</code>对象，多次订阅的默认行为，并不是共享同一个序列上的事件。</p>
+<p>为了在多次订阅的时候共享事件，我们可以使用share operator，为了观察这个效果，我们把numbers的定义改成这样：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> numbers = <span class="type">Observable</span>.of(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>).share()</div></pre></td></tr></table></figure></p>
+<h4 id="scan-operator"><a href="#scan-operator" class="headerlink" title="scan operator"></a>scan operator</h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="number">_</span> = selectedPhotos.scan([]) &#123;</div><div class="line">    (photos: [<span class="type">UIImage</span>], newPhoto: <span class="type">UIImage</span>) <span class="keyword">in</span></div><div class="line">        <span class="keyword">var</span> newPhotos = photos</div><div class="line"></div><div class="line">        <span class="keyword">if</span> <span class="keyword">let</span> index = newPhotos.index(<span class="keyword">where</span>: &#123; newPhoto == $<span class="number">0</span> &#125;) &#123;</div><div class="line">            newPhotos.remove(at: index)</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">else</span> &#123;</div><div class="line">            newPhotos.append(newPhoto)</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">return</span> newPhotos</div><div class="line">    &#125;.subscribe(onNext: &#123; (photos: [<span class="type">UIImage</span>]) <span class="keyword">in</span></div><div class="line">        <span class="keyword">self</span>.images.value = photos</div><div class="line">    &#125;, onDisposed: &#123;</div><div class="line">        <span class="built_in">print</span>(<span class="string">"Finished choose photo memos."</span>)</div><div class="line">    &#125;)</div></pre></td></tr></table></figure>
+<p>作用类似于集合类型中的<code>reduce</code>.</p>
+<h3 id="13-更好的处理授权提示"><a href="#13-更好的处理授权提示" class="headerlink" title="13-更好的处理授权提示"></a>13-更好的处理授权提示</h3><p>iOS的用户授权动作是<strong>异步</strong>的.为了能在用户完成授权操作之后继续更新UI，我们得先把授权的结果封装成一个<code>Observable</code>。实际上，这个<code>Observable</code>只可能是下面三种情况：</p>
+<ul>
+<li>如果用户已授权，事件序列就是：<code>.next(true)</code>，<code>.completed()</code>；</li>
+<li>如果用户未授权，序列的第一个事件就一定是<code>.next(false)</code>。然后，如果用户拒绝授权，序列中的事件就是：<code>.next(false)</code>和<code>.completed</code>。否则，就是<code>.next(true)</code>和<code>.completed</code>；</li>
+</ul>
+<h4 id="订阅用户的授权结果"><a href="#订阅用户的授权结果" class="headerlink" title="订阅用户的授权结果"></a>订阅用户的授权结果</h4><p>订阅的部分，应该写在<code>PhotoCollectionViewController.viewDidLoad</code>方法里。先别着急，这个过程要比我们想象的复杂一点，我们不能直接订阅<code>isAuthorized</code>的<code>onNext</code>并处理<code>true</code>/<code>false</code>的情况，因为单一的事件值并不能反映真实的授权情况。按照之前分析的：</p>
+<ul>
+<li>授权成功的序列可能是：<code>.next(true)</code>，<code>.completed</code>或<code>.next(false)</code>，<code>.next(true)</code>，<code>.completed</code>；</li>
+<li>授权失败的序列则是：<code>.next(false)</code>，<code>.next(false)</code>，<code>.completed</code>；<br>因此，我们需要把<code>isAuthorized</code>这个事件序列处理一下，分别处理授权成功和失败的情况。</li>
+</ul>
+<h5 id="订阅成功事件"><a href="#订阅成功事件" class="headerlink" title="订阅成功事件"></a>订阅成功事件</h5><p>首先来订阅授权成功事件，我们只要<strong>忽略掉事件序列中所有的false，并读到第一个true</strong>，就可以认为授权成功了。使用“过滤型”<code>operator</code>可以轻松完成这个任务：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">viewDidLoad</span><span class="params">()</span></span> &#123;</div><div class="line">    <span class="keyword">super</span>.viewDidLoad()</div><div class="line">    ...</div><div class="line">    <span class="comment">// PHPhotoLibrary.isAuthorized返回一个Observable&lt;Bool&gt;</span></div><div class="line">    <span class="keyword">let</span> isAuthorized = <span class="type">PHPhotoLibrary</span>.isAuthorized</div><div class="line"></div><div class="line">    isAuthorized</div><div class="line">        .skipWhile &#123; $<span class="number">0</span> == <span class="literal">false</span> &#125;</div><div class="line">        .take(<span class="number">1</span>)</div><div class="line">        .subscribe(onNext: &#123;</div><div class="line">            [<span class="keyword">weak</span> <span class="keyword">self</span>] <span class="number">_</span> <span class="keyword">in</span></div><div class="line">            <span class="comment">// Reload the photo collection view</span></div><div class="line">        &#125;)</div><div class="line">        .addDisposableTo(bag)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>可以看到, 上面的代码中, 使用<code>skipWhile</code>忽略了所有<code>false</code>, 并且读取到了之后第一个<code>true</code>.</p>
+<h5 id="订阅失败事件"><a href="#订阅失败事件" class="headerlink" title="订阅失败事件"></a>订阅失败事件</h5><p>接下来，我们处理拒绝授权的情况。这种情况相比成功简单一些，因为它对应的事件序列只有一种情况：<code>.next(false)</code>，<code>.next(false)</code>，<code>.completed</code>。因此，我们只要对事件序列中所有元素去重之后，订阅最后一个<code>.next</code>事件，如果是<code>false</code>，就可以确定是用户拒绝授权了。因此，在订阅成功授权的代码后面，继续添加下面的代码：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">viewDidLoad</span><span class="params">()</span></span> &#123;</div><div class="line">    <span class="keyword">super</span>.viewDidLoad()</div><div class="line">    ...</div><div class="line"></div><div class="line">    isAuthorized</div><div class="line">        .distinctUntilChanged()</div><div class="line">        .takeLast(<span class="number">1</span>)</div><div class="line">        .<span class="built_in">filter</span>&#123; $<span class="number">0</span> == <span class="literal">false</span> &#125;</div><div class="line">        .subscribe(onNext: &#123; [<span class="keyword">weak</span> <span class="keyword">self</span>] <span class="number">_</span> <span class="keyword">in</span></div><div class="line">            <span class="keyword">self</span>?.flash(title: <span class="string">"Cannot access your photo library"</span>,message: <span class="string">"You can authorize access from the Settings."</span>,</div><div class="line">            callback: &#123; [<span class="keyword">weak</span> <span class="keyword">self</span>] <span class="number">_</span> <span class="keyword">in</span></div><div class="line">                <span class="keyword">self</span>?.navigationController?.popViewController(animated: <span class="literal">true</span>)</div><div class="line">            &#125;))</div><div class="line"></div><div class="line">        &#125;)</div><div class="line">        .addDisposableTo(bag)</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="14-了解常用的transform-operators"><a href="#14-了解常用的transform-operators" class="headerlink" title="14-了解常用的transform operators"></a>14-了解常用的transform operators</h3><h4 id="toArray"><a href="#toArray" class="headerlink" title="toArray"></a>toArray</h4><p><code>toArray</code>，这可以说是最简单的<em>Transform operator</em>。它把<code>Observable&lt;T&gt;</code>中所有的事件值，在订阅的时候，打包成一个<code>Array&lt;T&gt;</code>返回给订阅者.<br><img src="https://image.boxueio.com/transform-ops-1@2x.png" alt="toArray"><br>有一点要注意的是，<code>toArray</code>的转换，是在订阅的时候，根据当前<code>Observable</code>中的值一次性完成转换的，后续的事件订阅则不会再进行转换:  </p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> numbers = <span class="type">PublishSubject</span>&lt;<span class="type">Int</span>&gt;()</div><div class="line"></div><div class="line">numbers.asObservable()</div><div class="line">    .toArray()</div><div class="line">    .subscribe(onNext: &#123;</div><div class="line">        <span class="built_in">print</span>($<span class="number">0</span>)</div><div class="line">    &#125;).addDisposableTo(bag)</div><div class="line"></div><div class="line"></div><div class="line">numbers.onNext(<span class="number">1</span>)</div><div class="line">numbers.onNext(<span class="number">2</span>)</div><div class="line">numbers.onNext(<span class="number">3</span>)</div></pre></td></tr></table></figure>
+<p>对于这个例子来说，在订阅的时候，使用了<code>toArray</code>，但此时，<code>numbers</code>中没有任何值，<code>toArray</code>变换出来的，就是个空数组。即便之后<code>numbers</code>中发生了事件<code>123</code>，但是，我们订阅的，已经不是<code>numbers</code>，而是<code>numbers</code>在订阅的时候转换成的<code>Observable&lt;Array&lt;Int&gt;&gt;</code>，用序列图来表示是这样的：</p>
+<p><img src="https://image.boxueio.com/transform-ops-2@2x.png" alt="toArray立即转换"><br>我们订阅的代码是图中红色的Observable，因此，也就不会打印任何内容了。</p>
+<h4 id="scan"><a href="#scan" class="headerlink" title="scan"></a>scan</h4><p><img src="https://image.boxueio.com/transform-ops-3@2x.png" alt="scan"></p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="type">Observable</span>.of(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>).scan(<span class="number">0</span>) &#123;</div><div class="line">        accumulatedValue, value <span class="keyword">in</span></div><div class="line">         accumulatedValue + value</div><div class="line">    &#125;.subscribe(onNext: &#123;</div><div class="line">        <span class="built_in">print</span>($<span class="number">0</span>)</div><div class="line">    &#125;).addDisposableTo(bag)</div></pre></td></tr></table></figure>
+<p>输出为 1、3、6.但是，就想上面图中展示的那样，和<code>toArray</code>不同的是，<code>scan</code>在<code>Observable</code>每次有事件的时候都会执行.</p>
+<h4 id="转换事件类型的map"><a href="#转换事件类型的map" class="headerlink" title="转换事件类型的map"></a>转换事件类型的map</h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="type">Observable</span>.of(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>).<span class="built_in">map</span> &#123;</div><div class="line">    value <span class="keyword">in</span> value * <span class="number">2</span></div><div class="line">&#125;.subscribe(onNext: &#123;</div><div class="line">    <span class="built_in">print</span>($<span class="number">0</span>)</div><div class="line">&#125;).addDisposableTo(bag)</div></pre></td></tr></table></figure>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag"># iOS</a>
+          
+            <a href="/tags/Swift/" rel="tag"># Swift</a>
+          
+            <a href="/tags/RxSwift/" rel="tag"># RxSwift</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/08/14/RxSwift-step/" rel="next" title="RxSwift-step by step 1-10">
+                <i class="fa fa-chevron-left"></i> RxSwift-step by step 1-10
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/08/30/利用宏定义实现枚举转字符串/" rel="prev" title="利用宏定义实现枚举转字符串">
+                利用宏定义实现枚举转字符串 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread"></div>
+        <script>
+        /**
+        *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+        *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+        */
+          var disqus_config = function () {
+          this.page.url = "http://yoursite.com/2017/08/15/RxSwift-step-二/";  // Replace PAGE_URL with your page's canonical URL variable
+          this.page.identifier = "2017/08/15/RxSwift-step-二/"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+          };
+          
+          (function() { // DON'T EDIT BELOW THIS LINE
+          var d = document, s = d.createElement('script');
+          s.src = 'https://durand.disqus.com/embed.js';
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+          })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://ww1.sinaimg.cn/large/6b523ad1gy1fenjh5istbj20zk0zkac8.jpg"
+               alt="OneKyle" />
+          <p class="site-author-name" itemprop="name">OneKyle</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/flappyFeline" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#12-理解重复订阅Observable的行为"><span class="nav-number">1.</span> <span class="nav-text">12-理解重复订阅Observable的行为</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#share-不要反复订阅同一个Observable"><span class="nav-number">1.1.</span> <span class="nav-text">share() - 不要反复订阅同一个Observable</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#scan-operator"><span class="nav-number">1.2.</span> <span class="nav-text">scan operator</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13-更好的处理授权提示"><span class="nav-number">2.</span> <span class="nav-text">13-更好的处理授权提示</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#订阅用户的授权结果"><span class="nav-number">2.1.</span> <span class="nav-text">订阅用户的授权结果</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#订阅成功事件"><span class="nav-number">2.1.1.</span> <span class="nav-text">订阅成功事件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#订阅失败事件"><span class="nav-number">2.1.2.</span> <span class="nav-text">订阅失败事件</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#14-了解常用的transform-operators"><span class="nav-number">3.</span> <span class="nav-text">14-了解常用的transform operators</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#toArray"><span class="nav-number">3.1.</span> <span class="nav-text">toArray</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#scan"><span class="nav-number">3.2.</span> <span class="nav-text">scan</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#转换事件类型的map"><span class="nav-number">3.3.</span> <span class="nav-text">转换事件类型的map</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">OneKyle</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'durand';
+      var disqus_identifier = '2017/08/15/RxSwift-step-二/';
+
+      var disqus_title = "RxSwift-step(二)";
+
+
+      function run_disqus_script(disqus_script) {
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+
+      
+        var disqus_config = function () {
+            this.page.url = disqus_url;
+            this.page.identifier = disqus_identifier;
+            this.page.title = disqus_title;
+        };
+        run_disqus_script('embed.js');
+      
+
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+
+  
+
+</body>
+</html>
