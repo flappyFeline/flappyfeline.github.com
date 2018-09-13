@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="开发环境,Docker," />
+  <meta name="keywords" content="Docker,开发环境," />
 
 
 
@@ -95,7 +95,7 @@
 <meta property="og:site_name" content="OneKyle">
 <meta property="og:description" content="前言最近在写一个开源的框架, 但是发现效率低下, 于是乎就寻觅了一遭提升开发效率的方法在前辈的提示下, 发现了一款名叫 redmine 的开源项目管理工具我粗略的看了下, 发现redmine不仅流程科学规范, 而且细致入微, 对鞭策自己开发及浏览开发进度是个非常不错的选择.正好我在公司有台用来垫显示器的闲置 Mac mini, 就利用一下好了.
 搭建DockerDocker 是个划时代的开源项目，">
-<meta property="og:updated_time" content="2018-07-17T09:25:52.595Z">
+<meta property="og:updated_time" content="2018-08-03T12:36:01.006Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="基于docker搭建项目管理平台redmine">
 <meta name="twitter:description" content="前言最近在写一个开源的框架, 但是发现效率低下, 于是乎就寻觅了一遭提升开发效率的方法在前辈的提示下, 发现了一款名叫 redmine 的开源项目管理工具我粗略的看了下, 发现redmine不仅流程科学规范, 而且细致入微, 对鞭策自己开发及浏览开发进度是个非常不错的选择.正好我在公司有台用来垫显示器的闲置 Mac mini, 就利用一下好了.
@@ -356,7 +356,7 @@
 <h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><h4 id="docker-启动-mysql"><a href="#docker-启动-mysql" class="headerlink" title="docker 启动 mysql"></a>docker 启动 mysql</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker run -d -p 3306:3306 --name server-mysql -e MYSQL_ROOT_PASSWORD=&quot;pass&quot;  -e MYSQL_DATABASE=redmine mysql:5.7.22</div></pre></td></tr></table></figure>
 <p>这里为物理机和虚拟机的3306端口做了端口映射，以让外部用户可以通过3306端口访问mysql实例,</p>
 <h4 id="docker启动redmine"><a href="#docker启动redmine" class="headerlink" title="docker启动redmine"></a>docker启动redmine</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker run -d -p 3000:3000 --name=server-redmine -e MYSQL_ROOT_PASSWORD=&quot;pass&quot; --link server-mysql:mysql redmine:3.2</div></pre></td></tr></table></figure>
-<p>这里为物理机和虚拟机的3000与3000端口做了端口映射，使用外部用户可以通过8080端口访问redmine.</p>
+<p>这里为物理机和虚拟机的3000与3000端口做了端口映射，使用外部用户可以通过3000端口访问redmine.</p>
 <p>一切正常的话, 使用 docker ps -a 可以看到docker中运行的进程:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"># docker ps -a</div><div class="line">ONTAINER ID        IMAGE                              COMMAND                  CREATED             STATUS                    PORTS                    NAMES</div><div class="line">c7a2a67fb328        redmine:3.2                        &quot;/docker-entrypoint.…&quot;   14 minutes ago      Up 18 minutes             0.0.0.0:3000-&gt;3000/tcp   server-redmine</div><div class="line">b63ce7258234        mysql:5.7.22                       &quot;docker-entrypoint.s…&quot;   15 minutes ago      Up 18 minutes             0.0.0.0:3306-&gt;3306/tcp   server-mysql</div></pre></td></tr></table></figure></p>
 <h2 id="完成"><a href="#完成" class="headerlink" title="完成"></a>完成</h2><p>浏览器中打开 <a href="localhost:3000" target="_blank" rel="external">localhost:3000</a> 就可以访问redmine开始玩耍了.</p>
 
@@ -382,9 +382,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/开发环境/" rel="tag"># 开发环境</a>
-          
             <a href="/tags/Docker/" rel="tag"># Docker</a>
+          
+            <a href="/tags/开发环境/" rel="tag"># 开发环境</a>
           
         </div>
       
@@ -407,8 +407,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/07/17/基于SSH实现端口转发及内网穿透/" rel="prev" title="基于SSH实现端口转发及内网穿透">
-                基于SSH实现端口转发及内网穿透 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/07/17/基于SSH实现端口转发及内网穿透/" rel="prev" title="内网穿透及端口转发">
+                内网穿透及端口转发 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>

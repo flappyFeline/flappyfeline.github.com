@@ -87,16 +87,79 @@
 
 
 
-<meta name="description" content="前言">
+<meta name="description" content="前言在上一篇文章中, 我介绍了如何通过docker搭建redmine项目管理平台, 然而此时 redmine仅仅只能在内网上才能访问到, 接下来这篇就介绍下如何通过内网穿透和端口转发来让我们随心所欲的访问到.
+设备
+
+
+机器代号
+机器描述
+账户
+地址
+ssh/sshd 端口
+
+
+
+
+Server
+公网服务器
+server
+server.site
+29245
+
+
+Base
+个人电脑(位于NAT之">
 <meta property="og:type" content="article">
-<meta property="og:title" content="基于SSH实现端口转发及内网穿透">
+<meta property="og:title" content="内网穿透及端口转发">
 <meta property="og:url" content="http://yoursite.com/2018/07/17/基于SSH实现端口转发及内网穿透/index.html">
 <meta property="og:site_name" content="OneKyle">
-<meta property="og:description" content="前言">
-<meta property="og:updated_time" content="2018-07-17T09:48:58.198Z">
+<meta property="og:description" content="前言在上一篇文章中, 我介绍了如何通过docker搭建redmine项目管理平台, 然而此时 redmine仅仅只能在内网上才能访问到, 接下来这篇就介绍下如何通过内网穿透和端口转发来让我们随心所欲的访问到.
+设备
+
+
+机器代号
+机器描述
+账户
+地址
+ssh/sshd 端口
+
+
+
+
+Server
+公网服务器
+server
+server.site
+29245
+
+
+Base
+个人电脑(位于NAT之">
+<meta property="og:updated_time" content="2018-09-13T13:31:26.488Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="基于SSH实现端口转发及内网穿透">
-<meta name="twitter:description" content="前言">
+<meta name="twitter:title" content="内网穿透及端口转发">
+<meta name="twitter:description" content="前言在上一篇文章中, 我介绍了如何通过docker搭建redmine项目管理平台, 然而此时 redmine仅仅只能在内网上才能访问到, 接下来这篇就介绍下如何通过内网穿透和端口转发来让我们随心所欲的访问到.
+设备
+
+
+机器代号
+机器描述
+账户
+地址
+ssh/sshd 端口
+
+
+
+
+Server
+公网服务器
+server
+server.site
+29245
+
+
+Base
+个人电脑(位于NAT之">
 
 
 
@@ -130,7 +193,7 @@
 
 
 
-  <title> 基于SSH实现端口转发及内网穿透 | OneKyle </title>
+  <title> 内网穿透及端口转发 | OneKyle </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -270,7 +333,7 @@
             
             
               
-                基于SSH实现端口转发及内网穿透
+                内网穿透及端口转发
               
             
           </h1>
@@ -331,7 +394,60 @@
       
 
       
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在上一篇文章中, 我介绍了<a href="http://blog.onekyle.com/2018/07/14/%E5%9F%BA%E4%BA%8Edocker%E6%90%AD%E5%BB%BA%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86%E5%B9%B3%E5%8F%B0redmine" target="_blank" rel="external">如何通过docker搭建redmine项目管理平台</a>, 然而此时 redmine仅仅只能在内网上才能访问到, 接下来这篇就介绍下如何通过内网穿透和端口转发来让我们随心所欲的访问到.</p>
+<h2 id="设备"><a href="#设备" class="headerlink" title="设备"></a>设备</h2><table>
+<thead>
+<tr>
+<th style="text-align:left">机器代号</th>
+<th style="text-align:left">机器描述</th>
+<th style="text-align:left">账户</th>
+<th style="text-align:left">地址</th>
+<th style="text-align:center">ssh/sshd 端口</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Server<span id="Server"></span></td>
+<td style="text-align:left">公网服务器</td>
+<td style="text-align:left">server</td>
+<td style="text-align:left">server.site</td>
+<td style="text-align:center">29245</td>
+</tr>
+<tr>
+<td style="text-align:left">Base<span id="Base"></span></td>
+<td style="text-align:left">个人电脑(位于NAT之后)</td>
+<td style="text-align:left">userb</td>
+<td style="text-align:left">127.0.0.1</td>
+<td style="text-align:center">22</td>
+</tr>
+<tr>
+<td style="text-align:left">Slave<span id="Slave"></span></td>
+<td style="text-align:left">垫显示器的MacMini(位于NAT之后)</td>
+<td style="text-align:left">users</td>
+<td style="text-align:left">127.0.01</td>
+<td style="text-align:center">22</td>
+</tr>
+</tbody>
+</table>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p>实现内网穿透及端口转发有很多手段途径, 下面我只介绍两种较简单和常用的.<br>一种是 基于 <a href="#ssh">SSH</a> 的<br>另一种是 基于 <a href="#frp">Frp</a> 的</p>
+<h3 id="基于SSH的内网穿透及端口转发"><a href="#基于SSH的内网穿透及端口转发" class="headerlink" title="基于SSH的内网穿透及端口转发"></a>基于SSH的内网穿透及端口转发</h3><p><span id="ssh"></span></p>
+<h4 id="SSH反向隧道"><a href="#SSH反向隧道" class="headerlink" title="SSH反向隧道"></a>SSH反向隧道</h4><p>这种手段实质上是由<a href="#Slave">Slave</a>向Server主动建立一个SSH通道, 将Server的某一个端口转发到Slave的SSH端口(22)上.<br>我们以Server的54345端口为例进行转发:  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">ssh -fN -R 54345:localhost:22 server@server.site -p 29245</div><div class="line"># -f Requests ssh to go to background just before command execution.</div><div class="line">　　　　让该命令后台运行 .</div><div class="line"># -n Redirects stdin from /dev/null (actually, prevents reading from stdin).</div><div class="line"></div><div class="line"># -N Do not execute a remote command.</div><div class="line">　　　　不执行远程命令 .</div><div class="line"># -R 远程转发</div></pre></td></tr></table></figure>
+<p>上面, 我们将Server的54345端口转发到了Slave的22端口上, 只要这个隧道不关闭, 我们就可以在Base上通过访问A的54345端口来连接Slave的22端口上.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># 在Base机器上</div><div class="line">ssh slave@server.site -p 54345</div></pre></td></tr></table></figure>
+<h4 id="隧道的维持"><a href="#隧道的维持" class="headerlink" title="隧道的维持"></a>隧道的维持</h4><p>由于SSH存在超时关闭的可能, 而一旦链接关闭, 隧道便无法维持, 那么Base也就无法随心所欲的访问Slave了, 为此我们需要一种方案来提供一条稳定的SSH 反向隧道.</p>
+<p>一个最简单的方法就是autossh，这个软件会在超时之后自动重新建立SSH 隧道.</p>
+<ul>
+<li><p>安装SSH</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># MacMini- MacOS</div><div class="line">brew install autossh</div></pre></td></tr></table></figure>
+<ul>
+<li>配置autossh<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">autossh -M 5678 -fN -o &quot;PubkeyAuthentication=yes&quot; -o &quot;StrictHostKeyChecking=false&quot; -o &quot;PasswordAuthentication=no&quot; -o &quot;ServerAliveInterval 60&quot; -o &quot;ServerAliveCountMax 3&quot; -R 54345:127.0.0.1:22 server@server.site -p 29245</div><div class="line"># “-M 5678” 选项指定中继服务器上的监视端口，用于交换监视 SSH 会话的测试数据。中继服务器上的其它程序不能使用这个端口。</div><div class="line"># “-o XXXX” 选项让 ssh：</div><div class="line">#        * 使用密钥验证，而不是密码验证。</div><div class="line">#        * 自动接受（未知）SSH 主机密钥。</div><div class="line">#        * 每 60 秒交换 keep-alive 消息。</div><div class="line">#        * 没有收到任何响应时最多发送 3 条 keep-alive 消息。</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="基于Frp的内网穿透及端口转发"><a href="#基于Frp的内网穿透及端口转发" class="headerlink" title="基于Frp的内网穿透及端口转发"></a>基于Frp的内网穿透及端口转发</h3><p><span id="frp"></span></p>
+
       
     </div>
 
@@ -527,7 +643,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设备"><span class="nav-number">2.</span> <span class="nav-text">设备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现"><span class="nav-number">3.</span> <span class="nav-text">实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基于SSH的内网穿透及端口转发"><span class="nav-number">3.1.</span> <span class="nav-text">基于SSH的内网穿透及端口转发</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#SSH反向隧道"><span class="nav-number">3.1.1.</span> <span class="nav-text">SSH反向隧道</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#隧道的维持"><span class="nav-number">3.1.2.</span> <span class="nav-text">隧道的维持</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基于Frp的内网穿透及端口转发"><span class="nav-number">3.2.</span> <span class="nav-text">基于Frp的内网穿透及端口转发</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -660,7 +776,7 @@
       var disqus_shortname = 'durand';
       var disqus_identifier = '2018/07/17/基于SSH实现端口转发及内网穿透/';
 
-      var disqus_title = "基于SSH实现端口转发及内网穿透";
+      var disqus_title = "内网穿透及端口转发";
 
 
       function run_disqus_script(disqus_script) {
