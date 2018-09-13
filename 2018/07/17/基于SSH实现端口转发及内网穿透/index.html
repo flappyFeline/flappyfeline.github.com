@@ -135,7 +135,7 @@ server
 
 Base
 个人电脑(位于NAT之">
-<meta property="og:updated_time" content="2018-09-13T13:31:26.488Z">
+<meta property="og:updated_time" content="2018-09-13T13:36:21.276Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="内网穿透及端口转发">
 <meta name="twitter:description" content="前言在上一篇文章中, 我介绍了如何通过docker搭建redmine项目管理平台, 然而此时 redmine仅仅只能在内网上才能访问到, 接下来这篇就介绍下如何通过内网穿透和端口转发来让我们随心所欲的访问到.
@@ -438,15 +438,16 @@ Base
 <h4 id="隧道的维持"><a href="#隧道的维持" class="headerlink" title="隧道的维持"></a>隧道的维持</h4><p>由于SSH存在超时关闭的可能, 而一旦链接关闭, 隧道便无法维持, 那么Base也就无法随心所欲的访问Slave了, 为此我们需要一种方案来提供一条稳定的SSH 反向隧道.</p>
 <p>一个最简单的方法就是autossh，这个软件会在超时之后自动重新建立SSH 隧道.</p>
 <ul>
-<li><p>安装SSH</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># MacMini- MacOS</div><div class="line">brew install autossh</div></pre></td></tr></table></figure>
+<li>安装SSH<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># MacMini- MacOS</div><div class="line">brew install autossh</div></pre></td></tr></table></figure>
+</li>
+</ul>
 <ul>
 <li>配置autossh<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">autossh -M 5678 -fN -o &quot;PubkeyAuthentication=yes&quot; -o &quot;StrictHostKeyChecking=false&quot; -o &quot;PasswordAuthentication=no&quot; -o &quot;ServerAliveInterval 60&quot; -o &quot;ServerAliveCountMax 3&quot; -R 54345:127.0.0.1:22 server@server.site -p 29245</div><div class="line"># “-M 5678” 选项指定中继服务器上的监视端口，用于交换监视 SSH 会话的测试数据。中继服务器上的其它程序不能使用这个端口。</div><div class="line"># “-o XXXX” 选项让 ssh：</div><div class="line">#        * 使用密钥验证，而不是密码验证。</div><div class="line">#        * 自动接受（未知）SSH 主机密钥。</div><div class="line">#        * 每 60 秒交换 keep-alive 消息。</div><div class="line">#        * 没有收到任何响应时最多发送 3 条 keep-alive 消息。</div></pre></td></tr></table></figure>
 </li>
 </ul>
-</li>
-</ul>
+<p>如此, 便可保证在不重启Slave的情况下的稳定SSH链接.</p>
 <h3 id="基于Frp的内网穿透及端口转发"><a href="#基于Frp的内网穿透及端口转发" class="headerlink" title="基于Frp的内网穿透及端口转发"></a>基于Frp的内网穿透及端口转发</h3><p><span id="frp"></span></p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://www.ibm.com/developerworks/cn/linux/l-cn-sshforward/" target="_blank" rel="external">实战 SSH 端口转发</a> 深入浅出的介绍了SSH端口转发的原理.</p>
 
       
     </div>
@@ -643,7 +644,7 @@ Base
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设备"><span class="nav-number">2.</span> <span class="nav-text">设备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现"><span class="nav-number">3.</span> <span class="nav-text">实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基于SSH的内网穿透及端口转发"><span class="nav-number">3.1.</span> <span class="nav-text">基于SSH的内网穿透及端口转发</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#SSH反向隧道"><span class="nav-number">3.1.1.</span> <span class="nav-text">SSH反向隧道</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#隧道的维持"><span class="nav-number">3.1.2.</span> <span class="nav-text">隧道的维持</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基于Frp的内网穿透及端口转发"><span class="nav-number">3.2.</span> <span class="nav-text">基于Frp的内网穿透及端口转发</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设备"><span class="nav-number">2.</span> <span class="nav-text">设备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现"><span class="nav-number">3.</span> <span class="nav-text">实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基于SSH的内网穿透及端口转发"><span class="nav-number">3.1.</span> <span class="nav-text">基于SSH的内网穿透及端口转发</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#SSH反向隧道"><span class="nav-number">3.1.1.</span> <span class="nav-text">SSH反向隧道</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#隧道的维持"><span class="nav-number">3.1.2.</span> <span class="nav-text">隧道的维持</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基于Frp的内网穿透及端口转发"><span class="nav-number">3.2.</span> <span class="nav-text">基于Frp的内网穿透及端口转发</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">4.</span> <span class="nav-text">参考</span></a></li></ol></div>
             
 
           </div>
