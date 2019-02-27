@@ -4,8 +4,29 @@
 
     
   <url>
+    <loc>http://yoursite.com/2019/02/27/OC%E4%B8%8ESwift%E6%B7%B7%E7%BC%96%E9%A1%B9%E7%9B%AE%E8%BF%81%E7%A7%BB%E5%88%B0Swift4-2%E5%B0%8F%E8%AE%B0/</loc>
+    <lastmod>2019-02-27T08:03:50.931Z</lastmod>
+    <data>
+        <display>
+        <title>OC与Swift混编项目迁移到Swift4.2小记</title>
+        <pubTime>2019-02-27T03:55:21.000Z</pubTime>
+        
+        <tag>Swift</tag>
+         
+        <tag>Object-C</tag>
+         
+        <tag>iOS</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/2018/07/17/%E5%9F%BA%E4%BA%8ESSH%E5%AE%9E%E7%8E%B0%E7%AB%AF%E5%8F%A3%E8%BD%AC%E5%8F%91%E5%8F%8A%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/</loc>
-    <lastmod>2018-10-11T10:08:09.218Z</lastmod>
+    <lastmod>2018-10-11T11:28:27.871Z</lastmod>
     <data>
         <display>
         <title>内网穿透及端口转发</title>
@@ -28,9 +49,9 @@
         <title>基于docker搭建项目管理平台redmine</title>
         <pubTime>2018-07-14T07:23:01.000Z</pubTime>
         
-        <tag>开发环境</tag>
-         
         <tag>Docker</tag>
+         
+        <tag>开发环境</tag>
          
          
            
@@ -48,9 +69,9 @@
         <title>RxSwift-step(二)</title>
         <pubTime>2017-08-15T06:00:21.000Z</pubTime>
         
-        <tag>iOS</tag>
-         
         <tag>Swift</tag>
+         
+        <tag>iOS</tag>
          
         <tag>RxSwift</tag>
          
@@ -69,9 +90,9 @@
         <title>RxSwift-step by step 1-10</title>
         <pubTime>2017-08-13T17:36:55.000Z</pubTime>
         
-        <tag>iOS</tag>
-         
         <tag>Swift</tag>
+         
+        <tag>iOS</tag>
          
         <tag>RxSwift</tag>
          
@@ -127,9 +148,9 @@
         <title>Swift中的数组</title>
         <pubTime>2017-07-31T12:06:33.000Z</pubTime>
         
-        <tag>iOS</tag>
-         
         <tag>Swift</tag>
+         
+        <tag>iOS</tag>
          
          
            
@@ -146,9 +167,9 @@
         <title>为泛型类型遵守协议添加类型约束</title>
         <pubTime>2017-06-25T12:33:30.000Z</pubTime>
         
-        <tag>iOS</tag>
-         
         <tag>Swift</tag>
+         
+        <tag>iOS</tag>
          
          
            
@@ -182,9 +203,9 @@
         <title>OC转Swift指南(一)  基础部分</title>
         <pubTime>2016-10-03T15:55:59.000Z</pubTime>
         
-        <tag>iOS</tag>
-         
         <tag>Swift</tag>
+         
+        <tag>iOS</tag>
          
          
            
@@ -201,9 +222,9 @@
         <title>OC转Swift指南(二)  字符串和字符</title>
         <pubTime>2016-10-05T07:13:25.000Z</pubTime>
         
-        <tag>iOS</tag>
-         
         <tag>Swift</tag>
+         
+        <tag>iOS</tag>
          
          
            
@@ -265,23 +286,5 @@
     </url>
 
     
-  <url>
-    <loc>http://yoursite.com/2017/03/14/UITableView%E4%B9%8B%E5%B1%80%E9%83%A8%E5%88%B7%E6%96%B0%E7%9A%84%E6%AD%A3%E7%A1%AE%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF/</loc>
-    <lastmod>2017-06-03T16:04:51.000Z</lastmod>
-    <data>
-        <display>
-        <title>UITableView之局部刷新的正确使用姿势</title>
-        <pubTime>2017-03-14T06:46:11.000Z</pubTime>
-        
-        <tag>iOS</tag>
-         
-        <tag>Objective-C</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
     
 </urlset>

@@ -1,0 +1,757 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Swift,Object-C,iOS," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="前言自从Xcode10正式版发布之后, 先吃螃蟹的朋友赞叹了Dark Mode的惊艳, 同时也报告说, 打包上传到APPStroe后, 监测到线上 iOS9.3设备大面积crash的记录, 最后被证实是Xcode10的问题.
+出于此原因考虑, 我便一直在使用Xcode9.4.1 及 Swift4进行混编项目的开发.
+然而每每使用低版本的Xcode打包上传APPStore时, 就会收到苹果的官方警告">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OC与Swift混编项目迁移到Swift4.2小记">
+<meta property="og:url" content="http://yoursite.com/2019/02/27/OC与Swift混编项目迁移到Swift4-2小记/index.html">
+<meta property="og:site_name" content="OneKyle">
+<meta property="og:description" content="前言自从Xcode10正式版发布之后, 先吃螃蟹的朋友赞叹了Dark Mode的惊艳, 同时也报告说, 打包上传到APPStroe后, 监测到线上 iOS9.3设备大面积crash的记录, 最后被证实是Xcode10的问题.
+出于此原因考虑, 我便一直在使用Xcode9.4.1 及 Swift4进行混编项目的开发.
+然而每每使用低版本的Xcode打包上传APPStore时, 就会收到苹果的官方警告">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/6b523ad1ly1g0kul40vqsj21eo0qgwit.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/6b523ad1ly1g0l1hf5ek2j209m052jtz.jpg">
+<meta property="og:updated_time" content="2019-02-27T08:03:50.931Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="OC与Swift混编项目迁移到Swift4.2小记">
+<meta name="twitter:description" content="前言自从Xcode10正式版发布之后, 先吃螃蟹的朋友赞叹了Dark Mode的惊艳, 同时也报告说, 打包上传到APPStroe后, 监测到线上 iOS9.3设备大面积crash的记录, 最后被证实是Xcode10的问题.
+出于此原因考虑, 我便一直在使用Xcode9.4.1 及 Swift4进行混编项目的开发.
+然而每每使用低版本的Xcode打包上传APPStore时, 就会收到苹果的官方警告">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/6b523ad1ly1g0kul40vqsj21eo0qgwit.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '6261206290404476000',
+      author: 'Durand'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/02/27/OC与Swift混编项目迁移到Swift4-2小记/"/>
+
+
+
+
+
+  <title> OC与Swift混编项目迁移到Swift4.2小记 | OneKyle </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">OneKyle</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/27/OC与Swift混编项目迁移到Swift4-2小记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="OneKyle">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/16211378?s=460&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OneKyle">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                OC与Swift混编项目迁移到Swift4.2小记
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-27T11:55:21+08:00">
+                2019-02-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/02/27/OC与Swift混编项目迁移到Swift4-2小记/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/02/27/OC与Swift混编项目迁移到Swift4-2小记/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>自从<code>Xcode10</code>正式版发布之后, 先吃螃蟹的朋友赞叹了<code>Dark Mode</code>的惊艳, 同时也报告说, 打包上传到<code>APPStroe</code>后, 监测到线上 <code>iOS9.3</code>设备大面积crash的记录, 最后被证实是<code>Xcode10</code>的问题.</p>
+<p>出于此原因考虑, 我便一直在使用<code>Xcode9.4.1</code> 及 <code>Swift4</code>进行混编项目的开发.</p>
+<p>然而每每使用低版本的<code>Xcode</code>打包上传<code>APPStore</code>时, 就会收到苹果的官方警告邮件<br><img src="http://ww1.sinaimg.cn/large/6b523ad1ly1g0kul40vqsj21eo0qgwit.jpg" alt=""></p>
+<p>如邮件内容所示, 到<code>2019</code>年的<code>3</code>月份便不可以再使用低版本<code>Xcode</code>进行打包上传操作了. </p>
+<p>于是, 我只好开始了迁移之路.</p>
+<h2 id="开始迁移"><a href="#开始迁移" class="headerlink" title="开始迁移"></a>开始迁移</h2><p>使用当前 <code>Xcode10.1(10B61)</code>打开之后, 在<code>Build Setting</code>中搜索 <code>Swift Language Version</code>, 将对应的值改为<code>Swift 4.2</code>,然后开始编译, 此时会出现非常多的<code>Error</code>, 多为<code>ABI</code>的变动, 根据提示进行修改即可.</p>
+<h3 id="AVAudioSession的更改"><a href="#AVAudioSession的更改" class="headerlink" title="AVAudioSession的更改"></a>AVAudioSession的更改</h3><p>然而有一处例外:<br>当项目中通过<code>Swift</code>使用了 <code>AVAudioSession  setCategory</code>这个方法时, 会被告知方法在<code>Swift</code>中不可用.跳转才发现 <code>API</code>已经变化成了<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* set session category and mode with options */</span></div><div class="line">    <span class="meta">@available</span>(iOS <span class="number">10.0</span>, *)</div><div class="line">    open <span class="function"><span class="keyword">func</span> <span class="title">setCategory</span><span class="params">(<span class="number">_</span> category: AVAudioSession.Category, mode: AVAudioSession.Mode, options: AVAudioSession.CategoryOptions = [])</span></span> <span class="keyword">throws</span></div></pre></td></tr></table></figure></p>
+<p>为了兼容低版本, 思来想去, 比较合适的方案就是使用OC编写一个<code>AVAudioSession</code>的分类用来桥接:<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// AVAudioSession+Swift.h:</span></div><div class="line"></div><div class="line">@<span class="keyword">import</span> AVFoundation;</div><div class="line"></div><div class="line"><span class="type">NS_ASSUME_NONNULL_BEGIN</span></div><div class="line"></div><div class="line">@interface <span class="type">AVAudioSession</span> (<span class="type">Swift</span>)</div><div class="line"></div><div class="line">- (<span class="type">BOOL</span>)swift_setCategory:(<span class="type">AVAudioSessionCategory</span>)category error:(<span class="type">NSError</span> **)outError <span class="type">NS_SWIFT_NAME</span>(setCategory(<span class="number">_</span>:));</div><div class="line">- (<span class="type">BOOL</span>)swift_setCategory:(<span class="type">AVAudioSessionCategory</span>)category withOptions:(<span class="type">AVAudioSessionCategoryOptions</span>)options error:(<span class="type">NSError</span> **)outError <span class="type">NS_SWIFT_NAME</span>(setCategory(<span class="number">_</span>:options:));</div><div class="line"></div><div class="line">@end</div><div class="line"></div><div class="line"><span class="type">NS_ASSUME_NONNULL_END</span></div><div class="line"></div><div class="line"><span class="comment">// AVAudioSession+Swift.m:</span></div><div class="line"></div><div class="line">#<span class="keyword">import</span> "AVAudioSession+Swift.h"</div><div class="line"></div><div class="line">@implementation <span class="type">AVAudioSession</span> (<span class="type">Swift</span>)</div><div class="line"></div><div class="line">- (<span class="type">BOOL</span>)swift_setCategory:(<span class="type">AVAudioSessionCategory</span>)category error:(<span class="type">NSError</span> **)outError &#123;</div><div class="line">    <span class="keyword">return</span> [<span class="keyword">self</span> setCategory:category error:outError];</div><div class="line">&#125;</div><div class="line">- (<span class="type">BOOL</span>)swift_setCategory:(<span class="type">AVAudioSessionCategory</span>)category withOptions:(<span class="type">AVAudioSessionCategoryOptions</span>)options error:(<span class="type">NSError</span> **)outError &#123;</div><div class="line">    <span class="keyword">return</span> [<span class="keyword">self</span> setCategory:category withOptions:options error:outError];</div><div class="line">&#125;</div><div class="line"></div><div class="line">@end</div></pre></td></tr></table></figure></p>
+<p>然后在你项目的<code>&lt;#target_name#&gt;-Bridging-Header.h</code>中<code>import</code>这个分类:<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">#<span class="keyword">import</span> "AVAudioSession+Swift.h"</div></pre></td></tr></table></figure></p>
+<p>然后就可以像之前一样调用了.<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">try</span> <span class="type">AVAudioSession</span>.sharedInstance().setCategory(.playback)</div></pre></td></tr></table></figure></p>
+<h3 id="While-deserializing-SIL-vtable-for-‘Class’-in-module-‘module’-error-Abort-trap-6"><a href="#While-deserializing-SIL-vtable-for-‘Class’-in-module-‘module’-error-Abort-trap-6" class="headerlink" title="While deserializing SIL vtable for ‘Class’ in module ‘module’ error: Abort trap: 6"></a>While deserializing SIL vtable for ‘Class’ in module ‘module’ error: Abort trap: 6</h3><p>这类问题分两种, 一种是<code>module</code>是其他的<code>target</code>, 如<code>Pods</code>中的, 另一种是 <code>module</code>是自己的创建的<code>target</code>.</p>
+<h4 id="第一种"><a href="#第一种" class="headerlink" title="第一种"></a>第一种</h4><p>第一种 只需要将<code>Error</code>所指向的三方库更新到最新版本即可, <code>Xcode10</code>已经发布了快半年了, 这些问题之前也有, 半年的时间, 基本上流行的三方库都已经适配了<code>Swift4.2</code></p>
+<h4 id="第二种"><a href="#第二种" class="headerlink" title="第二种"></a>第二种</h4><p>而第二种比较棘手, 一般都是由于 <code>Error</code>中的<code>Class</code>所指向的类, 自己是<code>Swift</code>类, 但是却继承自<code>Object-C</code>声明编写的类.<br>我在自己试过一些微调之后发现于事无补, 所以只好将出错的类使用<code>Object-C</code>重写, 然后在桥接文件中引入, 好在报错的不多, 没用费太多力气.</p>
+<h3 id="随机错误"><a href="#随机错误" class="headerlink" title="随机错误"></a>随机错误</h3><p>迁移完成后 项目跑起来时, 还会出现很多奇怪的问题.<br>比如调用了某个方法A 会报<code>unrecognize selector B</code>, 以及莫名的<code>crash</code>, 如:</p>
+<p><img src="http://ww1.sinaimg.cn/large/6b523ad1ly1g0l1hf5ek2j209m052jtz.jpg" alt=""></p>
+<p>这类错误, 一般跟以上的俩种问题是一个本质, 需要自己仔细区别, 然后做出相应更新/更改即可.</p>
+<p>除开以上的问题, 项目编译时还会在<code>Pods</code>引用的第三方的类中报ABI需要修改的<code>Error</code>, 这时, 只需要找到队形的<code>Target</code>, 在其<code>Build Settings</code>中修改 <code>Swift Language Version</code>为其对应版本即可.</p>
+<h2 id="最后-希望Swift5出来后-不要有这么多坑了…"><a href="#最后-希望Swift5出来后-不要有这么多坑了…" class="headerlink" title="最后, 希望Swift5出来后, 不要有这么多坑了…"></a>最后, 希望Swift5出来后, 不要有这么多坑了…</h2>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Swift/" rel="tag"># Swift</a>
+          
+            <a href="/tags/Object-C/" rel="tag"># Object-C</a>
+          
+            <a href="/tags/iOS/" rel="tag"># iOS</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/07/17/基于SSH实现端口转发及内网穿透/" rel="next" title="内网穿透及端口转发">
+                <i class="fa fa-chevron-left"></i> 内网穿透及端口转发
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread"></div>
+        <script>
+        /**
+        *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+        *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+        */
+          var disqus_config = function () {
+          this.page.url = "http://yoursite.com/2019/02/27/OC与Swift混编项目迁移到Swift4-2小记/";  // Replace PAGE_URL with your page's canonical URL variable
+          this.page.identifier = "2019/02/27/OC与Swift混编项目迁移到Swift4-2小记/"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+          };
+          
+          (function() { // DON'T EDIT BELOW THIS LINE
+          var d = document, s = d.createElement('script');
+          s.src = 'https://durand.disqus.com/embed.js';
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+          })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://avatars3.githubusercontent.com/u/16211378?s=460&v=4"
+               alt="OneKyle" />
+          <p class="site-author-name" itemprop="name">OneKyle</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/onekyle" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开始迁移"><span class="nav-number">2.</span> <span class="nav-text">开始迁移</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#AVAudioSession的更改"><span class="nav-number">2.1.</span> <span class="nav-text">AVAudioSession的更改</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#While-deserializing-SIL-vtable-for-‘Class’-in-module-‘module’-error-Abort-trap-6"><span class="nav-number">2.2.</span> <span class="nav-text">While deserializing SIL vtable for ‘Class’ in module ‘module’ error: Abort trap: 6</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#第一种"><span class="nav-number">2.2.1.</span> <span class="nav-text">第一种</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第二种"><span class="nav-number">2.2.2.</span> <span class="nav-text">第二种</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#随机错误"><span class="nav-number">2.3.</span> <span class="nav-text">随机错误</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最后-希望Swift5出来后-不要有这么多坑了…"><span class="nav-number">3.</span> <span class="nav-text">最后, 希望Swift5出来后, 不要有这么多坑了…</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">OneKyle</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'durand';
+      var disqus_identifier = '2019/02/27/OC与Swift混编项目迁移到Swift4-2小记/';
+
+      var disqus_title = "OC与Swift混编项目迁移到Swift4.2小记";
+
+
+      function run_disqus_script(disqus_script) {
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+
+      
+        var disqus_config = function () {
+            this.page.url = disqus_url;
+            this.page.identifier = disqus_identifier;
+            this.page.title = disqus_title;
+        };
+        run_disqus_script('embed.js');
+      
+
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+
+  
+
+</body>
+</html>
