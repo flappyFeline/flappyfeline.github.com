@@ -1,0 +1,746 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="ARTS," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="AlgorithmNo.2: Add Two Numbers原题:You are given two non-empty linked lists representing two non-negative integers. The digits are stored in reverse order and each of their nodes contain a single digit.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ARTS Week 1">
+<meta property="og:url" content="http://yoursite.com/2019/03/26/ARTS-Week-1/index.html">
+<meta property="og:site_name" content="OneKyle">
+<meta property="og:description" content="AlgorithmNo.2: Add Two Numbers原题:You are given two non-empty linked lists representing two non-negative integers. The digits are stored in reverse order and each of their nodes contain a single digit.">
+<meta property="og:updated_time" content="2019-03-26T09:15:17.953Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ARTS Week 1">
+<meta name="twitter:description" content="AlgorithmNo.2: Add Two Numbers原题:You are given two non-empty linked lists representing two non-negative integers. The digits are stored in reverse order and each of their nodes contain a single digit.">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '6261206290404476000',
+      author: 'Durand'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/03/26/ARTS-Week-1/"/>
+
+
+
+
+
+  <title> ARTS Week 1 | OneKyle </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">OneKyle</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/26/ARTS-Week-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="OneKyle">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/16211378?s=460&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OneKyle">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                ARTS Week 1
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-26T17:09:02+08:00">
+                2019-03-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/03/26/ARTS-Week-1/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/03/26/ARTS-Week-1/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Algorithm"><a href="#Algorithm" class="headerlink" title="Algorithm"></a>Algorithm</h2><h3 id="No-2-Add-Two-Numbers"><a href="#No-2-Add-Two-Numbers" class="headerlink" title="No.2: Add Two Numbers"></a>No.2: Add Two Numbers</h3><p>原题:<br>You are given two <strong>non-empty</strong> linked lists representing two non-negative integers. The digits are stored in <strong>reverse order</strong> and each of their nodes contain a single digit. Add the two numbers and return it as a linked list.</p>
+<p>You may assume the two numbers do not contain any leading zero, except the number 0 itself.</p>
+<p><strong>Example:</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Input: (2 -&gt; 4 -&gt; 3) + (5 -&gt; 6 -&gt; 4)</div><div class="line">Output: 7 -&gt; 0 -&gt; 8</div><div class="line">Explanation: 342 + 465 = 807.</div></pre></td></tr></table></figure></p>
+<p>解答:<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ListNode</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">var</span> val: <span class="type">Int</span></div><div class="line">    <span class="keyword">public</span> <span class="keyword">var</span> next: <span class="type">ListNode</span>?</div><div class="line">    <span class="keyword">public</span> <span class="keyword">init</span>(<span class="number">_</span> val: <span class="type">Int</span>) &#123;</div><div class="line">        <span class="keyword">self</span>.val = val</div><div class="line">        <span class="keyword">self</span>.next = <span class="literal">nil</span></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">addTwoNumbers</span><span class="params">(<span class="number">_</span> l1: ListNode?, <span class="number">_</span> l2: ListNode?)</span></span> -&gt; <span class="type">ListNode</span>? &#123;</div><div class="line">        <span class="keyword">var</span> carry = <span class="number">0</span>, p = l1, q = l2</div><div class="line">        <span class="keyword">var</span> dummy = <span class="type">ListNode</span>(<span class="number">0</span>)</div><div class="line">        <span class="keyword">var</span> node = dummy</div><div class="line">        <span class="keyword">while</span> p != <span class="literal">nil</span> || q != <span class="literal">nil</span> &#123;</div><div class="line">            carry += p?.val ?? <span class="number">0</span></div><div class="line">            carry += q?.val ?? <span class="number">0</span></div><div class="line">            node.next = <span class="type">ListNode</span>.<span class="keyword">init</span>(carry % <span class="number">10</span>)</div><div class="line">            node = node.next!</div><div class="line">            carry = carry / <span class="number">10</span></div><div class="line">            p = p?.next</div><div class="line">            q = q?.next</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> carry &gt; <span class="number">0</span> &#123;</div><div class="line">            node.next = <span class="type">ListNode</span>.<span class="keyword">init</span>(carry)</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> dummy.next</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="Review"><a href="#Review" class="headerlink" title="Review"></a>Review</h2><h3 id="Swift-Playgrounds-in-Depth-Part-One"><a href="#Swift-Playgrounds-in-Depth-Part-One" class="headerlink" title="Swift Playgrounds in Depth(Part One)"></a>Swift Playgrounds in Depth(Part One)</h3><p>原文: <a href="https://www.raywenderlich.com/4345-swift-playgrounds-in-depth" target="_blank" rel="external">https://www.raywenderlich.com/4345-swift-playgrounds-in-depth</a></p>
+<p>这篇文章讲述了一些基础性的playground使用技巧,部分已失效, 但总体还是不错的, 用来查漏补缺, 总结了以下技巧.</p>
+<h3 id="LiveViews-playground"><a href="#LiveViews-playground" class="headerlink" title="LiveViews.playground"></a>LiveViews.playground</h3><h4 id="Playground-Page-Basic-Live-View"><a href="#Playground-Page-Basic-Live-View" class="headerlink" title="Playground Page: Basic Live View"></a>Playground Page: Basic Live View</h4><p>liveView的使用:<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> PlaygroundSupport</div><div class="line"></div><div class="line"><span class="type">PlaygroundPage</span>.current.liveView = view</div></pre></td></tr></table></figure></p>
+<p>打开<strong>Assistant editor(⌥⌘Enter)</strong>就可以看到实时视图.</p>
+<h3 id="IndefiniteExecution-playground"><a href="#IndefiniteExecution-playground" class="headerlink" title="IndefiniteExecution.playground"></a>IndefiniteExecution.playground</h3><h4 id="Playground-Page-Spring-Animation"><a href="#Playground-Page-Spring-Animation" class="headerlink" title="Playground Page: Spring Animation"></a>Playground Page: Spring Animation</h4><p>调用<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="type">PlaygroundPage</span>.current.finishExecution()</div></pre></td></tr></table></figure></p>
+<p>就会直接停止执行当前页面.</p>
+<h4 id="Playground-Page-PlaygroundLiveViewable"><a href="#Playground-Page-PlaygroundLiveViewable" class="headerlink" title="Playground Page: PlaygroundLiveViewable"></a>Playground Page: PlaygroundLiveViewable</h4><p>遵守并实现<code>PlaygroundLiveViewable</code>的对象就可以被设置成为<code>PlaygroundPage.current.liveView</code></p>
+<h4 id="IndefiniteExecution-playground-1"><a href="#IndefiniteExecution-playground-1" class="headerlink" title="IndefiniteExecution.playground"></a>IndefiniteExecution.playground</h4><p>通过<code>PlaygroundPage.current.needsIndefiniteExecution = true</code>来手动接管page的终止.<br>在使用<code>PlaygroundPage.current.finishExecution()</code>来手动停止page. <em>注意,在当前版本的playground中(Xcode Version 10.1 (10B61))已经支持GCD的处理</em>.</p>
+<h3 id="SharedPlaygroundData-playground"><a href="#SharedPlaygroundData-playground" class="headerlink" title="SharedPlaygroundData.playground"></a>SharedPlaygroundData.playground</h3><h4 id="Playground-Page-Writing-to-a-File"><a href="#Playground-Page-Writing-to-a-File" class="headerlink" title="Playground Page: Writing to a File"></a>Playground Page: Writing to a File</h4><p>playgrounds直接写文件会报错误:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Write Error: You don’t have permission to save the file</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">you can only write to the ~/Documents/ Shared Playground Data folder that is accessible via the playgroundSharedDataDirectory global variable in the PlaygroundSupport module.</div></pre></td></tr></table></figure>
+<p>在写入前, 先确保该文件夹已经存在,否则:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mkdir ~/Documents/Shared\ Playground\ Data</div></pre></td></tr></table></figure></p>
+<p>然后<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"> <span class="keyword">let</span> fileURL =</div><div class="line">playgroundSharedDataDirectory.appendingPathComponent(filename)</div></pre></td></tr></table></figure></p>
+<h4 id="Playground-Page-Reading-from-a-File"><a href="#Playground-Page-Reading-from-a-File" class="headerlink" title="Playground Page: Reading from a File"></a>Playground Page: Reading from a File</h4><p><strong>#fileLiteral(resourceName: “CoreImageFilterNames.txt”)</strong> 拖到项目中后便可使用这个字面量加载文件(已失效).</p>
+<h2 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h2><p>Xcode10目前已经不支持直接使用<strong>Assets</strong>中素材的名字来直接创建<strong>Image Literal</strong>了, 现在可行的方案是先敲出<code>Image</code>在自动联想出<code>Image Literal</code>, 然后使用, 再点击出现的占位图选中自己想使用的素材, 比之前的麻烦了好多.</p>
+<h2 id="Share"><a href="#Share" class="headerlink" title="Share"></a>Share</h2><p>Flutter越来越火了, 作为Native开发人员, 我觉得首先要巩固自己的护城河, 将Native 和 计算机的基础知识打牢, 然后在以开放的态度面对新技术. 同时, 在学习的时候应该多实践, 没有业务需求上的匹配, 就强制让自己造简单轮子学习.</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ARTS/" rel="tag"># ARTS</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/02/27/OC与Swift混编项目迁移到Swift4-2小记/" rel="next" title="OC与Swift混编项目迁移到Swift4.2小记">
+                <i class="fa fa-chevron-left"></i> OC与Swift混编项目迁移到Swift4.2小记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread"></div>
+        <script>
+        /**
+        *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+        *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+        */
+          var disqus_config = function () {
+          this.page.url = "http://yoursite.com/2019/03/26/ARTS-Week-1/";  // Replace PAGE_URL with your page's canonical URL variable
+          this.page.identifier = "2019/03/26/ARTS-Week-1/"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+          };
+          
+          (function() { // DON'T EDIT BELOW THIS LINE
+          var d = document, s = d.createElement('script');
+          s.src = 'https://durand.disqus.com/embed.js';
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+          })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://avatars3.githubusercontent.com/u/16211378?s=460&v=4"
+               alt="OneKyle" />
+          <p class="site-author-name" itemprop="name">OneKyle</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/onekyle" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Algorithm"><span class="nav-number">1.</span> <span class="nav-text">Algorithm</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#No-2-Add-Two-Numbers"><span class="nav-number">1.1.</span> <span class="nav-text">No.2: Add Two Numbers</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Review"><span class="nav-number">2.</span> <span class="nav-text">Review</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Swift-Playgrounds-in-Depth-Part-One"><span class="nav-number">2.1.</span> <span class="nav-text">Swift Playgrounds in Depth(Part One)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LiveViews-playground"><span class="nav-number">2.2.</span> <span class="nav-text">LiveViews.playground</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Playground-Page-Basic-Live-View"><span class="nav-number">2.2.1.</span> <span class="nav-text">Playground Page: Basic Live View</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IndefiniteExecution-playground"><span class="nav-number">2.3.</span> <span class="nav-text">IndefiniteExecution.playground</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Playground-Page-Spring-Animation"><span class="nav-number">2.3.1.</span> <span class="nav-text">Playground Page: Spring Animation</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Playground-Page-PlaygroundLiveViewable"><span class="nav-number">2.3.2.</span> <span class="nav-text">Playground Page: PlaygroundLiveViewable</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#IndefiniteExecution-playground-1"><span class="nav-number">2.3.3.</span> <span class="nav-text">IndefiniteExecution.playground</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SharedPlaygroundData-playground"><span class="nav-number">2.4.</span> <span class="nav-text">SharedPlaygroundData.playground</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Playground-Page-Writing-to-a-File"><span class="nav-number">2.4.1.</span> <span class="nav-text">Playground Page: Writing to a File</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Playground-Page-Reading-from-a-File"><span class="nav-number">2.4.2.</span> <span class="nav-text">Playground Page: Reading from a File</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tips"><span class="nav-number">3.</span> <span class="nav-text">Tips</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Share"><span class="nav-number">4.</span> <span class="nav-text">Share</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">OneKyle</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'durand';
+      var disqus_identifier = '2019/03/26/ARTS-Week-1/';
+
+      var disqus_title = "ARTS Week 1";
+
+
+      function run_disqus_script(disqus_script) {
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+
+      
+        var disqus_config = function () {
+            this.page.url = disqus_url;
+            this.page.identifier = disqus_identifier;
+            this.page.title = disqus_title;
+        };
+        run_disqus_script('embed.js');
+      
+
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+
+  
+
+</body>
+</html>
