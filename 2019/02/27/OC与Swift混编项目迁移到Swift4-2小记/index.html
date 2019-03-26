@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="iOS,Swift,Object-C," />
+  <meta name="keywords" content="Swift,Objective-C,iOS," />
 
 
 
@@ -99,7 +99,7 @@
 然而每每使用低版本的Xcode打包上传APPStore时, 就会收到苹果的官方警告">
 <meta property="og:image" content="https://user-gold-cdn.xitu.io/2019/2/28/16932d4ffc2a6e6d?w=1824&h=952&f=jpeg&s=255722">
 <meta property="og:image" content="https://user-gold-cdn.xitu.io/2019/2/28/16932d4ffc35ee11?w=346&h=182&f=jpeg&s=90288">
-<meta property="og:updated_time" content="2019-02-28T06:45:20.805Z">
+<meta property="og:updated_time" content="2019-02-28T07:01:25.840Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="OC与Swift混编项目迁移到Swift4.2小记">
 <meta name="twitter:description" content="前言自从Xcode10正式版发布之后, 先吃螃蟹的朋友赞叹了Dark Mode的惊艳, 同时也报告说, 打包上传到APPStroe后, 监测到线上 iOS9.3设备大面积crash的记录, 最后被证实是Xcode10的问题.
@@ -352,7 +352,7 @@
 <p>然后就可以像之前一样调用了.<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">try</span> <span class="type">AVAudioSession</span>.sharedInstance().setCategory(.playback)</div></pre></td></tr></table></figure></p>
 <h3 id="While-deserializing-SIL-vtable-for-‘Class’-in-module-‘module’-error-Abort-trap-6"><a href="#While-deserializing-SIL-vtable-for-‘Class’-in-module-‘module’-error-Abort-trap-6" class="headerlink" title="While deserializing SIL vtable for ‘Class’ in module ‘module’ error: Abort trap: 6"></a>While deserializing SIL vtable for ‘Class’ in module ‘module’ error: Abort trap: 6</h3><p>这类问题分两种, 一种是<code>module</code>是其他的<code>target</code>, 如<code>Pods</code>中的, 另一种是 <code>module</code>是自己的创建的<code>target</code>.</p>
 <h4 id="第一种"><a href="#第一种" class="headerlink" title="第一种"></a>第一种</h4><p>第一种 只需要将<code>Error</code>所指向的三方库更新到最新版本即可, <code>Xcode10</code>已经发布了快半年了, 这些问题之前也有, 半年的时间, 基本上流行的三方库都已经适配了<code>Swift4.2</code></p>
-<h4 id="第二种"><a href="#第二种" class="headerlink" title="第二种"></a>第二种</h4><p>而第二种比较棘手, 一般都是由于 <code>Error</code>中的<code>Class</code>所指向的类, 自己是<code>Swift</code>类, 但是却继承自<code>Object-C</code>声明编写的类.<br>我在自己试过一些微调之后发现于事无补, 所以只好将出错的类使用<code>Object-C</code>重写, 然后在桥接文件中引入, 好在报错的不多, 没用费太多力气.</p>
+<h4 id="第二种"><a href="#第二种" class="headerlink" title="第二种"></a>第二种</h4><p>而第二种比较棘手, 一般都是由于 <code>Error</code>中的<code>Class</code>所指向的类, 自己是<code>Swift</code>类, 但是却继承自<code>Objective-C</code>声明编写的类.<br>我在自己试过一些微调之后发现于事无补, 所以只好将出错的类使用<code>Objective-C</code>重写, 然后在桥接文件中引入, 好在报错的不多, 没用费太多力气.</p>
 <h3 id="其他奇怪的错误"><a href="#其他奇怪的错误" class="headerlink" title="其他奇怪的错误"></a>其他奇怪的错误</h3><p>迁移完成后 项目跑起来时, 还会出现很多奇怪的问题.<br>比如调用了某个方法A 会报<code>unrecognize selector *</code>,<br>以及莫名的<code>函数调用</code>, 如:<br><img src="https://user-gold-cdn.xitu.io/2019/2/28/16932d4ffc35ee11?w=346&amp;h=182&amp;f=jpeg&amp;s=90288" alt=""><br>(setupNavibar函数中并没用调用任何初始化构造函数)<br>这类错误, 一般跟以上的俩种问题是一个本质, 需要自己仔细区别, 然后做出相应更新/更改即可.</p>
 <p>除开以上的问题, 项目编译时还会在<code>Pods</code>引用的第三方的类中报ABI需要修改的<code>Error</code>, 这时, 只需要找到队形的<code>Target</code>, 在其<code>Build Settings</code>中修改 <code>Swift Language Version</code>为其对应版本即可.</p>
 <h2 id="最后-希望将来适配Swift5时-不要有这么多坑了…"><a href="#最后-希望将来适配Swift5时-不要有这么多坑了…" class="headerlink" title="最后, 希望将来适配Swift5时, 不要有这么多坑了…"></a>最后, 希望将来适配Swift5时, 不要有这么多坑了…</h2>
@@ -378,11 +378,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/iOS/" rel="tag"># iOS</a>
-          
             <a href="/tags/Swift/" rel="tag"># Swift</a>
           
-            <a href="/tags/Object-C/" rel="tag"># Object-C</a>
+            <a href="/tags/Objective-C/" rel="tag"># Objective-C</a>
+          
+            <a href="/tags/iOS/" rel="tag"># iOS</a>
           
         </div>
       
@@ -509,7 +509,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
