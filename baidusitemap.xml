@@ -5,7 +5,7 @@
     
   <url>
     <loc>http://yoursite.com/2019/04/01/ARTS-Week-2/</loc>
-    <lastmod>2019-04-15T16:10:19.629Z</lastmod>
+    <lastmod>2019-04-15T16:31:45.668Z</lastmod>
     <data>
         <display>
         <title>ARTS Week 2</title>
@@ -85,9 +85,9 @@
         <title>基于docker搭建项目管理平台redmine</title>
         <pubTime>2018-07-14T07:23:01.000Z</pubTime>
         
-        <tag>开发环境</tag>
-         
         <tag>Docker</tag>
+         
+        <tag>开发环境</tag>
          
          
            
