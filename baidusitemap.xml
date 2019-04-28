@@ -4,8 +4,25 @@
 
     
   <url>
+    <loc>http://yoursite.com/2019/04/08/ARTS-Week-3-md/</loc>
+    <lastmod>2019-04-28T02:46:23.199Z</lastmod>
+    <data>
+        <display>
+        <title>ARTS Week 3</title>
+        <pubTime>2019-04-08T15:24:45.000Z</pubTime>
+        
+        <tag>ARTS</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/2019/04/01/ARTS-Week-2/</loc>
-    <lastmod>2019-04-15T16:31:45.668Z</lastmod>
+    <lastmod>2019-04-16T11:15:00.890Z</lastmod>
     <data>
         <display>
         <title>ARTS Week 2</title>
@@ -85,9 +102,9 @@
         <title>基于docker搭建项目管理平台redmine</title>
         <pubTime>2018-07-14T07:23:01.000Z</pubTime>
         
-        <tag>Docker</tag>
-         
         <tag>开发环境</tag>
+         
+        <tag>Docker</tag>
          
          
            
