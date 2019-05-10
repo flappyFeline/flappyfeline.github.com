@@ -87,12 +87,16 @@
 
 
 
+<meta name="description" content="How To Handle Self Signed SSL Certificates Over HTTPS in MoyaYou can use ServerTrustPolicyManager from Alamofire:12345678910let serverTrustPolicies: [String: ServerTrustPolicy] = [    &quot;your host exact">
 <meta property="og:type" content="website">
 <meta property="og:title" content="OneKyle">
-<meta property="og:url" content="http://yoursite.com/tags/Objective-C/index.html">
+<meta property="og:url" content="http://yoursite.com/writing/ARTS_Tips.html">
 <meta property="og:site_name" content="OneKyle">
+<meta property="og:description" content="How To Handle Self Signed SSL Certificates Over HTTPS in MoyaYou can use ServerTrustPolicyManager from Alamofire:12345678910let serverTrustPolicies: [String: ServerTrustPolicy] = [    &quot;your host exact">
+<meta property="og:updated_time" content="2019-05-05T02:13:39.783Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="OneKyle">
+<meta name="twitter:description" content="How To Handle Self Signed SSL Certificates Over HTTPS in MoyaYou can use ServerTrustPolicyManager from Alamofire:12345678910let serverTrustPolicies: [String: ServerTrustPolicy] = [    &quot;your host exact">
 
 
 
@@ -120,13 +124,19 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/tags/Objective-C/"/>
+  <link rel="canonical" href="http://yoursite.com/writing/ARTS_Tips.html"/>
 
 
 
 
 
-  <title> 标签: Objective-C | OneKyle </title>
+  <title>
+  
+
+  
+     | OneKyle
+  
+</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -235,102 +245,26 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h2 >
-        Objective-C
-        <small>标签</small>
-      </h2>
-    </div>
+  <div id="posts" class="posts-expand">
+  <header class="post-header">
+
+	<h1 class="post-title" itemprop="name headline"></h1>
+
+
+
+</header>
 
     
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2019/02/27/OC与Swift混编项目迁移到Swift4-2小记/" itemprop="url">
-              
-                <span itemprop="name">OC与Swift混编项目迁移到Swift4.2小记</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2019-02-27T11:55:21+08:00"
-              content="2019-02-27" >
-          02-27
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
     
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/08/30/利用宏定义实现枚举转字符串/" itemprop="url">
-              
-                <span itemprop="name">利用宏定义实现枚举转字符串</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-08-30T10:37:00+08:00"
-              content="2017-08-30" >
-          08-30
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/05/07/使用bitfield优化代理方法的调用/" itemprop="url">
-              
-                <span itemprop="name">使用bitfield优化代理方法的调用</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-05-07T01:13:42+08:00"
-              content="2017-05-07" >
-          05-07
-        </time>
-      </div>
-
-    </header>
-  </article>
-
+      <h2 id="How-To-Handle-Self-Signed-SSL-Certificates-Over-HTTPS-in-Moya"><a href="#How-To-Handle-Self-Signed-SSL-Certificates-Over-HTTPS-in-Moya" class="headerlink" title="How To Handle Self Signed SSL Certificates Over HTTPS in Moya"></a><a href="https://github.com/Moya/Moya/issues/992" target="_blank" rel="external">How To Handle Self Signed SSL Certificates Over HTTPS in Moya</a></h2><p>You can use ServerTrustPolicyManager from Alamofire:<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> serverTrustPolicies: [<span class="type">String</span>: <span class="type">ServerTrustPolicy</span>] = [</div><div class="line">    <span class="string">"your host exactly"</span>: .disableEvaluation</div><div class="line">]</div><div class="line"></div><div class="line"><span class="keyword">let</span> manager = <span class="type">Manager</span>(</div><div class="line">    configuration: <span class="type">URLSessionConfiguration</span>.<span class="keyword">default</span>,</div><div class="line">    serverTrustPolicyManager: <span class="type">ServerTrustPolicyManager</span>(policies: serverTrustPolicies)</div><div class="line">)</div><div class="line"></div><div class="line"><span class="keyword">let</span> provider = <span class="type">MoyaProvider</span>&lt;<span class="type">YourService</span>&gt;(manager: manager, plugins: [<span class="type">NetworkLoggerPlugin</span>(verbose: <span class="literal">true</span>)])</div></pre></td></tr></table></figure></p>
+<p>The only problem is that ServerTrustPolicyManager doesn’t take wildcards in the policies, meaning that you would need to specify the host, which is fine when you’re testing locally but won’t work for your users.</p>
+<p>From ServerTrustPolicyManager source code:<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/// Returns the `ServerTrustPolicy` for the given host if applicable.</span></div><div class="line"><span class="comment">///</span></div><div class="line"><span class="comment">/// By default, this method will return the policy that perfectly matches the given host. Subclasses could override</span></div><div class="line"><span class="comment">/// this method and implement more complex mapping implementations such as wildcards.</span></div><div class="line"><span class="comment">///</span></div><div class="line"><span class="comment">/// - parameter host: The host to use when searching for a matching policy.</span></div><div class="line"><span class="comment">///</span></div><div class="line"><span class="comment">/// - returns: The server trust policy for the given host if found.</span></div><div class="line">open <span class="function"><span class="keyword">func</span> <span class="title">serverTrustPolicy</span><span class="params">(forHost host: String)</span></span> -&gt; <span class="type">ServerTrustPolicy</span>? &#123;</div><div class="line">    <span class="keyword">return</span> policies[host]</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>What you can do to disable certificate validation is to subclass ServerTrustPolicyManager and return .disableEvaluation for all hosts:<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">CustomServerTrustPoliceManager</span> : <span class="title">ServerTrustPolicyManager</span> </span>&#123;</div><div class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">serverTrustPolicy</span><span class="params">(forHost host: String)</span></span> -&gt; <span class="type">ServerTrustPolicy</span>? &#123;</div><div class="line">        <span class="keyword">return</span> .disableEvaluation</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="keyword">init</span>() &#123;</div><div class="line">        <span class="keyword">super</span>.<span class="keyword">init</span>(policies: [:])</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>and the usage becomes:<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> manager = <span class="type">Manager</span>(</div><div class="line">    configuration: <span class="type">URLSessionConfiguration</span>.<span class="keyword">default</span>,</div><div class="line">    serverTrustPolicyManager: <span class="type">CustomServerTrustPoliceManager</span>()</div><div class="line">)</div><div class="line"></div><div class="line"><span class="keyword">let</span> provider = <span class="type">MoyaProvider</span>&lt;<span class="type">YourService</span>&gt;(manager: manager, plugins: [<span class="type">NetworkLoggerPlugin</span>(verbose: <span class="literal">true</span>)])</div></pre></td></tr></table></figure></p>
+<p>Let us know if this solves the problem for you 😉</p>
 
     
   </div>
-
-  
 
           
           </div>
@@ -338,6 +272,31 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread"></div>
+        <script>
+        /**
+        *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+        *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+        */
+          var disqus_config = function () {
+          this.page.url = "http://yoursite.com/writing/ARTS_Tips.html";  // Replace PAGE_URL with your page's canonical URL variable
+          this.page.identifier = "writing/ARTS_Tips.html"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+          };
+          
+          (function() { // DON'T EDIT BELOW THIS LINE
+          var d = document, s = d.createElement('script');
+          s.src = 'https://durand.disqus.com/embed.js';
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+          })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+    
+  </div>
+
 
         </div>
         
@@ -543,7 +502,7 @@
 
     <script type="text/javascript">
       var disqus_shortname = 'durand';
-      var disqus_identifier = 'tags/Objective-C/index.html';
+      var disqus_identifier = 'writing/ARTS_Tips.html';
 
       var disqus_title = "";
 
@@ -558,6 +517,13 @@
 
       run_disqus_script('count.js');
 
+      
+        var disqus_config = function () {
+            this.page.url = disqus_url;
+            this.page.identifier = disqus_identifier;
+            this.page.title = disqus_title;
+        };
+        run_disqus_script('embed.js');
       
 
     </script>

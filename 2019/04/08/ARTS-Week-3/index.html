@@ -1,0 +1,768 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="ARTS," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="Algorithm: NO.237 Delete Node in a Linked ListWrite a function to delete a node (except the tail) in a singly linked list, given only access to that node.
+Given linked list – head = [4,5,1,9], which">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ARTS Week 3">
+<meta property="og:url" content="http://yoursite.com/2019/04/08/ARTS-Week-3/index.html">
+<meta property="og:site_name" content="OneKyle">
+<meta property="og:description" content="Algorithm: NO.237 Delete Node in a Linked ListWrite a function to delete a node (except the tail) in a singly linked list, given only access to that node.
+Given linked list – head = [4,5,1,9], which">
+<meta property="og:image" content="https://savvyapps.com/uploads/blog/_1920xAUTO_crop_center-center_82_none/2015.06__Auto_Renewable_Subscriptions.jpg">
+<meta property="og:image" content="https://assets.leetcode.com/uploads/2018/12/28/237_example.png">
+<meta property="og:image" content="https://savvyapps.com/wp-content/uploads/2015/06/Screen-Shot-2015-06-11-at-1.14.37-PM.png">
+<meta property="og:updated_time" content="2019-05-09T12:16:14.423Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ARTS Week 3">
+<meta name="twitter:description" content="Algorithm: NO.237 Delete Node in a Linked ListWrite a function to delete a node (except the tail) in a singly linked list, given only access to that node.
+Given linked list – head = [4,5,1,9], which">
+<meta name="twitter:image" content="https://savvyapps.com/uploads/blog/_1920xAUTO_crop_center-center_82_none/2015.06__Auto_Renewable_Subscriptions.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '6261206290404476000',
+      author: 'Durand'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/04/08/ARTS-Week-3/"/>
+
+
+
+
+
+  <title> ARTS Week 3 | OneKyle </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">OneKyle</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/08/ARTS-Week-3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="OneKyle">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/16211378?s=460&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OneKyle">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                ARTS Week 3
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-08T23:24:45+08:00">
+                2019-04-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/04/08/ARTS-Week-3/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/04/08/ARTS-Week-3/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="https://savvyapps.com/uploads/blog/_1920xAUTO_crop_center-center_82_none/2015.06__Auto_Renewable_Subscriptions.jpg" alt="https://savvyapps.com/uploads/blog/_1920xAUTO_crop_center-center_82_none/2015.06__Auto_Renewable_Subscriptions.jpg"></p>
+<h2 id="Algorithm-NO-237-Delete-Node-in-a-Linked-List"><a href="#Algorithm-NO-237-Delete-Node-in-a-Linked-List" class="headerlink" title="Algorithm: NO.237 Delete Node in a Linked List"></a>Algorithm: <a href="https://leetcode-cn.com/problems/delete-node-in-a-linked-list/" target="_blank" rel="external">NO.237 Delete Node in a Linked List</a></h2><p>Write a function to delete a node (except the tail) in a singly linked list, given only access to that node.</p>
+<p>Given linked list – head = [4,5,1,9], which looks like following:</p>
+<p><img src="https://assets.leetcode.com/uploads/2018/12/28/237_example.png" alt="https://assets.leetcode.com/uploads/2018/12/28/237_example.png"></p>
+<p><strong>Example 1:</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Input: head = [4,5,1,9], node = 5</div><div class="line">Output: [4,1,9]</div><div class="line">Explanation: You are given the second node with value 5, the linked list should become 4 -&gt; 1 -&gt; 9 after calling your function.</div></pre></td></tr></table></figure></p>
+<p><strong>Example 2:</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Input: head = [4,5,1,9], node = 1</div><div class="line">Output: [4,5,9]</div><div class="line">Explanation: You are given the third node with value 1, the linked list should become 4 -&gt; 5 -&gt; 9 after calling your function.</div></pre></td></tr></table></figure></p>
+<p><strong>Note:</strong></p>
+<ul>
+<li>The linked list will have at least two elements.</li>
+<li>All of the nodes’ values will be unique.</li>
+<li>The given node will not be the tail and it will always be a valid node of the linked list.</li>
+<li>Do not return anything from your function.</li>
+</ul>
+<p><strong>解答</strong>:<br>这道题比较巧妙的地方就在于函数只被传入一个参数, 且传入的就是要被<em>删除</em>的<code>node</code>, 所以需要转化下思路.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for singly-linked list.</div><div class="line"> * public class ListNode &#123;</div><div class="line"> *     int val;</div><div class="line"> *     ListNode next;</div><div class="line"> *     ListNode(int x) &#123; val = x; &#125;</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">deleteNode</span><span class="params">(ListNode node)</span> </span>&#123;</div><div class="line">        node.val = node.next.val;</div><div class="line">        node.next = node.next.next;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="Review-Getting-Started-with-Auto-renewable-Subscriptions-in-iOS"><a href="#Review-Getting-Started-with-Auto-renewable-Subscriptions-in-iOS" class="headerlink" title="Review Getting Started with Auto-renewable Subscriptions in iOS"></a>Review <a href="https://savvyapps.com/blog/getting-started-with-auto-renewable-subscriptions-in-ios/" target="_blank" rel="external">Getting Started with Auto-renewable Subscriptions in iOS</a></h2><p>自动续订订阅是iOS IAP体系内的一个分支, 它允许app在一定时间内提供内容或功能并对其收费. 这种类型的内购产品类型将超越IAP中的对于消耗品和非消耗品的一次性消费和低频消费的购买模式所产生的经济效益, 并以此来扩展app的潜在收益. 通过之前为自己的多个app实现过几次, 我们注意到他们无法满足你对苹果的期望, 在基于订阅体系的app模式, 他们无法提供足够完成和有效的解决方案.</p>
+<h3 id="使用自动续订订阅的标准"><a href="#使用自动续订订阅的标准" class="headerlink" title="使用自动续订订阅的标准"></a>使用自动续订订阅的标准</h3><p>使用自动续订订阅的app可以在规定时间内(例如,每月,每年等等)收取长期费用. 自动续订订阅与IAP体系中其他不能提供带有时间性质的产品所不同. 它们提供了额外的好处, 即无需进一步干预即可为用户收取订阅费用.</p>
+<p><img src="https://savvyapps.com/wp-content/uploads/2015/06/Screen-Shot-2015-06-11-at-1.14.37-PM.png" alt="https://savvyapps.com/wp-content/uploads/2015/06/Screen-Shot-2015-06-11-at-1.14.37-PM.png"></p>
+<p>Apple将其不同类型的应用内购买成为”产品”. 有关其应用内购买产品(消耗性, 非消耗性和自动续订订阅)之间的基本差异, 请考虑这些示例. 一个消耗性的的产品,可能是游戏app中一个小时的经验提升的增益效果. 另一方面, 一个非消耗性产品可以是采取解锁主题的形式展示, 因为它可能在以后再次恢复.<br>从历史角度来看, 如果报刊应用程序和出版物只是下发基础性的内容而不是提供额外的功能的访问, 那么苹果会限制这类产品使用自动续订订阅系统. 这在iTunes Connect中的自动续订订阅的设置(例如需要提供一个”publication”名称)过程中仍然很明显. 这些年来, Apple放宽了这一限制, 并允许非报停应用程序加入自动续订订阅的潮流. 自动续订订阅现在更多的是用于生产力和业务应用的程序中. 例如, 在任务管理app Omnifocus中, 如果用户已经超期了14天的免费使用, 那么便会向用户收取双层订阅费用. 甚至像一款 脑力开发的app Lumosity, 提供一个免费的基本会员资格, 并使用自动续订订阅来解锁高级功能. 这个app同时也提供独立或者朋友和家庭订阅计划.  </p>
+<h3 id="创建一个自动续订订阅"><a href="#创建一个自动续订订阅" class="headerlink" title="创建一个自动续订订阅"></a>创建一个自动续订订阅</h3><p>创建自动续订订阅的第一步与创建其他IAP产品并没有多少不同. 你会遇到的主要的不同就是你需要配置商品的自动续订周期时间(如 按月, 按年 等)和提供免费试用. 与此同时, 免费试用是回被限制在很少几个的时间段里, 并且它并不是动态的. 如果你想要要求超出选项提供的免费周期时间或者你想要提供不同的试用等级, 那么非常推荐你忽略这些选项并且手动处理. 当用户同意提供他们的详细信息(名字, 邮箱, 地址)时, 开发者也可以提供免费试用时间.</p>
+<h2 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h2><p>如果在<code>UIScrollview</code>中使用<code>Autolayout</code>对其子控件进行布局时, 需要注意以下两点:</p>
+<ol>
+<li>ScrollView内部子控件的尺寸不能以scrollView的尺寸为参照</li>
+<li>ScrollView内部的子控件的约束必须完整</li>
+</ol>
+<p>首先,子控件的尺寸不能以ScrollView的尺寸为参照,那么我们有两种选择:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">提供一个具体值的约束(比如200)</div><div class="line">子控件的尺寸可以参照ScrollView以外其它的控件的尺寸(如控制器的view的尺寸)</div></pre></td></tr></table></figure></p>
+<p>其次,约束”完整”的意思是说:子控件在水平及竖直方向上的约束要把<code>ScrollView</code>”撑满”.</p>
+<p>也就是说,在水平方向上,我们需要设置:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">子控件左侧与父控件的距离</div><div class="line">子控件自身的宽度</div><div class="line">子控件右侧距父控件的距离.</div></pre></td></tr></table></figure></p>
+<p>竖直方向上也一样,要设置:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">子控件顶部距父控件的距离</div><div class="line">子控件的高度</div><div class="line">子控件底部距父控件的距离.</div></pre></td></tr></table></figure></p>
+<h2 id="Share"><a href="#Share" class="headerlink" title="Share"></a>Share</h2><p>分享一篇关于IAP自动续订订阅的定价策略的决策  <a href="https://technologytw.com/2019/02/9777/" target="_blank" rel="external">WWDC 2018：IAP最佳實踐並增強活動營銷功能</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ARTS/" rel="tag"># ARTS</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/01/ARTS-Week-2/" rel="next" title="ARTS Week 2">
+                <i class="fa fa-chevron-left"></i> ARTS Week 2
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/05/10/ARTS-Week-4/" rel="prev" title="ARTS_Week_4.md">
+                ARTS_Week_4.md <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread"></div>
+        <script>
+        /**
+        *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+        *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+        */
+          var disqus_config = function () {
+          this.page.url = "http://yoursite.com/2019/04/08/ARTS-Week-3/";  // Replace PAGE_URL with your page's canonical URL variable
+          this.page.identifier = "2019/04/08/ARTS-Week-3/"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+          };
+          
+          (function() { // DON'T EDIT BELOW THIS LINE
+          var d = document, s = d.createElement('script');
+          s.src = 'https://durand.disqus.com/embed.js';
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+          })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://avatars3.githubusercontent.com/u/16211378?s=460&v=4"
+               alt="OneKyle" />
+          <p class="site-author-name" itemprop="name">OneKyle</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/onekyle" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Algorithm-NO-237-Delete-Node-in-a-Linked-List"><span class="nav-number">1.</span> <span class="nav-text">Algorithm: NO.237 Delete Node in a Linked List</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Review-Getting-Started-with-Auto-renewable-Subscriptions-in-iOS"><span class="nav-number">2.</span> <span class="nav-text">Review Getting Started with Auto-renewable Subscriptions in iOS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用自动续订订阅的标准"><span class="nav-number">2.1.</span> <span class="nav-text">使用自动续订订阅的标准</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建一个自动续订订阅"><span class="nav-number">2.2.</span> <span class="nav-text">创建一个自动续订订阅</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tips"><span class="nav-number">3.</span> <span class="nav-text">Tips</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Share"><span class="nav-number">4.</span> <span class="nav-text">Share</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">OneKyle</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'durand';
+      var disqus_identifier = '2019/04/08/ARTS-Week-3/';
+
+      var disqus_title = "ARTS Week 3";
+
+
+      function run_disqus_script(disqus_script) {
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+
+      
+        var disqus_config = function () {
+            this.page.url = disqus_url;
+            this.page.identifier = disqus_identifier;
+            this.page.title = disqus_title;
+        };
+        run_disqus_script('embed.js');
+      
+
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+
+  
+
+</body>
+</html>
