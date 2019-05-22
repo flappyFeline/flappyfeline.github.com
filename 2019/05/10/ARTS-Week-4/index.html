@@ -87,16 +87,27 @@
 
 
 
-<meta name="description" content="AlgorithmReviewTipsShare">
+<meta name="description" content="AlgorithmThe Clean Code Blog
+在过去几年中, 我们已经看到了关于系统架构方面的一系列想法. 它们包括:
+
+Hexagonal Architecture (俗称Ports and Adapters) by Alistair Cockburn and adopted by Steve Freeman, and Nat Pryce in their wonderful boo">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ARTS_Week_4.md">
 <meta property="og:url" content="http://yoursite.com/2019/05/10/ARTS-Week-4/index.html">
 <meta property="og:site_name" content="OneKyle">
-<meta property="og:description" content="AlgorithmReviewTipsShare">
-<meta property="og:updated_time" content="2019-05-10T05:52:09.294Z">
+<meta property="og:description" content="AlgorithmThe Clean Code Blog
+在过去几年中, 我们已经看到了关于系统架构方面的一系列想法. 它们包括:
+
+Hexagonal Architecture (俗称Ports and Adapters) by Alistair Cockburn and adopted by Steve Freeman, and Nat Pryce in their wonderful boo">
+<meta property="og:image" content="https://blog.cleancoder.com/uncle-bob/images/2012-08-13-the-clean-architecture/CleanArchitecture.jpg">
+<meta property="og:updated_time" content="2019-05-14T13:45:41.135Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ARTS_Week_4.md">
-<meta name="twitter:description" content="AlgorithmReviewTipsShare">
+<meta name="twitter:description" content="AlgorithmThe Clean Code Blog
+在过去几年中, 我们已经看到了关于系统架构方面的一系列想法. 它们包括:
+
+Hexagonal Architecture (俗称Ports and Adapters) by Alistair Cockburn and adopted by Steve Freeman, and Nat Pryce in their wonderful boo">
+<meta name="twitter:image" content="https://blog.cleancoder.com/uncle-bob/images/2012-08-13-the-clean-architecture/CleanArchitecture.jpg">
 
 
 
@@ -331,7 +342,35 @@
       
 
       
-        <h2 id="Algorithm"><a href="#Algorithm" class="headerlink" title="Algorithm"></a>Algorithm</h2><h2 id="Review"><a href="#Review" class="headerlink" title="Review"></a>Review</h2><h2 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h2><h2 id="Share"><a href="#Share" class="headerlink" title="Share"></a>Share</h2>
+        <h2 id="Algorithm"><a href="#Algorithm" class="headerlink" title="Algorithm"></a>Algorithm</h2><h2 id="The-Clean-Code-Blog"><a href="#The-Clean-Code-Blog" class="headerlink" title="The Clean Code Blog"></a><a href="https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html" target="_blank" rel="external">The Clean Code Blog</a></h2><p><img src="https://blog.cleancoder.com/uncle-bob/images/2012-08-13-the-clean-architecture/CleanArchitecture.jpg" alt="clean architecture"></p>
+<p>在过去几年中, 我们已经看到了关于系统架构方面的一系列想法. 它们包括:</p>
+<ul>
+<li>Hexagonal Architecture (俗称Ports and Adapters) by Alistair Cockburn and adopted by Steve Freeman, and Nat Pryce in their wonderful book Growing Object Oriented Software</li>
+<li>Onion Architecture by Jeffrey Palermo</li>
+<li>Screaming Architecture from a blog of mine last year</li>
+<li>DCI from James Coplien, and Trygve Reenskaug.</li>
+<li>BCE by Ivar Jacobson from his book Object Oriented Software Engineering: A Use-Case Driven Approach</li>
+</ul>
+<p>虽然这些架构在一些细节中有很多不同, 但是它们还是非常相似的.它们都有同一个目标–对于关注点的分离. 它们都通过将软件分层来实现分离. 每一个都至少有一个层级用于业务规则, 另一个则关于接口.<br>每一个架构都满足:</p>
+<ol>
+<li>独立于任何框架. 该架构不应该依赖于任何已经存在的功能丰富的软件的一些库. 这将允许你把框架当做工具来使用, 而不用强制的将自己的系统塞进有限的约束中.</li>
+<li>测试友好. 业务规则可以在脱离UI、数据库、网页服务或者任何其他外部元素的情况下进行测试.</li>
+<li>独立于UI. UI的改变可以很容易, 而不用改变除系统中UI之外的剩余东西. 例如, 一个网页UI可以在不改变业务规则的情况下被一个控制台UI所代替.</li>
+<li>独立于数据库. 你可以用Oracle活着SQLServer来替换Mongo, BigTable, CouchDB或者其他的. 你的业务规则没有与数据库绑定.</li>
+<li>独立于任何外部机构. 实际上就是让你的业务规则简单的不知道任何除自己之外的东西.</li>
+</ol>
+<p>本文顶部的图片是尝试将所以这些架构继承到一个可操作的想法中.</p>
+<h3 id="依赖规则"><a href="#依赖规则" class="headerlink" title="依赖规则"></a>依赖规则</h3><p>图片中的同心圆代表着软件的不同区域. 通常来讲, 离中心点越远, 软件的层级就越高. 外圈是机制, 内圈是政策.<br>使这个架构生效的首页规则就是<em>依赖规则</em>. 这个规则阐明了源代码的依赖只能由外圈指向内圈. 内圈并不能知道外圈的任何事情. 尤其要是注意的是, 声明在外圈的某物不可以在内圈中提及. 这包括函数, 类, 变量或者其他软件中的被命名的实体.</p>
+<h3 id="实体层"><a href="#实体层" class="headerlink" title="实体层"></a>实体层</h3><p>实体封装了企业间的业务规则. 一个实体可以是一个有方法的对象, 一个数据结构体的集合或者是函数. 只要实体可以被企业中的血多不同应用程序使用, 其他的都无关紧要.<br>如果你没有企业, 并且你仅仅只写了一个简单的app, 那么这些实体指的就是你app中的业务对象. 他们封装了最通用最高级的规则. 当外部规则改变时, 它们是最不可能发生改变的. 例如, 你不会期望这些对象们随着页面导航或者安全性的改变而改变. 任何特定的应用程序操作更改都不应该影响到实体层.</p>
+<h3 id="用例层"><a href="#用例层" class="headerlink" title="用例层"></a>用例层</h3><p>软件中的这一层包括了app特定的业务规则. 它封装并且实现了系统中的所有用例. 这些用例协调了从实体层来的数据流, 并且只是这些实体用它们的企业级业务规则来实现用例的目标.<br>我们不希望改变这一层, 导致影响其他层. 我们也不期望这一层会被任何其他外部的改变, 如数据库, UI, 或者其他人么通用框架所影响. 这一层是独立的.</p>
+<p>然而我们确实希望改变程序的操作会影响用例从而影响软件中的这一层. 如果用例的细节发生改变, 那么这一层肯定会被影响.</p>
+<h3 id="接口适配层"><a href="#接口适配层" class="headerlink" title="接口适配层"></a>接口适配层</h3><p>软件中的这一层是一个将用例或者实体的从一个最方便格式的数据转换成一个适用于如数据库或者网页的外部机构的最简便格式的适配器的集合. 例如, 这一层将会完整的包含GUI中MVC的架构. <code>Presenters</code>, <code>Views</code>, and <code>Controllers</code>就是属于这的. 由可能仅仅是某种数据结构的模型通过<code>Controllers</code>传递到用例层, 然后再通过用力层回调给<code>Presents</code>和<code>Views</code>.<br>相似的, 数据也是在这层从一个最简便的形式的实体或用例被转换成了一个适用于任何持久性框架(如数据库)的最简便的格式. 此层中的任何代码都不应知道关于数据库的任何事情. 如果数据库是SQL 数据库, 那么所有的SQL操作都应该在这层被限制, 更不能直接操作数据库.<br>此层中还包括将外层数据格式(如外部服务)转换成用例和实体使用的内层格式的任何其他适配器.</p>
+<h3 id="框架和驱动"><a href="#框架和驱动" class="headerlink" title="框架和驱动"></a>框架和驱动</h3><p>最外层通常由框架和工具组成，例如数据库，Web框架等。通常，除了与下一层内部通信的粘合代码之外，您不会在此层中编写太多代码.<br>这层是所有的细节实现所在. 网络是细节, 数据库是鞋机. 我们将这些东西放在最外层, 以确保变动他们的时候造成的伤害最小.</p>
+<h3 id="只有4层"><a href="#只有4层" class="headerlink" title="只有4层?"></a>只有4层?</h3><p>并非如此, 这些层只是一些概要. 你可以发现你所需要的会超过这四层. 这也没有规定必须只有四层. 然而, <em>依赖规则</em> 总是适用. 源代码依赖总是自外向内. 最外层是最低等级的具体细节实现. 随着你向内移动，软件变得更加抽象，并封装了更高级别的策略. 最内层是最抽象通用的.</p>
+<h3 id="跨越边界"><a href="#跨越边界" class="headerlink" title="跨越边界"></a>跨越边界</h3><p>图的右下方是我们如何跨越层级边界的实例. 它展示了在下一层中<code>Controllers</code>和<code>Presenters</code>通过<code>Use Cases</code>是如何交流的. 注意这个控制流. 它开始于<code>controller</code>中,然后穿过<code>use case</code>,再然后在<code>presenter</code>的<code>executing</code>中结束.同时也注意源代码的依赖. 它们中的每一个都指向了<code>Use Cases层</code>.<br>我们通常通过使用依赖倒置原则来解决这些明显的矛盾. 在一些语音中, 如Java语言, 我们可以安排好接口和继承关系, 使得源代码依赖性反对跨越边界的正确点处的控制流.</p>
+<p>例如, 思考这种情况, 用例需要调用<code>presenter</code>.然而, 这个回调肯定不能被分发因为这违反了<em>依赖规则</em>.<br>例如, 许多数据库框架在一次查询中会返回包含一个便捷数据格式的响应. 我们称之为<code>RowStructure</code>. 我们并非是想向内传递一个<code>row structure</code>. 这将违反了<em>依赖规则</em>, 因为它将强制内层得知外层的某些事情.<br>所以我们会传递一个数据来跨越边界, 我们会使用对内层来讲最方便的形式.</p>
+<h3 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h3><p>遵守这些简单的规则并不难, 而且这将会省去很多令你头疼的问题. 通过将软件分成多个层，并符合<code>依赖规则</code>，您将创建一个本质上可测试，并具有潜在的所有好处的系统. 当系统挖外部的一部分变得过时时(如数据库, 网络框架), 你可以最小粒度的替换它们.</p>
+<h2 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h2><h2 id="Share"><a href="#Share" class="headerlink" title="Share"></a>Share</h2>
       
     </div>
 
@@ -472,7 +511,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-count">21</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -485,7 +524,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">12</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -531,7 +570,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Algorithm"><span class="nav-number">1.</span> <span class="nav-text">Algorithm</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Review"><span class="nav-number">2.</span> <span class="nav-text">Review</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tips"><span class="nav-number">3.</span> <span class="nav-text">Tips</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Share"><span class="nav-number">4.</span> <span class="nav-text">Share</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Algorithm"><span class="nav-number">1.</span> <span class="nav-text">Algorithm</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#The-Clean-Code-Blog"><span class="nav-number">2.</span> <span class="nav-text">The Clean Code Blog</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#依赖规则"><span class="nav-number">2.1.</span> <span class="nav-text">依赖规则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实体层"><span class="nav-number">2.2.</span> <span class="nav-text">实体层</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用例层"><span class="nav-number">2.3.</span> <span class="nav-text">用例层</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#接口适配层"><span class="nav-number">2.4.</span> <span class="nav-text">接口适配层</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#框架和驱动"><span class="nav-number">2.5.</span> <span class="nav-text">框架和驱动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#只有4层"><span class="nav-number">2.6.</span> <span class="nav-text">只有4层?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#跨越边界"><span class="nav-number">2.7.</span> <span class="nav-text">跨越边界</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#结论"><span class="nav-number">2.8.</span> <span class="nav-text">结论</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tips"><span class="nav-number">3.</span> <span class="nav-text">Tips</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Share"><span class="nav-number">4.</span> <span class="nav-text">Share</span></a></li></ol></div>
             
 
           </div>

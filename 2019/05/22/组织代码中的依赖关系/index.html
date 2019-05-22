@@ -1,0 +1,787 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="iOS,架构,MVVM," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="什么是依赖关系例子:123456789101112/// Swift democlass Canvas &amp;#123;  var color: UIColor  func drawCircle(at origin: (Double, Double), d: Double) &amp;#123;    let pen = Pencil(of: color)    pen.circle(at: origin,">
+<meta property="og:type" content="article">
+<meta property="og:title" content="组织代码中的依赖关系">
+<meta property="og:url" content="http://yoursite.com/2019/05/22/组织代码中的依赖关系/index.html">
+<meta property="og:site_name" content="OneKyle">
+<meta property="og:description" content="什么是依赖关系例子:123456789101112/// Swift democlass Canvas &amp;#123;  var color: UIColor  func drawCircle(at origin: (Double, Double), d: Double) &amp;#123;    let pen = Pencil(of: color)    pen.circle(at: origin,">
+<meta property="og:image" content="https://image.boxueio.com/relieve-dependency-condition-1@2x.jpg">
+<meta property="og:image" content="https://image.boxueio.com/fake-objs-for-dev-and-test-1@2x.jpg">
+<meta property="og:image" content="https://image.boxueio.com/repository-pattern-in-bx-app-3@2x.jpg">
+<meta property="og:image" content="https://image.boxueio.com/repository-pattern-in-bx-app-4@2x.jpg">
+<meta property="og:updated_time" content="2019-05-22T02:19:07.839Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="组织代码中的依赖关系">
+<meta name="twitter:description" content="什么是依赖关系例子:123456789101112/// Swift democlass Canvas &amp;#123;  var color: UIColor  func drawCircle(at origin: (Double, Double), d: Double) &amp;#123;    let pen = Pencil(of: color)    pen.circle(at: origin,">
+<meta name="twitter:image" content="https://image.boxueio.com/relieve-dependency-condition-1@2x.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '6261206290404476000',
+      author: 'Durand'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/05/22/组织代码中的依赖关系/"/>
+
+
+
+
+
+  <title> 组织代码中的依赖关系 | OneKyle </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">OneKyle</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/22/组织代码中的依赖关系/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="OneKyle">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/16211378?s=460&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OneKyle">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                组织代码中的依赖关系
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-22T10:05:54+08:00">
+                2019-05-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/05/22/组织代码中的依赖关系/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/05/22/组织代码中的依赖关系/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="什么是依赖关系"><a href="#什么是依赖关系" class="headerlink" title="什么是依赖关系"></a>什么是依赖关系</h2><p>例子:<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/// Swift demo</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Canvas</span> </span>&#123;</div><div class="line">  <span class="keyword">var</span> color: <span class="type">UIColor</span></div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">func</span> <span class="title">drawCircle</span><span class="params">(at origin: <span class="params">(Double, Double)</span></span></span>, d: <span class="type">Double</span>) &#123;</div><div class="line">    <span class="keyword">let</span> pen = <span class="type">Pencil</span>(of: color)</div><div class="line">    pen.circle(at: origin, d: d)</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">let</span> canvas = <span class="type">Canvas</span>(color: .red)</div><div class="line">canvas.drawCircle(at: (<span class="number">0</span>, <span class="number">0</span>), d: <span class="number">10</span>)</div></pre></td></tr></table></figure></p>
+<ol>
+<li>首先，是由于对类型名称的了解而引入的依赖关系。这里Canvas要求必须存在一个叫做Pencil的</li>
+<li>其次，是由于要发送给其它对象的方法名而引入的依赖关系。这里Canvas要求Pencil中必须有一个叫做circle的方法</li>
+<li>第三，是方法的参数引入的依赖关系。既然Canvas创建了Pencil对象，它自然就需要知道Pencil的init方法需要接受一个UIColor对象<br>除了上面三点之外，还有一类依赖关系是参数的顺序。但由于Swift并不像Ruby一样可以通过命名参数调整顺序，因此这类依赖关系，我们就不在这里讨论了</li>
+</ol>
+<h2 id="评估项目中类依赖关系的方法"><a href="#评估项目中类依赖关系的方法" class="headerlink" title="评估项目中类依赖关系的方法"></a>评估项目中类依赖关系的方法</h2><p>了解了一些具体的处理依赖关系的方法之后，这一节最后，我们介绍一个评估依赖关系的方法。只有找到项目中最危险的分子，才能最安全有效的实施重构。对于一个类型来说，我们可以从两个方面来评估它：</p>
+<ul>
+<li>在未来发生修改的可能性；</li>
+<li>类型的依赖关系的多少；<br>而这两个方面，又不是彼此独立的，我们可以画一个平面图来表达它们的关系：<br><img src="https://image.boxueio.com/relieve-dependency-condition-1@2x.jpg" alt="img"></li>
+</ul>
+<p>这里，越靠近顶部的类型，包含的依赖关系越多；越靠近右侧的类型，越可能发生修改。重构之前，我们要做的第一件事，就是把收集到的类型，对号入座地收集到这个图里。</p>
+<p>通常，可以放在区域A中的类型，抽象级别应该是最高的，它们通常是一些接口或者抽象基类这样的东西，只用于约定行为。因此，它们非常稳定，几乎不会改变。对于这样的类型，即便它们有很多依赖关系（例如：Swift中的Collection就是多个protocols组合起来的），也是没问题的。</p>
+<p>而对于B和C区域的类型，通常它们都不是我们要关注的重点。项目中，绝大多数的类型，应该属于这两个区域。由于它们的依赖关系并不多，所以你会发现对这些类型的修改，你的脑子里一下子就能反映出具体的方案并确定结果。当然，也正因为如此，其实重构它们的收益，并不大 :)</p>
+<p>最后，就是区域D中的类型。它们才是项目中最危险的分子。它们不仅依赖关系多，还经常需要被需改。所谓的Massive View Controller就是最典型的例子之一。尽管修改它们并不容易，但你要知道，这些类型，绝对是你在开始重构的时候，一定要要优先考虑的对象。</p>
+<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><h3 id="从名字依赖到方法依赖"><a href="#从名字依赖到方法依赖" class="headerlink" title="从名字依赖到方法依赖"></a>从名字依赖到方法依赖</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/// Swift demo</span></div><div class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">Pen</span> </span>&#123;</div><div class="line">  <span class="function"><span class="keyword">func</span> <span class="title">circle</span><span class="params">(at origin: <span class="params">(Double, Double)</span></span></span>, d: <span class="type">Double</span>)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Pencil</span>: <span class="title">Pen</span> </span>&#123;</div><div class="line">  <span class="function"><span class="keyword">func</span> <span class="title">circle</span><span class="params">(at origin: <span class="params">(Double, Double)</span></span></span>, d: <span class="type">Double</span>) &#123;&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Canvas</span> </span>&#123;</div><div class="line">  <span class="function"><span class="keyword">func</span> <span class="title">drawCircle</span><span class="params">(</span></span></div><div class="line">    at origin: <span class="params">(Double, Double)</span>,</div><div class="line">    d: <span class="type">Double</span>,</div><div class="line">    by pen: <span class="type">Pen</span>) &#123;</div><div class="line">    pen.circle(at: origin, d: d)</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">let</span> canvas = <span class="type">Canvas</span>()</div><div class="line">canvas.drawCircle(</div><div class="line">  at: (<span class="number">0</span>, <span class="number">0</span>),</div><div class="line">  d: <span class="number">10</span>,</div><div class="line">  by: <span class="type">Pencil</span>(of: .red))</div></pre></td></tr></table></figure>
+<p>而这种直接把对象当作参数传递的行为，就叫做<code>依赖注入（Dependency Injection）</code>。把原本Canvas依赖的Pencil对象，“注入”到drawCircle。没错，这个听起来很复杂的名称，实际上就这么简单的一回事儿。</p>
+<p>不过在很多时候，这种方法仍旧是不可行的。例如，项目工期不允许我们立即修改某个接口的签名，或者，我们根本就无法修改来自第三方的代码。但即便是面对这些情况，我们仍旧可以通过依赖注入在某些程度上缓解对象之间的依赖关系，以便于在时机成熟的时候，更方便的处理问题。  </p>
+<h3 id="把对象的创建统一隔离到init方法"><a href="#把对象的创建统一隔离到init方法" class="headerlink" title="把对象的创建统一隔离到init方法"></a>把对象的创建统一隔离到init方法</h3><p>如果条件不允许立即修改drawCircle的签名，至少，我们也要把Pencil对象的创建从drawCircle的定义里搬出来，放到Canvas的init方法里：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/// SWIFT</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Canvas</span> </span>&#123;</div><div class="line">  <span class="keyword">var</span> pen: <span class="type">Pencil</span></div><div class="line">  <span class="keyword">init</span>(pen: <span class="type">Pencil</span>) &#123; <span class="keyword">self</span>.pen = pen &#125;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">func</span> <span class="title">drawCircle</span><span class="params">(at origin: <span class="params">(Double, Double)</span></span></span>, d: <span class="type">Double</span>) &#123;</div><div class="line">    pen.circle(at: origin, d: diameter)</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">let</span> canvas = <span class="type">Canvas</span>(pen: <span class="type">Pencil</span>(of: .red))</div><div class="line">canvas.drawCircle(at: (<span class="number">0</span>, <span class="number">0</span>), d: <span class="number">10</span>)</div></pre></td></tr></table></figure></p>
+<p>这样做有两个目的：</p>
+<ul>
+<li>一个是让drawCircle不再隐性的使用一个具象的Pencil对象，未来我们修改drawCircle签名的时候，可以不用再修改它的实现；</li>
+<li>另一个则是更明确的把Canvas依赖Pencil这个事实暴露出来，从上面的例子就可以看到，每次创建Canvas的时候，都“注入”了一个Pencil对象，这就好比在时刻提醒你：喔，对了，Canvas现在可是得依赖Pencil的。在条件允许的时候，我得把它修改过来；</li>
+</ul>
+<h3 id="尽可能在复杂方法中剥离依赖关系"><a href="#尽可能在复杂方法中剥离依赖关系" class="headerlink" title="尽可能在复杂方法中剥离依赖关系"></a>尽可能在复杂方法中剥离依赖关系</h3><p>除了把依赖的对象暴露在init方法之外，另外一个无副作用的改进，就是把“深埋”在复杂方法里的依赖关系从中剥离开，变成一个属于类自身的方法或属性，例如：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/// SWIFT</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Canvas</span> </span>&#123;</div><div class="line">  <span class="keyword">var</span> pen: <span class="type">Pencil</span></div><div class="line">  <span class="keyword">init</span>(pen: <span class="type">Pencil</span>) &#123; <span class="keyword">self</span>.pen = pen &#125;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">func</span> <span class="title">drawCircle</span><span class="params">(at origin: <span class="params">(Double, Double)</span></span></span>, d: <span class="type">Double</span>) &#123;</div><div class="line">    <span class="comment">/// Complicated render before draw</span></div><div class="line">    circle(at: origin, d: diameter)</div><div class="line">    <span class="comment">/// Complicated pipeline work</span></div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">func</span> <span class="title">circle</span><span class="params">(at origin: <span class="params">(Double, Double)</span></span></span>, d: <span class="type">Double</span>) &#123;</div><div class="line">    pen.circle(at: origin, d: diameter)</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>这样做的目的，和我们在init中注入对象是类似的，也就是尽可能明确在未来重构代码时，需要修改的代码边界。让需要重构的部分，明确暴露出来。</p>
+<h4 id="多层容器"><a href="#多层容器" class="headerlink" title="多层容器"></a>多层容器</h4><p>也就是说，BoxueUserSessionRepository是有状态的，我们不能够随意创建BoxueUserSessionRepository对象，如果有多个地方需要这个对象，我们应该让它成为一个单例。<br>而这，也是我们通过容器类创建对象的一个重要作用：<strong>即创建并持有需要长时间保持的依赖关系</strong>。</p>
+<p>但如果我们在一个项目中只使用一个容器类，往往还是会有一些不方便的地方。</p>
+<p>最直接的问题，就是这个类的体积会越来越大，它会包含越来越多的单例对象和工厂方法。最终，自己演化成一个Massive Container，变得难以维护。</p>
+<p>另一个问题是，一个App中的依赖关系往往不是平等的。有些依赖关系存活在App的整个生命周期、有些依赖关系只在用户登录后才产生，有些关系，则仅和某个UI、某个交互相关。如果把这些依赖关系的管理都放在一个容器中，我们可能就需要不断在这个容器中安插Optional类型的属性，然后通过unwrap它来判断各种情况。显然，这会让我们的container变得更加复杂。</p>
+<p>面对这种问题，我们就可以使用<strong>多层容器</strong>来解决。</p>
+<h4 id="多层容器分层规则"><a href="#多层容器分层规则" class="headerlink" title="多层容器分层规则"></a>多层容器分层规则</h4><p>按照一个对象从创建到销毁所覆盖到的区域的大小，我们可以把这个区域分成4大类：</p>
+<ul>
+<li>App作用域，这个作用域里是我们最熟悉的单例对象，它们从App启动的时候就被创建，之后便一直保持在内存里，直到App结束。我们之前定义的sharedMainViewModel就属于这类作用域；</li>
+<li>用户作用域，是指在用户登录后创建，登出后销毁的对象；</li>
+<li>功能作用域，是指用户使用了某个功能之后才创建，离开这个功能后就可以销毁的对象。一会儿，我们就会看到这样一个例子；</li>
+<li>交互作用域，是指只有在执行了某个交互动作（例如手势）之后才创建的对象，这应该是生命周期最短的一类对象了；</li>
+</ul>
+<p>有了这些作用域，我们就可以制定一个简单的对容器进行分层的规则：</p>
+<ul>
+<li>首先，管理App作用域的容器永远都是根容器，我们上一节定义的BoxueAppDepedencyContainer就是如此；</li>
+<li>其次，每当我们需要一个新的对象作用域时，就创建一个新的子容器来管理其中所有对象的创建方法；</li>
+<li>最后，下层容器可以向上层容器请求其管理的依赖关系；</li>
+</ul>
+<p>例子:<br>BoxueGuideDependencyContainer要可以向它的上层容器BoxueAppDepedencyContainer请求数据，这可以通过在init方法中注入上层容器实现：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BoxueGuideDependencyContainer</span> </span>&#123;</div><div class="line">  <span class="comment">/// - Properties</span></div><div class="line">  <span class="keyword">let</span> sharedMainViewModel: <span class="type">MainViewModel</span></div><div class="line">  <span class="keyword">let</span> sharedUserSessionRepository: <span class="type">UserSessionRepository</span></div><div class="line"></div><div class="line">  <span class="keyword">init</span>(appDependencyContainer: <span class="type">BoxueAppDepedencyContainer</span>) &#123;</div><div class="line">    <span class="keyword">self</span>.sharedMainViewModel =</div><div class="line">      appDependencyContainer.sharedMainViewModel</div><div class="line">    <span class="keyword">self</span>.sharedUserSessionRepository =</div><div class="line">      appDependencyContainer.sharedUserSessionRepository</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><h3 id="如何组织文件"><a href="#如何组织文件" class="headerlink" title="如何组织文件"></a>如何组织文件</h3><p>在项目目录中，这种“一个protocol会对应多个实现”的情况，我们都用下面的方式来组织文件：<br><img src="https://image.boxueio.com/fake-objs-for-dev-and-test-1@2x.jpg" alt=""></p>
+<p>在图中可以看到，Auth和UserSessionStore分别表示要实现的功能。在根目录中，我们定义对应的protocol。然后在Implementations中，包含对这个protocol的多个实现。</p>
+<h3 id="MVVM"><a href="#MVVM" class="headerlink" title="MVVM"></a>MVVM</h3><p><img src="https://image.boxueio.com/repository-pattern-in-bx-app-3@2x.jpg" alt="MVVM过程"></p>
+<p>通常，我们会对“究竟应该把网络IO的代码放到哪里”这样的问题感到困惑。实际上，严格来说，网络IO只是View Model获取数据的一种途径而已，从这个角度上说，它和本地读取数据没有很大区别。因此我们也不应该有类似这样的困惑。只不过，<strong>当View Model中存在着多种获取数据的通路的时候，我们会在View Model和Model之间加一层代理来屏蔽掉这个差别。我们管这层代理，就叫做</strong><code>Repository</code>。  </p>
+<p>因此，View Model和Model之间的交互，就可以进一步被细化成这样：<br><img src="https://image.boxueio.com/repository-pattern-in-bx-app-4@2x.jpg" alt="MVVM细化过程"></p>
+<p>所谓的view model status，就是一组表示当前view类型的case<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">enum</span> <span class="title">GuideViewStatus</span> </span>&#123;</div><div class="line">  <span class="keyword">case</span> welcome</div><div class="line">  <span class="keyword">case</span> signIn</div><div class="line">  <span class="keyword">case</span> signUp</div><div class="line">  <span class="keyword">case</span> contactUs</div><div class="line">  <span class="keyword">case</span> resetPassword</div><div class="line">  <span class="keyword">case</span> requestNotification</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag"># iOS</a>
+          
+            <a href="/tags/架构/" rel="tag"># 架构</a>
+          
+            <a href="/tags/MVVM/" rel="tag"># MVVM</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/10/flutter-go代码开发规范/" rel="next" title="flutter-go代码开发规范">
+                <i class="fa fa-chevron-left"></i> flutter-go代码开发规范
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread"></div>
+        <script>
+        /**
+        *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+        *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+        */
+          var disqus_config = function () {
+          this.page.url = "http://yoursite.com/2019/05/22/组织代码中的依赖关系/";  // Replace PAGE_URL with your page's canonical URL variable
+          this.page.identifier = "2019/05/22/组织代码中的依赖关系/"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+          };
+          
+          (function() { // DON'T EDIT BELOW THIS LINE
+          var d = document, s = d.createElement('script');
+          s.src = 'https://durand.disqus.com/embed.js';
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+          })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://avatars3.githubusercontent.com/u/16211378?s=460&v=4"
+               alt="OneKyle" />
+          <p class="site-author-name" itemprop="name">OneKyle</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/onekyle" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是依赖关系"><span class="nav-number">1.</span> <span class="nav-text">什么是依赖关系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#评估项目中类依赖关系的方法"><span class="nav-number">2.</span> <span class="nav-text">评估项目中类依赖关系的方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决方法"><span class="nav-number">3.</span> <span class="nav-text">解决方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#从名字依赖到方法依赖"><span class="nav-number">3.1.</span> <span class="nav-text">从名字依赖到方法依赖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#把对象的创建统一隔离到init方法"><span class="nav-number">3.2.</span> <span class="nav-text">把对象的创建统一隔离到init方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#尽可能在复杂方法中剥离依赖关系"><span class="nav-number">3.3.</span> <span class="nav-text">尽可能在复杂方法中剥离依赖关系</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#多层容器"><span class="nav-number">3.3.1.</span> <span class="nav-text">多层容器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#多层容器分层规则"><span class="nav-number">3.3.2.</span> <span class="nav-text">多层容器分层规则</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他"><span class="nav-number">4.</span> <span class="nav-text">其他</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#如何组织文件"><span class="nav-number">4.1.</span> <span class="nav-text">如何组织文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MVVM"><span class="nav-number">4.2.</span> <span class="nav-text">MVVM</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">OneKyle</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'durand';
+      var disqus_identifier = '2019/05/22/组织代码中的依赖关系/';
+
+      var disqus_title = "组织代码中的依赖关系";
+
+
+      function run_disqus_script(disqus_script) {
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+
+      
+        var disqus_config = function () {
+            this.page.url = disqus_url;
+            this.page.identifier = disqus_identifier;
+            this.page.title = disqus_title;
+        };
+        run_disqus_script('embed.js');
+      
+
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+
+  
+
+</body>
+</html>

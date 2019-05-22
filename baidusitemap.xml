@@ -4,13 +4,19 @@
 
     
   <url>
-    <loc>http://yoursite.com/2019/05/10/flutter-go%E4%BB%A3%E7%A0%81%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83/</loc>
-    <lastmod>2019-05-10T06:08:33.150Z</lastmod>
+    <loc>http://yoursite.com/2019/05/22/%E7%BB%84%E7%BB%87%E4%BB%A3%E7%A0%81%E4%B8%AD%E7%9A%84%E4%BE%9D%E8%B5%96%E5%85%B3%E7%B3%BB/</loc>
+    <lastmod>2019-05-22T02:19:07.839Z</lastmod>
     <data>
         <display>
-        <title>flutter-go代码开发规范</title>
-        <pubTime>2019-05-10T05:52:28.000Z</pubTime>
+        <title>组织代码中的依赖关系</title>
+        <pubTime>2019-05-22T02:05:54.000Z</pubTime>
         
+        <tag>iOS</tag>
+         
+        <tag>架构</tag>
+         
+        <tag>MVVM</tag>
+         
          
            
         </display>
@@ -20,7 +26,7 @@
     
   <url>
     <loc>http://yoursite.com/2019/05/10/ARTS-Week-4/</loc>
-    <lastmod>2019-05-10T05:52:09.294Z</lastmod>
+    <lastmod>2019-05-14T13:45:41.135Z</lastmod>
     <data>
         <display>
         <title>ARTS_Week_4.md</title>
@@ -28,6 +34,21 @@
         
         <tag>ARTS</tag>
          
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2019/05/10/flutter-go%E4%BB%A3%E7%A0%81%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83/</loc>
+    <lastmod>2019-05-10T06:17:09.454Z</lastmod>
+    <data>
+        <display>
+        <title>flutter-go代码开发规范</title>
+        <pubTime>2019-05-10T05:52:28.000Z</pubTime>
+        
          
            
         </display>
