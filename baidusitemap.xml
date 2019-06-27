@@ -4,6 +4,21 @@
 
     
   <url>
+    <loc>http://yoursite.com/2019/06/27/%E5%9F%BA%E4%BA%8Edocker%E6%90%AD%E5%BB%BA%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86%E5%B9%B3%E5%8F%B0redmine/</loc>
+    <lastmod>2019-06-27T14:46:48.194Z</lastmod>
+    <data>
+        <display>
+        <title>基于docker搭建项目管理平台redmine</title>
+        <pubTime>2019-06-27T14:42:03.000Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/2019/06/14/iOS-%E8%B6%8A%E7%8B%B1%E5%90%8E%E5%A6%82%E4%BD%95%E6%9B%B4%E6%94%B9%E9%BB%98%E8%AE%A4%E7%9A%84shell/</loc>
     <lastmod>2019-06-14T06:36:45.670Z</lastmod>
     <data>
@@ -154,25 +169,6 @@
         <title>内网穿透及端口转发</title>
         <pubTime>2018-07-17T09:23:09.000Z</pubTime>
         
-        <tag>开发环境</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2018/07/14/%E5%9F%BA%E4%BA%8Edocker%E6%90%AD%E5%BB%BA%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86%E5%B9%B3%E5%8F%B0redmine/</loc>
-    <lastmod>2018-08-03T12:36:01.006Z</lastmod>
-    <data>
-        <display>
-        <title>基于docker搭建项目管理平台redmine</title>
-        <pubTime>2018-07-14T07:23:01.000Z</pubTime>
-        
-        <tag>Docker</tag>
-         
         <tag>开发环境</tag>
          
          
