@@ -2,6 +2,34 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2019/08/27/%E4%BD%BF%E7%94%A8fastlane%E4%BA%A4%E4%BB%98%E4%BD%A0%E7%9A%84%E5%BA%94%E7%94%A8/</loc>
+    
+    <lastmod>2019-08-27T08:12:56.396Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/writing/iOSDevResource.html</loc>
+    
+    <lastmod>2019-08-27T07:39:48.275Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2019/03/26/ARTS-Week-1/</loc>
+    
+    <lastmod>2019-08-27T07:34:23.610Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/writing/ErikReadMe.html</loc>
+    
+    <lastmod>2019-08-27T02:10:32.061Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2019/06/27/%E5%9F%BA%E4%BA%8Edocker%E6%90%AD%E5%BB%BA%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86%E5%B9%B3%E5%8F%B0redmine/</loc>
     
     <lastmod>2019-07-09T03:53:52.219Z</lastmod>
@@ -61,20 +89,6 @@
     <loc>http://yoursite.com/writing/ARTS_Tep.html</loc>
     
     <lastmod>2019-04-14T09:24:23.886Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/writing/iOSDevResource.html</loc>
-    
-    <lastmod>2019-04-03T11:47:31.044Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2019/03/26/ARTS-Week-1/</loc>
-    
-    <lastmod>2019-03-26T09:15:17.953Z</lastmod>
     
   </url>
   

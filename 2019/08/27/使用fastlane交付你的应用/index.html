@@ -1,0 +1,864 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="iOS,开发环境,CI," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="你是否还在忍受打包时电脑风扇嗡嗡作响的苦恼, 还在”享受”MacOS菊花转起来的微妙, 是否陷入了jenkins的泥沼中止步不前? – fastlane, (私认为)一款市面上最好的打包分发工具, 足以带你脱离苦海.
+Why fastlane?
+
+
+
+fastlane
+
+
+
+
+🚀
+每次发包, 省时省力
+
+
+✨
+方便的集成你先有的工具和服务, 同时自己囊括了400多个工具.
+
+
+📖
+基于MIT开">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用fastlane交付你的应用">
+<meta property="og:url" content="http://yoursite.com/2019/08/27/使用fastlane交付你的应用/index.html">
+<meta property="og:site_name" content="OneKyle">
+<meta property="og:description" content="你是否还在忍受打包时电脑风扇嗡嗡作响的苦恼, 还在”享受”MacOS菊花转起来的微妙, 是否陷入了jenkins的泥沼中止步不前? – fastlane, (私认为)一款市面上最好的打包分发工具, 足以带你脱离苦海.
+Why fastlane?
+
+
+
+fastlane
+
+
+
+
+🚀
+每次发包, 省时省力
+
+
+✨
+方便的集成你先有的工具和服务, 同时自己囊括了400多个工具.
+
+
+📖
+基于MIT开">
+<meta property="og:updated_time" content="2019-08-27T08:12:56.396Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用fastlane交付你的应用">
+<meta name="twitter:description" content="你是否还在忍受打包时电脑风扇嗡嗡作响的苦恼, 还在”享受”MacOS菊花转起来的微妙, 是否陷入了jenkins的泥沼中止步不前? – fastlane, (私认为)一款市面上最好的打包分发工具, 足以带你脱离苦海.
+Why fastlane?
+
+
+
+fastlane
+
+
+
+
+🚀
+每次发包, 省时省力
+
+
+✨
+方便的集成你先有的工具和服务, 同时自己囊括了400多个工具.
+
+
+📖
+基于MIT开">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '6261206290404476000',
+      author: 'Durand'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/08/27/使用fastlane交付你的应用/"/>
+
+
+
+
+
+  <title> 使用fastlane交付你的应用 | OneKyle </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">OneKyle</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/27/使用fastlane交付你的应用/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="OneKyle">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/16211378?s=460&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OneKyle">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                使用fastlane交付你的应用
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-27T10:22:32+08:00">
+                2019-08-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/08/27/使用fastlane交付你的应用/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/08/27/使用fastlane交付你的应用/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>你是否还在忍受打包时电脑风扇嗡嗡作响的苦恼, 还在”享受”MacOS菊花转起来的微妙, 是否陷入了jenkins的泥沼中止步不前? – <a href="https://docs.fastlane.tools/" target="_blank" rel="external">fastlane</a>, (私认为)一款市面上最好的打包分发工具, 足以带你脱离苦海.</p>
+<h2 id="Why-fastlane"><a href="#Why-fastlane" class="headerlink" title="Why fastlane?"></a>Why fastlane?</h2><table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:left">fastlane</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">🚀</td>
+<td style="text-align:left">每次发包, 省时省力</td>
+</tr>
+<tr>
+<td style="text-align:center">✨</td>
+<td style="text-align:left">方便的集成你先有的工具和服务, 同时自己囊括了400多个工具.</td>
+</tr>
+<tr>
+<td style="text-align:center">📖</td>
+<td style="text-align:left">基于MIT开源</td>
+</tr>
+<tr>
+<td style="text-align:center">🎩</td>
+<td style="text-align:left">几分钟之内就可以部署</td>
+</tr>
+<tr>
+<td style="text-align:center">⚒</td>
+<td style="text-align:left">在<strong>你</strong>自己的机器上运行.</td>
+</tr>
+<tr>
+<td style="text-align:center">👻</td>
+<td style="text-align:left">集成了所有的CI系统.</td>
+</tr>
+<tr>
+<td style="text-align:center">🖥</td>
+<td style="text-align:left">支持iOS、 MacOS、 Android app.</td>
+</tr>
+<tr>
+<td style="text-align:center">🔧</td>
+<td style="text-align:left">基于需求 自行扩展, 不需要依赖任何东西.</td>
+</tr>
+<tr>
+<td style="text-align:center">💭</td>
+<td style="text-align:left">一行fastlane走天下, 其他指令全都不需要.</td>
+</tr>
+<tr>
+<td style="text-align:center">🚢</td>
+<td style="text-align:left">可在其他任何设备甚至是CI服务上部署.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="开始搭建"><a href="#开始搭建" class="headerlink" title="开始搭建"></a>开始搭建</h2><p>具体的搭建可以参考官方文档, <a href="https://docs.fastlane.tools/" target="_blank" rel="external">https://docs.fastlane.tools/</a>,<br> 本篇只记录一些细节坑点.</p>
+<p>选择模式时选中<code>3</code>, 这样会走拉取<code>iTunes Connect</code>中 app信息的流程.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[11:39:03]: What would you like to use fastlane for?</div><div class="line">1. 📸  Automate screenshots</div><div class="line">2. 👩‍✈️  Automate beta distribution to TestFlight</div><div class="line">3. 🚀  Automate App Store distribution</div><div class="line">4. 🛠  Manual setup - manually setup your project to automate your tasks</div></pre></td></tr></table></figure></p>
+<p>此时询问你是否允许 fastlane来管理你iTunes Connect app的元数据, 包括一些 app描述, 关键词, 以及截图等等. 建议允许<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">[11:43:52]: Would you like to have fastlane manage your app&apos;s metadata?</div><div class="line">[11:43:52]: If you enable this feature, fastlane will download your existing metadata and screenshots.</div><div class="line">[11:43:52]: This way, you&apos;ll be able to edit your app&apos;s metadata in local `.txt` files.</div><div class="line">[11:43:52]: After editing the local `.txt` files, just run fastlane and all changes will be pushed up.</div><div class="line">[11:43:52]: If you don&apos;t want to use this feature, you can still use fastlane to upload and distribute new builds to the App Store</div><div class="line">[11:43:52]: Would you like fastlane to manage your app&apos;s metadata? (y/n)</div></pre></td></tr></table></figure></p>
+<p>执行完这些步骤之后, 就会发现项目目录下产生了一个fastlane的文件夹, 里面的结构是这样的:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div></pre></td><td class="code"><pre><div class="line">.</div><div class="line">├── Appfile</div><div class="line">├── Deliverfile</div><div class="line">├── Fastfile</div><div class="line">├── metadata</div><div class="line">│   ├── app_icon.jpg</div><div class="line">│   ├── copyright.txt</div><div class="line">│   ├── primary_category.txt</div><div class="line">│   ├── primary_first_sub_category.txt</div><div class="line">│   ├── primary_second_sub_category.txt</div><div class="line">│   ├── review_information</div><div class="line">│   │   ├── demo_password.txt</div><div class="line">│   │   ├── demo_user.txt</div><div class="line">│   │   ├── email_address.txt</div><div class="line">│   │   ├── first_name.txt</div><div class="line">│   │   ├── last_name.txt</div><div class="line">│   │   ├── notes.txt</div><div class="line">│   │   └── phone_number.txt</div><div class="line">│   ├── secondary_category.txt</div><div class="line">│   ├── secondary_first_sub_category.txt</div><div class="line">│   ├── secondary_second_sub_category.txt</div><div class="line">│   ├── trade_representative_contact_information</div><div class="line">│   │   ├── address_line1.txt</div><div class="line">│   │   ├── address_line2.txt</div><div class="line">│   │   ├── address_line3.txt</div><div class="line">│   │   ├── city_name.txt</div><div class="line">│   │   ├── country.txt</div><div class="line">│   │   ├── email_address.txt</div><div class="line">│   │   ├── first_name.txt</div><div class="line">│   │   ├── is_displayed_on_app_store.txt</div><div class="line">│   │   ├── last_name.txt</div><div class="line">│   │   ├── phone_number.txt</div><div class="line">│   │   ├── postal_code.txt</div><div class="line">│   │   ├── state.txt</div><div class="line">│   │   └── trade_name.txt</div><div class="line">│   └── zh-Hans</div><div class="line">│       ├── apple_tv_privacy_policy.txt</div><div class="line">│       ├── description.txt</div><div class="line">│       ├── keywords.txt</div><div class="line">│       ├── marketing_url.txt</div><div class="line">│       ├── name.txt</div><div class="line">│       ├── privacy_url.txt</div><div class="line">│       ├── promotional_text.txt</div><div class="line">│       ├── release_notes.txt</div><div class="line">│       ├── subtitle.txt</div><div class="line">│       └── support_url.txt</div><div class="line">└── screenshots</div><div class="line">    ├── README.txt</div><div class="line">    └── zh-Hans</div><div class="line">        ├── ....png</div><div class="line">        └── ....png</div></pre></td></tr></table></figure></p>
+<p><code>FastFile</code>就是存放我们自定义的指令的地方, 我们cat下FastFile, 发现fastlane已经基于我们之前的选择, 自动生成了打包上传到appstore的<code>lane</code>:<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">default_platform(<span class="symbol">:ios</span>)</div><div class="line"></div><div class="line">platform <span class="symbol">:ios</span> <span class="keyword">do</span></div><div class="line">  desc <span class="string">"Push a new release build to the App Store"</span></div><div class="line">  lane <span class="symbol">:release</span> <span class="keyword">do</span></div><div class="line">    build_app(<span class="symbol">workspace:</span> <span class="string">"VoiceOfGod.xcworkspace"</span>, <span class="symbol">scheme:</span> <span class="string">"VoiceOfGod"</span>)</div><div class="line">    upload_to_app_store</div><div class="line">  <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure></p>
+<h2 id="证书管理神器Match"><a href="#证书管理神器Match" class="headerlink" title="证书管理神器Match"></a>证书管理神器Match</h2><p>我个人在打包的时候为了避免开发机卡顿 造成效率下降, 所以打包都是在一台mac mini上进行的,  用之前的路数, 需要将开发机的证书导出p12和描述文件 在mini上按照, 即可保证正常.<br>但是难受的是 每次证书更改/描述文件更新时(例如添加adhoc设备) 就需要两边一起更新, 虽然Xcode现在支持在其内部直接下载, 但是有没有办法可以更省心省力呢?</p>
+<p>答案呼之欲出, 这便是 fastlane中著名的action <code>Match</code>  </p>
+<h3 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h3><p>其实match工具的核心很简单,就是自动创建一套证书与Profile文件.然后通过Git托管这些文件.在共享机器上面通过下载并把证书装到机器上面.</p>
+<h3 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h3><p>在项目目录下执行<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">fastlane match init</div></pre></td></tr></table></figure></p>
+<p>接着我们选择git作为存储容器.</p>
+<p>然后创建一个空的git项目, 并将地址粘贴:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[14:11:57]: Please create a new, private git repository to store the certificates and profiles there</div><div class="line">[14:11:57]: URL of the Git Repo: https://github.com/yourname/your_match_files.git</div></pre></td></tr></table></figure></p>
+<p>此时, fastlane目录下会多出一个<code>MatchFile</code>, 这就代表你初始化成功了.</p>
+<h3 id="生成并证书及描述文件"><a href="#生成并证书及描述文件" class="headerlink" title="生成并证书及描述文件"></a>生成并证书及描述文件</h3><p>我们编辑<code>fastlane/FastFile</code>, 添加一个新的lane, 用来生成证书及描述文件, 并安装.<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">lane <span class="symbol">:match_all</span> <span class="keyword">do</span></div><div class="line">  sh <span class="string">"bundle exec fastlane match development"</span></div><div class="line">  sh <span class="string">"bundle exec fastlane match adhoc"</span></div><div class="line">  sh <span class="string">"bundle exec fastlane match appstore"</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure></p>
+<p>保存后 执行 <code>fastlane match_all</code></p>
+<p>这样会帮你生成所有环境的证书和描述文件, 同时存到你刚才配置的git地址中, 如果是第一次配置, 会让你配置下 git项目密码, 并且会将此密码存到本机的keychain中.</p>
+<p>而之后在其他机器上使用时, 先创建一个新的lane:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">lane <span class="symbol">:match_all_readonly</span> <span class="keyword">do</span></div><div class="line">  sh <span class="string">"fastlane match development --readonly"</span></div><div class="line">  sh <span class="string">"fastlane match adhoc --readonly"</span></div><div class="line">  sh <span class="string">"fastlane match appstore --readonly"</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<p>然后在调用 fastlane match_all_readonly,在需要时 手动输入刚才配置的git仓库加密的密码即可, 之后每次打包便不需要手动操作了.<br>不过也正因为match的问题, 使用ssh进行操作时, 都会卡在git加密密钥验证这个地方. 所以每次打包, 要不就是使用teamviewer来操作, 要不就是使用mini上的jenkins调用mini本地 fastlane 命令的方式来打包.</p>
+<h2 id="AdHoc打包"><a href="#AdHoc打包" class="headerlink" title="AdHoc打包"></a>AdHoc打包</h2><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">lane <span class="symbol">:adhoc</span> <span class="keyword">do</span></div><div class="line">  <span class="comment"># sh "pod install --no-repo-update" </span></div><div class="line">  puts <span class="string">"开始打包 adhoc"</span></div><div class="line">  gym(</div><div class="line">    <span class="symbol">clean:</span><span class="literal">true</span>,</div><div class="line">    <span class="symbol">scheme:</span><span class="string">"YourProjectTarget"</span>,</div><div class="line">    <span class="symbol">configuration:</span><span class="string">"AdHoc"</span>,</div><div class="line">    <span class="symbol">export_method:</span><span class="string">"ad-hoc"</span>,</div><div class="line">    <span class="symbol">output_directory:</span><span class="string">"./build"</span>,<span class="comment"># 打包后的 ipa 文件存放的目录</span></div><div class="line">    <span class="symbol">silent:</span><span class="literal">true</span>,</div><div class="line">  )</div><div class="line">  <span class="comment"># 使用fir上传</span></div><div class="line">  sh <span class="string">"fir p ../build/your.ipa -T YourFirToken"</span></div><div class="line">  puts <span class="string">"打包完成"</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<h2 id="邮件通知"><a href="#邮件通知" class="headerlink" title="邮件通知"></a>邮件通知</h2><p>  fastlane有一个邮件通知的action, 但是需要信用卡绑定才可以发送邮件, 于是我又找了一个替代品 – <a href="https://github.com/xyhuangjia/fastlane-plugin-send_e_mail" target="_blank" rel="external">fastlane-plugin-send_e_mail</a></p>
+<p>先添加plugin<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">fastlane add_plugin send_e_mail</div></pre></td></tr></table></figure></p>
+<p>然后在<code>FastFile</code>中添加一个新的lane:<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">lane <span class="symbol">:send_mail</span> <span class="keyword">do</span></div><div class="line">  version = get_version_number(<span class="symbol">xcodeproj:</span> <span class="string">"your_project.xcodeproj"</span>, <span class="symbol">target:</span> <span class="string">"your_project_target"</span>)</div><div class="line">  <span class="comment">#build_number = get_build_number(xcodeproj: "your_project.xcodeproj")</span></div><div class="line">  title = <span class="string">"your_app_name (iOS) <span class="subst">#&#123;version&#125;</span> 已提交AppStore审核."</span></div><div class="line">  send_e_mail(</div><div class="line">    <span class="symbol">stmp_server:</span> <span class="string">'smtp.exmail.qq.com'</span>,</div><div class="line">    <span class="symbol">user_name:</span> <span class="string">'xxx@qqqiye.cn'</span>,</div><div class="line">    <span class="symbol">password:</span> <span class="string">'xxxxxx'</span>,</div><div class="line">    <span class="symbol">recipients:</span> [<span class="string">'tom@qqqiye.cn'</span>,<span class="string">'jeff@qqqiye.cn'</span>],</div><div class="line">    <span class="symbol">subject:</span> title,</div><div class="line">    <span class="symbol">message_body:</span> <span class="string">"no reply"</span></div><div class="line">  )</div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure></p>
+<p>然后直接在其他lane中调用这个<code>send_mail</code>就可:<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">desc <span class="string">"Push a new release build to the App Store"</span></div><div class="line">lane <span class="symbol">:release</span> <span class="keyword">do</span></div><div class="line">  build_app(<span class="symbol">workspace:</span> <span class="string">"VoiceOfGod.xcworkspace"</span>, <span class="symbol">scheme:</span> <span class="string">"VoiceOfGod"</span>)</div><div class="line">  upload_to_app_store</div><div class="line">  send_mail</div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure></p>
+<h2 id="其他-关于Deliverfile的一些配置"><a href="#其他-关于Deliverfile的一些配置" class="headerlink" title="其他, 关于Deliverfile的一些配置"></a>其他, 关于Deliverfile的一些配置</h2><p>我的Deliverfile的配置是这样的</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># The Deliverfile allows you to store various App Store Connect metadata</span></div><div class="line"><span class="comment"># For more information, check out the docs</span></div><div class="line"><span class="comment"># https://docs.fastlane.tools/actions/deliver/</span></div><div class="line"></div><div class="line">force <span class="literal">true</span> <span class="comment">#强制不显示 preview网页.</span></div><div class="line"></div><div class="line"><span class="comment">#build_number "30" #设置项目的build number</span></div><div class="line"></div><div class="line">skip_screenshots <span class="literal">true</span> <span class="comment">#跳过截图上传.</span></div><div class="line"></div><div class="line">phased_release <span class="literal">true</span> <span class="comment">#分阶段分发</span></div><div class="line"></div><div class="line">submit_for_review <span class="literal">false</span> <span class="comment">#提交完成直接进入review.</span></div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag"># iOS</a>
+          
+            <a href="/tags/开发环境/" rel="tag"># 开发环境</a>
+          
+            <a href="/tags/CI/" rel="tag"># CI</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/06/27/基于docker搭建项目管理平台redmine/" rel="next" title="基于docker搭建项目管理平台redmine">
+                <i class="fa fa-chevron-left"></i> 基于docker搭建项目管理平台redmine
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread"></div>
+        <script>
+        /**
+        *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+        *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+        */
+          var disqus_config = function () {
+          this.page.url = "http://yoursite.com/2019/08/27/使用fastlane交付你的应用/";  // Replace PAGE_URL with your page's canonical URL variable
+          this.page.identifier = "2019/08/27/使用fastlane交付你的应用/"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+          };
+          
+          (function() { // DON'T EDIT BELOW THIS LINE
+          var d = document, s = d.createElement('script');
+          s.src = 'https://durand.disqus.com/embed.js';
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+          })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://avatars3.githubusercontent.com/u/16211378?s=460&v=4"
+               alt="OneKyle" />
+          <p class="site-author-name" itemprop="name">OneKyle</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/onekyle" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Why-fastlane"><span class="nav-number">1.</span> <span class="nav-text">Why fastlane?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开始搭建"><span class="nav-number">2.</span> <span class="nav-text">开始搭建</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#证书管理神器Match"><span class="nav-number">3.</span> <span class="nav-text">证书管理神器Match</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#工作原理"><span class="nav-number">3.1.</span> <span class="nav-text">工作原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#初始化"><span class="nav-number">3.2.</span> <span class="nav-text">初始化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#生成并证书及描述文件"><span class="nav-number">3.3.</span> <span class="nav-text">生成并证书及描述文件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AdHoc打包"><span class="nav-number">4.</span> <span class="nav-text">AdHoc打包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#邮件通知"><span class="nav-number">5.</span> <span class="nav-text">邮件通知</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他-关于Deliverfile的一些配置"><span class="nav-number">6.</span> <span class="nav-text">其他, 关于Deliverfile的一些配置</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">OneKyle</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'durand';
+      var disqus_identifier = '2019/08/27/使用fastlane交付你的应用/';
+
+      var disqus_title = "使用fastlane交付你的应用";
+
+
+      function run_disqus_script(disqus_script) {
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+
+      
+        var disqus_config = function () {
+            this.page.url = disqus_url;
+            this.page.identifier = disqus_identifier;
+            this.page.title = disqus_title;
+        };
+        run_disqus_script('embed.js');
+      
+
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+
+  
+
+</body>
+</html>

@@ -4,6 +4,46 @@
 
     
   <url>
+    <loc>http://yoursite.com/2019/08/27/%E4%BD%BF%E7%94%A8fastlane%E4%BA%A4%E4%BB%98%E4%BD%A0%E7%9A%84%E5%BA%94%E7%94%A8/</loc>
+    <lastmod>2019-08-27T08:12:56.396Z</lastmod>
+    <data>
+        <display>
+        <title>使用fastlane交付你的应用</title>
+        <pubTime>2019-08-27T02:22:32.000Z</pubTime>
+        
+        <tag>iOS</tag>
+         
+        <tag>开发环境</tag>
+         
+        <tag>CI</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+    
+  <url>
+    <loc>http://yoursite.com/2019/03/26/ARTS-Week-1/</loc>
+    <lastmod>2019-08-27T07:34:23.610Z</lastmod>
+    <data>
+        <display>
+        <title>ARTS Week 1</title>
+        <pubTime>2019-03-26T09:09:02.000Z</pubTime>
+        
+        <tag>ARTS</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+    
+  <url>
     <loc>http://yoursite.com/2019/06/27/%E5%9F%BA%E4%BA%8Edocker%E6%90%AD%E5%BB%BA%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86%E5%B9%B3%E5%8F%B0redmine/</loc>
     <lastmod>2019-07-09T03:53:52.219Z</lastmod>
     <data>
@@ -122,24 +162,6 @@
 
     
     
-    
-  <url>
-    <loc>http://yoursite.com/2019/03/26/ARTS-Week-1/</loc>
-    <lastmod>2019-03-26T09:15:17.953Z</lastmod>
-    <data>
-        <display>
-        <title>ARTS Week 1</title>
-        <pubTime>2019-03-26T09:09:02.000Z</pubTime>
-        
-        <tag>ARTS</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
   <url>
     <loc>http://yoursite.com/2019/02/27/OC%E4%B8%8ESwift%E6%B7%B7%E7%BC%96%E9%A1%B9%E7%9B%AE%E8%BF%81%E7%A7%BB%E5%88%B0Swift4-2%E5%B0%8F%E8%AE%B0/</loc>
     <lastmod>2019-02-28T07:01:25.840Z</lastmod>
@@ -148,11 +170,11 @@
         <title>OC与Swift混编项目迁移到Swift4.2小记</title>
         <pubTime>2019-02-27T03:55:21.000Z</pubTime>
         
-        <tag>iOS</tag>
-         
         <tag>Swift</tag>
          
         <tag>Objective-C</tag>
+         
+        <tag>iOS</tag>
          
          
            
@@ -188,9 +210,9 @@
         <title>RxSwift-step(二)</title>
         <pubTime>2017-08-15T06:00:21.000Z</pubTime>
         
-        <tag>iOS</tag>
-         
         <tag>Swift</tag>
+         
+        <tag>iOS</tag>
          
         <tag>RxSwift</tag>
          
@@ -209,9 +231,9 @@
         <title>RxSwift-step by step 1-10</title>
         <pubTime>2017-08-13T17:36:55.000Z</pubTime>
         
-        <tag>iOS</tag>
-         
         <tag>Swift</tag>
+         
+        <tag>iOS</tag>
          
         <tag>RxSwift</tag>
          
@@ -248,9 +270,9 @@
         <title>利用宏定义实现枚举转字符串</title>
         <pubTime>2017-08-30T02:37:00.000Z</pubTime>
         
-        <tag>iOS</tag>
-         
         <tag>Objective-C</tag>
+         
+        <tag>iOS</tag>
          
          
            
@@ -267,9 +289,9 @@
         <title>Swift中的数组</title>
         <pubTime>2017-07-31T12:06:33.000Z</pubTime>
         
-        <tag>iOS</tag>
-         
         <tag>Swift</tag>
+         
+        <tag>iOS</tag>
          
          
            
@@ -286,9 +308,9 @@
         <title>为泛型类型遵守协议添加类型约束</title>
         <pubTime>2017-06-25T12:33:30.000Z</pubTime>
         
-        <tag>iOS</tag>
-         
         <tag>Swift</tag>
+         
+        <tag>iOS</tag>
          
          
            
@@ -322,9 +344,9 @@
         <title>OC转Swift指南(一)  基础部分</title>
         <pubTime>2016-10-03T15:55:59.000Z</pubTime>
         
-        <tag>iOS</tag>
-         
         <tag>Swift</tag>
+         
+        <tag>iOS</tag>
          
          
            
@@ -341,9 +363,9 @@
         <title>OC转Swift指南(二)  字符串和字符</title>
         <pubTime>2016-10-05T07:13:25.000Z</pubTime>
         
-        <tag>iOS</tag>
-         
         <tag>Swift</tag>
+         
+        <tag>iOS</tag>
          
          
            
@@ -360,9 +382,9 @@
         <title>使用bitfield优化代理方法的调用</title>
         <pubTime>2017-05-06T17:13:42.000Z</pubTime>
         
-        <tag>iOS</tag>
-         
         <tag>Objective-C</tag>
+         
+        <tag>iOS</tag>
          
          
            
