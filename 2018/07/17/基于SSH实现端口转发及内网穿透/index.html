@@ -6,15 +6,15 @@
 
 
 <html class="theme-next mist use-motion" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -32,7 +32,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -66,100 +66,39 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="开发环境," />
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
 
 
+  <meta name="keywords" content="开发环境,">
 
 
 
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0">
 
 
 
 
 
 
-<meta name="description" content="前言在上一篇文章中, 我介绍了如何通过docker搭建redmine项目管理平台, 然而此时 redmine仅仅只能在内网上才能访问到, 接下来这篇就介绍下如何通过内网穿透和端口转发来让我们随心所欲的访问到.
-设备
-
-
-机器代号
-机器描述
-账户
-地址
-ssh/sshd 端口
-
-
-
-
-Server
-公网服务器
-server
-server.site
-29245
-
-
-Base
-个人电脑(位于NAT之">
+<meta name="description" content="前言在上一篇文章中, 我介绍了如何通过docker搭建redmine项目管理平台, 然而此时 redmine仅仅只能在内网上才能访问到, 接下来这篇就介绍下如何通过内网穿透和端口转发来让我们随心所欲的访问到. 设备   机器代号 机器描述 账户 地址 ssh/sshd 端口     Server 公网服务器 server server.site 29245   Base 个人电脑(位于NAT之">
+<meta name="keywords" content="开发环境">
 <meta property="og:type" content="article">
 <meta property="og:title" content="内网穿透及端口转发">
 <meta property="og:url" content="http://yoursite.com/2018/07/17/基于SSH实现端口转发及内网穿透/index.html">
 <meta property="og:site_name" content="OneKyle">
-<meta property="og:description" content="前言在上一篇文章中, 我介绍了如何通过docker搭建redmine项目管理平台, 然而此时 redmine仅仅只能在内网上才能访问到, 接下来这篇就介绍下如何通过内网穿透和端口转发来让我们随心所欲的访问到.
-设备
-
-
-机器代号
-机器描述
-账户
-地址
-ssh/sshd 端口
-
-
-
-
-Server
-公网服务器
-server
-server.site
-29245
-
-
-Base
-个人电脑(位于NAT之">
+<meta property="og:description" content="前言在上一篇文章中, 我介绍了如何通过docker搭建redmine项目管理平台, 然而此时 redmine仅仅只能在内网上才能访问到, 接下来这篇就介绍下如何通过内网穿透和端口转发来让我们随心所欲的访问到. 设备   机器代号 机器描述 账户 地址 ssh/sshd 端口     Server 公网服务器 server server.site 29245   Base 个人电脑(位于NAT之">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2018-10-11T11:28:27.871Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="内网穿透及端口转发">
-<meta name="twitter:description" content="前言在上一篇文章中, 我介绍了如何通过docker搭建redmine项目管理平台, 然而此时 redmine仅仅只能在内网上才能访问到, 接下来这篇就介绍下如何通过内网穿透和端口转发来让我们随心所欲的访问到.
-设备
-
-
-机器代号
-机器描述
-账户
-地址
-ssh/sshd 端口
-
-
-
-
-Server
-公网服务器
-server
-server.site
-29245
-
-
-Base
-个人电脑(位于NAT之">
+<meta name="twitter:description" content="前言在上一篇文章中, 我介绍了如何通过docker搭建redmine项目管理平台, 然而此时 redmine仅仅只能在内网上才能访问到, 接下来这篇就介绍下如何通过内网穿透和端口转发来让我们随心所欲的访问到. 设备   机器代号 机器描述 账户 地址 ssh/sshd 端口     Server 公网服务器 server server.site 29245   Base 个人电脑(位于NAT之">
 
 
 
@@ -187,7 +126,7 @@ Base
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/07/17/基于SSH实现端口转发及内网穿透/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/07/17/基于SSH实现端口转发及内网穿透/">
 
 
 
@@ -227,7 +166,7 @@ Base
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">OneKyle</span>
         <span class="logo-line-after"><i></i></span>
@@ -257,7 +196,7 @@ Base
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -267,7 +206,7 @@ Base
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
           </a>
@@ -277,7 +216,7 @@ Base
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
@@ -316,7 +255,7 @@ Base
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="OneKyle">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/16211378?s=460&v=4">
     </span>
 
@@ -376,6 +315,17 @@ Base
 
           
           
+             <span id="/2018/07/17/基于SSH实现端口转发及内网穿透/" class="leancloud_visitors" data-flag-title="内网穿透及端口转发">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
 
           
 
@@ -394,7 +344,7 @@ Base
       
 
       
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在上一篇文章中, 我介绍了<a href="http://blog.onekyle.com/2018/07/14/%E5%9F%BA%E4%BA%8Edocker%E6%90%AD%E5%BB%BA%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86%E5%B9%B3%E5%8F%B0redmine" target="_blank" rel="external">如何通过docker搭建redmine项目管理平台</a>, 然而此时 redmine仅仅只能在内网上才能访问到, 接下来这篇就介绍下如何通过内网穿透和端口转发来让我们随心所欲的访问到.</p>
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在上一篇文章中, 我介绍了<a href="http://blog.onekyle.com/2018/07/14/%E5%9F%BA%E4%BA%8Edocker%E6%90%AD%E5%BB%BA%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86%E5%B9%B3%E5%8F%B0redmine" target="_blank" rel="noopener">如何通过docker搭建redmine项目管理平台</a>, 然而此时 redmine仅仅只能在内网上才能访问到, 接下来这篇就介绍下如何通过内网穿透和端口转发来让我们随心所欲的访问到.</p>
 <h1 id="设备"><a href="#设备" class="headerlink" title="设备"></a>设备</h1><table>
 <thead>
 <tr>
@@ -432,51 +382,51 @@ Base
 <h1 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h1><p>实现内网穿透及端口转发有很多手段途径, 下面我只介绍两种较简单和常用的.<br>一种是 基于 <a href="#ssh">SSH</a> 的<br>另一种是 基于 <a href="#frp">Frp</a> 的</p>
 <h2 id="基于SSH的内网穿透及端口转发"><a href="#基于SSH的内网穿透及端口转发" class="headerlink" title="基于SSH的内网穿透及端口转发"></a>基于SSH的内网穿透及端口转发</h2><p><span id="ssh"></span></p>
 <h3 id="SSH反向隧道"><a href="#SSH反向隧道" class="headerlink" title="SSH反向隧道"></a>SSH反向隧道</h3><p>这种手段实质上是由<a href="#Slave">Slave</a>向Server主动建立一个SSH通道, 将Server的某一个端口转发到Slave的SSH端口(22)上.<br>我们以Server的54345端口为例进行转发:  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">ssh -fN -R 54345:localhost:22 server@server.site -p 29245</div><div class="line"># -f Requests ssh to go to background just before command execution.</div><div class="line">　　　　让该命令后台运行 .</div><div class="line"># -n Redirects stdin from /dev/null (actually, prevents reading from stdin).</div><div class="line"></div><div class="line"># -N Do not execute a remote command.</div><div class="line">　　　　不执行远程命令 .</div><div class="line"># -R 远程转发</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">ssh -fN -R 54345:localhost:22 server@server.site -p 29245</span><br><span class="line"># -f Requests ssh to go to background just before command execution.</span><br><span class="line">　　　　让该命令后台运行 .</span><br><span class="line"># -n Redirects stdin from /dev/null (actually, prevents reading from stdin).</span><br><span class="line"></span><br><span class="line"># -N Do not execute a remote command.</span><br><span class="line">　　　　不执行远程命令 .</span><br><span class="line"># -R 远程转发</span><br></pre></td></tr></table></figure>
 <p>上面, 我们将Server的54345端口转发到了Slave的22端口上, 只要这个隧道不关闭, 我们就可以在Base上通过访问A的54345端口来连接Slave的22端口上.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># 在Base机器上</div><div class="line">ssh slave@server.site -p 54345</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 在Base机器上</span><br><span class="line">ssh slave@server.site -p 54345</span><br></pre></td></tr></table></figure>
 <h3 id="隧道的维持"><a href="#隧道的维持" class="headerlink" title="隧道的维持"></a>隧道的维持</h3><p>由于SSH存在超时关闭的可能, 而一旦链接关闭, 隧道便无法维持, 那么Base也就无法随心所欲的访问Slave了, 为此我们需要一种方案来提供一条稳定的SSH 反向隧道.</p>
 <p>一个最简单的方法就是autossh，这个软件会在超时之后自动重新建立SSH 隧道.</p>
 <ul>
-<li>安装SSH<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># MacMini- MacOS</div><div class="line">brew install autossh</div></pre></td></tr></table></figure>
+<li>安装SSH<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># MacMini- MacOS</span><br><span class="line">brew install autossh</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <ul>
-<li>配置autossh<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">autossh -M 5678 -fN -o &quot;PubkeyAuthentication=yes&quot; -o &quot;StrictHostKeyChecking=false&quot; -o &quot;PasswordAuthentication=no&quot; -o &quot;ServerAliveInterval 60&quot; -o &quot;Serv erAliveCountMax 3&quot; -R 54345:127.0.0.1:22 server@server.site -p 29245</div><div class="line"># “-M 5678” 选项指定中继服务器上的监视端口，用于交换监视 SSH 会话的测试数据。中继服务器上的其它程序不能使用这个端口。</div><div class="line"># “-o XXXX” 选项让 ssh：</div><div class="line">#        * 使用密钥验证，而不是密码验证。</div><div class="line">#        * 自动接受（未知）SSH 主机密钥。</div><div class="line">#        * 每 60 秒交换 keep-alive 消息。</div><div class="line">#        * 没有收到任何响应时最多发送 3 条 keep-alive 消息。</div></pre></td></tr></table></figure>
+<li>配置autossh<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">autossh -M 5678 -fN -o &quot;PubkeyAuthentication=yes&quot; -o &quot;StrictHostKeyChecking=false&quot; -o &quot;PasswordAuthentication=no&quot; -o &quot;ServerAliveInterval 60&quot; -o &quot;Serv erAliveCountMax 3&quot; -R 54345:127.0.0.1:22 server@server.site -p 29245</span><br><span class="line"># “-M 5678” 选项指定中继服务器上的监视端口，用于交换监视 SSH 会话的测试数据。中继服务器上的其它程序不能使用这个端口。</span><br><span class="line"># “-o XXXX” 选项让 ssh：</span><br><span class="line">#        * 使用密钥验证，而不是密码验证。</span><br><span class="line">#        * 自动接受（未知）SSH 主机密钥。</span><br><span class="line">#        * 每 60 秒交换 keep-alive 消息。</span><br><span class="line">#        * 没有收到任何响应时最多发送 3 条 keep-alive 消息。</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <p>如此, 便可保证在不重启Slave的情况下的稳定SSH链接.</p>
-<h3 id="端口转发到docker的服务"><a href="#端口转发到docker的服务" class="headerlink" title="端口转发到docker的服务"></a>端口转发到docker的服务</h3><p><a href="http://blog.onekyle.com/2018/07/14/%E5%9F%BA%E4%BA%8Edocker%E6%90%AD%E5%BB%BA%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86%E5%B9%B3%E5%8F%B0redmine/#docker%E5%90%AF%E5%8A%A8redmine" target="_blank" rel="external">在上一篇文章中</a>我们在Slave机器上对docker的物理机3000端口与虚拟机的3000端口做的了映射, 所以外部用户可以通过3000端口直接访问docker的redmin服务.<br>此时, 只需要通过SSH隧道将Slave的3000端口转发到Server的某个端口上, 就可以了.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh -fN -R 3000:localhost:3000 server@server.site -p 29245</div></pre></td></tr></table></figure>
+<h3 id="端口转发到docker的服务"><a href="#端口转发到docker的服务" class="headerlink" title="端口转发到docker的服务"></a>端口转发到docker的服务</h3><p><a href="http://blog.onekyle.com/2018/07/14/%E5%9F%BA%E4%BA%8Edocker%E6%90%AD%E5%BB%BA%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86%E5%B9%B3%E5%8F%B0redmine/#docker%E5%90%AF%E5%8A%A8redmine" target="_blank" rel="noopener">在上一篇文章中</a>我们在Slave机器上对docker的物理机3000端口与虚拟机的3000端口做的了映射, 所以外部用户可以通过3000端口直接访问docker的redmin服务.<br>此时, 只需要通过SSH隧道将Slave的3000端口转发到Server的某个端口上, 就可以了.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -fN -R 3000:localhost:3000 server@server.site -p 29245</span><br></pre></td></tr></table></figure>
 <p>如此, 我们便可以通过访问server.site:3000端口就可以直接访问到位于Slave的redmine服务.  </p>
 <h2 id="基于Frp的内网穿透及端口转发"><a href="#基于Frp的内网穿透及端口转发" class="headerlink" title="基于Frp的内网穿透及端口转发"></a>基于Frp的内网穿透及端口转发</h2><p><span id="frp"></span></p>
-<p><a href="https://github.com/fatedier/frp/blob/master/README_zh.md" target="_blank" rel="external">frp</a> 是一个可用于内网穿透的高性能的反向代理应用，支持 tcp, udp, http, https 协议.</p>
+<p><a href="https://github.com/fatedier/frp/blob/master/README_zh.md" target="_blank" rel="noopener">frp</a> 是一个可用于内网穿透的高性能的反向代理应用，支持 tcp, udp, http, https 协议.</p>
 <p>frp可以利用处于内网或防火墙后的机器，对外网环境提供 http 或 https 服务.<br>对于 http, https 服务支持基于域名的虚拟主机，支持自定义域名绑定，使多个域名可以共用一个80端口.<br>也可以利用处于内网或防火墙后的机器，对外网环境提供 tcp 和 udp 服务，例如在家里通过 ssh 访问处于公司内网环境内的主机.</p>
-<h3 id="安装frp"><a href="#安装frp" class="headerlink" title="安装frp"></a>安装frp</h3><p>Server(公网服务器)与Slave(内网服务器)都需要安装frp, 下载地址是<a href="https://github.com/fatedier/frp/releases" target="_blank" rel="external">https://github.com/fatedier/frp/releases</a>.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"># Linux</div><div class="line">wget https://github.com/fatedier/frp/releases/download/v0.21.0/frp_0.21.0_linux_amd64.tar.gz</div><div class="line"></div><div class="line"></div><div class="line"># MacOS</div><div class="line">curl -OL https://github.com/fatedier/frp/releases/download/v0.21.0/frp_0.21.0_darwin_amd64.tar.gz</div></pre></td></tr></table></figure>
-<p>解压<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tar -zxvf frp_0.21.0_linux_amd64.tar.gz</div></pre></td></tr></table></figure></p>
+<h3 id="安装frp"><a href="#安装frp" class="headerlink" title="安装frp"></a>安装frp</h3><p>Server(公网服务器)与Slave(内网服务器)都需要安装frp, 下载地址是<a href="https://github.com/fatedier/frp/releases" target="_blank" rel="noopener">https://github.com/fatedier/frp/releases</a>.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># Linux</span><br><span class="line">wget https://github.com/fatedier/frp/releases/download/v0.21.0/frp_0.21.0_linux_amd64.tar.gz</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># MacOS</span><br><span class="line">curl -OL https://github.com/fatedier/frp/releases/download/v0.21.0/frp_0.21.0_darwin_amd64.tar.gz</span><br></pre></td></tr></table></figure>
+<p>解压<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf frp_0.21.0_linux_amd64.tar.gz</span><br></pre></td></tr></table></figure></p>
 <h3 id="Server端配置"><a href="#Server端配置" class="headerlink" title="Server端配置"></a>Server端配置</h3><ol>
 <li>基本配置  </li>
 </ol>
-<p>在Server端中下载好frp, 解压完成后就cdj进入, 然后编辑frps.ini文件, 添加如下代码.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">[common]</div><div class="line">#与客户端绑定的进行通信的端口</div><div class="line">bind_port = 7000</div><div class="line">#http的访问端口</div><div class="line">vhost_http_port = 80</div><div class="line">#https的访问端口(如果需要的话)</div><div class="line">vhost_https_port = 8080</div></pre></td></tr></table></figure></p>
-<p>然后我们只需要运行如下命令就可以了<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./frps -c ./frps.ini &amp;!</div></pre></td></tr></table></figure></p>
+<p>在Server端中下载好frp, 解压完成后就cdj进入, 然后编辑frps.ini文件, 添加如下代码.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[common]</span><br><span class="line">#与客户端绑定的进行通信的端口</span><br><span class="line">bind_port = 7000</span><br><span class="line">#http的访问端口</span><br><span class="line">vhost_http_port = 80</span><br><span class="line">#https的访问端口(如果需要的话)</span><br><span class="line">vhost_https_port = 8080</span><br></pre></td></tr></table></figure></p>
+<p>然后我们只需要运行如下命令就可以了<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./frps -c ./frps.ini &amp;!</span><br></pre></td></tr></table></figure></p>
 <ol>
 <li>开机自动运行&amp;自动重连  </li>
 </ol>
-<p>这里以通过systemd来初始化为例, 我们只需要编写一个service文件就可以(其他情况请参看<a href="https://github.com/fatedier/frp/issues/176" target="_blank" rel="external">https://github.com/fatedier/frp/issues/176</a>)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">// 进入相关文件</div><div class="line">cd /etc/systemd/system/</div><div class="line"></div><div class="line">// 创建service文件</div><div class="line">touch frps.service</div></pre></td></tr></table></figure>
+<p>这里以通过systemd来初始化为例, 我们只需要编写一个service文件就可以(其他情况请参看<a href="https://github.com/fatedier/frp/issues/176" target="_blank" rel="noopener">https://github.com/fatedier/frp/issues/176</a>)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// 进入相关文件</span><br><span class="line">cd /etc/systemd/system/</span><br><span class="line"></span><br><span class="line">// 创建service文件</span><br><span class="line">touch frps.service</span><br></pre></td></tr></table></figure>
 <p>然后将如下代码写入到frps.service中</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">[Unit]</div><div class="line">Description=frps daemon</div><div class="line">After=syslog.target  network.target</div><div class="line">Wants=network.target</div><div class="line"></div><div class="line">[Service]</div><div class="line">Type=simple</div><div class="line">ExecStart=/home/ubuntu/frp/frps -c /home/ubuntu/frp/frps.ini &amp; #这里地址需要改成自己frp的地址</div><div class="line">Restart= always</div><div class="line">RestartSec=1min</div><div class="line">ExecStop=/usr/bin/killall frps</div><div class="line"></div><div class="line">[Install]</div><div class="line">WantedBy=multi-user.target</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">[Unit]</span><br><span class="line">Description=frps daemon</span><br><span class="line">After=syslog.target  network.target</span><br><span class="line">Wants=network.target</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">Type=simple</span><br><span class="line">ExecStart=/home/ubuntu/frp/frps -c /home/ubuntu/frp/frps.ini &amp; #这里地址需要改成自己frp的地址</span><br><span class="line">Restart= always</span><br><span class="line">RestartSec=1min</span><br><span class="line">ExecStop=/usr/bin/killall frps</span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br></pre></td></tr></table></figure>
 <p>最后启用并启动服务:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">sudo systemctl enable frps</div><div class="line">sudo systemctl start frps</div><div class="line"></div><div class="line">// 查看运行状态</div><div class="line">sudo systemctl status frps</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl enable frps</span><br><span class="line">sudo systemctl start frps</span><br><span class="line"></span><br><span class="line">// 查看运行状态</span><br><span class="line">sudo systemctl status frps</span><br></pre></td></tr></table></figure>
 <p>如果服务的状态是<code>active</code>就表示运行成功了.</p>
 <h3 id="客户端-Slave-配置"><a href="#客户端-Slave-配置" class="headerlink" title="客户端(Slave)配置"></a>客户端(Slave)配置</h3><p>1.基本配置  </p>
-<p>下载解压后进入目录, 编辑<code>frpc.ini</code>文件:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">[common]</div><div class="line">server_addr = server.site # 如: 123.206.87.36</div><div class="line">server_port = 7000 # 与Server端中frps.ini文件中设置的一样.</div><div class="line"></div><div class="line">[ssh]</div><div class="line">type = tcp</div><div class="line">local_ip = 127.0.0.1</div><div class="line">local_port = 22</div><div class="line">remote_port = 20022</div><div class="line"></div><div class="line">[jenkins]</div><div class="line">type = tcp</div><div class="line">local_ip = 127.0.0.1</div><div class="line">local_port = 8080</div><div class="line">remote_port = 28080</div><div class="line"></div><div class="line">[redmine]</div><div class="line">type = tcp</div><div class="line">local_ip = 127.0.0.1</div><div class="line">local_port = 3000</div><div class="line">remote_port = 23000</div></pre></td></tr></table></figure></p>
+<p>下载解压后进入目录, 编辑<code>frpc.ini</code>文件:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">[common]</span><br><span class="line">server_addr = server.site # 如: 123.206.87.36</span><br><span class="line">server_port = 7000 # 与Server端中frps.ini文件中设置的一样.</span><br><span class="line"></span><br><span class="line">[ssh]</span><br><span class="line">type = tcp</span><br><span class="line">local_ip = 127.0.0.1</span><br><span class="line">local_port = 22</span><br><span class="line">remote_port = 20022</span><br><span class="line"></span><br><span class="line">[jenkins]</span><br><span class="line">type = tcp</span><br><span class="line">local_ip = 127.0.0.1</span><br><span class="line">local_port = 8080</span><br><span class="line">remote_port = 28080</span><br><span class="line"></span><br><span class="line">[redmine]</span><br><span class="line">type = tcp</span><br><span class="line">local_ip = 127.0.0.1</span><br><span class="line">local_port = 3000</span><br><span class="line">remote_port = 23000</span><br></pre></td></tr></table></figure></p>
 <p>2.后台执行  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./frpc -c ./frpc.ini &amp;!</div></pre></td></tr></table></figure>
-<p>在<code>frpc.ini</code>文件中分别配置了三对映射, 这时我们便可以通过访问映射好的ip地址来访问到Base(客户端)的服务.<br><a href="http://123.206.87.36:23000" target="_blank" rel="external">访问redmine</a></p>
-<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://www.ibm.com/developerworks/cn/linux/l-cn-sshforward/" target="_blank" rel="external">实战 SSH 端口转发</a> 深入浅出的介绍了SSH端口转发的原理.</p>
-<p><a href="https://github.com/fatedier/frp/blob/master/README_zh.md" target="_blank" rel="external">frp文档</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./frpc -c ./frpc.ini &amp;!</span><br></pre></td></tr></table></figure>
+<p>在<code>frpc.ini</code>文件中分别配置了三对映射, 这时我们便可以通过访问映射好的ip地址来访问到Base(客户端)的服务.<br><a href="http://123.206.87.36:23000" target="_blank" rel="noopener">访问redmine</a></p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://www.ibm.com/developerworks/cn/linux/l-cn-sshforward/" target="_blank" rel="noopener">实战 SSH 端口转发</a> 深入浅出的介绍了SSH端口转发的原理.</p>
+<p><a href="https://github.com/fatedier/frp/blob/master/README_zh.md" target="_blank" rel="noopener">frp文档</a></p>
 
       
     </div>
@@ -594,7 +544,7 @@ Base
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
             文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
@@ -605,9 +555,7 @@ Base
 
       <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="https://avatars3.githubusercontent.com/u/16211378?s=460&v=4"
-               alt="OneKyle" />
+          <img class="site-author-image" itemprop="image" src="https://avatars3.githubusercontent.com/u/16211378?s=460&v=4" alt="OneKyle">
           <p class="site-author-name" itemprop="name">OneKyle</p>
            
               <p class="site-description motion-element" itemprop="description"></p>
@@ -697,7 +645,7 @@ Base
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
+        <div class="copyright">
   
   &copy; 
   <span itemprop="copyrightYear">2019</span>
@@ -850,6 +798,113 @@ Base
   
 
   
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("VqpF9BhiWYEp7D1Kz4cKhQ4v-gzGzoHsz", "vGO2OS6UXoWB1H9d9a6yJn6G");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
 
   
 <script>

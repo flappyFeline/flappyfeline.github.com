@@ -6,15 +6,15 @@
 
 
 <html class="theme-next mist use-motion" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -32,7 +32,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -66,21 +66,21 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content=",," />
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
 
 
+  <meta name="keywords" content=",,">
 
 
 
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0">
 
 
 
@@ -88,12 +88,13 @@
 
 
 <meta name="description" content="局部刷新1234567- (void)insertSections:(NSIndexSet *)sections withRowAnimation:(UITableViewRowAnimation)animation;- (void)deleteSections:(NSIndexSet *)sections withRowAnimation:(UITableViewRowAnimation)ani">
-<meta name="keywords">
+<meta name="keywords" content="iOS,Objective-C">
 <meta property="og:type" content="website">
 <meta property="og:title" content="UITableView之局部刷新的正确使用姿势">
 <meta property="og:url" content="http://yoursite.com/deleted/UITableView之局部刷新的正确使用姿势.html">
 <meta property="og:site_name" content="OneKyle">
 <meta property="og:description" content="局部刷新1234567- (void)insertSections:(NSIndexSet *)sections withRowAnimation:(UITableViewRowAnimation)animation;- (void)deleteSections:(NSIndexSet *)sections withRowAnimation:(UITableViewRowAnimation)ani">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/6b523ad1ly1fdlqzxs87tg208l0fvjsl">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1648176-1674bea0953276a0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1648176-bc64e9e0b121b1c7.gif?imageMogr2/auto-orient/strip">
@@ -129,7 +130,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/deleted/UITableView之局部刷新的正确使用姿势.html"/>
+  <link rel="canonical" href="http://yoursite.com/deleted/UITableView之局部刷新的正确使用姿势.html">
 
 
 
@@ -175,7 +176,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">OneKyle</span>
         <span class="logo-line-after"><i></i></span>
@@ -205,7 +206,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -215,7 +216,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
           </a>
@@ -225,7 +226,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
@@ -261,7 +262,7 @@
 
     
     
-      <h4 id="局部刷新"><a href="#局部刷新" class="headerlink" title="局部刷新"></a>局部刷新</h4><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">- (<span class="keyword">void</span>)insertSections:(<span class="built_in">NSIndexSet</span> *)sections withRowAnimation:(<span class="built_in">UITableViewRowAnimation</span>)animation;</div><div class="line">- (<span class="keyword">void</span>)deleteSections:(<span class="built_in">NSIndexSet</span> *)sections withRowAnimation:(<span class="built_in">UITableViewRowAnimation</span>)animation;</div><div class="line">- (<span class="keyword">void</span>)reloadSections:(<span class="built_in">NSIndexSet</span> *)sections withRowAnimation:(<span class="built_in">UITableViewRowAnimation</span>)animation <span class="built_in">NS_AVAILABLE_IOS</span>(<span class="number">3</span>_0);</div><div class="line"></div><div class="line">- (<span class="keyword">void</span>)insertRowsAtIndexPaths:(<span class="built_in">NSArray</span>&lt;<span class="built_in">NSIndexPath</span> *&gt; *)indexPaths withRowAnimation:(<span class="built_in">UITableViewRowAnimation</span>)animation;</div><div class="line">- (<span class="keyword">void</span>)deleteRowsAtIndexPaths:(<span class="built_in">NSArray</span>&lt;<span class="built_in">NSIndexPath</span> *&gt; *)indexPaths withRowAnimation:(<span class="built_in">UITableViewRowAnimation</span>)animation;</div><div class="line">- (<span class="keyword">void</span>)reloadRowsAtIndexPaths:(<span class="built_in">NSArray</span>&lt;<span class="built_in">NSIndexPath</span> *&gt; *)indexPaths withRowAnimation:(<span class="built_in">UITableViewRowAnimation</span>)animation <span class="built_in">NS_AVAILABLE_IOS</span>(<span class="number">3</span>_0);</div></pre></td></tr></table></figure>
+      <h4 id="局部刷新"><a href="#局部刷新" class="headerlink" title="局部刷新"></a>局部刷新</h4><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)insertSections:(<span class="built_in">NSIndexSet</span> *)sections withRowAnimation:(<span class="built_in">UITableViewRowAnimation</span>)animation;</span><br><span class="line">- (<span class="keyword">void</span>)deleteSections:(<span class="built_in">NSIndexSet</span> *)sections withRowAnimation:(<span class="built_in">UITableViewRowAnimation</span>)animation;</span><br><span class="line">- (<span class="keyword">void</span>)reloadSections:(<span class="built_in">NSIndexSet</span> *)sections withRowAnimation:(<span class="built_in">UITableViewRowAnimation</span>)animation <span class="built_in">NS_AVAILABLE_IOS</span>(<span class="number">3</span>_0);</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)insertRowsAtIndexPaths:(<span class="built_in">NSArray</span>&lt;<span class="built_in">NSIndexPath</span> *&gt; *)indexPaths withRowAnimation:(<span class="built_in">UITableViewRowAnimation</span>)animation;</span><br><span class="line">- (<span class="keyword">void</span>)deleteRowsAtIndexPaths:(<span class="built_in">NSArray</span>&lt;<span class="built_in">NSIndexPath</span> *&gt; *)indexPaths withRowAnimation:(<span class="built_in">UITableViewRowAnimation</span>)animation;</span><br><span class="line">- (<span class="keyword">void</span>)reloadRowsAtIndexPaths:(<span class="built_in">NSArray</span>&lt;<span class="built_in">NSIndexPath</span> *&gt; *)indexPaths withRowAnimation:(<span class="built_in">UITableViewRowAnimation</span>)animation <span class="built_in">NS_AVAILABLE_IOS</span>(<span class="number">3</span>_0);</span><br></pre></td></tr></table></figure>
 <p>苹果提供了较为丰富的tableView数据源操作方法,想必大家早已是信手拈来.<br>使用这些方法不仅可以精细的刷新固定的cell,还可以有选择的使用一些动画,相较而言,<strong>reloadData</strong>则暴力直接了许多.</p>
 <p>然而,当我们使用到这些局部刷新的动画时,往往可以发现被刷新的cell会与另一个相同的cell进行交替.</p>
 <div align="center"><img width="311" height="571" alt="UITableViewRowAnimationLeft" src="http://ww1.sinaimg.cn/large/6b523ad1ly1fdlqzxs87tg208l0fvjsl"></div>
@@ -274,9 +275,9 @@
 <div align="center"><img width="300" height="255" alt="局部刷新对于含有播放器的Cell的影响" src="http://upload-images.jianshu.io/upload_images/1648176-bc64e9e0b121b1c7.gif?imageMogr2/auto-orient/strip"></div>
 
 
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">- (<span class="keyword">void</span>)moveSection:(<span class="built_in">NSInteger</span>)section toSection:(<span class="built_in">NSInteger</span>)newSection <span class="built_in">NS_AVAILABLE_IOS</span>(<span class="number">5</span>_0);</div><div class="line">- (<span class="keyword">void</span>)moveRowAtIndexPath:(<span class="built_in">NSIndexPath</span> *)indexPath toIndexPath:(<span class="built_in">NSIndexPath</span> *)newIndexPath <span class="built_in">NS_AVAILABLE_IOS</span>(<span class="number">5</span>_0);</div></pre></td></tr></table></figure>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)moveSection:(<span class="built_in">NSInteger</span>)section toSection:(<span class="built_in">NSInteger</span>)newSection <span class="built_in">NS_AVAILABLE_IOS</span>(<span class="number">5</span>_0);</span><br><span class="line">- (<span class="keyword">void</span>)moveRowAtIndexPath:(<span class="built_in">NSIndexPath</span> *)indexPath toIndexPath:(<span class="built_in">NSIndexPath</span> *)newIndexPath <span class="built_in">NS_AVAILABLE_IOS</span>(<span class="number">5</span>_0);</span><br></pre></td></tr></table></figure>
 <p>而<strong>move</strong>相关的方法,由于本身就是通过已存在或将要显示的cell来进行交换动画(<strong>纵向</strong>),所以不会再特意创建执行交替动画的cell.</p>
-<h4 id="关于局部刷新的动画"><a href="#关于局部刷新的动画" class="headerlink" title="关于局部刷新的动画."></a>关于局部刷新的动画.</h4><p><code>UITableViewRowAnimation</code>这个枚举标示了多种动画样式,在一般情况下使用相应的枚举值,都会得到我想要的效果.<br>然而,当你使用了<code>UITableViewRowAnimationNone</code>这个枚举,并且被刷新的cell有高度和数量的变化时,这时tableView还是会展现一个动画效果.<br>如果你想禁用这种”隐式动画”,可以暂时禁用动画效果达到目的.<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">[<span class="built_in">UIView</span> setAnimationsEnabled:<span class="literal">NO</span>]; <span class="comment">// 或者[UIView setAnimationsEnabled:NO];</span></div><div class="line">[<span class="keyword">self</span>.tableView reloadSections:[<span class="built_in">NSIndexSet</span> indexSetWithIndex:<span class="number">0</span>] withRowAnimation:<span class="built_in">UITableViewRowAnimationNone</span>];</div><div class="line">[<span class="built_in">UIView</span> setAnimationsEnabled:<span class="literal">YES</span>]; <span class="comment">// 或者[UIView setAnimationsEnabled:YES];</span></div><div class="line"></div><div class="line"><span class="comment">// 批量操作</span></div><div class="line">[<span class="built_in">CATransaction</span> setDisableActions:<span class="literal">YES</span>]; <span class="comment">// 或者[UIView setAnimationsEnabled:NO];</span></div><div class="line">[<span class="keyword">self</span>.tableView beginUpdates];</div><div class="line"><span class="keyword">if</span> (deleIndexPaths.count) &#123;</div><div class="line">    [<span class="keyword">self</span>.tableView deleteRowsAtIndexPaths:deleIndexPaths withRowAnimation:<span class="built_in">UITableViewRowAnimationNone</span>];</div><div class="line">&#125;</div><div class="line"><span class="keyword">if</span> (insertArray.count) &#123;</div><div class="line">    [<span class="keyword">self</span>.tableView insertRowsAtIndexPaths:insertArray withRowAnimation:<span class="built_in">UITableViewRowAnimationNone</span>];</div><div class="line">&#125;</div><div class="line">[<span class="keyword">self</span>.tableView endUpdates];</div><div class="line">[<span class="built_in">CATransaction</span> setDisableActions:<span class="literal">NO</span>]; <span class="comment">// 或者[UIView setAnimationsEnabled:YES];</span></div></pre></td></tr></table></figure></p>
+<h4 id="关于局部刷新的动画"><a href="#关于局部刷新的动画" class="headerlink" title="关于局部刷新的动画."></a>关于局部刷新的动画.</h4><p><code>UITableViewRowAnimation</code>这个枚举标示了多种动画样式,在一般情况下使用相应的枚举值,都会得到我想要的效果.<br>然而,当你使用了<code>UITableViewRowAnimationNone</code>这个枚举,并且被刷新的cell有高度和数量的变化时,这时tableView还是会展现一个动画效果.<br>如果你想禁用这种”隐式动画”,可以暂时禁用动画效果达到目的.<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">[<span class="built_in">UIView</span> setAnimationsEnabled:<span class="literal">NO</span>]; <span class="comment">// 或者[UIView setAnimationsEnabled:NO];</span></span><br><span class="line">[<span class="keyword">self</span>.tableView reloadSections:[<span class="built_in">NSIndexSet</span> indexSetWithIndex:<span class="number">0</span>] withRowAnimation:<span class="built_in">UITableViewRowAnimationNone</span>];</span><br><span class="line">[<span class="built_in">UIView</span> setAnimationsEnabled:<span class="literal">YES</span>]; <span class="comment">// 或者[UIView setAnimationsEnabled:YES];</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 批量操作</span></span><br><span class="line">[<span class="built_in">CATransaction</span> setDisableActions:<span class="literal">YES</span>]; <span class="comment">// 或者[UIView setAnimationsEnabled:NO];</span></span><br><span class="line">[<span class="keyword">self</span>.tableView beginUpdates];</span><br><span class="line"><span class="keyword">if</span> (deleIndexPaths.count) &#123;</span><br><span class="line">    [<span class="keyword">self</span>.tableView deleteRowsAtIndexPaths:deleIndexPaths withRowAnimation:<span class="built_in">UITableViewRowAnimationNone</span>];</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (insertArray.count) &#123;</span><br><span class="line">    [<span class="keyword">self</span>.tableView insertRowsAtIndexPaths:insertArray withRowAnimation:<span class="built_in">UITableViewRowAnimationNone</span>];</span><br><span class="line">&#125;</span><br><span class="line">[<span class="keyword">self</span>.tableView endUpdates];</span><br><span class="line">[<span class="built_in">CATransaction</span> setDisableActions:<span class="literal">NO</span>]; <span class="comment">// 或者[UIView setAnimationsEnabled:YES];</span></span><br></pre></td></tr></table></figure></p>
 
     
   </div>
@@ -334,9 +335,7 @@
 
       <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="https://avatars3.githubusercontent.com/u/16211378?s=460&v=4"
-               alt="OneKyle" />
+          <img class="site-author-image" itemprop="image" src="https://avatars3.githubusercontent.com/u/16211378?s=460&v=4" alt="OneKyle">
           <p class="site-author-name" itemprop="name">OneKyle</p>
            
               <p class="site-description motion-element" itemprop="description"></p>
@@ -410,7 +409,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
+        <div class="copyright">
   
   &copy; 
   <span itemprop="copyrightYear">2019</span>
@@ -559,6 +558,113 @@
   
 
   
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("VqpF9BhiWYEp7D1Kz4cKhQ4v-gzGzoHsz", "vGO2OS6UXoWB1H9d9a6yJn6G");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
 
   
 <script>

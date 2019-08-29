@@ -6,15 +6,15 @@
 
 
 <html class="theme-next mist use-motion" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -32,7 +32,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -66,40 +66,38 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="Hexo, NexT" />
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
 
 
+  <meta name="keywords" content="Hexo, NexT">
 
 
 
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0">
 
 
 
 
 
 
-<meta name="description" content="首发于 2018-07-14 15:23:01最后编辑于2019-06-27 22:42:03
-前言最近在写一个开源的框架, 但是发现效率低下, 于是乎就寻觅了一遭提升开发效率的方法在前辈的提示下, 发现了一款名叫 redmine 的开源项目管理工具我粗略的看了下, 发现redmine不仅流程科学规范, 而且细致入微, 对鞭策自己开发及浏览开发进度是个非常不错的选择.正好我在公司有台用来垫显示器的">
+<meta name="description" content="首发于 2018-07-14 15:23:01最后编辑于2019-06-27 22:42:03 前言最近在写一个开源的框架, 但是发现效率低下, 于是乎就寻觅了一遭提升开发效率的方法在前辈的提示下, 发现了一款名叫 redmine 的开源项目管理工具我粗略的看了下, 发现redmine不仅流程科学规范, 而且细致入微, 对鞭策自己开发及浏览开发进度是个非常不错的选择.正好我在公司有台用来垫显示器的">
 <meta property="og:type" content="article">
 <meta property="og:title" content="基于docker搭建项目管理平台redmine">
 <meta property="og:url" content="http://yoursite.com/2019/06/27/基于docker搭建项目管理平台redmine/index.html">
 <meta property="og:site_name" content="OneKyle">
-<meta property="og:description" content="首发于 2018-07-14 15:23:01最后编辑于2019-06-27 22:42:03
-前言最近在写一个开源的框架, 但是发现效率低下, 于是乎就寻觅了一遭提升开发效率的方法在前辈的提示下, 发现了一款名叫 redmine 的开源项目管理工具我粗略的看了下, 发现redmine不仅流程科学规范, 而且细致入微, 对鞭策自己开发及浏览开发进度是个非常不错的选择.正好我在公司有台用来垫显示器的">
+<meta property="og:description" content="首发于 2018-07-14 15:23:01最后编辑于2019-06-27 22:42:03 前言最近在写一个开源的框架, 但是发现效率低下, 于是乎就寻觅了一遭提升开发效率的方法在前辈的提示下, 发现了一款名叫 redmine 的开源项目管理工具我粗略的看了下, 发现redmine不仅流程科学规范, 而且细致入微, 对鞭策自己开发及浏览开发进度是个非常不错的选择.正好我在公司有台用来垫显示器的">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2019-07-09T03:53:52.219Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="基于docker搭建项目管理平台redmine">
-<meta name="twitter:description" content="首发于 2018-07-14 15:23:01最后编辑于2019-06-27 22:42:03
-前言最近在写一个开源的框架, 但是发现效率低下, 于是乎就寻觅了一遭提升开发效率的方法在前辈的提示下, 发现了一款名叫 redmine 的开源项目管理工具我粗略的看了下, 发现redmine不仅流程科学规范, 而且细致入微, 对鞭策自己开发及浏览开发进度是个非常不错的选择.正好我在公司有台用来垫显示器的">
+<meta name="twitter:description" content="首发于 2018-07-14 15:23:01最后编辑于2019-06-27 22:42:03 前言最近在写一个开源的框架, 但是发现效率低下, 于是乎就寻觅了一遭提升开发效率的方法在前辈的提示下, 发现了一款名叫 redmine 的开源项目管理工具我粗略的看了下, 发现redmine不仅流程科学规范, 而且细致入微, 对鞭策自己开发及浏览开发进度是个非常不错的选择.正好我在公司有台用来垫显示器的">
 
 
 
@@ -127,7 +125,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/06/27/基于docker搭建项目管理平台redmine/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/06/27/基于docker搭建项目管理平台redmine/">
 
 
 
@@ -167,7 +165,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">OneKyle</span>
         <span class="logo-line-after"><i></i></span>
@@ -197,7 +195,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -207,7 +205,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
           </a>
@@ -217,7 +215,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
@@ -256,7 +254,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="OneKyle">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/16211378?s=460&v=4">
     </span>
 
@@ -316,6 +314,17 @@
 
           
           
+             <span id="/2019/06/27/基于docker搭建项目管理平台redmine/" class="leancloud_visitors" data-flag-title="基于docker搭建项目管理平台redmine">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
 
           
 
@@ -335,45 +344,45 @@
 
       
         <p>首发于 <code>2018-07-14 15:23:01</code><br>最后编辑于<code>2019-06-27 22:42:03</code></p>
-<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近在写一个开源的框架, 但是发现效率低下, 于是乎就寻觅了一遭提升开发效率的方法<br>在前辈的提示下, 发现了一款名叫 <a href="https://github.com/redmine/redmine" target="_blank" rel="external">redmine</a> 的开源项目管理工具<br>我粗略的看了下, 发现redmine不仅流程科学规范, 而且细致入微, 对鞭策自己开发及浏览开发进度是个非常不错的选择.<br>正好我在公司有台用来垫显示器的闲置 Mac mini, 就利用一下好了.</p>
-<h2 id="搭建Docker"><a href="#搭建Docker" class="headerlink" title="搭建Docker"></a>搭建Docker</h2><p><a href="https://www.docker.com/" target="_blank" rel="external">Docker</a> 是个划时代的开源项目，它彻底释放了计算虚拟化的威力，极大提高了应用的维护效率，降低了云计算应用开发的成本！使用 Docker，可以让应用的部署、测试和分发都变得前所未有的高效和轻松！</p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近在写一个开源的框架, 但是发现效率低下, 于是乎就寻觅了一遭提升开发效率的方法<br>在前辈的提示下, 发现了一款名叫 <a href="https://github.com/redmine/redmine" target="_blank" rel="noopener">redmine</a> 的开源项目管理工具<br>我粗略的看了下, 发现redmine不仅流程科学规范, 而且细致入微, 对鞭策自己开发及浏览开发进度是个非常不错的选择.<br>正好我在公司有台用来垫显示器的闲置 Mac mini, 就利用一下好了.</p>
+<h2 id="搭建Docker"><a href="#搭建Docker" class="headerlink" title="搭建Docker"></a>搭建Docker</h2><p><a href="https://www.docker.com/" target="_blank" rel="noopener">Docker</a> 是个划时代的开源项目，它彻底释放了计算虚拟化的威力，极大提高了应用的维护效率，降低了云计算应用开发的成本！使用 Docker，可以让应用的部署、测试和分发都变得前所未有的高效和轻松！</p>
 <p>无论是应用开发者、运维人员、还是其他信息技术从业人员，都有必要认识和掌握 Docker，节约有限的生命。</p>
 <p>考虑到以后更换设备的可能(比如说从这台Mac mini 更换到另一台垫显示器的Mac mini), 使用 <code>Docker</code> 来避免配置环境的重复劳动, 是最明智不过了.</p>
-<h3 id="安装Docker"><a href="#安装Docker" class="headerlink" title="安装Docker"></a>安装Docker</h3><p><a href="https://yeasy.gitbooks.io/docker_practice/content/" target="_blank" rel="external">Docker-从入门到实践</a>一书中已有非常详实准确的指南, 可以参看其中的<a href="https://yeasy.gitbooks.io/docker_practice/content/install/" target="_blank" rel="external">安装步骤</a>, 快速的安装Docker</p>
+<h3 id="安装Docker"><a href="#安装Docker" class="headerlink" title="安装Docker"></a>安装Docker</h3><p><a href="https://yeasy.gitbooks.io/docker_practice/content/" target="_blank" rel="noopener">Docker-从入门到实践</a>一书中已有非常详实准确的指南, 可以参看其中的<a href="https://yeasy.gitbooks.io/docker_practice/content/install/" target="_blank" rel="noopener">安装步骤</a>, 快速的安装Docker</p>
 <p>安装完成后, Mac用户可能会报如下错误  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Docker does not rely on Virtualbox but may not work properly on systems with VirtualBox versions prior to v4.3.30 VirtualBox v4.3.28 is currently installed. Please upgrade or uninstall Virtualbox.Docker does not rely on Virtualbox but may not work properly on systems with VirtualBox versions prior to v4.3.30 VirtualBox v4.3.28 is currently installed. Please upgrade or uninstall Virtualbox.</div></pre></td></tr></table></figure>
-<p>google了一下, 发现github中有关于这个的<a href="https://github.com/docker/for-mac/issues/4" target="_blank" rel="external">issue</a>,</p>
-<p>首先检查下本地环境的kextstat:<br>输入命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">kextstat | grep -i virtualbox</div></pre></td></tr></table></figure></p>
-<p>此时如果有信息反馈, 那么执行下一步:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd /Library/Application\ Support/VirtualBox/</div><div class="line">rm -rf *.kext</div></pre></td></tr></table></figure></p>
-<p>清除文件后, 再执行:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">kextstat | grep -i virtualbox</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Docker does not rely on Virtualbox but may not work properly on systems with VirtualBox versions prior to v4.3.30 VirtualBox v4.3.28 is currently installed. Please upgrade or uninstall Virtualbox.Docker does not rely on Virtualbox but may not work properly on systems with VirtualBox versions prior to v4.3.30 VirtualBox v4.3.28 is currently installed. Please upgrade or uninstall Virtualbox.</span><br></pre></td></tr></table></figure>
+<p>google了一下, 发现github中有关于这个的<a href="https://github.com/docker/for-mac/issues/4" target="_blank" rel="noopener">issue</a>,</p>
+<p>首先检查下本地环境的kextstat:<br>输入命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kextstat | grep -i virtualbox</span><br></pre></td></tr></table></figure></p>
+<p>此时如果有信息反馈, 那么执行下一步:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /Library/Application\ Support/VirtualBox/</span><br><span class="line">rm -rf *.kext</span><br></pre></td></tr></table></figure></p>
+<p>清除文件后, 再执行:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kextstat | grep -i virtualbox</span><br></pre></td></tr></table></figure></p>
 <p>这时 应该不会有任何信息出来, 接着我们在重启下mac, 然后再次运行Docker 就OK了.</p>
 <h2 id="安装Redmine"><a href="#安装Redmine" class="headerlink" title="安装Redmine"></a>安装Redmine</h2><p>Redmine依赖数据库, 我这里使用的是MySQL, 而docker hub中已经有redmine及MySQL的官方镜像了, 我们直接加载就行.</p>
-<h3 id="加载镜像"><a href="#加载镜像" class="headerlink" title="加载镜像"></a>加载镜像</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">docker pull mysql:5.7.22</div><div class="line">docker pull redmine:4.0.4</div></pre></td></tr></table></figure>
-<p>安装成功之后，执行docker images，可以看到两个镜像的描述，类似如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"># docker images</div><div class="line">REPOSITORY                         TAG                 IMAGE ID            CREATED             SIZE</div><div class="line">mysql                              5.7.22              66bc0f66b7af        2 weeks ago         372MB</div><div class="line">redmine                            4.0.4               a3175f2fb34e        2 months ago        574MB</div></pre></td></tr></table></figure></p>
-<h3 id="docker-启动-mysql"><a href="#docker-启动-mysql" class="headerlink" title="docker 启动 mysql"></a>docker 启动 mysql</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker run -d -p 3306:3306 --name server-mysql -e MYSQL_ROOT_PASSWORD=&quot;pass&quot;  -e MYSQL_DATABASE=redmine mysql:5.7.22</div></pre></td></tr></table></figure>
+<h3 id="加载镜像"><a href="#加载镜像" class="headerlink" title="加载镜像"></a>加载镜像</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker pull mysql:5.7.22</span><br><span class="line">docker pull redmine:4.0.4</span><br></pre></td></tr></table></figure>
+<p>安装成功之后，执行docker images，可以看到两个镜像的描述，类似如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># docker images</span><br><span class="line">REPOSITORY                         TAG                 IMAGE ID            CREATED             SIZE</span><br><span class="line">mysql                              5.7.22              66bc0f66b7af        2 weeks ago         372MB</span><br><span class="line">redmine                            4.0.4               a3175f2fb34e        2 months ago        574MB</span><br></pre></td></tr></table></figure></p>
+<h3 id="docker-启动-mysql"><a href="#docker-启动-mysql" class="headerlink" title="docker 启动 mysql"></a>docker 启动 mysql</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -p 3306:3306 --name server-mysql -e MYSQL_ROOT_PASSWORD=&quot;pass&quot;  -e MYSQL_DATABASE=redmine mysql:5.7.22</span><br></pre></td></tr></table></figure>
 <p>这里为物理机和虚拟机的3306端口做了端口映射，以让外部用户可以通过3306端口访问mysql实例,</p>
 <h3 id="mysql关于默认不支持utf-8的处理"><a href="#mysql关于默认不支持utf-8的处理" class="headerlink" title="mysql关于默认不支持utf-8的处理"></a>mysql关于默认不支持utf-8的处理</h3><p>我是一开始没有处理这个问题, 然后就立马绑定并run redmin了, 然而在使用redmine的时候有许多地方会报interal error的错误.<br>查看了log发现都是mysql插入utf8字段的的错误. 所以推荐启动完mysql之后, 就要着手立马处理问题, 否则像我一样发现问题再改, 就要废很多功夫了.</p>
-<h3 id="解决流程"><a href="#解决流程" class="headerlink" title="解决流程"></a>解决流程</h3><p>1.查看 刚才创建的MYSQL的 container id<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker ps -a</div></pre></td></tr></table></figure></p>
-<p>2.进入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker exec -it b63ce7258234 /bin/bash</div></pre></td></tr></table></figure></p>
-<p>3.切换成root账号, 密码就是刚才配置的(pass)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mysql -u root -p</div></pre></td></tr></table></figure></p>
-<p>4.查看MySQL字符集<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">SHOW VARIABLES LIKE &apos;character_set_%&apos;;</div><div class="line">SHOW VARIABLES LIKE &apos;collation_%&apos;;</div></pre></td></tr></table></figure></p>
-<p>得到输出:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">// 输出</div><div class="line">mysql&gt; SHOW VARIABLES LIKE &apos;character_set_%&apos;;</div><div class="line">+--------------------------+----------------------------+</div><div class="line">| Variable_name            | Value                      |</div><div class="line">+--------------------------+----------------------------+</div><div class="line">| character_set_client     | latin1                     |</div><div class="line">| character_set_connection | latin1                     |</div><div class="line">| character_set_database   | latin1                     |</div><div class="line">| character_set_filesystem | binary                     |</div><div class="line">| character_set_results    | latin1                     |</div><div class="line">| character_set_server     | latin1                     |</div><div class="line">| character_set_system     | utf8                       |</div><div class="line">| character_sets_dir       | /usr/share/mysql/charsets/ |</div><div class="line">+--------------------------+----------------------------+</div><div class="line">8 rows in set (0.01 sec)</div><div class="line"></div><div class="line">mysql&gt; SHOW VARIABLES LIKE &apos;collation_%&apos;;</div><div class="line">+----------------------+-------------------+</div><div class="line">| Variable_name        | Value             |</div><div class="line">+----------------------+-------------------+</div><div class="line">| collation_connection | latin1_swedish_ci |</div><div class="line">| collation_database   | latin1_swedish_ci |</div><div class="line">| collation_server     | latin1_swedish_ci |</div><div class="line">+----------------------+-------------------+</div><div class="line">3 rows in set (0.00 sec)</div></pre></td></tr></table></figure></p>
-<p>5.设置外部访问的编码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">SET NAMES &apos;utf8&apos;;</div></pre></td></tr></table></figure></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">// 输出</div><div class="line">mysql&gt; SET NAMES &apos;utf8&apos;;</div><div class="line">Query OK, 0 rows affected (0.00 sec)</div><div class="line"></div><div class="line">// 再次查看MySQL字符集, 发现已经变化.</div><div class="line">mysql&gt; SHOW VARIABLES LIKE &apos;character_set_%&apos;;</div><div class="line">+--------------------------+----------------------------+</div><div class="line">| Variable_name            | Value                      |</div><div class="line">+--------------------------+----------------------------+</div><div class="line">| character_set_client     | utf8                       |</div><div class="line">| character_set_connection | utf8                       |</div><div class="line">| character_set_database   | latin1                     |</div><div class="line">| character_set_filesystem | binary                     |</div><div class="line">| character_set_results    | utf8                       |</div><div class="line">| character_set_server     | latin1                     |</div><div class="line">| character_set_system     | utf8                       |</div><div class="line">| character_sets_dir       | /usr/share/mysql/charsets/ |</div><div class="line">+--------------------------+----------------------------+</div><div class="line">8 rows in set (0.00 sec)</div><div class="line"></div><div class="line">mysql&gt; SHOW VARIABLES LIKE &apos;collation_%&apos;;</div><div class="line">+----------------------+-------------------+</div><div class="line">| Variable_name        | Value             |</div><div class="line">+----------------------+-------------------+</div><div class="line">| collation_connection | utf8_general_ci   |</div><div class="line">| collation_database   | latin1_swedish_ci |</div><div class="line">| collation_server     | latin1_swedish_ci |</div><div class="line">+----------------------+-------------------+</div><div class="line">3 rows in set (0.01 sec)</div></pre></td></tr></table></figure>
+<h3 id="解决流程"><a href="#解决流程" class="headerlink" title="解决流程"></a>解决流程</h3><p>1.查看 刚才创建的MYSQL的 container id<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker ps -a</span><br></pre></td></tr></table></figure></p>
+<p>2.进入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker exec -it b63ce7258234 /bin/bash</span><br></pre></td></tr></table></figure></p>
+<p>3.切换成root账号, 密码就是刚才配置的(pass)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root -p</span><br></pre></td></tr></table></figure></p>
+<p>4.查看MySQL字符集<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SHOW VARIABLES LIKE &apos;character_set_%&apos;;</span><br><span class="line">SHOW VARIABLES LIKE &apos;collation_%&apos;;</span><br></pre></td></tr></table></figure></p>
+<p>得到输出:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">// 输出</span><br><span class="line">mysql&gt; SHOW VARIABLES LIKE &apos;character_set_%&apos;;</span><br><span class="line">+--------------------------+----------------------------+</span><br><span class="line">| Variable_name            | Value                      |</span><br><span class="line">+--------------------------+----------------------------+</span><br><span class="line">| character_set_client     | latin1                     |</span><br><span class="line">| character_set_connection | latin1                     |</span><br><span class="line">| character_set_database   | latin1                     |</span><br><span class="line">| character_set_filesystem | binary                     |</span><br><span class="line">| character_set_results    | latin1                     |</span><br><span class="line">| character_set_server     | latin1                     |</span><br><span class="line">| character_set_system     | utf8                       |</span><br><span class="line">| character_sets_dir       | /usr/share/mysql/charsets/ |</span><br><span class="line">+--------------------------+----------------------------+</span><br><span class="line">8 rows in set (0.01 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; SHOW VARIABLES LIKE &apos;collation_%&apos;;</span><br><span class="line">+----------------------+-------------------+</span><br><span class="line">| Variable_name        | Value             |</span><br><span class="line">+----------------------+-------------------+</span><br><span class="line">| collation_connection | latin1_swedish_ci |</span><br><span class="line">| collation_database   | latin1_swedish_ci |</span><br><span class="line">| collation_server     | latin1_swedish_ci |</span><br><span class="line">+----------------------+-------------------+</span><br><span class="line">3 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure></p>
+<p>5.设置外部访问的编码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SET NAMES &apos;utf8&apos;;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">// 输出</span><br><span class="line">mysql&gt; SET NAMES &apos;utf8&apos;;</span><br><span class="line">Query OK, 0 rows affected (0.00 sec)</span><br><span class="line"></span><br><span class="line">// 再次查看MySQL字符集, 发现已经变化.</span><br><span class="line">mysql&gt; SHOW VARIABLES LIKE &apos;character_set_%&apos;;</span><br><span class="line">+--------------------------+----------------------------+</span><br><span class="line">| Variable_name            | Value                      |</span><br><span class="line">+--------------------------+----------------------------+</span><br><span class="line">| character_set_client     | utf8                       |</span><br><span class="line">| character_set_connection | utf8                       |</span><br><span class="line">| character_set_database   | latin1                     |</span><br><span class="line">| character_set_filesystem | binary                     |</span><br><span class="line">| character_set_results    | utf8                       |</span><br><span class="line">| character_set_server     | latin1                     |</span><br><span class="line">| character_set_system     | utf8                       |</span><br><span class="line">| character_sets_dir       | /usr/share/mysql/charsets/ |</span><br><span class="line">+--------------------------+----------------------------+</span><br><span class="line">8 rows in set (0.00 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; SHOW VARIABLES LIKE &apos;collation_%&apos;;</span><br><span class="line">+----------------------+-------------------+</span><br><span class="line">| Variable_name        | Value             |</span><br><span class="line">+----------------------+-------------------+</span><br><span class="line">| collation_connection | utf8_general_ci   |</span><br><span class="line">| collation_database   | latin1_swedish_ci |</span><br><span class="line">| collation_server     | latin1_swedish_ci |</span><br><span class="line">+----------------------+-------------------+</span><br><span class="line">3 rows in set (0.01 sec)</span><br></pre></td></tr></table></figure>
 <p>6.修改mysql配置文件 (/etc/mysql/mysql.conf.d/mysqld.cn)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">// 先退出</div><div class="line">exit</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line">// 编辑配置文件</div><div class="line">// 由于此环境内没有vim 所以直接用 echo &quot;下面文本的内容&quot; &gt; /etc/mysql/mysql.conf.d/mysqld.cn 进行覆盖</div><div class="line"></div><div class="line"># Copyright (c) 2014, 2016, Oracle and/or its affiliates. All rights reserved.</div><div class="line">#</div><div class="line"># This program is free software; you can redistribute it and/or modify</div><div class="line"># it under the terms of the GNU General Public License as published by</div><div class="line"># the Free Software Foundation; version 2 of the License.</div><div class="line">#</div><div class="line"># This program is distributed in the hope that it will be useful,</div><div class="line"># but WITHOUT ANY WARRANTY; without even the implied warranty of</div><div class="line"># MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</div><div class="line"># GNU General Public License for more details.</div><div class="line">#</div><div class="line"># You should have received a copy of the GNU General Public License</div><div class="line"># along with this program; if not, write to the Free Software</div><div class="line"># Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA</div><div class="line"></div><div class="line">#</div><div class="line"># The MySQL  Server configuration file.</div><div class="line">#</div><div class="line"># For explanations see</div><div class="line"># http://dev.mysql.com/doc/mysql/en/server-system-variables.html</div><div class="line"></div><div class="line">[mysql]</div><div class="line">default-character-set = utf8</div><div class="line"></div><div class="line"></div><div class="line">[mysql_safe]</div><div class="line">default-character-set = utf8</div><div class="line"></div><div class="line"></div><div class="line">[client]</div><div class="line">default-character-set = utf8</div><div class="line"></div><div class="line">[mysqld]</div><div class="line">pid-file	= /var/run/mysqld/mysqld.pid</div><div class="line">socket		= /var/run/mysqld/mysqld.sock</div><div class="line">datadir		= /var/lib/mysql</div><div class="line">#log-error	= /var/log/mysql/error.log</div><div class="line"># By default we only accept connections from localhost</div><div class="line">#bind-address	= 127.0.0.1</div><div class="line"># Disabling symbolic-links is recommended to prevent assorted security risks</div><div class="line">symbolic-links=0</div><div class="line">init_connect  = &apos;SET NAMES utf8&apos;</div><div class="line">character-set-server = utf8</div><div class="line">collation-server = utf8_unicode_ci</div></pre></td></tr></table></figure>
-<p>7.退出, 停止容器<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">exit</div><div class="line"></div><div class="line">docker stop b63ce7258234</div></pre></td></tr></table></figure></p>
-<p>8.基于刚才的容器创建一个新的镜像<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker commit b63ce7258234 mysql-utf8:5.7.22</div></pre></td></tr></table></figure></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">// 删除刚才使用的容器</div><div class="line">docker rm b63ce7258234</div></pre></td></tr></table></figure>
-<p>9.基于刚才创建的镜像，启动一个新的容器<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker run -d -p 3306:3306 --name server-mysql-uft8 -e MYSQL_ROOT_PASSWORD=&quot;pass&quot;  -e MYSQL_DATABASE=redmine mysql-utf8:5.7.22</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// 先退出</span><br><span class="line">exit</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">// 编辑配置文件</span><br><span class="line">// 由于此环境内没有vim 所以直接用 echo &quot;下面文本的内容&quot; &gt; /etc/mysql/mysql.conf.d/mysqld.cn 进行覆盖</span><br><span class="line"></span><br><span class="line"># Copyright (c) 2014, 2016, Oracle and/or its affiliates. All rights reserved.</span><br><span class="line">#</span><br><span class="line"># This program is free software; you can redistribute it and/or modify</span><br><span class="line"># it under the terms of the GNU General Public License as published by</span><br><span class="line"># the Free Software Foundation; version 2 of the License.</span><br><span class="line">#</span><br><span class="line"># This program is distributed in the hope that it will be useful,</span><br><span class="line"># but WITHOUT ANY WARRANTY; without even the implied warranty of</span><br><span class="line"># MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span><br><span class="line"># GNU General Public License for more details.</span><br><span class="line">#</span><br><span class="line"># You should have received a copy of the GNU General Public License</span><br><span class="line"># along with this program; if not, write to the Free Software</span><br><span class="line"># Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA</span><br><span class="line"></span><br><span class="line">#</span><br><span class="line"># The MySQL  Server configuration file.</span><br><span class="line">#</span><br><span class="line"># For explanations see</span><br><span class="line"># http://dev.mysql.com/doc/mysql/en/server-system-variables.html</span><br><span class="line"></span><br><span class="line">[mysql]</span><br><span class="line">default-character-set = utf8</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">[mysql_safe]</span><br><span class="line">default-character-set = utf8</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">[client]</span><br><span class="line">default-character-set = utf8</span><br><span class="line"></span><br><span class="line">[mysqld]</span><br><span class="line">pid-file	= /var/run/mysqld/mysqld.pid</span><br><span class="line">socket		= /var/run/mysqld/mysqld.sock</span><br><span class="line">datadir		= /var/lib/mysql</span><br><span class="line">#log-error	= /var/log/mysql/error.log</span><br><span class="line"># By default we only accept connections from localhost</span><br><span class="line">#bind-address	= 127.0.0.1</span><br><span class="line"># Disabling symbolic-links is recommended to prevent assorted security risks</span><br><span class="line">symbolic-links=0</span><br><span class="line">init_connect  = &apos;SET NAMES utf8&apos;</span><br><span class="line">character-set-server = utf8</span><br><span class="line">collation-server = utf8_unicode_ci</span><br></pre></td></tr></table></figure>
+<p>7.退出, 停止容器<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">exit</span><br><span class="line"></span><br><span class="line">docker stop b63ce7258234</span><br></pre></td></tr></table></figure></p>
+<p>8.基于刚才的容器创建一个新的镜像<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker commit b63ce7258234 mysql-utf8:5.7.22</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// 删除刚才使用的容器</span><br><span class="line">docker rm b63ce7258234</span><br></pre></td></tr></table></figure>
+<p>9.基于刚才创建的镜像，启动一个新的容器<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -p 3306:3306 --name server-mysql-uft8 -e MYSQL_ROOT_PASSWORD=&quot;pass&quot;  -e MYSQL_DATABASE=redmine mysql-utf8:5.7.22</span><br></pre></td></tr></table></figure></p>
 <p>好了，修改就到此结束了，后面创建mysql容器时只要使用这个镜像就无需再重新修改字符集了</p>
-<h3 id="docker启动redmine"><a href="#docker启动redmine" class="headerlink" title="docker启动redmine"></a>docker启动redmine</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker run -d -p 3000:3000 --name=server-redmine -e MYSQL_ROOT_PASSWORD=&quot;pass&quot; --link server-mysql-uft8:mysql redmine:4.0.4</div></pre></td></tr></table></figure>
+<h3 id="docker启动redmine"><a href="#docker启动redmine" class="headerlink" title="docker启动redmine"></a>docker启动redmine</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -p 3000:3000 --name=server-redmine -e MYSQL_ROOT_PASSWORD=&quot;pass&quot; --link server-mysql-uft8:mysql redmine:4.0.4</span><br></pre></td></tr></table></figure>
 <p>这里为物理机和虚拟机的3000与3000端口做了端口映射，使用外部用户可以通过8080端口访问redmine.</p>
-<p>一切正常的话, 使用 docker ps -a 可以看到docker中运行的进程:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"># docker ps -a</div><div class="line">ONTAINER ID        IMAGE                              COMMAND                  CREATED             STATUS                    PORTS                    NAMES</div><div class="line">c7a2a67fb328        redmine:4.0.4                      &quot;/docker-entrypoint.…&quot;   14 minutes ago      Up 18 minutes             0.0.0.0:3000-&gt;3000/tcp   server-redmine</div><div class="line">c548ae6a6002        mysql-utf8:5.7.22                  &quot;docker-entrypoint.s…&quot;   15 minutes ago      Up 18 minutes             0.0.0.0:3306-&gt;3306/tcp   mysql-utf8</div></pre></td></tr></table></figure></p>
+<p>一切正常的话, 使用 docker ps -a 可以看到docker中运行的进程:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># docker ps -a</span><br><span class="line">ONTAINER ID        IMAGE                              COMMAND                  CREATED             STATUS                    PORTS                    NAMES</span><br><span class="line">c7a2a67fb328        redmine:4.0.4                      &quot;/docker-entrypoint.…&quot;   14 minutes ago      Up 18 minutes             0.0.0.0:3000-&gt;3000/tcp   server-redmine</span><br><span class="line">c548ae6a6002        mysql-utf8:5.7.22                  &quot;docker-entrypoint.s…&quot;   15 minutes ago      Up 18 minutes             0.0.0.0:3306-&gt;3306/tcp   mysql-utf8</span><br></pre></td></tr></table></figure></p>
 <h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><p>使用最新的mysql会出错, 因为 mysql:latest (mysql 8)中修改了authentication method 导致redmine(redmine目前19-06-27最高支持的mysql版本是5.7.26)无法登录.</p>
 <p><strong>在第一次进入redmine的管理页面时, 会提示加载默认配置, 注意将语言勾选为English 以避免中文默认配置无法新建问题的Bug…</strong></p>
-<h2 id="完成"><a href="#完成" class="headerlink" title="完成"></a>完成</h2><p>浏览器中打开 <a href="localhost:3000" target="_blank" rel="external">localhost:3000</a> 就可以访问redmine开始玩耍了.</p>
+<h2 id="完成"><a href="#完成" class="headerlink" title="完成"></a>完成</h2><p>浏览器中打开 <a href="localhost:3000" target="_blank" rel="noopener">localhost:3000</a> 就可以访问redmine开始玩耍了.</p>
 
       
     </div>
@@ -485,7 +494,7 @@
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
             文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
@@ -496,9 +505,7 @@
 
       <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="https://avatars3.githubusercontent.com/u/16211378?s=460&v=4"
-               alt="OneKyle" />
+          <img class="site-author-image" itemprop="image" src="https://avatars3.githubusercontent.com/u/16211378?s=460&v=4" alt="OneKyle">
           <p class="site-author-name" itemprop="name">OneKyle</p>
            
               <p class="site-description motion-element" itemprop="description"></p>
@@ -588,7 +595,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
+        <div class="copyright">
   
   &copy; 
   <span itemprop="copyrightYear">2019</span>
@@ -741,6 +748,113 @@
   
 
   
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("VqpF9BhiWYEp7D1Kz4cKhQ4v-gzGzoHsz", "vGO2OS6UXoWB1H9d9a6yJn6G");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
 
   
 <script>

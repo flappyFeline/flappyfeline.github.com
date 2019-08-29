@@ -6,15 +6,15 @@
 
 
 <html class="theme-next mist use-motion" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -32,7 +32,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -66,40 +66,39 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="where clauses for associated types,add type constraints to a Swift protocol conformance extension,Extension of type Array with constraints cannot have an inheritance clause" />
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
 
 
+  <meta name="keywords" content="where clauses for associated types,add type constraints to a Swift protocol conformance extension,Extension of type Array with constraints cannot have an inheritance clause">
 
 
 
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0">
 
 
 
 
 
 
-<meta name="description" content="分类中添加约束?例如, 有一个 Array&amp;lt;SomeType&amp;gt; 类型(Element 为 SomeType)的数组, 而我只想让这种类型的数组遵守 SomeProtocol 协议. 理想情况下, 应该这么写:
-123456extension Array: SomeProtocol where Element : SomeType &amp;#123;    func someMethod()">
+<meta name="description" content="分类中添加约束?例如, 有一个 Array&amp;lt;SomeType&amp;gt; 类型(Element 为 SomeType)的数组, 而我只想让这种类型的数组遵守 SomeProtocol 协议. 理想情况下, 应该这么写: 123456extension Array: SomeProtocol where Element : SomeType &amp;#123;    func someMethod()">
+<meta name="keywords" content="where clauses for associated types,add type constraints to a Swift protocol conformance extension,Extension of type Array with constraints cannot have an inheritance clause">
 <meta property="og:type" content="article">
 <meta property="og:title" content="为泛型类型遵守协议添加类型约束">
 <meta property="og:url" content="http://yoursite.com/2017/06/25/为协议遵守添加类型约束/index.html">
 <meta property="og:site_name" content="OneKyle">
-<meta property="og:description" content="分类中添加约束?例如, 有一个 Array&amp;lt;SomeType&amp;gt; 类型(Element 为 SomeType)的数组, 而我只想让这种类型的数组遵守 SomeProtocol 协议. 理想情况下, 应该这么写:
-123456extension Array: SomeProtocol where Element : SomeType &amp;#123;    func someMethod()">
+<meta property="og:description" content="分类中添加约束?例如, 有一个 Array&amp;lt;SomeType&amp;gt; 类型(Element 为 SomeType)的数组, 而我只想让这种类型的数组遵守 SomeProtocol 协议. 理想情况下, 应该这么写: 123456extension Array: SomeProtocol where Element : SomeType &amp;#123;    func someMethod()">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2017-06-25T14:51:20.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="为泛型类型遵守协议添加类型约束">
-<meta name="twitter:description" content="分类中添加约束?例如, 有一个 Array&amp;lt;SomeType&amp;gt; 类型(Element 为 SomeType)的数组, 而我只想让这种类型的数组遵守 SomeProtocol 协议. 理想情况下, 应该这么写:
-123456extension Array: SomeProtocol where Element : SomeType &amp;#123;    func someMethod()">
+<meta name="twitter:description" content="分类中添加约束?例如, 有一个 Array&amp;lt;SomeType&amp;gt; 类型(Element 为 SomeType)的数组, 而我只想让这种类型的数组遵守 SomeProtocol 协议. 理想情况下, 应该这么写: 123456extension Array: SomeProtocol where Element : SomeType &amp;#123;    func someMethod()">
 
 
 
@@ -127,7 +126,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/06/25/为协议遵守添加类型约束/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/06/25/为协议遵守添加类型约束/">
 
 
 
@@ -167,7 +166,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">OneKyle</span>
         <span class="logo-line-after"><i></i></span>
@@ -197,7 +196,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -207,7 +206,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
           </a>
@@ -217,7 +216,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
@@ -256,7 +255,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="OneKyle">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/16211378?s=460&v=4">
     </span>
 
@@ -316,6 +315,17 @@
 
           
           
+             <span id="/2017/06/25/为协议遵守添加类型约束/" class="leancloud_visitors" data-flag-title="为泛型类型遵守协议添加类型约束">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
 
           
 
@@ -335,19 +345,19 @@
 
       
         <h3 id="分类中添加约束"><a href="#分类中添加约束" class="headerlink" title="分类中添加约束?"></a>分类中添加约束?</h3><p>例如, 有一个 <code>Array&lt;SomeType&gt;</code> 类型(<code>Element</code> 为 <code>SomeType</code>)的数组, 而我只想让这种类型的数组遵守 <code>SomeProtocol</code> 协议. 理想情况下, 应该这么写:</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Array</span>: <span class="title">SomeProtocol</span> <span class="title">where</span> <span class="title">Element</span> : <span class="title">SomeType</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">someMethod</span><span class="params">()</span></span> &#123;</div><div class="line">        </div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Array</span>: <span class="title">SomeProtocol</span> <span class="title">where</span> <span class="title">Element</span> : <span class="title">SomeType</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">someMethod</span><span class="params">()</span></span> &#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>但事实上并不能这么写, Xcode会报一个error:<br><code>Extension of type &#39;Array&#39; with constraints cannot have an inheritance clause</code></p>
 <h3 id="声明中添加约束"><a href="#声明中添加约束" class="headerlink" title="声明中添加约束"></a>声明中添加约束</h3><p>既然分类中不可以,那么对于自定义的类型, 在声明中就可行吗?<br>如果是在声明中使用泛型的类型约束, 应该是这么写:</p>
-<h4 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">TestClass</span>&lt;<span class="title">ObjectType</span>&gt;: <span class="title">SomeProtocol</span> <span class="title">where</span> <span class="title">ObjectType</span> : <span class="title">SomeType</span> </span>&#123;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">testMethod</span><span class="params">()</span></span> &#123;</div><div class="line">        </div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">SomeProtocol</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">testMethod</span><span class="params">()</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TestClass</span>&lt;<span class="title">ObjectType</span>&gt;: <span class="title">SomeProtocol</span> <span class="title">where</span> <span class="title">ObjectType</span> : <span class="title">SomeType</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">testMethod</span><span class="params">()</span></span> &#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">SomeProtocol</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">testMethod</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>编译通过, 测试下试试:</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> test1: <span class="type">TestClass</span>&lt;<span class="type">String</span>&gt;; <span class="comment">// error: ❗️'TestClass' requires that 'String' inherit from 'NSObject'</span></div><div class="line"><span class="keyword">let</span> test2: <span class="type">TestClass</span>&lt;<span class="type">SomeType</span>&gt;;</div><div class="line">test2.testMethod();</div></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> test1: <span class="type">TestClass</span>&lt;<span class="type">String</span>&gt;; <span class="comment">// error: ❗️'TestClass' requires that 'String' inherit from 'NSObject'</span></span><br><span class="line"><span class="keyword">let</span> test2: <span class="type">TestClass</span>&lt;<span class="type">SomeType</span>&gt;;</span><br><span class="line">test2.testMethod();</span><br></pre></td></tr></table></figure>
 <h4 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h4><p>可以看到, 在声明中使用类型约束, 可以实现一定的效果, 但是这么操作有很大的局限性: 1. 不能对非自定义类型使用. 2. 会将泛型强制规定为这一类型. </p>
 <h3 id="较完美的方案"><a href="#较完美的方案" class="headerlink" title="较完美的方案"></a>较完美的方案</h3><p>难道就没有一种<code>完美</code>的实现方案吗?<br>在电光石火间, 我抓住了灵感的一瞬:</p>
-<h4 id="实现-1"><a href="#实现-1" class="headerlink" title="实现"></a>实现</h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">TestClass</span>: <span class="title">SomeProtocol</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">testMethod</span><span class="params">()</span></span> &#123;</div><div class="line">        <span class="built_in">print</span>(<span class="string">"ObjectType isn't SomeType"</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">TestClass</span> <span class="title">where</span> <span class="title">ObjectType</span> : <span class="title">SomeType</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">testMethod</span><span class="params">()</span></span> &#123;</div><div class="line">        <span class="built_in">print</span>(<span class="string">"ObjectType is SomeType!"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>test:<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> test1: <span class="type">TestClass</span>&lt;<span class="type">NSObject</span>&gt; = <span class="type">TestClass</span>();</div><div class="line"><span class="keyword">let</span> test2: <span class="type">TestClass</span>&lt;<span class="type">SomeType</span>&gt; = <span class="type">TestClass</span>();</div><div class="line"></div><div class="line">test1.testMethod(); <span class="comment">// ObjectType isn't SomeType</span></div><div class="line">test2.testMethod(); <span class="comment">// ObjectType is SomeType!</span></div></pre></td></tr></table></figure></p>
+<h4 id="实现-1"><a href="#实现-1" class="headerlink" title="实现"></a>实现</h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">TestClass</span>: <span class="title">SomeProtocol</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">testMethod</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"ObjectType isn't SomeType"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">TestClass</span> <span class="title">where</span> <span class="title">ObjectType</span> : <span class="title">SomeType</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">testMethod</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"ObjectType is SomeType!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>test:<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> test1: <span class="type">TestClass</span>&lt;<span class="type">NSObject</span>&gt; = <span class="type">TestClass</span>();</span><br><span class="line"><span class="keyword">let</span> test2: <span class="type">TestClass</span>&lt;<span class="type">SomeType</span>&gt; = <span class="type">TestClass</span>();</span><br><span class="line"></span><br><span class="line">test1.testMethod(); <span class="comment">// ObjectType isn't SomeType</span></span><br><span class="line">test2.testMethod(); <span class="comment">// ObjectType is SomeType!</span></span><br></pre></td></tr></table></figure></p>
 <h4 id="缺点-1"><a href="#缺点-1" class="headerlink" title="缺点"></a>缺点</h4><p>这个方案可以比较好的实现我们的需求, 唯一的缺点就是, 由于遵守协议时不能使用类型约束, 导致其他类型也可以使用协议内函数与变量.</p>
-<h3 id="相关"><a href="#相关" class="headerlink" title="相关"></a>相关</h3><p><code>stackoverflow</code>上也有同学给出了<a href="https://stackoverflow.com/questions/33332613/is-it-possible-to-add-type-constraints-to-a-swift-protocol-conformance-extension" target="_blank" rel="external">另一种思路</a>.</p>
-<p>同时, <code>Swift</code>团队也把这项优化添加到了<code>swift-evolution</code> 中, 相信在 <code>Swfit4</code> 中就能看到:  <a href="https://github.com/apple/swift-evolution/blob/master/README.md" target="_blank" rel="external">Generics improvements needed by the standard library</a>.</p>
+<h3 id="相关"><a href="#相关" class="headerlink" title="相关"></a>相关</h3><p><code>stackoverflow</code>上也有同学给出了<a href="https://stackoverflow.com/questions/33332613/is-it-possible-to-add-type-constraints-to-a-swift-protocol-conformance-extension" target="_blank" rel="noopener">另一种思路</a>.</p>
+<p>同时, <code>Swift</code>团队也把这项优化添加到了<code>swift-evolution</code> 中, 相信在 <code>Swfit4</code> 中就能看到:  <a href="https://github.com/apple/swift-evolution/blob/master/README.md" target="_blank" rel="noopener">Generics improvements needed by the standard library</a>.</p>
 
       
     </div>
@@ -467,7 +477,7 @@
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
             文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
@@ -478,9 +488,7 @@
 
       <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="https://avatars3.githubusercontent.com/u/16211378?s=460&v=4"
-               alt="OneKyle" />
+          <img class="site-author-image" itemprop="image" src="https://avatars3.githubusercontent.com/u/16211378?s=460&v=4" alt="OneKyle">
           <p class="site-author-name" itemprop="name">OneKyle</p>
            
               <p class="site-description motion-element" itemprop="description"></p>
@@ -570,7 +578,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
+        <div class="copyright">
   
   &copy; 
   <span itemprop="copyrightYear">2019</span>
@@ -723,6 +731,113 @@
   
 
   
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("VqpF9BhiWYEp7D1Kz4cKhQ4v-gzGzoHsz", "vGO2OS6UXoWB1H9d9a6yJn6G");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
 
   
 <script>

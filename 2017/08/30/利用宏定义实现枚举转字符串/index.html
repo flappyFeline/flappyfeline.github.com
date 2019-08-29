@@ -6,15 +6,15 @@
 
 
 <html class="theme-next mist use-motion" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -32,7 +32,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -66,43 +66,39 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="Objective-C,iOS," />
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
 
 
+  <meta name="keywords" content="Objective-C,iOS,">
 
 
 
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0">
 
 
 
 
 
 
-<meta name="description" content="前言在我们编码过程中,枚举会经常用到, 尤其是用来表示多种状态时.然而, 在OC中, 对枚举进行打印调试 或者 拼接方法 的操作的编程体验是非常差的. 
-例子以下这种情况你应该会经常遇到:
-123456789// 你工作时的几种状态typedef NS_ENUM(NSInteger, WorkStatus) &amp;#123;    /** 摸鱼*/    WorkStatusUnKnown,    /">
+<meta name="description" content="前言在我们编码过程中,枚举会经常用到, 尤其是用来表示多种状态时.然而, 在OC中, 对枚举进行打印调试 或者 拼接方法 的操作的编程体验是非常差的.  例子以下这种情况你应该会经常遇到: 123456789// 你工作时的几种状态typedef NS_ENUM(NSInteger, WorkStatus) &amp;#123;    /** 摸鱼*/    WorkStatusUnKnown,    /">
+<meta name="keywords" content="Objective-C,iOS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="利用宏定义实现枚举转字符串">
 <meta property="og:url" content="http://yoursite.com/2017/08/30/利用宏定义实现枚举转字符串/index.html">
 <meta property="og:site_name" content="OneKyle">
-<meta property="og:description" content="前言在我们编码过程中,枚举会经常用到, 尤其是用来表示多种状态时.然而, 在OC中, 对枚举进行打印调试 或者 拼接方法 的操作的编程体验是非常差的. 
-例子以下这种情况你应该会经常遇到:
-123456789// 你工作时的几种状态typedef NS_ENUM(NSInteger, WorkStatus) &amp;#123;    /** 摸鱼*/    WorkStatusUnKnown,    /">
+<meta property="og:description" content="前言在我们编码过程中,枚举会经常用到, 尤其是用来表示多种状态时.然而, 在OC中, 对枚举进行打印调试 或者 拼接方法 的操作的编程体验是非常差的.  例子以下这种情况你应该会经常遇到: 123456789// 你工作时的几种状态typedef NS_ENUM(NSInteger, WorkStatus) &amp;#123;    /** 摸鱼*/    WorkStatusUnKnown,    /">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2017-08-30T07:14:00.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="利用宏定义实现枚举转字符串">
-<meta name="twitter:description" content="前言在我们编码过程中,枚举会经常用到, 尤其是用来表示多种状态时.然而, 在OC中, 对枚举进行打印调试 或者 拼接方法 的操作的编程体验是非常差的. 
-例子以下这种情况你应该会经常遇到:
-123456789// 你工作时的几种状态typedef NS_ENUM(NSInteger, WorkStatus) &amp;#123;    /** 摸鱼*/    WorkStatusUnKnown,    /">
+<meta name="twitter:description" content="前言在我们编码过程中,枚举会经常用到, 尤其是用来表示多种状态时.然而, 在OC中, 对枚举进行打印调试 或者 拼接方法 的操作的编程体验是非常差的.  例子以下这种情况你应该会经常遇到: 123456789// 你工作时的几种状态typedef NS_ENUM(NSInteger, WorkStatus) &amp;#123;    /** 摸鱼*/    WorkStatusUnKnown,    /">
 
 
 
@@ -130,7 +126,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/08/30/利用宏定义实现枚举转字符串/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/08/30/利用宏定义实现枚举转字符串/">
 
 
 
@@ -170,7 +166,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">OneKyle</span>
         <span class="logo-line-after"><i></i></span>
@@ -200,7 +196,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -210,7 +206,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
           </a>
@@ -220,7 +216,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
@@ -259,7 +255,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="OneKyle">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/16211378?s=460&v=4">
     </span>
 
@@ -319,6 +315,17 @@
 
           
           
+             <span id="/2017/08/30/利用宏定义实现枚举转字符串/" class="leancloud_visitors" data-flag-title="利用宏定义实现枚举转字符串">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
 
           
 
@@ -339,29 +346,29 @@
       
         <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在我们编码过程中,<code>枚举</code>会经常用到, 尤其是用来表示多种状态时.<br>然而, 在OC中, 对<code>枚举</code>进行打印调试 或者 拼接方法 的操作的编程体验是非常差的. </p>
 <h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><p>以下这种情况你应该会经常遇到:</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 你工作时的几种状态</span></div><div class="line"><span class="keyword">typedef</span> <span class="built_in">NS_ENUM</span>(<span class="built_in">NSInteger</span>, WorkStatus) &#123;</div><div class="line">    <span class="comment">/** 摸鱼*/</span></div><div class="line">    WorkStatusUnKnown,</div><div class="line">    <span class="comment">/** 认真工作*/</span></div><div class="line">    WorkStatusWorking,</div><div class="line">    <span class="comment">/** 休息*/</span></div><div class="line">    WorkStatusSleeping,</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 你工作时的几种状态</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="built_in">NS_ENUM</span>(<span class="built_in">NSInteger</span>, WorkStatus) &#123;</span><br><span class="line">    <span class="comment">/** 摸鱼*/</span></span><br><span class="line">    WorkStatusUnKnown,</span><br><span class="line">    <span class="comment">/** 认真工作*/</span></span><br><span class="line">    WorkStatusWorking,</span><br><span class="line">    <span class="comment">/** 休息*/</span></span><br><span class="line">    WorkStatusSleeping,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <p>当我们想要打印这个枚举时, 默认输出的是这个枚举标识符所对应的值, 这样的效果是非常不理想的, 只输出数字,不直观(我们之所以使用枚举来定义状态, 不就是要直观的表示吗?), 为了达到<code>直观</code>这一目的, 写一个将枚举标识符转换成字符串的方法就势在必得了:</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">- (<span class="built_in">NSString</span> *)WorkStatusDescription:(WorkStatus)status</div><div class="line">&#123;</div><div class="line">    <span class="built_in">NSString</span> *desc = <span class="literal">nil</span>;</div><div class="line">    <span class="keyword">switch</span> (status) &#123;</div><div class="line">        <span class="keyword">case</span> WorkStatusUnKnown:</div><div class="line">            desc = <span class="string">@"WorkStatusUnKnown"</span>;</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        <span class="keyword">case</span> WorkStatusWorking:</div><div class="line">            desc = <span class="string">@"WorkStatusWorking"</span>;</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        <span class="keyword">case</span> WorkStatusSleeping:</div><div class="line">            desc = <span class="string">@"WorkStatusSleeping"</span>;</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        <span class="keyword">default</span>:</div><div class="line">            desc = <span class="string">@"NoOne"</span>;</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> desc;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="built_in">NSString</span> *)WorkStatusDescription:(WorkStatus)status</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">NSString</span> *desc = <span class="literal">nil</span>;</span><br><span class="line">    <span class="keyword">switch</span> (status) &#123;</span><br><span class="line">        <span class="keyword">case</span> WorkStatusUnKnown:</span><br><span class="line">            desc = <span class="string">@"WorkStatusUnKnown"</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> WorkStatusWorking:</span><br><span class="line">            desc = <span class="string">@"WorkStatusWorking"</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> WorkStatusSleeping:</span><br><span class="line">            desc = <span class="string">@"WorkStatusSleeping"</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">            desc = <span class="string">@"NoOne"</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> desc;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>这样操作, 也许解决了不直观的问题, 但是细看之下还是有两点很大的问题.  </p>
 <ol>
 <li>在某一个类的空间内声明定义转换方法, 对于作用域外(其他类)的地方使用非常不便.</li>
 <li>当对枚举的标识符进行增删改操作时, 必须也要同时修改<code>转换方法</code>内的代码, 非常不灵活.</li>
 </ol>
 <h2 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h2><h3 id="优化问题1"><a href="#优化问题1" class="headerlink" title="优化问题1"></a>优化问题1</h3><p>针对于 <strong>问题 1</strong>, 我们可以通过在头文件中声明定义函数来解决:</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">static</span> <span class="built_in">NSString</span> * WorkStatusDescription(WorkStatus status) __attribute__((unused));</div><div class="line"></div><div class="line"><span class="keyword">static</span> <span class="built_in">NSString</span> * WorkStatusDescription(WorkStatus status) &#123;</div><div class="line">    <span class="built_in">NSString</span> *desc = <span class="literal">nil</span>;</div><div class="line">    <span class="keyword">switch</span> (status) &#123;</div><div class="line">        <span class="keyword">case</span> WorkStatusUnKnown:</div><div class="line">            desc = <span class="string">@"WorkStatusUnKnown"</span>;</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        <span class="keyword">case</span> WorkStatusWorking:</div><div class="line">            desc = <span class="string">@"WorkStatusWorking"</span>;</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        <span class="keyword">case</span> WorkStatusSleeping:</div><div class="line">            desc = <span class="string">@"WorkStatusSleeping"</span>;</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        <span class="keyword">default</span>:</div><div class="line">            desc = <span class="string">@"NoOne"</span>;</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> desc;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="built_in">NSString</span> * WorkStatusDescription(WorkStatus status) __attribute__((unused));</span><br><span class="line"></span><br><span class="line"><span class="keyword">static</span> <span class="built_in">NSString</span> * WorkStatusDescription(WorkStatus status) &#123;</span><br><span class="line">    <span class="built_in">NSString</span> *desc = <span class="literal">nil</span>;</span><br><span class="line">    <span class="keyword">switch</span> (status) &#123;</span><br><span class="line">        <span class="keyword">case</span> WorkStatusUnKnown:</span><br><span class="line">            desc = <span class="string">@"WorkStatusUnKnown"</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> WorkStatusWorking:</span><br><span class="line">            desc = <span class="string">@"WorkStatusWorking"</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> WorkStatusSleeping:</span><br><span class="line">            desc = <span class="string">@"WorkStatusSleeping"</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">            desc = <span class="string">@"NoOne"</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> desc;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>有两点需要解释:</p>
 <ol>
 <li>使用<code>static</code>可以防止发生函数重复声明定义的错误. (使用<code>NS_INLINE</code>也可以.)</li>
 <li><code>__attribute__((unused))</code> 表示告诉编译器忽略<code>Unused Warning</code>.</li>
 </ol>
 <h3 id="优化问题2"><a href="#优化问题2" class="headerlink" title="优化问题2"></a>优化问题2</h3><p>解决 <strong>问题 2</strong> 的关键在于<strong>如何将一个枚举标识符灵活的转换成字符串</strong>. 根据这个思路, 很自然的就可以联想到 使用 宏定义中 <code>#</code> 可以将参数转换成字符串的特性来解决.</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 定义枚举标识符和其对应的值的宏</span></div><div class="line"><span class="meta">#define ENUM_VALUE(name,assign) name assign,</span></div><div class="line"></div><div class="line"><span class="comment">// 将枚举标识符转换成字符串的宏</span></div><div class="line"><span class="meta">#define ENUM_CASE(name,assign) case name: return @#name;</span></div><div class="line"></div><div class="line"><span class="comment">// 将字符串转换为枚举标识符的宏</span></div><div class="line"><span class="meta">#define ENUM_STRCMP(name,assign) if ([string isEqualToString:@#name]) return name;</span></div><div class="line"></div><div class="line"><span class="comment">/// 声明函数 及 定义枚举</span></div><div class="line"><span class="meta">#define DECLARE_ENUM(EnumType,ENUM_DEF) \</span></div><div class="line"><span class="keyword">typedef</span> <span class="built_in">NS_ENUM</span>(<span class="built_in">NSUInteger</span>, EnumType) &#123; \</div><div class="line">    ENUM_DEF(ENUM_VALUE) \</div><div class="line">&#125;; \</div><div class="line"><span class="keyword">static</span> <span class="built_in">NSString</span> *stringFrom<span class="meta">##EnumType(EnumType value) __attribute__((unused)); \</span></div><div class="line"><span class="keyword">static</span> EnumType EnumType<span class="meta">##FromString(NSString *string) __attribute__((unused)); \</span></div><div class="line"><span class="keyword">static</span> <span class="built_in">NSString</span> *stringFrom<span class="meta">##EnumType(EnumType value) &#123; \</span></div><div class="line">    <span class="keyword">switch</span>(value) &#123; \</div><div class="line">        ENUM_DEF(ENUM_CASE) \</div><div class="line">        <span class="keyword">default</span>: <span class="keyword">return</span> <span class="string">@""</span>; \</div><div class="line">    &#125; \</div><div class="line">&#125; \</div><div class="line">\</div><div class="line"><span class="keyword">static</span> EnumType EnumType<span class="meta">##FromString(NSString *string) &#123; \</span></div><div class="line">    ENUM_DEF(ENUM_STRCMP) \</div><div class="line">    <span class="keyword">return</span> (EnumType)<span class="number">0</span>; \</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 定义枚举标识符和其对应的值的宏</span></span><br><span class="line"><span class="meta">#define ENUM_VALUE(name,assign) name assign,</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 将枚举标识符转换成字符串的宏</span></span><br><span class="line"><span class="meta">#define ENUM_CASE(name,assign) case name: return @#name;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 将字符串转换为枚举标识符的宏</span></span><br><span class="line"><span class="meta">#define ENUM_STRCMP(name,assign) if ([string isEqualToString:@#name]) return name;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/// 声明函数 及 定义枚举</span></span><br><span class="line"><span class="meta">#define DECLARE_ENUM(EnumType,ENUM_DEF) \</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="built_in">NS_ENUM</span>(<span class="built_in">NSUInteger</span>, EnumType) &#123; \</span><br><span class="line">    ENUM_DEF(ENUM_VALUE) \</span><br><span class="line">&#125;; \</span><br><span class="line"><span class="keyword">static</span> <span class="built_in">NSString</span> *stringFrom<span class="meta">##EnumType(EnumType value) __attribute__((unused)); \</span></span><br><span class="line"><span class="keyword">static</span> EnumType EnumType<span class="meta">##FromString(NSString *string) __attribute__((unused)); \</span></span><br><span class="line"><span class="keyword">static</span> <span class="built_in">NSString</span> *stringFrom<span class="meta">##EnumType(EnumType value) &#123; \</span></span><br><span class="line">    <span class="keyword">switch</span>(value) &#123; \</span><br><span class="line">        ENUM_DEF(ENUM_CASE) \</span><br><span class="line">        <span class="keyword">default</span>: <span class="keyword">return</span> <span class="string">@""</span>; \</span><br><span class="line">    &#125; \</span><br><span class="line">&#125; \</span><br><span class="line">\</span><br><span class="line"><span class="keyword">static</span> EnumType EnumType<span class="meta">##FromString(NSString *string) &#123; \</span></span><br><span class="line">    ENUM_DEF(ENUM_STRCMP) \</span><br><span class="line">    <span class="keyword">return</span> (EnumType)<span class="number">0</span>; \</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><em>为了一气呵成, 已经将针对于 <code>问题 1</code> 优化合并到上面这个代码块中.</em></p>
-<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 导入定义宏所在的头文件.</span></div><div class="line"><span class="meta">#import <span class="meta-string">"enum_generator.h"</span></span></div><div class="line"></div><div class="line"><span class="comment">// 使用定义的宏声明枚举</span></div><div class="line"><span class="meta">#define WorkStatus(XX) \</span></div><div class="line">XX(WorkStatusUnKnown,) \</div><div class="line">XX(WorkStatusWorking,) \</div><div class="line">XX(WorkStatusSleeping,=<span class="number">50</span>)</div><div class="line"><span class="comment">// 生成定义的枚举 与 转换方法.</span></div><div class="line">DECLARE_ENUM(WorkStatus,WorkStatus)</div></pre></td></tr></table></figure>
-<p>为了更直观的感受, 我们进入预编译阶段, 查看宏生成的代码(为了看起来清晰 已经进行手动换行):<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// DECLARE_ENUM(WorkStatus,WorkStatus) 所生成的代码</span></div><div class="line"><span class="keyword">typedef</span> <span class="keyword">enum</span> WorkStatus : <span class="built_in">NSUInteger</span> WorkStatus; <span class="keyword">enum</span> WorkStatus : <span class="built_in">NSUInteger</span> &#123;</div><div class="line">    WorkStatusUnKnown ,</div><div class="line">    WorkStatusWorking ,</div><div class="line">    WorkStatusSleeping =<span class="number">50</span>,</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">static</span> <span class="built_in">NSString</span> *stringFromWorkStatu(WorkStatus value) __attribute__((unused));</div><div class="line"><span class="keyword">static</span> WorkStatus WorkStatusFromString(<span class="built_in">NSString</span> *string) __attribute__((unused));</div><div class="line"></div><div class="line"><span class="keyword">static</span> <span class="built_in">NSString</span> *stringFromWorkStatus(WorkStatus value) &#123;</div><div class="line">    <span class="keyword">switch</span>(value) &#123;</div><div class="line">        <span class="keyword">case</span> WorkStatusUnKnown:</div><div class="line">            <span class="keyword">return</span> <span class="string">@"WorkStatusUnKnown"</span>;</div><div class="line">        <span class="keyword">case</span> WorkStatusWorking:</div><div class="line">            <span class="keyword">return</span> <span class="string">@"WorkStatusWorking"</span>;</div><div class="line">        <span class="keyword">case</span> WorkStatusSleeping:</div><div class="line">            <span class="keyword">return</span> <span class="string">@"WorkStatusSleeping"</span>;</div><div class="line">        <span class="keyword">default</span>:</div><div class="line">            <span class="keyword">return</span> <span class="string">@""</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">static</span> WorkStatus WorkStatusFromString(<span class="built_in">NSString</span> *string) &#123;</div><div class="line">    <span class="keyword">if</span> ([string isEqualToString:<span class="string">@"WorkStatusUnKnown"</span>]) <span class="keyword">return</span> WorkStatusUnKnown;</div><div class="line">    <span class="keyword">if</span> ([string isEqualToString:<span class="string">@"WorkStatusWorking"</span>]) <span class="keyword">return</span> WorkStatusWorking;</div><div class="line">    <span class="keyword">if</span> ([string isEqualToString:<span class="string">@"WorkStatusSleeping"</span>]) <span class="keyword">return</span> WorkStatusSleeping;</div><div class="line">    <span class="keyword">return</span> (WorkStatus)<span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">WorkStatus testWorkStatus = WorkStatusUnKnown;</div><div class="line"><span class="built_in">NSLog</span>(<span class="string">@"workstatus is: %@"</span>, stringFromWorkStatus(testWorkStatus));</div><div class="line"><span class="keyword">if</span> (testWorkStatus == WorkStatusFromString(<span class="string">@"WorkStatusUnKnown"</span>)) &#123;</div><div class="line">    <span class="built_in">NSLog</span>(<span class="string">@"确认在摸鱼"</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 输出:</span></div><div class="line"><span class="comment">// workstatus is: WorkStatusUnKnown</span></div><div class="line"><span class="comment">// 确认在摸鱼</span></div></pre></td></tr></table></figure>
-<h2 id="More"><a href="#More" class="headerlink" title="More"></a>More</h2><p>灵感来自 <a href="https://stackoverflow.com/questions/147267/easy-way-to-use-variables-of-enum-types-as-string-in-c/202511#202511" target="_blank" rel="external">https://stackoverflow.com/questions/147267/easy-way-to-use-variables-of-enum-types-as-string-in-c/202511#202511</a></p>
-<p>Demo <a href="https://github.com/onekyle/EnumStringConvert/tree/master" target="_blank" rel="external">https://github.com/onekyle/EnumStringConvert/tree/master</a></p>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 导入定义宏所在的头文件.</span></span><br><span class="line"><span class="meta">#import <span class="meta-string">"enum_generator.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用定义的宏声明枚举</span></span><br><span class="line"><span class="meta">#define WorkStatus(XX) \</span></span><br><span class="line">XX(WorkStatusUnKnown,) \</span><br><span class="line">XX(WorkStatusWorking,) \</span><br><span class="line">XX(WorkStatusSleeping,=<span class="number">50</span>)</span><br><span class="line"><span class="comment">// 生成定义的枚举 与 转换方法.</span></span><br><span class="line">DECLARE_ENUM(WorkStatus,WorkStatus)</span><br></pre></td></tr></table></figure>
+<p>为了更直观的感受, 我们进入预编译阶段, 查看宏生成的代码(为了看起来清晰 已经进行手动换行):<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// DECLARE_ENUM(WorkStatus,WorkStatus) 所生成的代码</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">enum</span> WorkStatus : <span class="built_in">NSUInteger</span> WorkStatus; <span class="keyword">enum</span> WorkStatus : <span class="built_in">NSUInteger</span> &#123;</span><br><span class="line">    WorkStatusUnKnown ,</span><br><span class="line">    WorkStatusWorking ,</span><br><span class="line">    WorkStatusSleeping =<span class="number">50</span>,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">static</span> <span class="built_in">NSString</span> *stringFromWorkStatu(WorkStatus value) __attribute__((unused));</span><br><span class="line"><span class="keyword">static</span> WorkStatus WorkStatusFromString(<span class="built_in">NSString</span> *string) __attribute__((unused));</span><br><span class="line"></span><br><span class="line"><span class="keyword">static</span> <span class="built_in">NSString</span> *stringFromWorkStatus(WorkStatus value) &#123;</span><br><span class="line">    <span class="keyword">switch</span>(value) &#123;</span><br><span class="line">        <span class="keyword">case</span> WorkStatusUnKnown:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">@"WorkStatusUnKnown"</span>;</span><br><span class="line">        <span class="keyword">case</span> WorkStatusWorking:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">@"WorkStatusWorking"</span>;</span><br><span class="line">        <span class="keyword">case</span> WorkStatusSleeping:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">@"WorkStatusSleeping"</span>;</span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">@""</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">static</span> WorkStatus WorkStatusFromString(<span class="built_in">NSString</span> *string) &#123;</span><br><span class="line">    <span class="keyword">if</span> ([string isEqualToString:<span class="string">@"WorkStatusUnKnown"</span>]) <span class="keyword">return</span> WorkStatusUnKnown;</span><br><span class="line">    <span class="keyword">if</span> ([string isEqualToString:<span class="string">@"WorkStatusWorking"</span>]) <span class="keyword">return</span> WorkStatusWorking;</span><br><span class="line">    <span class="keyword">if</span> ([string isEqualToString:<span class="string">@"WorkStatusSleeping"</span>]) <span class="keyword">return</span> WorkStatusSleeping;</span><br><span class="line">    <span class="keyword">return</span> (WorkStatus)<span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">WorkStatus testWorkStatus = WorkStatusUnKnown;</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"workstatus is: %@"</span>, stringFromWorkStatus(testWorkStatus));</span><br><span class="line"><span class="keyword">if</span> (testWorkStatus == WorkStatusFromString(<span class="string">@"WorkStatusUnKnown"</span>)) &#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"确认在摸鱼"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 输出:</span></span><br><span class="line"><span class="comment">// workstatus is: WorkStatusUnKnown</span></span><br><span class="line"><span class="comment">// 确认在摸鱼</span></span><br></pre></td></tr></table></figure>
+<h2 id="More"><a href="#More" class="headerlink" title="More"></a>More</h2><p>灵感来自 <a href="https://stackoverflow.com/questions/147267/easy-way-to-use-variables-of-enum-types-as-string-in-c/202511#202511" target="_blank" rel="noopener">https://stackoverflow.com/questions/147267/easy-way-to-use-variables-of-enum-types-as-string-in-c/202511#202511</a></p>
+<p>Demo <a href="https://github.com/onekyle/EnumStringConvert/tree/master" target="_blank" rel="noopener">https://github.com/onekyle/EnumStringConvert/tree/master</a></p>
 <p>如果你有更好的想法 请不吝赐教.</p>
 
       
@@ -482,7 +489,7 @@
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
             文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
@@ -493,9 +500,7 @@
 
       <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="https://avatars3.githubusercontent.com/u/16211378?s=460&v=4"
-               alt="OneKyle" />
+          <img class="site-author-image" itemprop="image" src="https://avatars3.githubusercontent.com/u/16211378?s=460&v=4" alt="OneKyle">
           <p class="site-author-name" itemprop="name">OneKyle</p>
            
               <p class="site-description motion-element" itemprop="description"></p>
@@ -585,7 +590,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
+        <div class="copyright">
   
   &copy; 
   <span itemprop="copyrightYear">2019</span>
@@ -738,6 +743,113 @@
   
 
   
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("VqpF9BhiWYEp7D1Kz4cKhQ4v-gzGzoHsz", "vGO2OS6UXoWB1H9d9a6yJn6G");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
 
   
 <script>

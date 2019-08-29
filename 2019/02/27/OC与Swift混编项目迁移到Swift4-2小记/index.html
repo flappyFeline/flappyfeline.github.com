@@ -6,15 +6,15 @@
 
 
 <html class="theme-next mist use-motion" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -32,7 +32,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -66,45 +66,41 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="Swift,Objective-C,iOS," />
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
 
 
+  <meta name="keywords" content="Swift,Objective-C,iOS,">
 
 
 
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0">
 
 
 
 
 
 
-<meta name="description" content="前言自从Xcode10正式版发布之后, 先吃螃蟹的朋友赞叹了Dark Mode的惊艳, 同时也报告说, 打包上传到APPStroe后, 监测到线上 iOS9.3设备大面积crash的记录, 最后被证实是Xcode10的问题.
-出于此原因考虑, 我便一直在使用Xcode9.4.1 及 Swift4进行混编项目的开发.
-然而每每使用低版本的Xcode打包上传APPStore时, 就会收到苹果的官方警告">
+<meta name="description" content="前言自从Xcode10正式版发布之后, 先吃螃蟹的朋友赞叹了Dark Mode的惊艳, 同时也报告说, 打包上传到APPStroe后, 监测到线上 iOS9.3设备大面积crash的记录, 最后被证实是Xcode10的问题. 出于此原因考虑, 我便一直在使用Xcode9.4.1 及 Swift4进行混编项目的开发. 然而每每使用低版本的Xcode打包上传APPStore时, 就会收到苹果的官方警告">
+<meta name="keywords" content="Swift,Objective-C,iOS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="OC与Swift混编项目迁移到Swift4.2小记">
 <meta property="og:url" content="http://yoursite.com/2019/02/27/OC与Swift混编项目迁移到Swift4-2小记/index.html">
 <meta property="og:site_name" content="OneKyle">
-<meta property="og:description" content="前言自从Xcode10正式版发布之后, 先吃螃蟹的朋友赞叹了Dark Mode的惊艳, 同时也报告说, 打包上传到APPStroe后, 监测到线上 iOS9.3设备大面积crash的记录, 最后被证实是Xcode10的问题.
-出于此原因考虑, 我便一直在使用Xcode9.4.1 及 Swift4进行混编项目的开发.
-然而每每使用低版本的Xcode打包上传APPStore时, 就会收到苹果的官方警告">
+<meta property="og:description" content="前言自从Xcode10正式版发布之后, 先吃螃蟹的朋友赞叹了Dark Mode的惊艳, 同时也报告说, 打包上传到APPStroe后, 监测到线上 iOS9.3设备大面积crash的记录, 最后被证实是Xcode10的问题. 出于此原因考虑, 我便一直在使用Xcode9.4.1 及 Swift4进行混编项目的开发. 然而每每使用低版本的Xcode打包上传APPStore时, 就会收到苹果的官方警告">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://user-gold-cdn.xitu.io/2019/2/28/16932d4ffc2a6e6d?w=1824&h=952&f=jpeg&s=255722">
 <meta property="og:image" content="https://user-gold-cdn.xitu.io/2019/2/28/16932d4ffc35ee11?w=346&h=182&f=jpeg&s=90288">
 <meta property="og:updated_time" content="2019-02-28T07:01:25.840Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="OC与Swift混编项目迁移到Swift4.2小记">
-<meta name="twitter:description" content="前言自从Xcode10正式版发布之后, 先吃螃蟹的朋友赞叹了Dark Mode的惊艳, 同时也报告说, 打包上传到APPStroe后, 监测到线上 iOS9.3设备大面积crash的记录, 最后被证实是Xcode10的问题.
-出于此原因考虑, 我便一直在使用Xcode9.4.1 及 Swift4进行混编项目的开发.
-然而每每使用低版本的Xcode打包上传APPStore时, 就会收到苹果的官方警告">
+<meta name="twitter:description" content="前言自从Xcode10正式版发布之后, 先吃螃蟹的朋友赞叹了Dark Mode的惊艳, 同时也报告说, 打包上传到APPStroe后, 监测到线上 iOS9.3设备大面积crash的记录, 最后被证实是Xcode10的问题. 出于此原因考虑, 我便一直在使用Xcode9.4.1 及 Swift4进行混编项目的开发. 然而每每使用低版本的Xcode打包上传APPStore时, 就会收到苹果的官方警告">
 <meta name="twitter:image" content="https://user-gold-cdn.xitu.io/2019/2/28/16932d4ffc2a6e6d?w=1824&h=952&f=jpeg&s=255722">
 
 
@@ -133,7 +129,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/02/27/OC与Swift混编项目迁移到Swift4-2小记/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/02/27/OC与Swift混编项目迁移到Swift4-2小记/">
 
 
 
@@ -173,7 +169,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">OneKyle</span>
         <span class="logo-line-after"><i></i></span>
@@ -203,7 +199,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -213,7 +209,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
           </a>
@@ -223,7 +219,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
@@ -262,7 +258,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="OneKyle">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/16211378?s=460&v=4">
     </span>
 
@@ -322,6 +318,17 @@
 
           
           
+             <span id="/2019/02/27/OC与Swift混编项目迁移到Swift4-2小记/" class="leancloud_visitors" data-flag-title="OC与Swift混编项目迁移到Swift4.2小记">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
 
           
 
@@ -342,18 +349,18 @@
       
         <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>自从<code>Xcode10</code>正式版发布之后, 先吃螃蟹的朋友赞叹了<code>Dark Mode</code>的惊艳, 同时也报告说, 打包上传到<code>APPStroe</code>后, 监测到线上 <code>iOS9.3</code>设备大面积crash的记录, 最后被证实是<code>Xcode10</code>的问题.</p>
 <p>出于此原因考虑, 我便一直在使用<code>Xcode9.4.1</code> 及 <code>Swift4</code>进行混编项目的开发.</p>
-<p>然而每每使用低版本的<code>Xcode</code>打包上传<code>APPStore</code>时, 就会收到苹果的官方警告邮件<br><img src="https://user-gold-cdn.xitu.io/2019/2/28/16932d4ffc2a6e6d?w=1824&amp;h=952&amp;f=jpeg&amp;s=255722" alt=""></p>
+<p>然而每每使用低版本的<code>Xcode</code>打包上传<code>APPStore</code>时, 就会收到苹果的官方警告邮件<br><img src="https://user-gold-cdn.xitu.io/2019/2/28/16932d4ffc2a6e6d?w=1824&amp;h=952&amp;f=jpeg&amp;s=255722" alt></p>
 <p>如邮件内容所示, 到<code>2019</code>年的<code>3</code>月份便不可以再使用低版本<code>Xcode</code>进行打包上传操作了. </p>
 <p>于是, 我只好开始了迁移之路.</p>
 <h2 id="开始迁移"><a href="#开始迁移" class="headerlink" title="开始迁移"></a>开始迁移</h2><p>使用当前 <code>Xcode10.1(10B61)</code>打开之后, 在<code>Build Setting</code>中搜索 <code>Swift Language Version</code>, 将对应的值改为<code>Swift 4.2</code>,然后开始编译, 此时会出现非常多的<code>Error</code>, 多为<code>ABI</code>的变动, 根据提示进行修改即可.</p>
-<h3 id="AVAudioSession的更改"><a href="#AVAudioSession的更改" class="headerlink" title="AVAudioSession的更改"></a>AVAudioSession的更改</h3><p>然而有一处例外:<br>当项目中通过<code>Swift</code>使用了 <code>AVAudioSession  setCategory</code>这个方法时, 会被告知方法在<code>Swift</code>中不可用.跳转才发现 <code>API</code>已经变化成了<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* set session category and mode with options */</span></div><div class="line">    <span class="meta">@available</span>(iOS <span class="number">10.0</span>, *)</div><div class="line">    open <span class="function"><span class="keyword">func</span> <span class="title">setCategory</span><span class="params">(<span class="number">_</span> category: AVAudioSession.Category, mode: AVAudioSession.Mode, options: AVAudioSession.CategoryOptions = [])</span></span> <span class="keyword">throws</span></div></pre></td></tr></table></figure></p>
-<p>为了兼容低版本, 思来想去, 比较合适的方案就是使用OC编写一个<code>AVAudioSession</code>的分类用来桥接:<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// AVAudioSession+Swift.h:</span></div><div class="line"></div><div class="line">@<span class="keyword">import</span> AVFoundation;</div><div class="line"></div><div class="line"><span class="type">NS_ASSUME_NONNULL_BEGIN</span></div><div class="line"></div><div class="line">@interface <span class="type">AVAudioSession</span> (<span class="type">Swift</span>)</div><div class="line"></div><div class="line">- (<span class="type">BOOL</span>)swift_setCategory:(<span class="type">AVAudioSessionCategory</span>)category error:(<span class="type">NSError</span> **)outError <span class="type">NS_SWIFT_NAME</span>(setCategory(<span class="number">_</span>:));</div><div class="line">- (<span class="type">BOOL</span>)swift_setCategory:(<span class="type">AVAudioSessionCategory</span>)category withOptions:(<span class="type">AVAudioSessionCategoryOptions</span>)options error:(<span class="type">NSError</span> **)outError <span class="type">NS_SWIFT_NAME</span>(setCategory(<span class="number">_</span>:options:));</div><div class="line"></div><div class="line">@end</div><div class="line"></div><div class="line"><span class="type">NS_ASSUME_NONNULL_END</span></div><div class="line"></div><div class="line"><span class="comment">// AVAudioSession+Swift.m:</span></div><div class="line"></div><div class="line">#<span class="keyword">import</span> "AVAudioSession+Swift.h"</div><div class="line"></div><div class="line">@implementation <span class="type">AVAudioSession</span> (<span class="type">Swift</span>)</div><div class="line"></div><div class="line">- (<span class="type">BOOL</span>)swift_setCategory:(<span class="type">AVAudioSessionCategory</span>)category error:(<span class="type">NSError</span> **)outError &#123;</div><div class="line">    <span class="keyword">return</span> [<span class="keyword">self</span> setCategory:category error:outError];</div><div class="line">&#125;</div><div class="line">- (<span class="type">BOOL</span>)swift_setCategory:(<span class="type">AVAudioSessionCategory</span>)category withOptions:(<span class="type">AVAudioSessionCategoryOptions</span>)options error:(<span class="type">NSError</span> **)outError &#123;</div><div class="line">    <span class="keyword">return</span> [<span class="keyword">self</span> setCategory:category withOptions:options error:outError];</div><div class="line">&#125;</div><div class="line"></div><div class="line">@end</div></pre></td></tr></table></figure></p>
-<p>然后在你项目的<code>&lt;#target_name#&gt;-Bridging-Header.h</code>中<code>import</code>这个分类:<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">#<span class="keyword">import</span> "AVAudioSession+Swift.h"</div></pre></td></tr></table></figure></p>
-<p>然后就可以像之前一样调用了.<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">try</span> <span class="type">AVAudioSession</span>.sharedInstance().setCategory(.playback)</div></pre></td></tr></table></figure></p>
+<h3 id="AVAudioSession的更改"><a href="#AVAudioSession的更改" class="headerlink" title="AVAudioSession的更改"></a>AVAudioSession的更改</h3><p>然而有一处例外:<br>当项目中通过<code>Swift</code>使用了 <code>AVAudioSession  setCategory</code>这个方法时, 会被告知方法在<code>Swift</code>中不可用.跳转才发现 <code>API</code>已经变化成了<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* set session category and mode with options */</span></span><br><span class="line">    <span class="meta">@available</span>(iOS <span class="number">10.0</span>, *)</span><br><span class="line">    <span class="keyword">open</span> <span class="function"><span class="keyword">func</span> <span class="title">setCategory</span><span class="params">(<span class="number">_</span> category: AVAudioSession.Category, mode: AVAudioSession.Mode, options: AVAudioSession.CategoryOptions = [])</span></span> <span class="keyword">throws</span></span><br></pre></td></tr></table></figure></p>
+<p>为了兼容低版本, 思来想去, 比较合适的方案就是使用OC编写一个<code>AVAudioSession</code>的分类用来桥接:<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// AVAudioSession+Swift.h:</span></span><br><span class="line"></span><br><span class="line">@<span class="keyword">import</span> AVFoundation;</span><br><span class="line"></span><br><span class="line"><span class="type">NS_ASSUME_NONNULL_BEGIN</span></span><br><span class="line"></span><br><span class="line">@interface <span class="type">AVAudioSession</span> (<span class="type">Swift</span>)</span><br><span class="line"></span><br><span class="line">- (<span class="type">BOOL</span>)swift_setCategory:(<span class="type">AVAudioSessionCategory</span>)category error:(<span class="type">NSError</span> **)outError <span class="type">NS_SWIFT_NAME</span>(setCategory(<span class="number">_</span>:));</span><br><span class="line">- (<span class="type">BOOL</span>)swift_setCategory:(<span class="type">AVAudioSessionCategory</span>)category withOptions:(<span class="type">AVAudioSessionCategoryOptions</span>)options error:(<span class="type">NSError</span> **)outError <span class="type">NS_SWIFT_NAME</span>(setCategory(<span class="number">_</span>:options:));</span><br><span class="line"></span><br><span class="line">@end</span><br><span class="line"></span><br><span class="line"><span class="type">NS_ASSUME_NONNULL_END</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// AVAudioSession+Swift.m:</span></span><br><span class="line"></span><br><span class="line">#<span class="keyword">import</span> "AVAudioSession+Swift.h"</span><br><span class="line"></span><br><span class="line">@implementation <span class="type">AVAudioSession</span> (<span class="type">Swift</span>)</span><br><span class="line"></span><br><span class="line">- (<span class="type">BOOL</span>)swift_setCategory:(<span class="type">AVAudioSessionCategory</span>)category error:(<span class="type">NSError</span> **)outError &#123;</span><br><span class="line">    <span class="keyword">return</span> [<span class="keyword">self</span> setCategory:category error:outError];</span><br><span class="line">&#125;</span><br><span class="line">- (<span class="type">BOOL</span>)swift_setCategory:(<span class="type">AVAudioSessionCategory</span>)category withOptions:(<span class="type">AVAudioSessionCategoryOptions</span>)options error:(<span class="type">NSError</span> **)outError &#123;</span><br><span class="line">    <span class="keyword">return</span> [<span class="keyword">self</span> setCategory:category withOptions:options error:outError];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@end</span><br></pre></td></tr></table></figure></p>
+<p>然后在你项目的<code>&lt;#target_name#&gt;-Bridging-Header.h</code>中<code>import</code>这个分类:<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#<span class="keyword">import</span> "AVAudioSession+Swift.h"</span><br></pre></td></tr></table></figure></p>
+<p>然后就可以像之前一样调用了.<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> <span class="type">AVAudioSession</span>.sharedInstance().setCategory(.playback)</span><br></pre></td></tr></table></figure></p>
 <h3 id="While-deserializing-SIL-vtable-for-‘Class’-in-module-‘module’-error-Abort-trap-6"><a href="#While-deserializing-SIL-vtable-for-‘Class’-in-module-‘module’-error-Abort-trap-6" class="headerlink" title="While deserializing SIL vtable for ‘Class’ in module ‘module’ error: Abort trap: 6"></a>While deserializing SIL vtable for ‘Class’ in module ‘module’ error: Abort trap: 6</h3><p>这类问题分两种, 一种是<code>module</code>是其他的<code>target</code>, 如<code>Pods</code>中的, 另一种是 <code>module</code>是自己的创建的<code>target</code>.</p>
 <h4 id="第一种"><a href="#第一种" class="headerlink" title="第一种"></a>第一种</h4><p>第一种 只需要将<code>Error</code>所指向的三方库更新到最新版本即可, <code>Xcode10</code>已经发布了快半年了, 这些问题之前也有, 半年的时间, 基本上流行的三方库都已经适配了<code>Swift4.2</code></p>
 <h4 id="第二种"><a href="#第二种" class="headerlink" title="第二种"></a>第二种</h4><p>而第二种比较棘手, 一般都是由于 <code>Error</code>中的<code>Class</code>所指向的类, 自己是<code>Swift</code>类, 但是却继承自<code>Objective-C</code>声明编写的类.<br>我在自己试过一些微调之后发现于事无补, 所以只好将出错的类使用<code>Objective-C</code>重写, 然后在桥接文件中引入, 好在报错的不多, 没用费太多力气.</p>
-<h3 id="其他奇怪的错误"><a href="#其他奇怪的错误" class="headerlink" title="其他奇怪的错误"></a>其他奇怪的错误</h3><p>迁移完成后 项目跑起来时, 还会出现很多奇怪的问题.<br>比如调用了某个方法A 会报<code>unrecognize selector *</code>,<br>以及莫名的<code>函数调用</code>, 如:<br><img src="https://user-gold-cdn.xitu.io/2019/2/28/16932d4ffc35ee11?w=346&amp;h=182&amp;f=jpeg&amp;s=90288" alt=""><br>(setupNavibar函数中并没用调用任何初始化构造函数)<br>这类错误, 一般跟以上的俩种问题是一个本质, 需要自己仔细区别, 然后做出相应更新/更改即可.</p>
+<h3 id="其他奇怪的错误"><a href="#其他奇怪的错误" class="headerlink" title="其他奇怪的错误"></a>其他奇怪的错误</h3><p>迁移完成后 项目跑起来时, 还会出现很多奇怪的问题.<br>比如调用了某个方法A 会报<code>unrecognize selector *</code>,<br>以及莫名的<code>函数调用</code>, 如:<br><img src="https://user-gold-cdn.xitu.io/2019/2/28/16932d4ffc35ee11?w=346&amp;h=182&amp;f=jpeg&amp;s=90288" alt><br>(setupNavibar函数中并没用调用任何初始化构造函数)<br>这类错误, 一般跟以上的俩种问题是一个本质, 需要自己仔细区别, 然后做出相应更新/更改即可.</p>
 <p>除开以上的问题, 项目编译时还会在<code>Pods</code>引用的第三方的类中报ABI需要修改的<code>Error</code>, 这时, 只需要找到队形的<code>Target</code>, 在其<code>Build Settings</code>中修改 <code>Swift Language Version</code>为其对应版本即可.</p>
 <h2 id="最后-希望将来适配Swift5时-不要有这么多坑了…"><a href="#最后-希望将来适配Swift5时-不要有这么多坑了…" class="headerlink" title="最后, 希望将来适配Swift5时, 不要有这么多坑了…"></a>最后, 希望将来适配Swift5时, 不要有这么多坑了…</h2>
       
@@ -476,7 +483,7 @@
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
             文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
@@ -487,9 +494,7 @@
 
       <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="https://avatars3.githubusercontent.com/u/16211378?s=460&v=4"
-               alt="OneKyle" />
+          <img class="site-author-image" itemprop="image" src="https://avatars3.githubusercontent.com/u/16211378?s=460&v=4" alt="OneKyle">
           <p class="site-author-name" itemprop="name">OneKyle</p>
            
               <p class="site-description motion-element" itemprop="description"></p>
@@ -579,7 +584,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
+        <div class="copyright">
   
   &copy; 
   <span itemprop="copyrightYear">2019</span>
@@ -732,6 +737,113 @@
   
 
   
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("VqpF9BhiWYEp7D1Kz4cKhQ4v-gzGzoHsz", "vGO2OS6UXoWB1H9d9a6yJn6G");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
 
   
 <script>
