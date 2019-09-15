@@ -4,14 +4,16 @@
 
     
   <url>
-    <loc>http://yoursite.com/2019/08/29/ubuntu%E4%BD%BF%E7%94%A8Shadowsocks%E5%8F%8APrivoxy%E9%85%8D%E7%BD%AE%E4%BB%A3%E7%90%86%E8%AE%BF%E9%97%AE%E5%A4%96%E7%BD%91/</loc>
-    <lastmod>2019-08-29T09:10:58.428Z</lastmod>
+    <loc>http://yoursite.com/2019/09/15/Swift%E4%B8%AD%E7%9A%84%E6%B4%BE%E5%8F%91%E6%9C%BA%E5%88%B6/</loc>
+    <lastmod>2019-09-15T12:53:59.692Z</lastmod>
     <data>
         <display>
-        <title>ubuntu使用Shadowsocks及Privoxy配置代理访问外网</title>
-        <pubTime>2019-08-29T08:27:21.000Z</pubTime>
+        <title>Swift中的派发机制</title>
+        <pubTime>2019-09-15T07:10:18.000Z</pubTime>
         
-        <tag>开发环境</tag>
+        <tag>iOS</tag>
+         
+        <tag>Swift</tag>
          
          
            
@@ -20,9 +22,10 @@
     </url>
 
     
+    
   <url>
     <loc>http://yoursite.com/2019/08/27/%E4%BD%BF%E7%94%A8fastlane%E4%BA%A4%E4%BB%98%E4%BD%A0%E7%9A%84%E5%BA%94%E7%94%A8/</loc>
-    <lastmod>2019-08-27T08:12:56.396Z</lastmod>
+    <lastmod>2019-09-09T08:50:21.082Z</lastmod>
     <data>
         <display>
         <title>使用fastlane交付你的应用</title>
@@ -33,6 +36,23 @@
         <tag>开发环境</tag>
          
         <tag>CI</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2019/08/29/ubuntu%E4%BD%BF%E7%94%A8Shadowsocks%E5%8F%8APrivoxy%E9%85%8D%E7%BD%AE%E4%BB%A3%E7%90%86%E8%AE%BF%E9%97%AE%E5%A4%96%E7%BD%91/</loc>
+    <lastmod>2019-08-29T09:10:58.428Z</lastmod>
+    <data>
+        <display>
+        <title>ubuntu使用Shadowsocks及Privoxy配置代理访问外网</title>
+        <pubTime>2019-08-29T08:27:21.000Z</pubTime>
+        
+        <tag>开发环境</tag>
          
          
            
@@ -187,11 +207,11 @@
         <title>OC与Swift混编项目迁移到Swift4.2小记</title>
         <pubTime>2019-02-27T03:55:21.000Z</pubTime>
         
+        <tag>iOS</tag>
+         
         <tag>Swift</tag>
          
         <tag>Objective-C</tag>
-         
-        <tag>iOS</tag>
          
          
            
@@ -227,9 +247,9 @@
         <title>RxSwift-step(二)</title>
         <pubTime>2017-08-15T06:00:21.000Z</pubTime>
         
-        <tag>Swift</tag>
-         
         <tag>iOS</tag>
+         
+        <tag>Swift</tag>
          
         <tag>RxSwift</tag>
          
@@ -248,9 +268,9 @@
         <title>RxSwift-step by step 1-10</title>
         <pubTime>2017-08-13T17:36:55.000Z</pubTime>
         
-        <tag>Swift</tag>
-         
         <tag>iOS</tag>
+         
+        <tag>Swift</tag>
          
         <tag>RxSwift</tag>
          
@@ -287,9 +307,9 @@
         <title>利用宏定义实现枚举转字符串</title>
         <pubTime>2017-08-30T02:37:00.000Z</pubTime>
         
-        <tag>Objective-C</tag>
-         
         <tag>iOS</tag>
+         
+        <tag>Objective-C</tag>
          
          
            
@@ -306,9 +326,9 @@
         <title>Swift中的数组</title>
         <pubTime>2017-07-31T12:06:33.000Z</pubTime>
         
-        <tag>Swift</tag>
-         
         <tag>iOS</tag>
+         
+        <tag>Swift</tag>
          
          
            
@@ -325,9 +345,9 @@
         <title>为泛型类型遵守协议添加类型约束</title>
         <pubTime>2017-06-25T12:33:30.000Z</pubTime>
         
-        <tag>Swift</tag>
-         
         <tag>iOS</tag>
+         
+        <tag>Swift</tag>
          
          
            
@@ -361,9 +381,9 @@
         <title>OC转Swift指南(一)  基础部分</title>
         <pubTime>2016-10-03T15:55:59.000Z</pubTime>
         
-        <tag>Swift</tag>
-         
         <tag>iOS</tag>
+         
+        <tag>Swift</tag>
          
          
            
@@ -380,9 +400,9 @@
         <title>OC转Swift指南(二)  字符串和字符</title>
         <pubTime>2016-10-05T07:13:25.000Z</pubTime>
         
-        <tag>Swift</tag>
-         
         <tag>iOS</tag>
+         
+        <tag>Swift</tag>
          
          
            
@@ -399,9 +419,9 @@
         <title>使用bitfield优化代理方法的调用</title>
         <pubTime>2017-05-06T17:13:42.000Z</pubTime>
         
-        <tag>Objective-C</tag>
-         
         <tag>iOS</tag>
+         
+        <tag>Objective-C</tag>
          
          
            

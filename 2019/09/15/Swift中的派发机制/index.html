@@ -1,0 +1,888 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="iOS,Swift,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0">
+
+
+
+
+
+
+<meta name="description" content="Swift中的函数调用有很多奇怪的行为, 比如:案例112345678910111213141516protocol Runnable &amp;#123; &amp;#125;extension Runnable &amp;#123;    func run() &amp;#123;        print(&quot;run&quot;)    &amp;#125;&amp;#125;class Human: Runnable &amp;#123;     func">
+<meta name="keywords" content="iOS,Swift">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Swift中的派发机制">
+<meta property="og:url" content="http://yoursite.com/2019/09/15/Swift中的派发机制/index.html">
+<meta property="og:site_name" content="OneKyle">
+<meta property="og:description" content="Swift中的函数调用有很多奇怪的行为, 比如:案例112345678910111213141516protocol Runnable &amp;#123; &amp;#125;extension Runnable &amp;#123;    func run() &amp;#123;        print(&quot;run&quot;)    &amp;#125;&amp;#125;class Human: Runnable &amp;#123;     func">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://awps-assets.meituan.net/mit-x/blog-images-bundle-2018b/fd34ea0b.png">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/6b523ad1ly1g70gxuvr3fj22c80f2n68.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/6b523ad1ly1g70hd22uzaj223i0igtk0.jpg">
+<meta property="og:updated_time" content="2019-09-15T12:53:59.692Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Swift中的派发机制">
+<meta name="twitter:description" content="Swift中的函数调用有很多奇怪的行为, 比如:案例112345678910111213141516protocol Runnable &amp;#123; &amp;#125;extension Runnable &amp;#123;    func run() &amp;#123;        print(&quot;run&quot;)    &amp;#125;&amp;#125;class Human: Runnable &amp;#123;     func">
+<meta name="twitter:image" content="https://awps-assets.meituan.net/mit-x/blog-images-bundle-2018b/fd34ea0b.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '6261206290404476000',
+      author: 'Durand'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/09/15/Swift中的派发机制/">
+
+
+
+
+
+  <title> Swift中的派发机制 | OneKyle </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">OneKyle</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/15/Swift中的派发机制/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="OneKyle">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/16211378?s=460&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OneKyle">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Swift中的派发机制
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-15T15:10:18+08:00">
+                2019-09-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/09/15/Swift中的派发机制/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/09/15/Swift中的派发机制/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2019/09/15/Swift中的派发机制/" class="leancloud_visitors" data-flag-title="Swift中的派发机制">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Swift中的函数调用有很多奇怪的行为, 比如:<br><a name="eg1"><br>案例1<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">Runnable</span> </span>&#123; &#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">run</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"run"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Human</span>: <span class="title">Runnable</span> </span>&#123; </span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">run</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"human run"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> r: <span class="type">Runnable</span> = <span class="type">Human</span>()</span><br><span class="line">r.run()             <span class="comment">// expected prints "human run", but prints "run" &lt;- Unexpected!</span></span><br></pre></td></tr></table></figure></a></p>
+<p></p>
+<p><br></p>
+<p>这些反直觉的案例就事实存在于Swift中, 要想清晰的明白它们发生的原因, 就必须缕清它们背后的调用机制–函数派发.</p>
+<p>函数派发就是程序判断使用哪种途径去调用一个函数的机制. 了解派发机制对于写出高性能的代码来说很有必要, 而且也能够解释很多Swift里奇怪的行为.</p>
+<h2 id="派发方式"><a href="#派发方式" class="headerlink" title="派发方式"></a>派发方式</h2><p>编译型语言有三种基础的派发方式, 分别是: <strong>直接派发(Direct Dispatch)</strong>, <strong>函数表派发(Table Dispatch)</strong> 和 <strong>消息机制派发(Message Dispatch)</strong>. 大多数语言都会支持 直接派发和函数表派发, 如<code>Java</code>和<code>C++</code>. 而<code>Objective-C</code>则总是使用消息机制(<code>objc_msgSend</code>)派发. 而<code>Swift</code>中三种都支持.</p>
+<h3 id="直接派发-Direct-Dispatch"><a href="#直接派发-Direct-Dispatch" class="headerlink" title="直接派发 (Direct Dispatch)"></a>直接派发 (Direct Dispatch)</h3><p>直接派发是最快的, 不止是因为需要调用的指令集会更少, 并且编译器还能够有很大的优化空间, 例如函数内联等. 直接派发也称为静态调用.</p>
+<p>然而, 对于编程来说直接调用也是最大的局限, 而且因为缺乏动态性所以没办法支持继承.</p>
+<h3 id="函数表派发-Table-Dispatch"><a href="#函数表派发-Table-Dispatch" class="headerlink" title="函数表派发 (Table Dispatch)"></a>函数表派发 (Table Dispatch)</h3><p>函数表派发是编译型语言实现动态行为最常见的实现方式. 函数表使用了一个数组来存储类声明的每一个函数的指针. 大部分语言(如<code>C++</code>)把这个称为<code>虚函数表</code>, 而在<code>Swift</code>中将其称为<code>Witness Table(目击表)</code>, 每一个类都会维护一个函数表, 里面记录着类所有的函数, 如果父类函数被 <code>override</code> 的话, 表里面只会保存被 <code>override</code> 之后的函数. 一个子类新添加的函数, 都会被插入到这个数组的最后. 运行时会根据这一个表去决定实际要被调用的函数.</p>
+<p>这种基于数组的实现, 缺陷在于函数表无法拓展. 子类会在虚数函数表的最后插入新的函数, 没有位置可以让 <code>extension</code> 安全地插入函数.</p>
+<h3 id="消息机制派发-Message-Dispatch"><a href="#消息机制派发-Message-Dispatch" class="headerlink" title="消息机制派发 (Message Dispatch)"></a>消息机制派发 (Message Dispatch)</h3><p>消息机制是调用函数最动态的方式. 比如可以通过<code>method swizzling</code>或者<code>isa swizzling</code>来动态修改方法的实现和对象的继承关系, 从而实现自定义派发.<br>而当一个消息被派发, 运行时会顺着类的继承关系向上查找应该被调用的函数.</p>
+<h2 id="Swift的派发机制"><a href="#Swift的派发机制" class="headerlink" title="Swift的派发机制"></a>Swift的派发机制</h2><p>那么<code>Swift</code>是如何糅合这三种派发方式的呢? <code>Swift</code>的文档中并没有具体写明成体系的机制. 而通过测试和了解, Swift的派发机制是通过以下四种因素来制约:</p>
+<ol>
+<li>函数声明的位置(Location Matters)</li>
+<li>调用者(引用)的类型(Reference Type Matters)</li>
+<li>特定的派发行为(Specifying Dispatch Behavior)</li>
+<li>显式地优化(Visibility Optimizations)</li>
+</ol>
+<p>具体的细节<a href="https://kemchenj.github.io/2016-12-25-1/" target="_blank" rel="noopener">这篇文章</a>已经讲述的非常好,就不做赘述.</p>
+<p>最终可以通过一张表来总结:<br><img src="https://awps-assets.meituan.net/mit-x/blog-images-bundle-2018b/fd34ea0b.png" alt="https://awps-assets.meituan.net/mit-x/blog-images-bundle-2018b/fd34ea0b.png"></p>
+<p>如果在开发过程中,错误的混合了这几种分派方式,就可能出现意料之外的结果甚至是Bug.</p>
+<p>拿<a href="#eg1">案例1</a>来说明, <code>Runnable</code>的<code>run</code>方法声明在<code>Extension</code>中, 所以只要使用了<code>Runnable</code>这一类型的调用者, 都是采用直接派发, 直接调用了<code>Runnable</code>的<code>run</code>方法.</p>
+<p>同样,如果我们将<a href="#eg1">案例1</a>的<code>run</code>方法的声明位置变化一下:<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">run</span><span class="params">()</span></span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> r: <span class="type">Runnable</span> = <span class="type">Human</span>()</span><br><span class="line">r.run()             <span class="comment">// prints "human run"</span></span><br></pre></td></tr></table></figure></p>
+<p>另外在Swift4.0之前的版本, 还存在这个问题<a href="https://bugs.swift.org/browse/SR-923" target="_blank" rel="noopener">SR-923</a>.<br>我将其引申为一个较为清晰的版本:<br><a name="eg2"><br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span>: <span class="title">NSObject</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">sayHi</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"Hello"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">greetings</span><span class="params">(person: Person)</span></span> &#123;</span><br><span class="line">    person.sayHi()</span><br><span class="line">&#125;</span><br><span class="line">greetings(person: <span class="type">Person</span>()) <span class="comment">// prints 'Hello'</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MisunderstoodPerson</span>: <span class="title">Person</span> </span>&#123;&#125;</span><br><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">MisunderstoodPerson</span> </span>&#123;</span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">sayHi</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"No one gets me."</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">greetings(person: <span class="type">MisunderstoodPerson</span>()) <span class="comment">// prints 'Hello'</span></span><br></pre></td></tr></table></figure></a></p>
+<p><br>这也是由于<code>NSObject</code>的<code>extension</code>是使用的<code>Message dispatch</code>，而<code>Initial Declaration</code>使用的是<code>Table dispath</code>. <code>extension</code>重写的方法添加在了<code>Message dispatch</code>内,没有修改函数表,函数表内还是父类的方法,故会执行父类方法. 想在<code>extension</code>重写方法，需要标明<code>dynamic</code>来使用<code>Message dispatch</code>.<br><strong>不过<code>Swift</code>已经修复了这个Bug, 现在<code>extension</code>中不允许重写父类的任何函数了.</strong></p>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>我们继续更改案例1:<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">run</span><span class="params">()</span></span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">run</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"run"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Human</span>: <span class="title">Runnable</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Man</span>: <span class="title">Human</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">run</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"man run"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>然后测试<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> r: <span class="type">Runnable</span> = <span class="type">Man</span>.<span class="keyword">init</span>()</span><br><span class="line">r.run()         <span class="comment">// prints "run"</span></span><br></pre></td></tr></table></figure></p>
+<p>咦 怎么会这样呢?<br>断点打在<code>r.run()</code>上, 进入反汇编进行查看, 发现这个<code>run</code> 是被直接call了一个地址<code>0x100001980</code>, 而不是读取存在容器中的<code>Protocol Witness Table(协议目击表)</code>中的某个函数地址, 这是被直接派发调用的…</p>
+<p><img src="http://ww1.sinaimg.cn/large/6b523ad1ly1g70gxuvr3fj22c80f2n68.jpg" alt="WeChatceb0bbfcd367a9dfbf48c6a062813fb3.png"></p>
+<p>swift的bug讨论处也有相关的问题提出 <a href="https://bugs.swift.org/browse/SR-103" target="_blank" rel="noopener">SR-103</a></p>
+<p>讨论中大多数人认为 <code>man</code>的<code>run</code>函数并没有绑定到他自己的协议目击表中,  于是我对案例测试代码修改:<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> r = <span class="type">Man</span>.<span class="keyword">init</span>()</span><br><span class="line">(r <span class="keyword">as</span> <span class="type">Runnable</span>).run()  <span class="comment">// prints "run"</span></span><br></pre></td></tr></table></figure></p>
+<p>进入反汇编查看, 发现<code>run</code>确实是通过读取协议目击表相关地址来调用的:<br><img src="http://ww1.sinaimg.cn/large/6b523ad1ly1g70hd22uzaj223i0igtk0.jpg" alt="WeChatf56fb2bbcff6879ab1e1c9421de9e1e7.png"><br>在此断点下 我们读取下 <code>r13</code>寄存器的内容, 也就是调用<code>__swift_project_boxed_opaque_existential_1</code>这个函数的返回值:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// 读取r13寄存器内容</span><br><span class="line">(lldb) re r r13</span><br><span class="line">     r13 = 0x00007ffeefbff590</span><br><span class="line">// 读取 0x00007ffeefbff590 内存中的值 (5个, 16进制, 8字节)</span><br><span class="line">(lldb) x/5xg 0x00007ffeefbff590</span><br><span class="line">0x7ffeefbff590: 0x000000010217b990 0x0000000000000000</span><br><span class="line">0x7ffeefbff5a0: 0x0000000000000000 0x00000001000022a8</span><br><span class="line">0x7ffeefbff5b0: 0x0000000100002060</span><br></pre></td></tr></table></figure></p>
+<p>可以看出<code>0x00007ffeefbff590</code>也就是存在容器, 其中前8个字节存储的是我们创建的<code>man</code>对象的指针地址.<br><code>0x7ffeefbff5a8</code>存储的是<code>man</code>的<code>metadata</code>的地址.<br><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">(lldb) di -s <span class="number">0x00000001000022a8</span></span><br><span class="line"><span class="keyword">swift_assmbly`type </span>metadata for <span class="keyword">swift_assmbly.Man:</span></span><br><span class="line"><span class="keyword"> </span>   <span class="number">0x1000022a8</span> &lt;+<span class="number">0</span>&gt;:  jo     <span class="number">0x1000022cc</span>               <span class="comment">; type metadata for swift_assmbly.Man + 36</span></span><br><span class="line">    <span class="number">0x1000022aa</span> &lt;+<span class="number">2</span>&gt;:  <span class="keyword">addb </span>  %al, (%rax)</span><br><span class="line">    <span class="number">0x1000022ac</span> &lt;+<span class="number">4</span>&gt;:  <span class="keyword">addl </span>  %eax, (%rax)</span><br><span class="line">    <span class="number">0x1000022ae</span> &lt;+<span class="number">6</span>&gt;:  <span class="keyword">addb </span>  %al, (%rax)</span><br><span class="line">    <span class="number">0x1000022b0</span> &lt;+<span class="number">8</span>&gt;:  sbbb   %ah, (%rdx)</span><br><span class="line">    <span class="number">0x1000022b2</span> &lt;+<span class="number">10</span>&gt;: <span class="keyword">addb </span>  %al, (%rax)</span><br><span class="line">    <span class="number">0x1000022b4</span> &lt;+<span class="number">12</span>&gt;: <span class="keyword">addl </span>  %eax, (%rax)</span><br><span class="line">    <span class="number">0x1000022b6</span> &lt;+<span class="number">14</span>&gt;: <span class="keyword">addb </span>  %al, (%rax)</span><br><span class="line">    <span class="number">0x1000022b8</span> &lt;+<span class="number">16</span>&gt;: <span class="keyword">addb </span>  %ah, (%rdi,%rsi,<span class="number">4</span>)</span><br><span class="line">    <span class="number">0x1000022bb</span> &lt;+<span class="number">19</span>&gt;: outsb  (%rsi), %dx</span><br></pre></td></tr></table></figure></p>
+<p>而最后8个字节, 存储的就是<code>Protocol Witness Table</code>的地址<br><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(lldb) di -s <span class="number">0x0000000100002060</span></span><br><span class="line"><span class="keyword">swift_assmbly`protocol </span>witness table for <span class="keyword">swift_assmbly.Human </span>: <span class="keyword">swift_assmbly.Runnable </span>in <span class="keyword">swift_assmbly:</span></span><br></pre></td></tr></table></figure></p>
+<p>而最终调用的是什么呢? 我们读取下<code>rax</code>寄存器的地址<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(lldb) re r rax</span><br><span class="line">     rax = 0x0000000100002060  swift_assmbly`protocol witness table for swift_assmbly.Human : swift_assmbly.Runnable in swift_assmbly</span><br></pre></td></tr></table></figure></p>
+<p>发现存储的就是协议目击表的地址.<br>而 <code>*0x8(%rax)</code> 就是 <code>rax</code>存储地址+8个字节后所指向的空间的地址, 也就是最后函数调用的地址. 我们顺着打印下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">// %rax + 8 = 0x100002060 + 8 = 0x100002068</span><br><span class="line">(lldb) x/1xg 0x100002068</span><br><span class="line">0x100002068: 0x0000000100001a40</span><br><span class="line">(lldb) di -s 0x0000000100001a40</span><br><span class="line">swift_assmbly`protocol witness for Runnable.run() in conformance Human:</span><br><span class="line">    0x100001a40 &lt;+0&gt;:  pushq  %rbp</span><br><span class="line">    0x100001a41 &lt;+1&gt;:  movq   %rsp, %rbp</span><br><span class="line">    0x100001a44 &lt;+4&gt;:  callq  0x100001870               ; (extension in swift_assmbly):swift_assmbly.Runnable.run() -&gt; () at main.swift:16</span><br><span class="line">    0x100001a49 &lt;+9&gt;:  popq   %rbp</span><br><span class="line">    0x100001a4a &lt;+10&gt;: retq   </span><br><span class="line">    0x100001a4b &lt;+11&gt;: nopl   (%rax,%rax)</span><br><span class="line"></span><br><span class="line">swift_assmbly`Man.run():</span><br><span class="line">    0x100001a50 &lt;+0&gt;:  pushq  %rbp</span><br><span class="line">    0x100001a51 &lt;+1&gt;:  movq   %rsp, %rbp</span><br><span class="line">    0x100001a54 &lt;+4&gt;:  pushq  %r13</span><br><span class="line">    0x100001a56 &lt;+6&gt;:  subq   $0x38, %rsp</span><br></pre></td></tr></table></figure></p>
+<p>发现就是定义在<code>Runnable</code> Extension中的<code>run</code>函数的地址, 而在它下面我们也发现了<code>Man</code>自己实现的<code>run</code>函数地址. 所以<code>Man</code>的<code>run</code>并非没有注册进协议目击表, 只是没有被正确的调用.</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag"># iOS</a>
+          
+            <a href="/tags/Swift/" rel="tag"># Swift</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/08/29/ubuntu使用Shadowsocks及Privoxy配置代理访问外网/" rel="next" title="ubuntu使用Shadowsocks及Privoxy配置代理访问外网">
+                <i class="fa fa-chevron-left"></i> ubuntu使用Shadowsocks及Privoxy配置代理访问外网
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread"></div>
+        <script>
+        /**
+        *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+        *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+        */
+          var disqus_config = function () {
+          this.page.url = "http://yoursite.com/2019/09/15/Swift中的派发机制/";  // Replace PAGE_URL with your page's canonical URL variable
+          this.page.identifier = "2019/09/15/Swift中的派发机制/"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+          };
+          
+          (function() { // DON'T EDIT BELOW THIS LINE
+          var d = document, s = d.createElement('script');
+          s.src = 'https://durand.disqus.com/embed.js';
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+          })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="https://avatars3.githubusercontent.com/u/16211378?s=460&v=4" alt="OneKyle">
+          <p class="site-author-name" itemprop="name">OneKyle</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/onekyle" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#派发方式"><span class="nav-number">1.</span> <span class="nav-text">派发方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#直接派发-Direct-Dispatch"><span class="nav-number">1.1.</span> <span class="nav-text">直接派发 (Direct Dispatch)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数表派发-Table-Dispatch"><span class="nav-number">1.2.</span> <span class="nav-text">函数表派发 (Table Dispatch)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#消息机制派发-Message-Dispatch"><span class="nav-number">1.3.</span> <span class="nav-text">消息机制派发 (Message Dispatch)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Swift的派发机制"><span class="nav-number">2.</span> <span class="nav-text">Swift的派发机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他"><span class="nav-number">3.</span> <span class="nav-text">其他</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">OneKyle</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'durand';
+      var disqus_identifier = '2019/09/15/Swift中的派发机制/';
+
+      var disqus_title = "Swift中的派发机制";
+
+
+      function run_disqus_script(disqus_script) {
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+
+      
+        var disqus_config = function () {
+            this.page.url = disqus_url;
+            this.page.identifier = disqus_identifier;
+            this.page.title = disqus_title;
+        };
+        run_disqus_script('embed.js');
+      
+
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("VqpF9BhiWYEp7D1Kz4cKhQ4v-gzGzoHsz", "vGO2OS6UXoWB1H9d9a6yJn6G");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+
+  
+
+</body>
+</html>
