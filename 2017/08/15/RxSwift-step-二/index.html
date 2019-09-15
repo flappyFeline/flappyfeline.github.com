@@ -98,7 +98,7 @@
 <meta property="og:image" content="https://image.boxueio.com/transform-ops-1@2x.png">
 <meta property="og:image" content="https://image.boxueio.com/transform-ops-2@2x.png">
 <meta property="og:image" content="https://image.boxueio.com/transform-ops-3@2x.png">
-<meta property="og:updated_time" content="2017-12-27T13:40:44.000Z">
+<meta property="og:updated_time" content="2019-09-15T14:14:05.483Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="RxSwift-step(二)">
 <meta name="twitter:description" content="12-理解重复订阅Observable的行为share() - 不要反复订阅同一个Observable1234let numbers = Observable.of(1, 2, 3, 4, 5)_ = numbers.subscribe(onNext: &amp;#123; print($0) &amp;#125;)_ = numbers.subscribe(onNext: &amp;#123; print($0) &amp;#">
@@ -177,7 +177,7 @@
       </a>
     </div>
       
-        <p class="site-subtitle"></p>
+        <h1 class="site-subtitle" itemprop="description"></h1>
       
   </div>
 
@@ -228,9 +228,41 @@
       
 
       
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
     </ul>
   
 
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
   
 </nav>
 
@@ -272,14 +304,14 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
+          <h2 class="post-title" itemprop="name headline">
             
             
               
                 RxSwift-step(二)
               
             
-          </h1>
+          </h2>
         
 
         <div class="post-meta">
@@ -297,7 +329,19 @@
             
 
             
+              <span class="post-meta-divider">|</span>
+            
 
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-09-15T22:14:05+08:00">
+                2019-09-15
+              </time>
             
           </span>
 
@@ -334,6 +378,36 @@
           
 
           
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                  
+                    <span class="post-meta-item-text">字数统计</span>
+                  
+                    <span title="字数统计" }}">
+                      1.5k
+                    </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                  
+                    <span class="post-meta-item-text">阅读时长</span>
+                  
+                    <span title="阅读时长" }}">
+                      6
+                    </span>
+              
+            </div>
+          
 
           
 
@@ -351,6 +425,7 @@
         <h2 id="12-理解重复订阅Observable的行为"><a href="#12-理解重复订阅Observable的行为" class="headerlink" title="12-理解重复订阅Observable的行为"></a>12-理解重复订阅Observable的行为</h2><h3 id="share-不要反复订阅同一个Observable"><a href="#share-不要反复订阅同一个Observable" class="headerlink" title="share() - 不要反复订阅同一个Observable"></a>share() - 不要反复订阅同一个Observable</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> numbers = <span class="type">Observable</span>.of(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>)</span><br><span class="line"></span><br><span class="line"><span class="number">_</span> = numbers.subscribe(onNext: &#123; <span class="built_in">print</span>($<span class="number">0</span>) &#125;)</span><br><span class="line"><span class="number">_</span> = numbers.subscribe(onNext: &#123; <span class="built_in">print</span>($<span class="number">0</span>) &#125;)</span><br></pre></td></tr></table></figure>
 <p>假设，我们希望这两次订阅实际上使用的是同一个Observable，但执行一下就会在控制台看到，打印了两次1 2 3 4 5，也就是说每次订阅，都会产生一个新的<code>Observable</code>对象，多次订阅的默认行为，并不是共享同一个序列上的事件。</p>
 <p>为了在多次订阅的时候共享事件，我们可以使用share operator，为了观察这个效果，我们把numbers的定义改成这样：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> numbers = <span class="type">Observable</span>.of(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>).share()</span><br></pre></td></tr></table></figure></p>
+<a id="more"></a> 
 <h3 id="scan-operator"><a href="#scan-operator" class="headerlink" title="scan operator"></a>scan operator</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">_</span> = selectedPhotos.scan([]) &#123;</span><br><span class="line">    (photos: [<span class="type">UIImage</span>], newPhoto: <span class="type">UIImage</span>) <span class="keyword">in</span></span><br><span class="line">        <span class="keyword">var</span> newPhotos = photos</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">let</span> index = newPhotos.index(<span class="keyword">where</span>: &#123; newPhoto == $<span class="number">0</span> &#125;) &#123;</span><br><span class="line">            newPhotos.remove(at: index)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            newPhotos.append(newPhoto)</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> newPhotos</span><br><span class="line">    &#125;.subscribe(onNext: &#123; (photos: [<span class="type">UIImage</span>]) <span class="keyword">in</span></span><br><span class="line">        <span class="keyword">self</span>.images.value = photos</span><br><span class="line">    &#125;, onDisposed: &#123;</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"Finished choose photo memos."</span>)</span><br><span class="line">    &#125;)</span><br></pre></td></tr></table></figure>
 <p>上述的scan作用类似于集合类型中的<code>reduce</code>.</p>
 <h2 id="13-更好的处理授权提示"><a href="#13-更好的处理授权提示" class="headerlink" title="13-更好的处理授权提示"></a>13-更好的处理授权提示</h2><p>iOS的用户授权动作是<strong>异步</strong>的.为了能在用户完成授权操作之后继续更新UI，我们得先把授权的结果封装成一个<code>Observable</code>。实际上，这个<code>Observable</code>只可能是下面三种情况：</p>
@@ -522,7 +597,7 @@
           <p class="site-author-name" itemprop="name">OneKyle</p>
            
               <p class="site-description motion-element" itemprop="description"></p>
-          
+           
         </div>
         <nav class="site-state motion-element">
 
@@ -757,6 +832,132 @@
 
   
   
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
 
   
 

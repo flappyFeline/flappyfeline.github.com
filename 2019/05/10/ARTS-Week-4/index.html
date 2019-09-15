@@ -96,7 +96,7 @@
 <meta property="og:description" content="AlgorithmThe Clean Code Blog 在过去几年中, 我们已经看到了关于系统架构方面的一系列想法. 它们包括:  Hexagonal Architecture (俗称Ports and Adapters) by Alistair Cockburn and adopted by Steve Freeman, and Nat Pryce in their wonderful boo">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://blog.cleancoder.com/uncle-bob/images/2012-08-13-the-clean-architecture/CleanArchitecture.jpg">
-<meta property="og:updated_time" content="2019-05-14T13:45:41.135Z">
+<meta property="og:updated_time" content="2019-09-15T14:13:37.621Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ARTS_Week_4.md">
 <meta name="twitter:description" content="AlgorithmThe Clean Code Blog 在过去几年中, 我们已经看到了关于系统架构方面的一系列想法. 它们包括:  Hexagonal Architecture (俗称Ports and Adapters) by Alistair Cockburn and adopted by Steve Freeman, and Nat Pryce in their wonderful boo">
@@ -175,7 +175,7 @@
       </a>
     </div>
       
-        <p class="site-subtitle"></p>
+        <h1 class="site-subtitle" itemprop="description"></h1>
       
   </div>
 
@@ -226,9 +226,41 @@
       
 
       
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
     </ul>
   
 
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
   
 </nav>
 
@@ -270,14 +302,14 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
+          <h2 class="post-title" itemprop="name headline">
             
             
               
                 ARTS_Week_4.md
               
             
-          </h1>
+          </h2>
         
 
         <div class="post-meta">
@@ -295,7 +327,19 @@
             
 
             
+              <span class="post-meta-divider">|</span>
+            
 
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-09-15T22:13:37+08:00">
+                2019-09-15
+              </time>
             
           </span>
 
@@ -332,6 +376,36 @@
           
 
           
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                  
+                    <span class="post-meta-item-text">字数统计</span>
+                  
+                    <span title="字数统计" }}">
+                      1.9k
+                    </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                  
+                    <span class="post-meta-item-text">阅读时长</span>
+                  
+                    <span title="阅读时长" }}">
+                      6
+                    </span>
+              
+            </div>
+          
 
           
 
@@ -363,7 +437,7 @@
 <li>独立于数据库. 你可以用Oracle活着SQLServer来替换Mongo, BigTable, CouchDB或者其他的. 你的业务规则没有与数据库绑定.</li>
 <li>独立于任何外部机构. 实际上就是让你的业务规则简单的不知道任何除自己之外的东西.</li>
 </ol>
-<p>本文顶部的图片是尝试将所以这些架构继承到一个可操作的想法中.</p>
+<p>本文顶部的图片是尝试将所以这些架构继承到一个可操作的想法中.<br><a id="more"></a> </p>
 <h3 id="依赖规则"><a href="#依赖规则" class="headerlink" title="依赖规则"></a>依赖规则</h3><p>图片中的同心圆代表着软件的不同区域. 通常来讲, 离中心点越远, 软件的层级就越高. 外圈是机制, 内圈是政策.<br>使这个架构生效的首页规则就是<em>依赖规则</em>. 这个规则阐明了源代码的依赖只能由外圈指向内圈. 内圈并不能知道外圈的任何事情. 尤其要是注意的是, 声明在外圈的某物不可以在内圈中提及. 这包括函数, 类, 变量或者其他软件中的被命名的实体.</p>
 <h3 id="实体层"><a href="#实体层" class="headerlink" title="实体层"></a>实体层</h3><p>实体封装了企业间的业务规则. 一个实体可以是一个有方法的对象, 一个数据结构体的集合或者是函数. 只要实体可以被企业中的血多不同应用程序使用, 其他的都无关紧要.<br>如果你没有企业, 并且你仅仅只写了一个简单的app, 那么这些实体指的就是你app中的业务对象. 他们封装了最通用最高级的规则. 当外部规则改变时, 它们是最不可能发生改变的. 例如, 你不会期望这些对象们随着页面导航或者安全性的改变而改变. 任何特定的应用程序操作更改都不应该影响到实体层.</p>
 <h3 id="用例层"><a href="#用例层" class="headerlink" title="用例层"></a>用例层</h3><p>软件中的这一层包括了app特定的业务规则. 它封装并且实现了系统中的所有用例. 这些用例协调了从实体层来的数据流, 并且只是这些实体用它们的企业级业务规则来实现用例的目标.<br>我们不希望改变这一层, 导致影响其他层. 我们也不期望这一层会被任何其他外部的改变, 如数据库, UI, 或者其他人么通用框架所影响. 这一层是独立的.</p>
@@ -506,7 +580,7 @@
           <p class="site-author-name" itemprop="name">OneKyle</p>
            
               <p class="site-description motion-element" itemprop="description"></p>
-          
+           
         </div>
         <nav class="site-state motion-element">
 
@@ -741,6 +815,132 @@
 
   
   
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
 
   
 

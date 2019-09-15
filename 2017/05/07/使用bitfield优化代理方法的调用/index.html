@@ -95,7 +95,7 @@
 <meta property="og:site_name" content="OneKyle">
 <meta property="og:description" content="前言在编写 Objective-C 代码时, 代理 是我们经常使用的一种设计模式,它简单易用,善用它可令代码变的更易维护.然而,在对 代理对象 发送 protocol 中的消息时, 出于代码的健壮性的角度考虑, 我们都应该先去试探 代理对象 能否响应此消息:123if ([self.delegate conformsToProtocol:@protocol(SomeProtocol)] &amp;amp;">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-06-03T16:06:42.000Z">
+<meta property="og:updated_time" content="2019-09-15T14:12:27.303Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用bitfield优化代理方法的调用">
 <meta name="twitter:description" content="前言在编写 Objective-C 代码时, 代理 是我们经常使用的一种设计模式,它简单易用,善用它可令代码变的更易维护.然而,在对 代理对象 发送 protocol 中的消息时, 出于代码的健壮性的角度考虑, 我们都应该先去试探 代理对象 能否响应此消息:123if ([self.delegate conformsToProtocol:@protocol(SomeProtocol)] &amp;amp;">
@@ -173,7 +173,7 @@
       </a>
     </div>
       
-        <p class="site-subtitle"></p>
+        <h1 class="site-subtitle" itemprop="description"></h1>
       
   </div>
 
@@ -224,9 +224,41 @@
       
 
       
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
     </ul>
   
 
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
   
 </nav>
 
@@ -268,14 +300,14 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
+          <h2 class="post-title" itemprop="name headline">
             
             
               
                 使用bitfield优化代理方法的调用
               
             
-          </h1>
+          </h2>
         
 
         <div class="post-meta">
@@ -293,7 +325,19 @@
             
 
             
+              <span class="post-meta-divider">|</span>
+            
 
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-09-15T22:12:27+08:00">
+                2019-09-15
+              </time>
             
           </span>
 
@@ -330,6 +374,36 @@
           
 
           
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                  
+                    <span class="post-meta-item-text">字数统计</span>
+                  
+                    <span title="字数统计" }}">
+                      767
+                    </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                  
+                    <span class="post-meta-item-text">阅读时长</span>
+                  
+                    <span title="阅读时长" }}">
+                      3
+                    </span>
+              
+            </div>
+          
 
           
 
@@ -346,7 +420,7 @@
       
         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在编写 <code>Objective-C</code> 代码时, <code>代理</code> 是我们经常使用的一种设计模式,它简单易用,善用它可令代码变的更易维护.<br>然而,在对 <code>代理对象</code> 发送 <code>protocol</code> 中的消息时, 出于代码的健壮性的角度考虑, 我们都应该先去试探 <code>代理对象</code> 能否响应此消息:<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ([<span class="keyword">self</span>.delegate conformsToProtocol:<span class="class"><span class="keyword">@protocol</span>(<span class="title">SomeProtocol</span>)] &amp;&amp; [<span class="title">self</span>.<span class="title">delegate</span> <span class="title">respondsToSelector</span>:@<span class="title">selector</span>(<span class="title">someProtocolMethod</span>)]) </span>&#123;</span><br><span class="line">    [<span class="keyword">self</span>.delegate someProtocolMethod];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p><strong>注:苹果的大部分代理回调检验都只使用了</strong><br><code>[self.delegate respondsToSelector:@selector(someProtocolMethod)]</code> ,<br><strong>例如 <code>UITableView</code> 的dataSource回调, 猜测这是苹果认为开发者对于一些基本的控件的接口都比较熟悉了, 一般不会发生在不知情的情况下就覆写掉 <code>protocol</code> 中的方法的场景, 然而, 当我们在定义自己的 <code>protocol</code> 并且调用其中方法时, 为了避免上述情况, 还是应该加上校验是否遵守了该 <code>protocol</code> 的判断.</strong>  </p>
-<p>然而, 当我们需要频繁的调用某个 <code>protocol</code> 中的方法时, 每次都进行如此判断合适吗? 仔细想想, 其实除了第一次的检测结果有用之外, 之后的校验判断可能多是多余的. 如果代理的对象没有发生改变, 那么极少情况下才会发生突然 遵守/不遵守 某个 <code>protocol</code> ,或者突然 响应/不响应 某个方法(<strong>比如在某些情景下利用 <code>runtime</code> 动态的遵守 <code>protocol</code> , 动态的添加/删除方法</strong>). 鉴于此, 我们可以使用一些手段来将这些信息缓存起来, 来避免多余/重复的判断.</p>
+<p>然而, 当我们需要频繁的调用某个 <code>protocol</code> 中的方法时, 每次都进行如此判断合适吗? 仔细想想, 其实除了第一次的检测结果有用之外, 之后的校验判断可能多是多余的. 如果代理的对象没有发生改变, 那么极少情况下才会发生突然 遵守/不遵守 某个 <code>protocol</code> ,或者突然 响应/不响应 某个方法(<strong>比如在某些情景下利用 <code>runtime</code> 动态的遵守 <code>protocol</code> , 动态的添加/删除方法</strong>). 鉴于此, 我们可以使用一些手段来将这些信息缓存起来, 来避免多余/重复的判断.<br><a id="more"></a> </p>
 <h3 id="bitfield的使用"><a href="#bitfield的使用" class="headerlink" title="bitfield的使用"></a>bitfield的使用</h3><p>使用 <a href="https://en.wikipedia.org/wiki/Bit_field" target="_blank" rel="noopener">bitfield</a> 这一数据类型可能是实现这种缓存的最佳方案了.<br>我们可以利用 <code>bitfield</code> 声明结构体某个字段的所占用的二进制位数, 例如:<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Flags</span> &#123;</span></span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> flagA : <span class="number">4</span>;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> flagB : <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> flagC : <span class="number">1</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
 <p>此时, 结构体 <code>Flags</code> 中, <code>flagA</code> 就占用了4个二进制位, <code>flagB</code> 与 <code>flag</code> 分别是2个和1个二进制位, 它们对应的存储范围分别是 <code>0~15</code> , <code>0~3</code>, <code>0~1</code>.<br>显然这里使用二级制位数为1的字段来作为调用代理方法的校验缓存再合适不过了.</p>
 <p>如此 我们可以定义一个这样的结构体</p>
@@ -487,7 +561,7 @@
           <p class="site-author-name" itemprop="name">OneKyle</p>
            
               <p class="site-description motion-element" itemprop="description"></p>
-          
+           
         </div>
         <nav class="site-state motion-element">
 
@@ -722,6 +796,132 @@
 
   
   
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
 
   
 

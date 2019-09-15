@@ -170,7 +170,7 @@
       </a>
     </div>
       
-        <p class="site-subtitle"></p>
+        <h1 class="site-subtitle" itemprop="description"></h1>
       
   </div>
 
@@ -221,9 +221,41 @@
       
 
       
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
     </ul>
   
 
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
   
 </nav>
 
@@ -265,7 +297,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
+          <h2 class="post-title" itemprop="name headline">
             
             
               
@@ -275,7 +307,7 @@
                 </a>
               
             
-          </h1>
+          </h2>
         
 
         <div class="post-meta">
@@ -293,7 +325,19 @@
             
 
             
+              <span class="post-meta-divider">|</span>
+            
 
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-09-15T22:09:33+08:00">
+                2019-09-15
+              </time>
             
           </span>
 
@@ -330,6 +374,36 @@
           
 
           
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                  
+                    <span class="post-meta-item-text">字数统计</span>
+                  
+                    <span title="字数统计" }}">
+                      1.9k
+                    </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                  
+                    <span class="post-meta-item-text">阅读时长</span>
+                  
+                    <span title="阅读时长" }}">
+                      7
+                    </span>
+              
+            </div>
+          
 
           
 
@@ -345,9 +419,11 @@
 
       
         
-          
-          Swift中的函数调用有很多奇怪的行为, 比如:案例112345678910111213141516protocol Runnable &#123; &#125;extension Runnable &#123;    func run() &#123;        print("run")   
-          ...
+          <p>Swift中的函数调用有很多奇怪的行为, 比如:<br><a name="eg1"><br>案例1<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">Runnable</span> </span>&#123; &#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">run</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"run"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Human</span>: <span class="title">Runnable</span> </span>&#123; </span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">run</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"human run"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> r: <span class="type">Runnable</span> = <span class="type">Human</span>()</span><br><span class="line">r.run()             <span class="comment">// expected prints "human run", but prints "run" &lt;- Unexpected!</span></span><br></pre></td></tr></table></figure></a></p>
+<p></p>
+<p><br></p>
+<p>这些反直觉的案例就事实存在于Swift中, 要想清晰的明白它们发生的原因, 就必须缕清它们背后的调用机制–函数派发.</p>
+<p>函数派发就是程序判断使用哪种途径去调用一个函数的机制. 了解派发机制对于写出高性能的代码来说很有必要, 而且也能够解释很多Swift里奇怪的行为.</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/09/15/Swift中的派发机制/#more" rel="contents">
@@ -410,7 +486,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
+          <h2 class="post-title" itemprop="name headline">
             
             
               
@@ -420,7 +496,7 @@
                 </a>
               
             
-          </h1>
+          </h2>
         
 
         <div class="post-meta">
@@ -438,7 +514,19 @@
             
 
             
+              <span class="post-meta-divider">|</span>
+            
 
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-09-15T22:14:45+08:00">
+                2019-09-15
+              </time>
             
           </span>
 
@@ -475,6 +563,36 @@
           
 
           
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                  
+                    <span class="post-meta-item-text">字数统计</span>
+                  
+                    <span title="字数统计" }}">
+                      426
+                    </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                  
+                    <span class="post-meta-item-text">阅读时长</span>
+                  
+                    <span title="阅读时长" }}">
+                      2
+                    </span>
+              
+            </div>
+          
 
           
 
@@ -490,11 +608,10 @@
 
       
         
-          
-          Shadowsocks安装(已安装略过)下载get-pip文件1wget https://bootstrap.pypa.io/get-pip.py
-安装shadowsocks12python get-pip.pypip install shadowsocks
-shadowsocks配置文件1sudo
-          ...
+          <h2 id="Shadowsocks安装-已安装略过"><a href="#Shadowsocks安装-已安装略过" class="headerlink" title="Shadowsocks安装(已安装略过)"></a>Shadowsocks安装(已安装略过)</h2><h3 id="下载get-pip文件"><a href="#下载get-pip文件" class="headerlink" title="下载get-pip文件"></a>下载get-pip文件</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://bootstrap.pypa.io/get-pip.py</span><br></pre></td></tr></table></figure>
+<h3 id="安装shadowsocks"><a href="#安装shadowsocks" class="headerlink" title="安装shadowsocks"></a>安装shadowsocks</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">python get-pip.py</span><br><span class="line">pip install shadowsocks</span><br></pre></td></tr></table></figure>
+<h3 id="shadowsocks配置文件"><a href="#shadowsocks配置文件" class="headerlink" title="shadowsocks配置文件"></a>shadowsocks配置文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/shadowsocks.json</span><br></pre></td></tr></table></figure>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123; </span><br><span class="line"><span class="attr">"server"</span>:<span class="string">"your.server.ip"</span>,</span><br><span class="line"><span class="attr">"local_address"</span>: <span class="string">"127.0.0.1"</span>, </span><br><span class="line"><span class="attr">"local_port"</span>:<span class="number">1081</span>, </span><br><span class="line"><span class="attr">"server_port"</span>:yourserver_port, </span><br><span class="line"><span class="attr">"password"</span>:<span class="string">"yourpasswd"</span>, </span><br><span class="line"><span class="attr">"timeout"</span>:<span class="number">300</span>, </span><br><span class="line"><span class="attr">"method"</span>:<span class="string">"aes-256-cfb"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/08/29/ubuntu使用Shadowsocks及Privoxy配置代理访问外网/#more" rel="contents">
@@ -557,7 +674,7 @@ shadowsocks配置文件1sudo
 
         
         
-          <h1 class="post-title" itemprop="name headline">
+          <h2 class="post-title" itemprop="name headline">
             
             
               
@@ -567,7 +684,7 @@ shadowsocks配置文件1sudo
                 </a>
               
             
-          </h1>
+          </h2>
         
 
         <div class="post-meta">
@@ -585,7 +702,19 @@ shadowsocks配置文件1sudo
             
 
             
+              <span class="post-meta-divider">|</span>
+            
 
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-09-15T22:12:33+08:00">
+                2019-09-15
+              </time>
             
           </span>
 
@@ -622,6 +751,36 @@ shadowsocks配置文件1sudo
           
 
           
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                  
+                    <span class="post-meta-item-text">字数统计</span>
+                  
+                    <span title="字数统计" }}">
+                      1.6k
+                    </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                  
+                    <span class="post-meta-item-text">阅读时长</span>
+                  
+                    <span title="阅读时长" }}">
+                      6
+                    </span>
+              
+            </div>
+          
 
           
 
@@ -637,20 +796,58 @@ shadowsocks配置文件1sudo
 
       
         
-          
-          你是否还在忍受打包时电脑风扇嗡嗡作响的苦恼, 还在”享受”MacOS菊花转起来的微妙, 是否陷入了jenkins的泥沼中止步不前? – fastlane, (私认为)一款市面上最好的打包分发工具, 足以带你脱离苦海.
-Why fastlane?
-
-
-
-fastlane
-
-
-
-
-🚀
-每次发包, 省时
-          ...
+          <p>你是否还在忍受打包时电脑风扇嗡嗡作响的苦恼, 还在”享受”MacOS菊花转起来的微妙, 是否陷入了jenkins的泥沼中止步不前? – <a href="https://docs.fastlane.tools/" target="_blank" rel="noopener">fastlane</a>, (私认为)一款市面上最好的打包分发工具, 足以带你脱离苦海.</p>
+<h2 id="Why-fastlane"><a href="#Why-fastlane" class="headerlink" title="Why fastlane?"></a>Why fastlane?</h2><table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:left">fastlane</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">🚀</td>
+<td style="text-align:left">每次发包, 省时省力</td>
+</tr>
+<tr>
+<td style="text-align:center">✨</td>
+<td style="text-align:left">方便的集成你先有的工具和服务, 同时自己囊括了400多个工具.</td>
+</tr>
+<tr>
+<td style="text-align:center">📖</td>
+<td style="text-align:left">基于MIT开源</td>
+</tr>
+<tr>
+<td style="text-align:center">🎩</td>
+<td style="text-align:left">几分钟之内就可以部署</td>
+</tr>
+<tr>
+<td style="text-align:center">⚒</td>
+<td style="text-align:left">在<strong>你</strong>自己的机器上运行.</td>
+</tr>
+<tr>
+<td style="text-align:center">👻</td>
+<td style="text-align:left">集成了所有的CI系统.</td>
+</tr>
+<tr>
+<td style="text-align:center">🖥</td>
+<td style="text-align:left">支持iOS、 MacOS、 Android app.</td>
+</tr>
+<tr>
+<td style="text-align:center">🔧</td>
+<td style="text-align:left">基于需求 自行扩展, 不需要依赖任何东西.</td>
+</tr>
+<tr>
+<td style="text-align:center">💭</td>
+<td style="text-align:left">一行fastlane走天下, 其他指令全都不需要.</td>
+</tr>
+<tr>
+<td style="text-align:center">🚢</td>
+<td style="text-align:left">可在其他任何设备甚至是CI服务上部署.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="开始搭建"><a href="#开始搭建" class="headerlink" title="开始搭建"></a>开始搭建</h2><p>具体的搭建可以参考官方文档, <a href="https://docs.fastlane.tools/" target="_blank" rel="noopener">https://docs.fastlane.tools/</a>,<br> 本篇只记录一些细节坑点.<br>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/08/27/使用fastlane交付你的应用/#more" rel="contents">
@@ -660,7 +857,7 @@ fastlane
           <!--/noindex-->
         
       
-    </div>
+    </p></div>
 
     <div>
       
@@ -713,7 +910,7 @@ fastlane
 
         
         
-          <h1 class="post-title" itemprop="name headline">
+          <h2 class="post-title" itemprop="name headline">
             
             
               
@@ -723,7 +920,7 @@ fastlane
                 </a>
               
             
-          </h1>
+          </h2>
         
 
         <div class="post-meta">
@@ -741,7 +938,19 @@ fastlane
             
 
             
+              <span class="post-meta-divider">|</span>
+            
 
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-09-15T22:11:44+08:00">
+                2019-09-15
+              </time>
             
           </span>
 
@@ -778,6 +987,36 @@ fastlane
           
 
           
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                  
+                    <span class="post-meta-item-text">字数统计</span>
+                  
+                    <span title="字数统计" }}">
+                      1.7k
+                    </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                  
+                    <span class="post-meta-item-text">阅读时长</span>
+                  
+                    <span title="阅读时长" }}">
+                      7
+                    </span>
+              
+            </div>
+          
 
           
 
@@ -793,10 +1032,11 @@ fastlane
 
       
         
-          
-          首发于 2018-07-14 15:23:01最后编辑于2019-06-27 22:42:03
-前言最近在写一个开源的框架, 但是发现效率低下, 于是乎就寻觅了一遭提升开发效率的方法在前辈的提示下, 发现了一款名叫 redmine 的开源项目管理工具我粗略的看了下, 发现redmine不仅流程科学规
-          ...
+          <p>首发于 <code>2018-07-14 15:23:01</code><br>最后编辑于<code>2019-06-27 22:42:03</code></p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近在写一个开源的框架, 但是发现效率低下, 于是乎就寻觅了一遭提升开发效率的方法<br>在前辈的提示下, 发现了一款名叫 <a href="https://github.com/redmine/redmine" target="_blank" rel="noopener">redmine</a> 的开源项目管理工具<br>我粗略的看了下, 发现redmine不仅流程科学规范, 而且细致入微, 对鞭策自己开发及浏览开发进度是个非常不错的选择.<br>正好我在公司有台用来垫显示器的闲置 Mac mini, 就利用一下好了.</p>
+<h2 id="搭建Docker"><a href="#搭建Docker" class="headerlink" title="搭建Docker"></a>搭建Docker</h2><p><a href="https://www.docker.com/" target="_blank" rel="noopener">Docker</a> 是个划时代的开源项目，它彻底释放了计算虚拟化的威力，极大提高了应用的维护效率，降低了云计算应用开发的成本！使用 Docker，可以让应用的部署、测试和分发都变得前所未有的高效和轻松！</p>
+<p>无论是应用开发者、运维人员、还是其他信息技术从业人员，都有必要认识和掌握 Docker，节约有限的生命。</p>
+<p>考虑到以后更换设备的可能(比如说从这台Mac mini 更换到另一台垫显示器的Mac mini), 使用 <code>Docker</code> 来避免配置环境的重复劳动, 是最明智不过了.</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/06/27/基于docker搭建项目管理平台redmine/#more" rel="contents">
@@ -859,7 +1099,7 @@ fastlane
 
         
         
-          <h1 class="post-title" itemprop="name headline">
+          <h2 class="post-title" itemprop="name headline">
             
             
               
@@ -869,7 +1109,7 @@ fastlane
                 </a>
               
             
-          </h1>
+          </h2>
         
 
         <div class="post-meta">
@@ -887,7 +1127,19 @@ fastlane
             
 
             
+              <span class="post-meta-divider">|</span>
+            
 
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-09-15T22:13:52+08:00">
+                2019-09-15
+              </time>
             
           </span>
 
@@ -924,6 +1176,36 @@ fastlane
           
 
           
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                  
+                    <span class="post-meta-item-text">字数统计</span>
+                  
+                    <span title="字数统计" }}">
+                      162
+                    </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                  
+                    <span class="post-meta-item-text">阅读时长</span>
+                  
+                    <span title="阅读时长" }}">
+                      1
+                    </span>
+              
+            </div>
+          
 
           
 
@@ -939,10 +1221,12 @@ fastlane
 
       
         
-          
-          通过ssh登录手机之后, 按照以下步骤操作
-12345678// 安装curl$ apt-get upgrade curl// 安装awk$ apt-get install gawk// 安装on-my-zsh$ sh -c "$(curl -fsSL https://raw.github.com/
-          ...
+          <p>通过ssh登录手机之后, 按照以下步骤操作</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// 安装curl</span><br><span class="line"><span class="meta">$</span> apt-get upgrade curl</span><br><span class="line"></span><br><span class="line">// 安装awk</span><br><span class="line"><span class="meta">$</span> apt-get install gawk</span><br><span class="line"></span><br><span class="line">// 安装on-my-zsh</span><br><span class="line"><span class="meta">$</span> sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"</span><br></pre></td></tr></table></figure>
+<p>安装完成后会提示无法使用chsh切换默认shell, 需要手动操作.<br>然而使用<code>chsh</code>是无论如何都切换不了的.</p>
+<p>于是便想着通过修改 <code>/etc/passwd</code>文件中的设置来更改, 但是并没有起作用.</p>
+<p>google了一圈也未果, 最终在<code>/etc</code>目录下发现了<code>master.passwd</code>这个文件,  于是修改关于<code>root</code>的配置.</p>
+<p>将最后<code>bin/sh</code>改为<code>bin/zsh</code>即可.<br>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/06/14/iOS-越狱后如何更改默认的shell/#more" rel="contents">
@@ -952,7 +1236,7 @@ fastlane
           <!--/noindex-->
         
       
-    </div>
+    </p></div>
 
     <div>
       
@@ -1005,7 +1289,7 @@ fastlane
 
         
         
-          <h1 class="post-title" itemprop="name headline">
+          <h2 class="post-title" itemprop="name headline">
             
             
               
@@ -1015,7 +1299,7 @@ fastlane
                 </a>
               
             
-          </h1>
+          </h2>
         
 
         <div class="post-meta">
@@ -1033,7 +1317,19 @@ fastlane
             
 
             
+              <span class="post-meta-divider">|</span>
+            
 
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-09-15T22:13:05+08:00">
+                2019-09-15
+              </time>
             
           </span>
 
@@ -1070,6 +1366,36 @@ fastlane
           
 
           
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                  
+                    <span class="post-meta-item-text">字数统计</span>
+                  
+                    <span title="字数统计" }}">
+                      2.5k
+                    </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                  
+                    <span class="post-meta-item-text">阅读时长</span>
+                  
+                    <span title="阅读时长" }}">
+                      9
+                    </span>
+              
+            </div>
+          
 
           
 
@@ -1085,9 +1411,11 @@ fastlane
 
       
         
-          
-          什么是依赖关系例子:123456789101112/// Swift democlass Canvas &#123;  var color: UIColor  func drawCircle(at origin: (Double, Double), d: Double) &#123;    let 
-          ...
+          <h2 id="什么是依赖关系"><a href="#什么是依赖关系" class="headerlink" title="什么是依赖关系"></a>什么是依赖关系</h2><p>例子:<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// Swift demo</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Canvas</span> </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> color: <span class="type">UIColor</span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">func</span> <span class="title">drawCircle</span><span class="params">(at origin: <span class="params">(Double, Double)</span></span></span>, d: <span class="type">Double</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> pen = <span class="type">Pencil</span>(of: color)</span><br><span class="line">    pen.circle(at: origin, d: d)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> canvas = <span class="type">Canvas</span>(color: .red)</span><br><span class="line">canvas.drawCircle(at: (<span class="number">0</span>, <span class="number">0</span>), d: <span class="number">10</span>)</span><br></pre></td></tr></table></figure></p>
+<ol>
+<li>首先，是由于对类型名称的了解而引入的依赖关系。这里Canvas要求必须存在一个叫做Pencil的</li>
+<li>其次，是由于要发送给其它对象的方法名而引入的依赖关系。这里Canvas要求Pencil中必须有一个叫做circle的方法</li>
+<li>第三，是方法的参数引入的依赖关系。既然Canvas创建了Pencil对象，它自然就需要知道Pencil的init方法需要接受一个UIColor对象<br>除了上面三点之外，还有一类依赖关系是参数的顺序。但由于Swift并不像Ruby一样可以通过命名参数调整顺序，因此这类依赖关系，我们就不在这里讨论了
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/05/22/组织代码中的依赖关系/#more" rel="contents">
@@ -1097,7 +1425,7 @@ fastlane
           <!--/noindex-->
         
       
-    </div>
+    </li></ol></div>
 
     <div>
       
@@ -1150,7 +1478,7 @@ fastlane
 
         
         
-          <h1 class="post-title" itemprop="name headline">
+          <h2 class="post-title" itemprop="name headline">
             
             
               
@@ -1160,7 +1488,7 @@ fastlane
                 </a>
               
             
-          </h1>
+          </h2>
         
 
         <div class="post-meta">
@@ -1178,7 +1506,19 @@ fastlane
             
 
             
+              <span class="post-meta-divider">|</span>
+            
 
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-09-15T22:13:44+08:00">
+                2019-09-15
+              </time>
             
           </span>
 
@@ -1215,6 +1555,36 @@ fastlane
           
 
           
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                  
+                    <span class="post-meta-item-text">字数统计</span>
+                  
+                    <span title="字数统计" }}">
+                      2.6k
+                    </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                  
+                    <span class="post-meta-item-text">阅读时长</span>
+                  
+                    <span title="阅读时长" }}">
+                      11
+                    </span>
+              
+            </div>
+          
 
           
 
@@ -1230,11 +1600,11 @@ fastlane
 
       
         
-          
-          Flutter Go 代码开发规范 0.1.0 版转发自alibab flutter-go仓库
-代码风格标识符三种类型大驼峰类、枚举、typedef和类型参数
-12345class SliderMenu &#123; ... &#125;class HttpRequest &#123; ... &#
-          ...
+          <h1 id="Flutter-Go-代码开发规范-0-1-0-版"><a href="#Flutter-Go-代码开发规范-0-1-0-版" class="headerlink" title="Flutter Go 代码开发规范 0.1.0 版"></a>Flutter Go 代码开发规范 0.1.0 版</h1><p>转发自<a href="https://github.com/alibaba/flutter-go/blob/master/Flutter_Go%20%E4%BB%A3%E7%A0%81%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83.md" target="_blank" rel="noopener">alibab flutter-go仓库</a></p>
+<h2 id="代码风格"><a href="#代码风格" class="headerlink" title="代码风格"></a>代码风格</h2><h3 id="标识符三种类型"><a href="#标识符三种类型" class="headerlink" title="标识符三种类型"></a>标识符三种类型</h3><h4 id="大驼峰"><a href="#大驼峰" class="headerlink" title="大驼峰"></a>大驼峰</h4><p>类、枚举、typedef和类型参数</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SliderMenu</span> </span>&#123; ... &#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">HttpRequest</span> </span>&#123; ... &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> Predicate = <span class="built_in">bool</span> <span class="built_in">Function</span>&lt;T&gt;(T value);</span><br></pre></td></tr></table></figure>
+<p>包括用于元数据注释的类</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Foo</span> </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> Foo([arg]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Foo</span>(anArg)</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span> </span>&#123; ... &#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Foo</span>()</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span> </span>&#123; ... &#125;</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/05/10/flutter-go代码开发规范/#more" rel="contents">
@@ -1297,7 +1667,7 @@ fastlane
 
         
         
-          <h1 class="post-title" itemprop="name headline">
+          <h2 class="post-title" itemprop="name headline">
             
             
               
@@ -1307,7 +1677,7 @@ fastlane
                 </a>
               
             
-          </h1>
+          </h2>
         
 
         <div class="post-meta">
@@ -1325,7 +1695,19 @@ fastlane
             
 
             
+              <span class="post-meta-divider">|</span>
+            
 
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-09-15T22:13:37+08:00">
+                2019-09-15
+              </time>
             
           </span>
 
@@ -1362,6 +1744,36 @@ fastlane
           
 
           
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                  
+                    <span class="post-meta-item-text">字数统计</span>
+                  
+                    <span title="字数统计" }}">
+                      1.9k
+                    </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                  
+                    <span class="post-meta-item-text">阅读时长</span>
+                  
+                    <span title="阅读时长" }}">
+                      6
+                    </span>
+              
+            </div>
+          
 
           
 
@@ -1377,12 +1789,24 @@ fastlane
 
       
         
-          
-          AlgorithmThe Clean Code Blog
-在过去几年中, 我们已经看到了关于系统架构方面的一系列想法. 它们包括:
-
-Hexagonal Architecture (俗称Ports and Adapters) by Alistair Cockburn and adopted by S
-          ...
+          <h2 id="Algorithm"><a href="#Algorithm" class="headerlink" title="Algorithm"></a>Algorithm</h2><h2 id="The-Clean-Code-Blog"><a href="#The-Clean-Code-Blog" class="headerlink" title="The Clean Code Blog"></a><a href="https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html" target="_blank" rel="noopener">The Clean Code Blog</a></h2><p><img src="https://blog.cleancoder.com/uncle-bob/images/2012-08-13-the-clean-architecture/CleanArchitecture.jpg" alt="clean architecture"></p>
+<p>在过去几年中, 我们已经看到了关于系统架构方面的一系列想法. 它们包括:</p>
+<ul>
+<li>Hexagonal Architecture (俗称Ports and Adapters) by Alistair Cockburn and adopted by Steve Freeman, and Nat Pryce in their wonderful book Growing Object Oriented Software</li>
+<li>Onion Architecture by Jeffrey Palermo</li>
+<li>Screaming Architecture from a blog of mine last year</li>
+<li>DCI from James Coplien, and Trygve Reenskaug.</li>
+<li>BCE by Ivar Jacobson from his book Object Oriented Software Engineering: A Use-Case Driven Approach</li>
+</ul>
+<p>虽然这些架构在一些细节中有很多不同, 但是它们还是非常相似的.它们都有同一个目标–对于关注点的分离. 它们都通过将软件分层来实现分离. 每一个都至少有一个层级用于业务规则, 另一个则关于接口.<br>每一个架构都满足:</p>
+<ol>
+<li>独立于任何框架. 该架构不应该依赖于任何已经存在的功能丰富的软件的一些库. 这将允许你把框架当做工具来使用, 而不用强制的将自己的系统塞进有限的约束中.</li>
+<li>测试友好. 业务规则可以在脱离UI、数据库、网页服务或者任何其他外部元素的情况下进行测试.</li>
+<li>独立于UI. UI的改变可以很容易, 而不用改变除系统中UI之外的剩余东西. 例如, 一个网页UI可以在不改变业务规则的情况下被一个控制台UI所代替.</li>
+<li>独立于数据库. 你可以用Oracle活着SQLServer来替换Mongo, BigTable, CouchDB或者其他的. 你的业务规则没有与数据库绑定.</li>
+<li>独立于任何外部机构. 实际上就是让你的业务规则简单的不知道任何除自己之外的东西.</li>
+</ol>
+<p>本文顶部的图片是尝试将所以这些架构继承到一个可操作的想法中.<br>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/05/10/ARTS-Week-4/#more" rel="contents">
@@ -1392,7 +1816,7 @@ Hexagonal Architecture (俗称Ports and Adapters) by Alistair Cockburn and adopt
           <!--/noindex-->
         
       
-    </div>
+    </p></div>
 
     <div>
       
@@ -1445,7 +1869,7 @@ Hexagonal Architecture (俗称Ports and Adapters) by Alistair Cockburn and adopt
 
         
         
-          <h1 class="post-title" itemprop="name headline">
+          <h2 class="post-title" itemprop="name headline">
             
             
               
@@ -1455,7 +1879,7 @@ Hexagonal Architecture (俗称Ports and Adapters) by Alistair Cockburn and adopt
                 </a>
               
             
-          </h1>
+          </h2>
         
 
         <div class="post-meta">
@@ -1473,7 +1897,19 @@ Hexagonal Architecture (俗称Ports and Adapters) by Alistair Cockburn and adopt
             
 
             
+              <span class="post-meta-divider">|</span>
+            
 
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-09-15T22:13:24+08:00">
+                2019-09-15
+              </time>
             
           </span>
 
@@ -1510,6 +1946,36 @@ Hexagonal Architecture (俗称Ports and Adapters) by Alistair Cockburn and adopt
           
 
           
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                  
+                    <span class="post-meta-item-text">字数统计</span>
+                  
+                    <span title="字数统计" }}">
+                      1.4k
+                    </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                  
+                    <span class="post-meta-item-text">阅读时长</span>
+                  
+                    <span title="阅读时长" }}">
+                      5
+                    </span>
+              
+            </div>
+          
 
           
 
@@ -1525,10 +1991,18 @@ Hexagonal Architecture (俗称Ports and Adapters) by Alistair Cockburn and adopt
 
       
         
-          
-          
-Algorithm: NO.237 Delete Node in a Linked ListWrite a function to delete a node (except the tail) in a singly linked list, given only access to that 
-          ...
+          <p><img src="https://savvyapps.com/uploads/blog/_1920xAUTO_crop_center-center_82_none/2015.06__Auto_Renewable_Subscriptions.jpg" alt="https://savvyapps.com/uploads/blog/_1920xAUTO_crop_center-center_82_none/2015.06__Auto_Renewable_Subscriptions.jpg"></p>
+<h2 id="Algorithm-NO-237-Delete-Node-in-a-Linked-List"><a href="#Algorithm-NO-237-Delete-Node-in-a-Linked-List" class="headerlink" title="Algorithm: NO.237 Delete Node in a Linked List"></a>Algorithm: <a href="https://leetcode-cn.com/problems/delete-node-in-a-linked-list/" target="_blank" rel="noopener">NO.237 Delete Node in a Linked List</a></h2><p>Write a function to delete a node (except the tail) in a singly linked list, given only access to that node.</p>
+<p>Given linked list – head = [4,5,1,9], which looks like following:</p>
+<p><img src="https://assets.leetcode.com/uploads/2018/12/28/237_example.png" alt="https://assets.leetcode.com/uploads/2018/12/28/237_example.png"></p>
+<p><strong>Example 1:</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: head = [4,5,1,9], node = 5</span><br><span class="line">Output: [4,1,9]</span><br><span class="line">Explanation: You are given the second node with value 5, the linked list should become 4 -&gt; 1 -&gt; 9 after calling your function.</span><br></pre></td></tr></table></figure></p>
+<p><strong>Example 2:</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: head = [4,5,1,9], node = 1</span><br><span class="line">Output: [4,5,9]</span><br><span class="line">Explanation: You are given the third node with value 1, the linked list should become 4 -&gt; 5 -&gt; 9 after calling your function.</span><br></pre></td></tr></table></figure></p>
+<p><strong>Note:</strong></p>
+<ul>
+<li>The linked list will have at least two elements.</li>
+<li>All of the nodes’ values will be unique.</li>
+<li>The given node will not be the tail and it will always be a valid node of the linked list.</li>
+<li>Do not return anything from your function.
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/04/08/ARTS-Week-3/#more" rel="contents">
@@ -1538,7 +2012,7 @@ Algorithm: NO.237 Delete Node in a Linked ListWrite a function to delete a node 
           <!--/noindex-->
         
       
-    </div>
+    </li></ul></div>
 
     <div>
       
@@ -1591,7 +2065,7 @@ Algorithm: NO.237 Delete Node in a Linked ListWrite a function to delete a node 
 
         
         
-          <h1 class="post-title" itemprop="name headline">
+          <h2 class="post-title" itemprop="name headline">
             
             
               
@@ -1601,7 +2075,7 @@ Algorithm: NO.237 Delete Node in a Linked ListWrite a function to delete a node 
                 </a>
               
             
-          </h1>
+          </h2>
         
 
         <div class="post-meta">
@@ -1619,7 +2093,19 @@ Algorithm: NO.237 Delete Node in a Linked ListWrite a function to delete a node 
             
 
             
+              <span class="post-meta-divider">|</span>
+            
 
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-09-15T22:13:17+08:00">
+                2019-09-15
+              </time>
             
           </span>
 
@@ -1656,6 +2142,36 @@ Algorithm: NO.237 Delete Node in a Linked ListWrite a function to delete a node 
           
 
           
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                  
+                    <span class="post-meta-item-text">字数统计</span>
+                  
+                    <span title="字数统计" }}">
+                      783
+                    </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                  
+                    <span class="post-meta-item-text">阅读时长</span>
+                  
+                    <span title="阅读时长" }}">
+                      3
+                    </span>
+              
+            </div>
+          
 
           
 
@@ -1671,10 +2187,10 @@ Algorithm: NO.237 Delete Node in a Linked ListWrite a function to delete a node 
 
       
         
-          
-          AlgorithmNo.3 Longest Substring Without Repeating CharactersGiven a string, find the length of the longest substring without repeating characters.
-Exa
-          ...
+          <h2 id="Algorithm"><a href="#Algorithm" class="headerlink" title="Algorithm"></a>Algorithm</h2><h3 id="No-3-Longest-Substring-Without-Repeating-Characters"><a href="#No-3-Longest-Substring-Without-Repeating-Characters" class="headerlink" title="No.3 Longest Substring Without Repeating Characters"></a>No.3 Longest Substring Without Repeating Characters</h3><p>Given a string, find the length of the longest substring without repeating characters.</p>
+<p>Example 1:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: &quot;abcabcbb&quot;</span><br><span class="line">Output: 3 </span><br><span class="line">Explanation: The answer is &quot;abc&quot;, with the length of 3.</span><br></pre></td></tr></table></figure></p>
+<p>Example 2:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: &quot;bbbbb&quot;</span><br><span class="line">Output: 1</span><br><span class="line">Explanation: The answer is &quot;b&quot;, with the length of 1.</span><br></pre></td></tr></table></figure></p>
+<p>Example 3:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Input: &quot;pwwkew&quot;</span><br><span class="line">Output: 3</span><br><span class="line">Explanation: The answer is &quot;wke&quot;, with the length of 3. </span><br><span class="line">             Note that the answer must be a substring, &quot;pwke&quot; is a subsequence and not a substring.</span><br></pre></td></tr></table></figure></p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/04/01/ARTS-Week-2/#more" rel="contents">
@@ -1751,7 +2267,7 @@ Exa
           <p class="site-author-name" itemprop="name">OneKyle</p>
            
               <p class="site-description motion-element" itemprop="description"></p>
-          
+           
         </div>
         <nav class="site-state motion-element">
 
@@ -1959,6 +2475,132 @@ Exa
 
   
   
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
 
   
 
