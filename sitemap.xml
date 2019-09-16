@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2019/08/27/%E4%BD%BF%E7%94%A8fastlane%E4%BA%A4%E4%BB%98%E4%BD%A0%E7%9A%84%E5%BA%94%E7%94%A8/</loc>
+    
+    <lastmod>2019-09-16T15:38:36.355Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2019/08/29/ubuntu%E4%BD%BF%E7%94%A8Shadowsocks%E5%8F%8APrivoxy%E9%85%8D%E7%BD%AE%E4%BB%A3%E7%90%86%E8%AE%BF%E9%97%AE%E5%A4%96%E7%BD%91/</loc>
     
     <lastmod>2019-09-15T14:14:45.564Z</lastmod>
@@ -124,13 +131,6 @@
     <loc>http://yoursite.com/2017/06/25/%E4%B8%BA%E5%8D%8F%E8%AE%AE%E9%81%B5%E5%AE%88%E6%B7%BB%E5%8A%A0%E7%B1%BB%E5%9E%8B%E7%BA%A6%E6%9D%9F/</loc>
     
     <lastmod>2019-09-15T14:12:43.980Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2019/08/27/%E4%BD%BF%E7%94%A8fastlane%E4%BA%A4%E4%BB%98%E4%BD%A0%E7%9A%84%E5%BA%94%E7%94%A8/</loc>
-    
-    <lastmod>2019-09-15T14:12:33.482Z</lastmod>
     
   </url>
   
