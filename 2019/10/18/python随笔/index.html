@@ -1,0 +1,1129 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="Python,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0">
+
+
+
+
+
+
+<meta name="description" content="基本深浅拷贝浅拷贝只会复制最顶层的列表.深拷贝会递归拷贝.copy.copy对于可变类型，会进行浅拷贝copy.copy对于不可变类型，不会拷贝，仅仅是指向 私有化 xx: 公有变量 _x: 单前置下划线,私有化属性或方法，from somemodule import *禁止导入,类对象和子类可以访问 __xx：双前置下划线,避免与子类中的属性命名冲突，无法在外部直接访问(名字重整所以访问不到)">
+<meta name="keywords" content="Python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python随笔">
+<meta property="og:url" content="http://yoursite.com/2019/10/18/python随笔/index.html">
+<meta property="og:site_name" content="OneKyle">
+<meta property="og:description" content="基本深浅拷贝浅拷贝只会复制最顶层的列表.深拷贝会递归拷贝.copy.copy对于可变类型，会进行浅拷贝copy.copy对于不可变类型，不会拷贝，仅仅是指向 私有化 xx: 公有变量 _x: 单前置下划线,私有化属性或方法，from somemodule import *禁止导入,类对象和子类可以访问 __xx：双前置下划线,避免与子类中的属性命名冲突，无法在外部直接访问(名字重整所以访问不到)">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-10-23T01:07:43.942Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="python随笔">
+<meta name="twitter:description" content="基本深浅拷贝浅拷贝只会复制最顶层的列表.深拷贝会递归拷贝.copy.copy对于可变类型，会进行浅拷贝copy.copy对于不可变类型，不会拷贝，仅仅是指向 私有化 xx: 公有变量 _x: 单前置下划线,私有化属性或方法，from somemodule import *禁止导入,类对象和子类可以访问 __xx：双前置下划线,避免与子类中的属性命名冲突，无法在外部直接访问(名字重整所以访问不到)">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '6261206290404476000',
+      author: 'Durand'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/10/18/python随笔/">
+
+
+
+
+
+  <title> python随笔 | OneKyle </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">OneKyle</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/18/python随笔/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="OneKyle">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/16211378?s=460&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OneKyle">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                python随笔
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-18T10:11:47+08:00">
+                2019-10-18
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-10-23T09:07:43+08:00">
+                2019-10-23
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/10/18/python随笔/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/10/18/python随笔/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2019/10/18/python随笔/" class="leancloud_visitors" data-flag-title="python随笔">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                  
+                    <span class="post-meta-item-text">字数统计</span>
+                  
+                    <span title="字数统计" }}">
+                      2.9k
+                    </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                  
+                    <span class="post-meta-item-text">阅读时长</span>
+                  
+                    <span title="阅读时长" }}">
+                      11
+                    </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="基本"><a href="#基本" class="headerlink" title="基本"></a>基本</h2><h3 id="深浅拷贝"><a href="#深浅拷贝" class="headerlink" title="深浅拷贝"></a>深浅拷贝</h3><p>浅拷贝只会复制最顶层的列表.<br>深拷贝会递归拷贝.<br>copy.copy对于可变类型，会进行浅拷贝<br>copy.copy对于不可变类型，不会拷贝，仅仅是指向</p>
+<h3 id="私有化"><a href="#私有化" class="headerlink" title="私有化"></a>私有化</h3><ul>
+<li>xx: 公有变量</li>
+<li>_x: 单前置下划线,私有化属性或方法，from somemodule import *禁止导入,类对象和子类可以访问</li>
+<li>__xx：双前置下划线,避免与子类中的属性命名冲突，无法在外部直接访问(名字重整所以访问不到)</li>
+<li><strong>xx</strong>:双前后下划线,用户名字空间的魔法对象或属性。例如:<strong>init</strong> , __ 不要自己发明这样的名字</li>
+<li><p>xx_:单后置下划线,用于避免与Python关键词的冲突</p>
+</li>
+<li><p>父类中属性名为__名字的，子类不继承，子类不能访问</p>
+</li>
+<li>如果在子类中向__名字赋值，那么会在子类中定义的一个与父类相同名字的属性</li>
+</ul>
+<h3 id="多继承"><a href="#多继承" class="headerlink" title="多继承"></a>多继承</h3><ul>
+<li>super().<strong>init</strong>相对于类名.<strong>init</strong>，在单继承上用法基本无差</li>
+<li>但在多继承上有区别，super方法能保证每个父类的方法只会执行一次，而使用类名的方法会导致方法被执行多次.</li>
+<li>多继承时，使用super方法，对父类的传参数，必须把参数全部传递，否则会报错</li>
+<li>单继承时，使用super方法，则不能全部传递，只能传父类方法所需的参数，否则会报错</li>
+</ul>
+<h3 id="import"><a href="#import" class="headerlink" title="import"></a>import</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line">print(sys.path) <span class="comment"># 输出当前import 搜索路径</span></span><br></pre></td></tr></table></figure>
+<p>输出<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[&apos;&apos;, </span><br><span class="line">&apos;/Library/Frameworks/Python.framework/Versions/3.7/lib/python37.zip&apos;, </span><br><span class="line">&apos;/Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7&apos;, </span><br><span class="line">&apos;/Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/lib-dynload&apos;, </span><br><span class="line">&apos;/Users/*/Library/Python/3.7/lib/python/site-packages&apos;, </span><br><span class="line">&apos;/Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages&apos;]</span><br></pre></td></tr></table></figure></p>
+<p>‘’ 表示当前路径<br>列表中的路径的先后顺序代表了python解释器在搜索模块时的先后顺序</p>
+<h4 id="程序执行时添加新的模块路径"><a href="#程序执行时添加新的模块路径" class="headerlink" title="程序执行时添加新的模块路径"></a>程序执行时添加新的模块路径</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sys.path.append(<span class="string">'/**/xxx'</span>)</span><br><span class="line">sys.path.insert(<span class="number">0</span>, <span class="string">'/**/**/xxx'</span>)  <span class="comment"># 可以确保先搜索这个路径</span></span><br></pre></td></tr></table></figure>
+<h4 id="重新导入模块"><a href="#重新导入模块" class="headerlink" title="重新导入模块"></a>重新导入模块</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> your_moudle</span><br><span class="line"><span class="keyword">from</span> imp <span class="keyword">import</span> reload</span><br><span class="line">reload(your_moudle)</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Goods</span>:</span></span><br><span class="line"><span class="meta">    @property</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">price</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">'@price.getter'</span>)</span><br><span class="line">    </span><br><span class="line"><span class="meta">    @price.setter</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">price</span><span class="params">(self, value)</span>:</span></span><br><span class="line">        print(<span class="string">'@price.setter'</span>)</span><br><span class="line">        </span><br><span class="line"><span class="meta">    @price.deleter</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">price</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">'@price.deleter'</span>)</span><br></pre></td></tr></table></figure>
+<p>类属性方式<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Goods</span><span class="params">(object)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="comment"># 原价</span></span><br><span class="line">        self.original_price = <span class="number">100</span></span><br><span class="line">        <span class="comment"># 折扣</span></span><br><span class="line">        self.discount = <span class="number">0.8</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_price</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="comment"># 实际价格 = 原价 * 折扣</span></span><br><span class="line">        new_price = self.original_price * self.discount</span><br><span class="line">        <span class="keyword">return</span> new_price</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">set_price</span><span class="params">(self, value)</span>:</span></span><br><span class="line">        self.original_price = value</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">del_price</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">del</span> self.original_price</span><br><span class="line"></span><br><span class="line">    PRICE = property(get_price, set_price, del_price, <span class="string">'价格属性描述...'</span>)</span><br><span class="line"></span><br><span class="line">obj = Goods()</span><br><span class="line">obj.PRICE         <span class="comment"># 获取商品价格</span></span><br><span class="line">obj.PRICE = <span class="number">200</span>   <span class="comment"># 修改商品原价</span></span><br><span class="line"><span class="keyword">del</span> obj.PRICE     <span class="comment"># 删除商品原价</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="特殊属性"><a href="#特殊属性" class="headerlink" title="特殊属性"></a>特殊属性</h3><ul>
+<li><code>__doc__</code>表示类的描述</li>
+<li><code>__module__</code> 表示当前操作的对象所在的模块 </li>
+<li><code>__class__</code> 表示当前操作的对象所属的类</li>
+<li><code>__init__</code> 初始化方法，通过类创建对象时，自动触发执行</li>
+<li><code>__del__</code> 当对象在内存中被释放时，自动触发执行.</li>
+<li><code>__call__</code> 对象后面加括号，触发执行.</li>
+<li><code>__dict__</code> 类或对象中的所有属性</li>
+<li><code>__str__</code> 如果一个类中定义了<strong>str</strong>方法，那么在打印 对象 时，默认输出该方法的返回值</li>
+<li><code>__getitem__</code>、<code>__setitem__</code>、<code>__delitem__</code> 用于索引操作，如字典。以上分别表示获取、设置、删除数据</li>
+<li><code>__getslice__</code>、<code>__setslice__</code>、<code>__delslice__</code> 该三个方法用于分片操作</li>
+</ul>
+<h3 id="上下文管理器"><a href="#上下文管理器" class="headerlink" title="上下文管理器"></a>上下文管理器</h3><p>对于系统资源如文件、数据库连接、socket 而言，应用程序打开这些资源并执行完业务逻辑之后，必须做的一件事就是要关闭（断开）该资源</p>
+<p>任何实现了 <code>__enter__()</code> 和 <code>__exit__()</code> 方法的对象, 都可称之为上下文管理器, 上下文管理器对象可以使用 with 关键字. 显然，文件（file）对象也实现了上下文管理器</p>
+<p>Python 还提供了一个 <code>contextmanager</code> 的装饰器，更进一步简化了上下文管理器的实现方式.通过 <code>yield</code> 将函数分割成两部分，<code>yield</code> 之前的语句在 <code>__enter__</code> 方法中执行，<code>yield</code> 之后的语句在 <code>__exit__</code> 方法中执行.紧跟在 <code>yield</code> 后面的值是函数的返回值.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> contextlib <span class="keyword">import</span> contextmanager</span><br><span class="line"></span><br><span class="line"><span class="meta">@contextmanager</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">my_open</span><span class="params">(path, mode)</span>:</span></span><br><span class="line">    f = open(path, mode)</span><br><span class="line">    <span class="keyword">yield</span> f</span><br><span class="line">    f.close()</span><br></pre></td></tr></table></figure></p>
+<h3 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">counter</span><span class="params">(start=<span class="number">0</span>)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">incr</span><span class="params">()</span>:</span></span><br><span class="line">        <span class="keyword">nonlocal</span> start</span><br><span class="line">        start += <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> start</span><br><span class="line">    <span class="keyword">return</span> incr</span><br></pre></td></tr></table></figure>
+<h2 id="装饰器"><a href="#装饰器" class="headerlink" title="装饰器"></a>装饰器</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test_f</span><span class="params">(func)</span>:</span></span><br><span class="line">    <span class="comment"># do something</span></span><br><span class="line">    func()</span><br><span class="line"></span><br><span class="line"><span class="meta">@test_f</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">foo</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">"foo"</span>)</span><br></pre></td></tr></table></figure>
+<p>@函数名 是一种Python的语法糖, 当发<code>foo()</code>被装饰器修饰时, <code>@test_f def foo()</code> , 外部调用<code>foo()</code>时, 就相当于调用了 <code>test_f(foo)</code>.</p>
+<p>装饰器的一些使用场景</p>
+<ul>
+<li>引入日志</li>
+<li>函数执行时间统计</li>
+<li>执行函数前预备处理</li>
+<li>执行函数后清理功能</li>
+<li>权限校验等场景</li>
+<li>缓存</li>
+<li>…</li>
+</ul>
+<h4 id="当被装饰的函数有参数-有返回值时"><a href="#当被装饰的函数有参数-有返回值时" class="headerlink" title="当被装饰的函数有参数, 有返回值时:"></a>当被装饰的函数有参数, 有返回值时:</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">testfun</span><span class="params">(func)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">wrapped_func</span><span class="params">(*args, **kwargs)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> func(*args, **kwargs)</span><br><span class="line">    <span class="keyword">return</span> wrapped_func</span><br><span class="line"></span><br><span class="line"><span class="meta">@testfun</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">foo</span><span class="params">(a, b, c)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> a+b+c</span><br></pre></td></tr></table></figure>
+<h4 id="装饰器带参数-设置外部变量时"><a href="#装饰器带参数-设置外部变量时" class="headerlink" title="装饰器带参数, 设置外部变量时:"></a>装饰器带参数, 设置外部变量时:</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">testfun_arg</span><span class="params">(pre=<span class="string">"hello"</span>)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">testfun</span><span class="params">(func)</span>:</span></span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">wrapped_func</span><span class="params">()</span>:</span></span><br><span class="line">            <span class="keyword">return</span> func()</span><br><span class="line">        <span class="keyword">return</span> wrapped_func</span><br><span class="line">    <span class="keyword">return</span> testfun</span><br><span class="line"></span><br><span class="line"><span class="meta">@testfun_arg("woaa")</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">foo</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">"I am foo"</span>)</span><br></pre></td></tr></table></figure>
+<p>可以理解为<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">foo() == testfun_arg(<span class="string">"woaa"</span>)(foo)()</span><br></pre></td></tr></table></figure></p>
+<h4 id="类装饰器"><a href="#类装饰器" class="headerlink" title="类装饰器"></a>类装饰器</h4><p>装饰器函数其实是这样一个接口约束，它必须接受一个callable对象作为参数，然后返回一个callable对象。在Python中一般callable对象都是函数，但也有例外。只要某个对象重写了 <code>__call__()</code> 方法，那么这个对象就是callable的</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, func)</span>:</span></span><br><span class="line">        print(<span class="string">"---初始化---"</span>)</span><br><span class="line">        print(<span class="string">"func name is %s"</span>%func.__name__)</span><br><span class="line">        self.__func = func</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__call__</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">"---装饰器中的功能---"</span>)</span><br><span class="line">        self.__func()</span><br><span class="line"></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">"do test--"</span>)</span><br></pre></td></tr></table></figure>
+<p>调用<code>test()</code>就相当于<code>Test(test).__call__()</code></p>
+<h2 id="元类"><a href="#元类" class="headerlink" title="元类"></a>元类</h2><p>类也是一种对象, 只不过类对象拥有创建对象的能力.<br><code>type</code>可以动态的创建类:<br><code>type(类名, 由父类名称组成的元组（针对继承的情况，可以为空），包含类属性、实例函数、静态函数、类方法的字典（名称和值）)</code><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@staticmethod</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test_static</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@classmethod</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test_class</span><span class="params">(cls)</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line">    </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">echo_bar</span><span class="params">(self)</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line">    </span><br><span class="line">Foochild = type(<span class="string">'Foochild'</span>, (Foo,), &#123;<span class="string">"echo_bar"</span>:echo_bar, <span class="string">"test_static"</span>: test_static, <span class="string">"test_class"</span>: test_class&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>元类就是这样用来创建类的<code>东西</code>.<br><strong>type就是Python在背后用来创建所有类的元类</strong></p>
+<h3 id="metaclass属性"><a href="#metaclass属性" class="headerlink" title="metaclass属性"></a><strong>metaclass</strong>属性</h3><p>你可以在定义一个类的时候为其添加<code>__metaclass__</code>属性, 这样Python就会用元类来创建类<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Foo</span><span class="params">(object)</span>:</span></span><br><span class="line">    __metaclass__ = something…</span><br><span class="line">    ...省略...</span><br></pre></td></tr></table></figure></p>
+<p>Python会做如下操作:<br>Foo中有<code>__metaclass__</code>这个属性吗？如果是，Python会通过<code>__metaclass__</code>创建一个名字为Foo的类(对象)<br>如果Python没有找到<code>__metaclass__</code>，它会继续在Bar（父类）中寻找<code>__metaclass__</code>属性，并尝试做和前面同样的操作。<br>如果Python在任何父类中都找不到<code>__metaclass__</code>，它就会在模块层次中去寻找<code>__metaclass__</code>，并尝试做同样的操作。<br>如果还是找不到<code>__metaclass__</code>,Python就会用内置的type来创建这个类对象.</p>
+<h3 id="自定义元类"><a href="#自定义元类" class="headerlink" title="自定义元类"></a>自定义元类</h3><p><strong>自定义元类的主要目的就是为了当创建类时能够自动地改变类</strong><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">UpperAttrMetaClass</span><span class="params">(type)</span>:</span></span><br><span class="line">    <span class="comment"># __new__ 是在__init__之前被调用的特殊方法</span></span><br><span class="line">    <span class="comment"># __new__是用来创建对象并返回之的方法</span></span><br><span class="line">    <span class="comment"># 而__init__只是用来将传入的参数初始化给对象</span></span><br><span class="line">    <span class="comment"># 你很少用到__new__，除非你希望能够控制对象的创建</span></span><br><span class="line">    <span class="comment"># 这里，创建的对象是类，我们希望能够自定义它，所以我们这里改写__new__</span></span><br><span class="line">    <span class="comment"># 如果你希望的话，你也可以在__init__中做些事情</span></span><br><span class="line">    <span class="comment"># 还有一些高级的用法会涉及到改写__call__特殊方法，但是我们这里不用</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__new__</span><span class="params">(cls, class_name, class_parents, class_attr)</span>:</span></span><br><span class="line">        <span class="comment"># 遍历属性字典，把不是__开头的属性名字变为大写</span></span><br><span class="line">        new_attr = &#123;&#125;</span><br><span class="line">        <span class="keyword">for</span> name, value <span class="keyword">in</span> class_attr.items():</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> name.startswith(<span class="string">"__"</span>):</span><br><span class="line">                new_attr[name.upper()] = value</span><br><span class="line">        <span class="keyword">return</span> type(class_name, class_parents, new_attr)</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Foo</span><span class="params">(object, metaclass=UpperAttrMetaClass)</span>:</span></span><br><span class="line">    bar = <span class="string">'bip'</span></span><br></pre></td></tr></table></figure></p>
+<p>就元类本身而言，它们其实是很简单:</p>
+<ol>
+<li>拦截类的创建</li>
+<li>修改类</li>
+<li>返回修改之后的类</li>
+</ol>
+<h2 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h2><h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><p>python中的多线程可以使用接口较为友好的<code>threading</code>来实现.<br>可以通过指定函数指针target来使用:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">"running"</span>)</span><br><span class="line">    </span><br><span class="line">t = threading.Thread(target=run)</span><br><span class="line">t.start()</span><br></pre></td></tr></table></figure></p>
+<p>也可以基于封装性的考虑, 使用子类继承<code>threading.Thread</code>, 并且重写<code>run</code>方法的方式来使用:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyThread</span><span class="params">(threading.Thread)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(self)</span>:</span></span><br><span class="line">        msg = <span class="string">"running in "</span>+self.name <span class="comment">#name属性中保存的是当前线程的名字</span></span><br><span class="line">        print(msg)</span><br><span class="line">        </span><br><span class="line">my_thread = MyThread()</span><br><span class="line">my_thread.start()</span><br></pre></td></tr></table></figure></p>
+<h3 id="锁"><a href="#锁" class="headerlink" title="锁"></a>锁</h3><p>多线程程序的执行顺序是不确定的,我们无法控制线程调度程序，但可以通过别的方式来影响线程调度的方式.<br>如果多个线程同时对同一个全局变量操作，会出现资源竞争问题，从而数据结果会不正确.<br>为了避免这种情况, 同其他语言一样, 使用锁来进行同步控制.<br><code>threading</code>模块中定义了<code>Lock</code>类，可以方便的处理锁定：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建锁</span></span><br><span class="line">mutex = threading.Lock()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 锁定</span></span><br><span class="line">mutex.acquire()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 释放</span></span><br><span class="line">mutex.release()</span><br></pre></td></tr></table></figure></p>
+<p>当一个线程调用锁的<code>acquire()</code>方法获得锁时，锁就进入<code>locked</code>状态。<br>每次只有一个线程可以获得锁。如果此时另一个线程试图获得这个锁，该线程就会变为<code>blocked</code>状态.</p>
+<h3 id="CPython解释器中的GIL"><a href="#CPython解释器中的GIL" class="headerlink" title="CPython解释器中的GIL"></a>CPython解释器中的GIL</h3><p><a href="http://blog.onekyle.com/2019/10/10/Python%E7%9A%84GIL%E4%B8%8E%E5%85%B6%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%80%A7%E8%83%BD/" target="_blank" rel="noopener">Python的GIL与其多线程性能</a></p>
+<h2 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h2><p>由于iOS App都是单进程的, 进程这个概念, 在iOS并不常见.<br>当一个程序运行起来后，程序的代码与其用到的资源 称之为进程，它是操作系统分配资源的基本单元.<br>而线程是进程的一个实体,是CPU调度和分派的基本单位.<br><strong>进程在执行过程中拥有独立的内存单元, 代码中局部变量和全局变量都不会在进程间共享.</strong></p>
+<h3 id="使用-1"><a href="#使用-1" class="headerlink" title="使用"></a>使用</h3><p><code>multiprocessing</code>模块是跨平台版本的多进程模块，提供了一个<code>Process</code>类来代表一个进程对象，这个对象可以理解为是一个独立的进程</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> multiprocessing <span class="keyword">import</span> Process</span><br><span class="line"></span><br><span class="line">p = Process(target=run)</span><br><span class="line">p.start()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Process</span><span class="params">()</span>:</span></span><br><span class="line">    name: str</span><br><span class="line">    daemon: bool</span><br><span class="line">    pid: Optional[int]</span><br><span class="line">    exitcode: Optional[int]</span><br><span class="line">    authkey: bytes</span><br><span class="line">    sentinel: int</span><br><span class="line">    <span class="comment"># <span class="doctag">TODO:</span> set type of group to None</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,</span></span></span><br><span class="line"><span class="function"><span class="params">                 group: Any = ...,</span></span></span><br><span class="line"><span class="function"><span class="params">                 target: Optional[Callable] = ...,</span></span></span><br><span class="line"><span class="function"><span class="params">                 name: Optional[str] = ...,</span></span></span><br><span class="line"><span class="function"><span class="params">                 args: Iterable[Any] = ...,</span></span></span><br><span class="line"><span class="function"><span class="params">                 kwargs: Mapping[Any, Any] = ...,</span></span></span><br><span class="line"><span class="function"><span class="params">                 *,</span></span></span><br><span class="line"><span class="function"><span class="params">                 daemon: Optional[bool] = ...)</span> -&gt; <span class="keyword">None</span>:</span> ...</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">start</span><span class="params">(self)</span> -&gt; <span class="keyword">None</span>:</span> ...</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(self)</span> -&gt; <span class="keyword">None</span>:</span> ...</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">terminate</span><span class="params">(self)</span> -&gt; <span class="keyword">None</span>:</span> ...</span><br><span class="line">    <span class="keyword">if</span> sys.version_info &gt;= (<span class="number">3</span>, <span class="number">7</span>):</span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">kill</span><span class="params">(self)</span> -&gt; <span class="keyword">None</span>:</span> ...</span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">close</span><span class="params">(self)</span> -&gt; <span class="keyword">None</span>:</span> ...</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">is_alive</span><span class="params">(self)</span> -&gt; bool:</span> ...</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">join</span><span class="params">(self, timeout: Optional[float] = ...)</span> -&gt; <span class="keyword">None</span>:</span> ...</span><br></pre></td></tr></table></figure>
+<h3 id="进程间通信"><a href="#进程间通信" class="headerlink" title="进程间通信"></a>进程间通信</h3><p>前面讲到进程间是不共享资源, 但是如果需要跨进程通信时, 操作系统仍然提供了许多机制来实现. 例如, 我们可以使用<code>multiprocessing</code>模块的<code>Queue</code>实现多进程之间的数据传递，<code>Queue</code>本身是一个消息列队程序.</p>
+<h2 id="协程"><a href="#协程" class="headerlink" title="协程"></a>协程</h2><p>协程是另外一种实现多任务的方式，只不过比线程更小占用更小执行单元, 需要更少的资源.<br>通俗的理解就是在一个线程中的某个函数，可以在任何地方保存当前函数的一些临时变量等信息，然后切换到另外一个函数中执行, 并且切换的次数以及什么时候再切换到原来的函数都由开发者自己确定.<br>协程的切换只是单纯的操作CPU上下文, 所以一秒钟切换个上百万次都扛得住.<br>多进程、多线程可能是并行的，但是协程是在一个线程中 所以是并发的.</p>
+<h3 id="使用-2"><a href="#使用-2" class="headerlink" title="使用"></a>使用</h3><h4 id="yield"><a href="#yield" class="headerlink" title="yield"></a>yield</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fib</span><span class="params">(n)</span>:</span></span><br><span class="line">    current = <span class="number">0</span></span><br><span class="line">    num1, num2 = <span class="number">0</span>, <span class="number">1</span></span><br><span class="line">    <span class="keyword">while</span> current &lt; n:</span><br><span class="line">        num = num1</span><br><span class="line">        num1, num2 = num2, num1 + num2</span><br><span class="line">        current += <span class="number">1</span></span><br><span class="line">        <span class="keyword">yield</span> num</span><br><span class="line"></span><br><span class="line">f = fib(<span class="number">10</span>)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> f:</span><br><span class="line">    print(i) <span class="comment"># 输出: 0 1 1 2 3 5 8 13 21 34</span></span><br></pre></td></tr></table></figure>
+<h4 id="gevent"><a href="#gevent" class="headerlink" title="gevent"></a>gevent</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> gevent <span class="keyword">import</span> monkey</span><br><span class="line"><span class="keyword">import</span> gevent</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"><span class="comment"># 有耗时操作时需要</span></span><br><span class="line">monkey.patch_all()  <span class="comment"># 将程序中用到的耗时操作的代码，换为gevent中自己实现的模块</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">coroutine_work</span><span class="params">(coroutine_name)</span>:</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">10</span>):</span><br><span class="line">        print(coroutine_name, i)</span><br><span class="line">        time.sleep(random.random()) <span class="comment">#模拟耗时操作.</span></span><br><span class="line"></span><br><span class="line">gevent.joinall([</span><br><span class="line">        gevent.spawn(coroutine_work, <span class="string">"work1"</span>),</span><br><span class="line">        gevent.spawn(coroutine_work, <span class="string">"work2"</span>)</span><br><span class="line">])</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Python/" rel="tag"># Python</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/10/10/Python的GIL与其多线程性能/" rel="next" title="[转发]Python的GIL与其多线程性能">
+                <i class="fa fa-chevron-left"></i> [转发]Python的GIL与其多线程性能
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread"></div>
+        <script>
+        /**
+        *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+        *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+        */
+          var disqus_config = function () {
+          this.page.url = "http://yoursite.com/2019/10/18/python随笔/";  // Replace PAGE_URL with your page's canonical URL variable
+          this.page.identifier = "2019/10/18/python随笔/"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+          };
+          
+          (function() { // DON'T EDIT BELOW THIS LINE
+          var d = document, s = d.createElement('script');
+          s.src = 'https://durand.disqus.com/embed.js';
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+          })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="https://avatars3.githubusercontent.com/u/16211378?s=460&v=4" alt="OneKyle">
+          <p class="site-author-name" itemprop="name">OneKyle</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">27</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/onekyle" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本"><span class="nav-number">1.</span> <span class="nav-text">基本</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#深浅拷贝"><span class="nav-number">1.1.</span> <span class="nav-text">深浅拷贝</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#私有化"><span class="nav-number">1.2.</span> <span class="nav-text">私有化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多继承"><span class="nav-number">1.3.</span> <span class="nav-text">多继承</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#import"><span class="nav-number">1.4.</span> <span class="nav-text">import</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#程序执行时添加新的模块路径"><span class="nav-number">1.4.1.</span> <span class="nav-text">程序执行时添加新的模块路径</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#重新导入模块"><span class="nav-number">1.4.2.</span> <span class="nav-text">重新导入模块</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特殊属性"><span class="nav-number">1.5.</span> <span class="nav-text">特殊属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#上下文管理器"><span class="nav-number">1.6.</span> <span class="nav-text">上下文管理器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#闭包"><span class="nav-number">1.7.</span> <span class="nav-text">闭包</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#装饰器"><span class="nav-number">2.</span> <span class="nav-text">装饰器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#当被装饰的函数有参数-有返回值时"><span class="nav-number">2.0.1.</span> <span class="nav-text">当被装饰的函数有参数, 有返回值时:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#装饰器带参数-设置外部变量时"><span class="nav-number">2.0.2.</span> <span class="nav-text">装饰器带参数, 设置外部变量时:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#类装饰器"><span class="nav-number">2.0.3.</span> <span class="nav-text">类装饰器</span></a></li></ol></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#元类"><span class="nav-number">3.</span> <span class="nav-text">元类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#metaclass属性"><span class="nav-number">3.1.</span> <span class="nav-text">metaclass属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自定义元类"><span class="nav-number">3.2.</span> <span class="nav-text">自定义元类</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#线程"><span class="nav-number">4.</span> <span class="nav-text">线程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用"><span class="nav-number">4.1.</span> <span class="nav-text">使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#锁"><span class="nav-number">4.2.</span> <span class="nav-text">锁</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CPython解释器中的GIL"><span class="nav-number">4.3.</span> <span class="nav-text">CPython解释器中的GIL</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#进程"><span class="nav-number">5.</span> <span class="nav-text">进程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用-1"><span class="nav-number">5.1.</span> <span class="nav-text">使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#进程间通信"><span class="nav-number">5.2.</span> <span class="nav-text">进程间通信</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#协程"><span class="nav-number">6.</span> <span class="nav-text">协程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用-2"><span class="nav-number">6.1.</span> <span class="nav-text">使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#yield"><span class="nav-number">6.1.1.</span> <span class="nav-text">yield</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#gevent"><span class="nav-number">6.1.2.</span> <span class="nav-text">gevent</span></a></li></ol></li></ol></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">OneKyle</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'durand';
+      var disqus_identifier = '2019/10/18/python随笔/';
+
+      var disqus_title = "python随笔";
+
+
+      function run_disqus_script(disqus_script) {
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+
+      
+        var disqus_config = function () {
+            this.page.url = disqus_url;
+            this.page.identifier = disqus_identifier;
+            this.page.title = disqus_title;
+        };
+        run_disqus_script('embed.js');
+      
+
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("VqpF9BhiWYEp7D1Kz4cKhQ4v-gzGzoHsz", "vGO2OS6UXoWB1H9d9a6yJn6G");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+
+  
+
+</body>
+</html>
