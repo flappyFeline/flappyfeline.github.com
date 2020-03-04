@@ -77,6 +77,8 @@
 
 
 
+  <link rel="alternate" href="/atom.xml" title="OneKyle" type="application/atom+xml">
+
 
 
 
@@ -335,8 +337,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2020-01-05T00:41:03+08:00">
-                2020-01-05
+              <time title="更新于" itemprop="dateModified" datetime="2020-01-30T13:56:17+08:00">
+                2020-01-30
               </time>
             
           </span>
@@ -1810,7 +1812,7 @@
       
         
           <p>通过ssh登录手机之后, 按照以下步骤操作</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// 安装curl</span><br><span class="line"><span class="meta">$</span> apt-get upgrade curl</span><br><span class="line"></span><br><span class="line">// 安装awk</span><br><span class="line"><span class="meta">$</span> apt-get install gawk</span><br><span class="line"></span><br><span class="line">// 安装on-my-zsh</span><br><span class="line"><span class="meta">$</span> sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// 安装curl</span><br><span class="line"><span class="meta">$</span><span class="bash"> apt-get upgrade curl</span></span><br><span class="line"></span><br><span class="line">// 安装awk</span><br><span class="line"><span class="meta">$</span><span class="bash"> apt-get install gawk</span></span><br><span class="line"></span><br><span class="line">// 安装on-my-zsh</span><br><span class="line"><span class="meta">$</span><span class="bash"> sh -c <span class="string">"<span class="variable">$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)</span>"</span></span></span><br></pre></td></tr></table></figure>
 <p>安装完成后会提示无法使用chsh切换默认shell, 需要手动操作.<br>然而使用<code>chsh</code>是无论如何都切换不了的.</p>
 <p>于是便想着通过修改 <code>/etc/passwd</code>文件中的设置来更改, 但是并没有起作用.</p>
 <p>google了一圈也未果, 最终在<code>/etc</code>目录下发现了<code>master.passwd</code>这个文件,  于是修改关于<code>root</code>的配置.</p>
@@ -2297,6 +2299,13 @@
 
         </nav>
 
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
         
 
         <div class="links-of-author motion-element">

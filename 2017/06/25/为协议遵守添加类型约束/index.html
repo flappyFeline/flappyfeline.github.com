@@ -77,6 +77,8 @@
 
 
 
+  <link rel="alternate" href="/atom.xml" title="OneKyle" type="application/atom+xml">
+
 
 
 
@@ -87,18 +89,18 @@
 
 
 
-<meta name="description" content="分类中添加约束?例如, 有一个 Array&amp;lt;SomeType&amp;gt; 类型(Element 为 SomeType)的数组, 而我只想让这种类型的数组遵守 SomeProtocol 协议. 理想情况下, 应该这么写: 123456extension Array: SomeProtocol where Element : SomeType &amp;#123;    func someMethod()">
+<meta name="description" content="分类中添加约束?例如, 有一个 Array&amp;lt;SomeType&amp;gt; 类型(Element 为 SomeType)的数组, 而我只想让这种类型的数组遵守 SomeProtocol 协议. 理想情况下, 应该这么写: 123456extension Array: SomeProtocol where Element : SomeType &amp;#123;    func someMethod()">
 <meta name="keywords" content="where clauses for associated types,add type constraints to a Swift protocol conformance extension,Extension of type Array with constraints cannot have an inheritance clause">
 <meta property="og:type" content="article">
 <meta property="og:title" content="为泛型类型遵守协议添加类型约束">
 <meta property="og:url" content="http://yoursite.com/2017/06/25/为协议遵守添加类型约束/index.html">
 <meta property="og:site_name" content="OneKyle">
-<meta property="og:description" content="分类中添加约束?例如, 有一个 Array&amp;lt;SomeType&amp;gt; 类型(Element 为 SomeType)的数组, 而我只想让这种类型的数组遵守 SomeProtocol 协议. 理想情况下, 应该这么写: 123456extension Array: SomeProtocol where Element : SomeType &amp;#123;    func someMethod()">
+<meta property="og:description" content="分类中添加约束?例如, 有一个 Array&amp;lt;SomeType&amp;gt; 类型(Element 为 SomeType)的数组, 而我只想让这种类型的数组遵守 SomeProtocol 协议. 理想情况下, 应该这么写: 123456extension Array: SomeProtocol where Element : SomeType &amp;#123;    func someMethod()">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-09-15T14:12:43.980Z">
+<meta property="og:updated_time" content="2020-03-04T05:38:15.110Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="为泛型类型遵守协议添加类型约束">
-<meta name="twitter:description" content="分类中添加约束?例如, 有一个 Array&amp;lt;SomeType&amp;gt; 类型(Element 为 SomeType)的数组, 而我只想让这种类型的数组遵守 SomeProtocol 协议. 理想情况下, 应该这么写: 123456extension Array: SomeProtocol where Element : SomeType &amp;#123;    func someMethod()">
+<meta name="twitter:description" content="分类中添加约束?例如, 有一个 Array&amp;lt;SomeType&amp;gt; 类型(Element 为 SomeType)的数组, 而我只想让这种类型的数组遵守 SomeProtocol 协议. 理想情况下, 应该这么写: 123456extension Array: SomeProtocol where Element : SomeType &amp;#123;    func someMethod()">
 
 
 
@@ -335,8 +337,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-09-15T22:12:43+08:00">
-                2019-09-15
+              <time title="更新于" itemprop="dateModified" datetime="2020-03-04T13:38:15+08:00">
+                2020-03-04
               </time>
             
           </span>
@@ -418,20 +420,20 @@
       
 
       
-        <h3 id="分类中添加约束"><a href="#分类中添加约束" class="headerlink" title="分类中添加约束?"></a>分类中添加约束?</h3><p>例如, 有一个 <code>Array&lt;SomeType&gt;</code> 类型(<code>Element</code> 为 <code>SomeType</code>)的数组, 而我只想让这种类型的数组遵守 <code>SomeProtocol</code> 协议. 理想情况下, 应该这么写:</p>
+        <h3 id="分类中添加约束"><a href="#分类中添加约束" class="headerlink" title="分类中添加约束?"></a>分类中添加约束?</h3><p>例如, 有一个 <code>Array&lt;SomeType&gt;</code> 类型(<code>Element</code> 为 <code>SomeType</code>)的数组, 而我只想让这种类型的数组遵守 <code>SomeProtocol</code> 协议. 理想情况下, 应该这么写:</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Array</span>: <span class="title">SomeProtocol</span> <span class="title">where</span> <span class="title">Element</span> : <span class="title">SomeType</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">someMethod</span><span class="params">()</span></span> &#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>但事实上并不能这么写, Xcode会报一个error:<br><code>Extension of type &#39;Array&#39; with constraints cannot have an inheritance clause</code></p>
 <h3 id="声明中添加约束"><a href="#声明中添加约束" class="headerlink" title="声明中添加约束"></a>声明中添加约束</h3><p>既然分类中不可以,那么对于自定义的类型, 在声明中就可行吗?<br><a id="more"></a><br>如果是在声明中使用泛型的类型约束, 应该是这么写:</p>
-<h4 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TestClass</span>&lt;<span class="title">ObjectType</span>&gt;: <span class="title">SomeProtocol</span> <span class="title">where</span> <span class="title">ObjectType</span> : <span class="title">SomeType</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">testMethod</span><span class="params">()</span></span> &#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">SomeProtocol</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">testMethod</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TestClass</span>&lt;<span class="title">ObjectType</span>&gt;: <span class="title">SomeProtocol</span> <span class="title">where</span> <span class="title">ObjectType</span> : <span class="title">SomeType</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">testMethod</span><span class="params">()</span></span> &#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">SomeProtocol</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">testMethod</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>编译通过, 测试下试试:</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> test1: <span class="type">TestClass</span>&lt;<span class="type">String</span>&gt;; <span class="comment">// error: ❗️'TestClass' requires that 'String' inherit from 'NSObject'</span></span><br><span class="line"><span class="keyword">let</span> test2: <span class="type">TestClass</span>&lt;<span class="type">SomeType</span>&gt;;</span><br><span class="line">test2.testMethod();</span><br></pre></td></tr></table></figure>
-<h4 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h4><p>可以看到, 在声明中使用类型约束, 可以实现一定的效果, 但是这么操作有很大的局限性: 1. 不能对非自定义类型使用. 2. 会将泛型强制规定为这一类型. </p>
+<h4 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h4><p>可以看到, 在声明中使用类型约束, 可以实现一定的效果, 但是这么操作有很大的局限性: 1. 不能对非自定义类型使用. 2. 会将泛型强制规定为这一类型. </p>
 <h3 id="较完美的方案"><a href="#较完美的方案" class="headerlink" title="较完美的方案"></a>较完美的方案</h3><p>难道就没有一种<code>完美</code>的实现方案吗?<br>在电光石火间, 我抓住了灵感的一瞬:</p>
 <h4 id="实现-1"><a href="#实现-1" class="headerlink" title="实现"></a>实现</h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">TestClass</span>: <span class="title">SomeProtocol</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">testMethod</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"ObjectType isn't SomeType"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">TestClass</span> <span class="title">where</span> <span class="title">ObjectType</span> : <span class="title">SomeType</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">testMethod</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"ObjectType is SomeType!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>test:<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> test1: <span class="type">TestClass</span>&lt;<span class="type">NSObject</span>&gt; = <span class="type">TestClass</span>();</span><br><span class="line"><span class="keyword">let</span> test2: <span class="type">TestClass</span>&lt;<span class="type">SomeType</span>&gt; = <span class="type">TestClass</span>();</span><br><span class="line"></span><br><span class="line">test1.testMethod(); <span class="comment">// ObjectType isn't SomeType</span></span><br><span class="line">test2.testMethod(); <span class="comment">// ObjectType is SomeType!</span></span><br></pre></td></tr></table></figure></p>
 <h4 id="缺点-1"><a href="#缺点-1" class="headerlink" title="缺点"></a>缺点</h4><p>这个方案可以比较好的实现我们的需求, 唯一的缺点就是, 由于遵守协议时不能使用类型约束, 导致其他类型也可以使用协议内函数与变量.</p>
 <h3 id="相关"><a href="#相关" class="headerlink" title="相关"></a>相关</h3><p><code>stackoverflow</code>上也有同学给出了<a href="https://stackoverflow.com/questions/33332613/is-it-possible-to-add-type-constraints-to-a-swift-protocol-conformance-extension" target="_blank" rel="noopener">另一种思路</a>.</p>
-<p>同时, <code>Swift</code>团队也把这项优化添加到了<code>swift-evolution</code> 中, 相信在 <code>Swfit4</code> 中就能看到:  <a href="https://github.com/apple/swift-evolution/blob/master/README.md" target="_blank" rel="noopener">Generics improvements needed by the standard library</a>.</p>
+<p>同时, <code>Swift</code>团队也把这项优化添加到了<code>swift-evolution</code> 中, 相信在 <code>Swfit4</code> 中就能看到:  <a href="https://github.com/apple/swift-evolution/blob/master/README.md" target="_blank" rel="noopener">Generics improvements needed by the standard library</a>.</p>
 
       
     </div>
@@ -595,6 +597,13 @@
         </nav>
 
         
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
 
         <div class="links-of-author motion-element">
           
@@ -632,7 +641,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#分类中添加约束"><span class="nav-number">1.</span> <span class="nav-text">分类中添加约束?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#声明中添加约束"><span class="nav-number">2.</span> <span class="nav-text">声明中添加约束</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#实现"><span class="nav-number">2.1.</span> <span class="nav-text">实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#缺点"><span class="nav-number">2.2.</span> <span class="nav-text">缺点</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#较完美的方案"><span class="nav-number">3.</span> <span class="nav-text">较完美的方案</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#实现-1"><span class="nav-number">3.1.</span> <span class="nav-text">实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#缺点-1"><span class="nav-number">3.2.</span> <span class="nav-text">缺点</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#相关"><span class="nav-number">4.</span> <span class="nav-text">相关</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#分类中添加约束"><span class="nav-number">1.</span> <span class="nav-text">分类中添加约束?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#声明中添加约束"><span class="nav-number">2.</span> <span class="nav-text">声明中添加约束</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#实现"><span class="nav-number">2.1.</span> <span class="nav-text">实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#缺点"><span class="nav-number">2.2.</span> <span class="nav-text">缺点</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#较完美的方案"><span class="nav-number">3.</span> <span class="nav-text">较完美的方案</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#实现-1"><span class="nav-number">3.1.</span> <span class="nav-text">实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#缺点-1"><span class="nav-number">3.2.</span> <span class="nav-text">缺点</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#相关"><span class="nav-number">4.</span> <span class="nav-text">相关</span></a></li></ol></div>
             
 
           </div>

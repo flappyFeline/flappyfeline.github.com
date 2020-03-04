@@ -77,6 +77,8 @@
 
 
 
+  <link rel="alternate" href="/atom.xml" title="OneKyle" type="application/atom+xml">
+
 
 
 
@@ -1297,8 +1299,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-09-15T22:11:57+08:00">
-                2019-09-15
+              <time title="更新于" itemprop="dateModified" datetime="2020-03-04T12:59:48+08:00">
+                2020-03-04
               </time>
             
           </span>
@@ -1382,7 +1384,7 @@
       
         
           <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在上一篇文章中, 我介绍了<a href="http://blog.onekyle.com/2018/07/14/%E5%9F%BA%E4%BA%8Edocker%E6%90%AD%E5%BB%BA%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86%E5%B9%B3%E5%8F%B0redmine" target="_blank" rel="noopener">如何通过docker搭建redmine项目管理平台</a>, 然而此时 redmine仅仅只能在内网上才能访问到, 接下来这篇就介绍下如何通过内网穿透和端口转发来让我们随心所欲的访问到.</p>
-<h1 id="设备"><a href="#设备" class="headerlink" title="设备"></a>设备</h1><table>
+<h1 id="设备"><a href="#设备" class="headerlink" title="设备"></a>设备</h1><table>
 <thead>
 <tr>
 <th style="text-align:left">机器代号</th>
@@ -1397,7 +1399,7 @@
 <td style="text-align:left">Server<span id="Server"></span></td>
 <td style="text-align:left">公网服务器</td>
 <td style="text-align:left">server</td>
-<td style="text-align:left">server.site</td>
+<td style="text-align:left">server.site</td>
 <td style="text-align:center">29245</td>
 </tr>
 <tr>
@@ -1703,8 +1705,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-09-15T22:12:11+08:00">
-                2019-09-15
+              <time title="更新于" itemprop="dateModified" datetime="2020-03-04T13:34:09+08:00">
+                2020-03-04
               </time>
             
           </span>
@@ -1790,7 +1792,7 @@
           <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在我们编码过程中,<code>枚举</code>会经常用到, 尤其是用来表示多种状态时.<br>然而, 在OC中, 对<code>枚举</code>进行打印调试 或者 拼接方法 的操作的编程体验是非常差的. </p>
 <h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><p>以下这种情况你应该会经常遇到:</p>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 你工作时的几种状态</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="built_in">NS_ENUM</span>(<span class="built_in">NSInteger</span>, WorkStatus) &#123;</span><br><span class="line">    <span class="comment">/** 摸鱼*/</span></span><br><span class="line">    WorkStatusUnKnown,</span><br><span class="line">    <span class="comment">/** 认真工作*/</span></span><br><span class="line">    WorkStatusWorking,</span><br><span class="line">    <span class="comment">/** 休息*/</span></span><br><span class="line">    WorkStatusSleeping,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>当我们想要打印这个枚举时, 默认输出的是这个枚举标识符所对应的值, 这样的效果是非常不理想的, 只输出数字,不直观(我们之所以使用枚举来定义状态, 不就是要直观的表示吗?), 为了达到<code>直观</code>这一目的, 写一个将枚举标识符转换成字符串的方法就势在必得了:</p>
+<p>当我们想要打印这个枚举时, 默认输出的是这个枚举标识符所对应的值, 这样的效果是非常不理想的, 只输出数字,不直观(我们之所以使用枚举来定义状态, 不就是要直观的表示吗?), 为了达到<code>直观</code>这一目的, 写一个将枚举标识符转换成字符串的方法就势在必得了:</p>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="built_in">NSString</span> *)WorkStatusDescription:(WorkStatus)status</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">NSString</span> *desc = <span class="literal">nil</span>;</span><br><span class="line">    <span class="keyword">switch</span> (status) &#123;</span><br><span class="line">        <span class="keyword">case</span> WorkStatusUnKnown:</span><br><span class="line">            desc = <span class="string">@"WorkStatusUnKnown"</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> WorkStatusWorking:</span><br><span class="line">            desc = <span class="string">@"WorkStatusWorking"</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> WorkStatusSleeping:</span><br><span class="line">            desc = <span class="string">@"WorkStatusSleeping"</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">            desc = <span class="string">@"NoOne"</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> desc;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
@@ -2079,8 +2081,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-09-15T22:14:12+08:00">
-                2019-09-15
+              <time title="更新于" itemprop="dateModified" datetime="2020-03-04T12:46:10+08:00">
+                2020-03-04
               </time>
             
           </span>
@@ -2163,8 +2165,8 @@
 
       
         
-          <h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>这一系列笔记用于对<a href="http://link" target="_blank" rel="noopener">泊学网RxSwift-step by step</a>课程进行总结和摘选, 仅用于个人学习记忆.</p>
-<h2 id="笔记"><a href="#笔记" class="headerlink" title="笔记"></a>笔记</h2><h3 id="01-异步事件是以时间为索引的常量队列"><a href="#01-异步事件是以时间为索引的常量队列" class="headerlink" title="01-异步事件是以时间为索引的常量队列"></a>01-异步事件是以时间为索引的常量队列</h3><p>以时间为索引的常量队列的方式 这也是引入RxSwift的目的</p>
+          <h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>这一系列笔记用于对<a href="http://link" target="_blank" rel="noopener">泊学网RxSwift-step by step</a>进行总结和摘选, 仅用于个人学习记忆.</p>
+<h2 id="笔记"><a href="#笔记" class="headerlink" title="笔记"></a>笔记</h2><h3 id="01-异步事件是以时间为索引的常量队列"><a href="#01-异步事件是以时间为索引的常量队列" class="headerlink" title="01-异步事件是以时间为索引的常量队列"></a>01-异步事件是以时间为索引的常量队列</h3><p>以时间为索引的常量队列的方式 这也是引入RxSwift的目的</p>
 <h3 id="02-安装RxSwift的三种不同的方式"><a href="#02-安装RxSwift的三种不同的方式" class="headerlink" title="02-安装RxSwift的三种不同的方式"></a>02-安装RxSwift的三种不同的方式</h3><p>学习使用<code>playground</code>来编写文档</p>
 <p>安装方式</p>
 <p>1.mac环境下使用cocoapods安装</p>
@@ -2276,6 +2278,13 @@
 
         </nav>
 
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
         
 
         <div class="links-of-author motion-element">

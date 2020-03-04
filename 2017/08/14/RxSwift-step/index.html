@@ -77,6 +77,8 @@
 
 
 
+  <link rel="alternate" href="/atom.xml" title="OneKyle" type="application/atom+xml">
+
 
 
 
@@ -87,13 +89,13 @@
 
 
 
-<meta name="description" content="写在前面这一系列笔记用于对泊学网RxSwift-step by step课程进行总结和摘选, 仅用于个人学习记忆. 笔记01-异步事件是以时间为索引的常量队列以时间为索引的常量队列的方式 这也是引入RxSwift的目的 02-安装RxSwift的三种不同的方式学习使用playground来编写文档 安装方式 1.mac环境下使用cocoapods安装 2.非mac环境下可以使用 SPM 安装">
+<meta name="description" content="写在前面这一系列笔记用于对泊学网RxSwift-step by step进行总结和摘选, 仅用于个人学习记忆. 笔记01-异步事件是以时间为索引的常量队列以时间为索引的常量队列的方式 这也是引入RxSwift的目的 02-安装RxSwift的三种不同的方式学习使用playground来编写文档 安装方式 1.mac环境下使用cocoapods安装 2.非mac环境下可以使用 SPM 安装    在">
 <meta name="keywords" content="Swift,iOS,RxSwift">
 <meta property="og:type" content="article">
 <meta property="og:title" content="RxSwift-step by step 1-10">
 <meta property="og:url" content="http://yoursite.com/2017/08/14/RxSwift-step/index.html">
 <meta property="og:site_name" content="OneKyle">
-<meta property="og:description" content="写在前面这一系列笔记用于对泊学网RxSwift-step by step课程进行总结和摘选, 仅用于个人学习记忆. 笔记01-异步事件是以时间为索引的常量队列以时间为索引的常量队列的方式 这也是引入RxSwift的目的 02-安装RxSwift的三种不同的方式学习使用playground来编写文档 安装方式 1.mac环境下使用cocoapods安装 2.非mac环境下可以使用 SPM 安装">
+<meta property="og:description" content="写在前面这一系列笔记用于对泊学网RxSwift-step by step进行总结和摘选, 仅用于个人学习记忆. 笔记01-异步事件是以时间为索引的常量队列以时间为索引的常量队列的方式 这也是引入RxSwift的目的 02-安装RxSwift的三种不同的方式学习使用playground来编写文档 安装方式 1.mac环境下使用cocoapods安装 2.非mac环境下可以使用 SPM 安装    在">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://image.boxueio.com/subject-basic-2@2x.png">
 <meta property="og:image" content="https://image.boxueio.com/ignoring-ops-4@2x.png">
@@ -101,10 +103,10 @@
 <meta property="og:image" content="https://image.boxueio.com/ignoring-ops-8@2x.png">
 <meta property="og:image" content="https://image.boxueio.com/ignoring-ops-9@2x.png">
 <meta property="og:image" content="https://image.boxueio.com/ignoring-ops-12@2x.png">
-<meta property="og:updated_time" content="2019-09-15T14:14:12.178Z">
+<meta property="og:updated_time" content="2020-03-04T04:46:10.821Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="RxSwift-step by step 1-10">
-<meta name="twitter:description" content="写在前面这一系列笔记用于对泊学网RxSwift-step by step课程进行总结和摘选, 仅用于个人学习记忆. 笔记01-异步事件是以时间为索引的常量队列以时间为索引的常量队列的方式 这也是引入RxSwift的目的 02-安装RxSwift的三种不同的方式学习使用playground来编写文档 安装方式 1.mac环境下使用cocoapods安装 2.非mac环境下可以使用 SPM 安装">
+<meta name="twitter:description" content="写在前面这一系列笔记用于对泊学网RxSwift-step by step进行总结和摘选, 仅用于个人学习记忆. 笔记01-异步事件是以时间为索引的常量队列以时间为索引的常量队列的方式 这也是引入RxSwift的目的 02-安装RxSwift的三种不同的方式学习使用playground来编写文档 安装方式 1.mac环境下使用cocoapods安装 2.非mac环境下可以使用 SPM 安装    在">
 <meta name="twitter:image" content="https://image.boxueio.com/subject-basic-2@2x.png">
 
 
@@ -342,8 +344,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-09-15T22:14:12+08:00">
-                2019-09-15
+              <time title="更新于" itemprop="dateModified" datetime="2020-03-04T12:46:10+08:00">
+                2020-03-04
               </time>
             
           </span>
@@ -425,8 +427,8 @@
       
 
       
-        <h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>这一系列笔记用于对<a href="http://link" target="_blank" rel="noopener">泊学网RxSwift-step by step</a>课程进行总结和摘选, 仅用于个人学习记忆.</p>
-<h2 id="笔记"><a href="#笔记" class="headerlink" title="笔记"></a>笔记</h2><h3 id="01-异步事件是以时间为索引的常量队列"><a href="#01-异步事件是以时间为索引的常量队列" class="headerlink" title="01-异步事件是以时间为索引的常量队列"></a>01-异步事件是以时间为索引的常量队列</h3><p>以时间为索引的常量队列的方式 这也是引入RxSwift的目的</p>
+        <h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>这一系列笔记用于对<a href="http://link" target="_blank" rel="noopener">泊学网RxSwift-step by step</a>进行总结和摘选, 仅用于个人学习记忆.</p>
+<h2 id="笔记"><a href="#笔记" class="headerlink" title="笔记"></a>笔记</h2><h3 id="01-异步事件是以时间为索引的常量队列"><a href="#01-异步事件是以时间为索引的常量队列" class="headerlink" title="01-异步事件是以时间为索引的常量队列"></a>01-异步事件是以时间为索引的常量队列</h3><p>以时间为索引的常量队列的方式 这也是引入RxSwift的目的</p>
 <h3 id="02-安装RxSwift的三种不同的方式"><a href="#02-安装RxSwift的三种不同的方式" class="headerlink" title="02-安装RxSwift的三种不同的方式"></a>02-安装RxSwift的三种不同的方式</h3><p>学习使用<code>playground</code>来编写文档</p>
 <p>安装方式</p>
 <p>1.mac环境下使用cocoapods安装</p>
@@ -672,6 +674,13 @@
         </nav>
 
         
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
 
         <div class="links-of-author motion-element">
           
@@ -709,7 +718,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#写在前面"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#笔记"><span class="nav-number">2.</span> <span class="nav-text">笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#01-异步事件是以时间为索引的常量队列"><span class="nav-number">2.1.</span> <span class="nav-text">01-异步事件是以时间为索引的常量队列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#02-安装RxSwift的三种不同的方式"><span class="nav-number">2.2.</span> <span class="nav-text">02-安装RxSwift的三种不同的方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#03-RxSwift中的那些”术语”到底在说什么"><span class="nav-number">2.3.</span> <span class="nav-text">03-RxSwift中的那些”术语”到底在说什么?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#04-理解create和debug-operator"><span class="nav-number">2.4.</span> <span class="nav-text">04 理解create和debug operator</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#05-四种Subject的基本用法"><span class="nav-number">2.5.</span> <span class="nav-text">05 四种Subject的基本用法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#PublishSubject"><span class="nav-number">2.5.1.</span> <span class="nav-text">PublishSubject</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#BehaviorSubject"><span class="nav-number">2.5.2.</span> <span class="nav-text">BehaviorSubject</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ReplaySubject"><span class="nav-number">2.5.3.</span> <span class="nav-text">ReplaySubject</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Variable"><span class="nav-number">2.5.4.</span> <span class="nav-text">Variable</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#07-TodoDemo2"><span class="nav-number">2.6.</span> <span class="nav-text">07 TodoDemo2</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#资源被正常回收了么？"><span class="nav-number">2.6.1.</span> <span class="nav-text">资源被正常回收了么？</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#08-ToDoDemo3"><span class="nav-number">2.7.</span> <span class="nav-text">08 ToDoDemo3</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#09-常用的忽略事件操作符"><span class="nav-number">2.8.</span> <span class="nav-text">09 常用的忽略事件操作符</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Ignore-elementss"><span class="nav-number">2.8.1.</span> <span class="nav-text">Ignore elementss</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#skip"><span class="nav-number">2.8.2.</span> <span class="nav-text">skip</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#skipWhile-skipUntil"><span class="nav-number">2.8.3.</span> <span class="nav-text">skipWhile / skipUntil</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#skipWhile"><span class="nav-number">2.8.3.1.</span> <span class="nav-text">skipWhile</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#skipUntil"><span class="nav-number">2.8.3.2.</span> <span class="nav-text">skipUntil</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#distinctUntilChanged"><span class="nav-number">2.8.4.</span> <span class="nav-text">distinctUntilChanged</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-常用的获取事件操作符"><span class="nav-number">2.9.</span> <span class="nav-text">10 常用的获取事件操作符</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#elementAt"><span class="nav-number">2.9.1.</span> <span class="nav-text">elementAt</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#filter"><span class="nav-number">2.9.2.</span> <span class="nav-text">filter</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#take"><span class="nav-number">2.9.3.</span> <span class="nav-text">take</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#takeWhile-takeWhileWithIndex"><span class="nav-number">2.9.4.</span> <span class="nav-text">takeWhile/takeWhileWithIndex</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#takeUntil"><span class="nav-number">2.9.5.</span> <span class="nav-text">takeUntil</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#写在前面"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#笔记"><span class="nav-number">2.</span> <span class="nav-text">笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#01-异步事件是以时间为索引的常量队列"><span class="nav-number">2.1.</span> <span class="nav-text">01-异步事件是以时间为索引的常量队列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#02-安装RxSwift的三种不同的方式"><span class="nav-number">2.2.</span> <span class="nav-text">02-安装RxSwift的三种不同的方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#03-RxSwift中的那些”术语”到底在说什么"><span class="nav-number">2.3.</span> <span class="nav-text">03-RxSwift中的那些”术语”到底在说什么?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#04-理解create和debug-operator"><span class="nav-number">2.4.</span> <span class="nav-text">04 理解create和debug operator</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#05-四种Subject的基本用法"><span class="nav-number">2.5.</span> <span class="nav-text">05 四种Subject的基本用法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#PublishSubject"><span class="nav-number">2.5.1.</span> <span class="nav-text">PublishSubject</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#BehaviorSubject"><span class="nav-number">2.5.2.</span> <span class="nav-text">BehaviorSubject</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ReplaySubject"><span class="nav-number">2.5.3.</span> <span class="nav-text">ReplaySubject</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Variable"><span class="nav-number">2.5.4.</span> <span class="nav-text">Variable</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#07-TodoDemo2"><span class="nav-number">2.6.</span> <span class="nav-text">07 TodoDemo2</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#资源被正常回收了么？"><span class="nav-number">2.6.1.</span> <span class="nav-text">资源被正常回收了么？</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#08-ToDoDemo3"><span class="nav-number">2.7.</span> <span class="nav-text">08 ToDoDemo3</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#09-常用的忽略事件操作符"><span class="nav-number">2.8.</span> <span class="nav-text">09 常用的忽略事件操作符</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Ignore-elementss"><span class="nav-number">2.8.1.</span> <span class="nav-text">Ignore elementss</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#skip"><span class="nav-number">2.8.2.</span> <span class="nav-text">skip</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#skipWhile-skipUntil"><span class="nav-number">2.8.3.</span> <span class="nav-text">skipWhile / skipUntil</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#skipWhile"><span class="nav-number">2.8.3.1.</span> <span class="nav-text">skipWhile</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#skipUntil"><span class="nav-number">2.8.3.2.</span> <span class="nav-text">skipUntil</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#distinctUntilChanged"><span class="nav-number">2.8.4.</span> <span class="nav-text">distinctUntilChanged</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-常用的获取事件操作符"><span class="nav-number">2.9.</span> <span class="nav-text">10 常用的获取事件操作符</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#elementAt"><span class="nav-number">2.9.1.</span> <span class="nav-text">elementAt</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#filter"><span class="nav-number">2.9.2.</span> <span class="nav-text">filter</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#take"><span class="nav-number">2.9.3.</span> <span class="nav-text">take</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#takeWhile-takeWhileWithIndex"><span class="nav-number">2.9.4.</span> <span class="nav-text">takeWhile/takeWhileWithIndex</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#takeUntil"><span class="nav-number">2.9.5.</span> <span class="nav-text">takeUntil</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
